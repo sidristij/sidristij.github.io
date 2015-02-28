@@ -14,11 +14,13 @@ body {
 }
 
 a {
-    color: #0a79d2;
+    color: #1045A5;
+	font-style: italic;
 }
 
 a:hover {
-    color: #1060a0;
+    color: #2055B5;
+	text-decoration: underline;
 }
 
 .clear {
@@ -45,7 +47,7 @@ a:hover {
 }
 
 #logo {
-    background: url(img/logo.png) no-repeat;
+    background: url(../img/logo.png) no-repeat;
     display: block;
     float: left;
     margin-top: 10px;
@@ -118,16 +120,11 @@ a:hover {
 }
 
 .reg_bottom {
-    background: #167fde;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 10px;
-    color: #fff;
+    color: #a93a00;
     font-size: 18px;
     font-weight: bold;
     line-height: 40px;
-    padding: 20px 40px;
-    text-decoration: none;
+    text-decoration: underline;
 }
 
 
@@ -211,7 +208,6 @@ h2 {
 
 .photoLeft span, .photoRight span {
     color: #0a79d2;
-    display: block;
     font-size: 18px;
     font-weight: bold;
 }
@@ -227,11 +223,11 @@ h2 {
 
 .photoLeft div p, .photoRight div p {
     background: rgba(255, 255, 255, 0.9);
-    border-top: 1px solid #ddd;
+    border-top: 0px solid #ddd;
     padding: 5px 0;
     position: relative;
     text-align: center;
-    top: -20px;
+    top: 0px;
     z-index: 800;
 }
 
@@ -296,7 +292,6 @@ h2 {
 }
 
 #about {
-    background: #fafafa url(img/social.png);
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
