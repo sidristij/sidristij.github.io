@@ -69,7 +69,6 @@ a:hover {
 
 #menu div {
     float: left;
-    min-width: 120px;
 }
 
 #menu div > a {
