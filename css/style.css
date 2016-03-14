@@ -204,6 +204,8 @@ h2 {
 .photoLeft, .photoRight {
     min-height: 140px;
     position: relative;
+    border-bottom: 1px solid #f1f1f1;
+    padding-top: 40px;
 }
 
 .photoLeft span, .photoRight span {
@@ -218,6 +220,7 @@ h2 {
 
 .photoLeft div img, .photoRight div img {
     position: relative;
+    top:40px;
     z-index: 1;
 }
 
@@ -228,6 +231,7 @@ h2 {
     position: relative;
     text-align: center;
     top: 0px;
+    top:40px;
     z-index: 800;
 }
 
