@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html><head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>QA: Conference</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=1000">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/register.css">
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+</head>
+<body>
+<div id="header">
+    <img id="qaclogo" src="img/qac_mini.png"/>
+    <div class="menu">
+        <div><a href="index.html">О конференции</a></div>
+        <div><a href="matrix.html">Доклады</a></div>
+        <a href="register.html" class="register_button">РЕГИСТРАЦИЯ</a>
+    </div>
+</div>
+<div id="page">
+    <div id="register">
+        <!-- fullsize bg to get sizes -->
+        <img id="register_sizes" class="invisible" src="img/register_bg.jpg"/>
+
+        <!-- page background -->
+        <div id="register_bg"></div>
+
+        <!-- content: conference content -->
+        <div class="content">
+            <div id="register_title">
+                <div class="title">РЕГИСТРАЦИЯ</div>
+            </div>
+            <div id="reg_container">
+                <div id="reg_info">
+                    <h2>Стоимость участия</h2>
+
+                    <p>Стоимость входного билета на конференцию включает в себя саму конферецию, трансляцию и кофе-брейки</p>
+
+                    <h2>Онлайн-трансляция с Москвы и Петербурга, запись докладов</h2>
+
+                    <p>Запись докладов (всех городов) и онлайн-трансляция (для Москвы и Петербурга) будет доступна всем кто купил любой тип билета - после конференции.</p>
+                    <p>Чтобы купить билет на онлайн-трансляцию, необходимо открыть регистрацию на любой город и купить билет на трансляцию там.</p>
+
+                    <h2>Приобретение билета работодателем</h2>
+
+                    <p>Если Вы хотите попытать счастья и посетить конференцию  бесплатно для себя, вы можете скоординироваться с людьми из Вашей компании и написать коллективное письмо своему менеджеру.
+                    Оплата юр. лицами производится через бронирование билетов (ссылки справа) и указанием типа оплаты "Платит компания"</p>
+
+                    <h2>Связь</h2>
+
+                    <p>Электропочта: <a href="mailto:sidristij@yandex.ru">sidristij@yandex.ru</a><br>
+                    Мобильный: +7 (921) 948-16-08<br>
+                    Skype: <a href="skype:stanislav.sidristyi">stanislav.sidristyi</a></p>
+                </div>
+            </div>
+            <div id="reg_buttons_area">
+                <div class="reg-city">
+                    <div class="city-name">МОСКВА + онлайн</div>
+                    <div class="city-descr">
+                        <div class="city-address">
+                            Гостиница "Салют"<br>
+                            Ленинский пр., д.158
+                        </div>
+                        <div class="date-time">
+                            26 окт. 2018<br>09<sup>00</sup> - 20<sup>00</sup>
+                        </div>
+                        <div class="city-go">
+                                <script type="text/javascript" async="async" defer="defer" charset="UTF-8" src="https://timepad.ru/js/tpwf/loader/min/loader.js" data-timepad-customized="3019" data-timepad-widget-v2="event_register">
+                                    (function(){return {"event":{"id":"778147"},"hidePreloading":true,"initialRoute":"button","buttonSettings":{"text":"РЕГИСТРАЦИЯ"}}; })();
+                                </script>
+                        </div>
+                    </div>
+                </div>
+                <div class="reg-city">
+                    <div class="city-name">САНКТ-ПЕТЕРБУРГ + онлайн</div>
+                    <div class="city-descr">
+                        <div class="city-address">
+                            Офис Epam Systems
+                            Заставская, 22к2
+                        </div>
+                        <div class="date-time">
+                            19 окт. 2018<br>09<sup>00</sup> - 20<sup>00</sup>
+                        </div>
+                        <div class="city-go">
+                            <script type="text/javascript" async="async" defer="defer" charset="UTF-8" src="https://timepad.ru/js/tpwf/loader/min/loader.js" data-timepad-customized="3019" data-timepad-widget-v2="event_register">
+                                (function(){return {"event":{"id":"777988"},"hidePreloading":true,"initialRoute":"button","buttonSettings":{"text":"РЕГИСТРАЦИЯ"}}; })();
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+    var theWindow    = $(window),
+            $bg          = $("#register_bg"),
+            moscow_sizes = $('#register_sizes');
+
+    function resizeBg() {
+
+        var window_width  = theWindow.width(),
+                window_height = theWindow.height(),
+                bg_width = moscow_sizes.width(),
+                bg_height = moscow_sizes.height();
+
+        var wdiff = Math.max(window_width, 1024) / bg_width;
+        var hdiff = Math.max(window_height, 800) / bg_height;
+        var ratio = Math.max(wdiff, hdiff);
+
+        var newWidth = Math.min(bg_width * ratio, window_width);
+        var newHeight = Math.min(bg_height * ratio, window_height);
+
+        // растянуть по вертикали, по горизонтали сцентровать
+        $bg.css({"background-size": bg_width * ratio + "px " + bg_height * ratio + "px"});
+    }
+
+    resizeBg();
+
+    $(window).load(function() {
+        theWindow.resize(resizeBg).trigger("resize");
+    });
+</script>
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-12938027-10', 'auto');
+    ga('send', 'pageview');
+
+</script>
+</body>
+</html>
