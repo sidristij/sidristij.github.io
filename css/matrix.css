@@ -181,7 +181,7 @@ table.card-table {
     padding: 0px;
     width: 100%;
     text-align: left;
-    font-size: 15pt;
+    font-size: 16pt;
     table-layout: fixed;
 }
 
@@ -214,14 +214,14 @@ table.card-table td {
 .presentation-title {
     height: 80px;
     padding: 20px 0px;
-    font-size: 13pt;
+    font-size: 15pt;
     font-weight: 600;
 }
 
 .presentation-descr {
     height: 100px;
     padding: 20px 0px;
-    font-size: 12pt;
+    font-size: 14pt;
     font-weight: 100;
     vertical-align: top;
 }
