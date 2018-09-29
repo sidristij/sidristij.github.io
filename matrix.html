@@ -383,18 +383,9 @@
         $bg.css({"background-size": bg_width * ratio + "px " + bg_height * ratio + "px"});
     }
 
-    function showCity(city) {
-        $('.msk,.spb').css({'display':'none'});
-        $('#msk-link,#spb-link').removeClass('choosed');
-        $('#'+city+'-link').addClass('choosed');
-        $('.'+city).css({'display':'block'});
-        resizeBg();
-    }
-
+    
     resizeBg();
-    $('#msk-link').on('click', function(){ showCity('msk'); });
-    $('#spb-link').on('click', function(){ showCity('spb'); });
-    showCity('spb');
+    
     $(window).load(function() {
         theWindow.resize(resizeBg).trigger("resize");
     });
