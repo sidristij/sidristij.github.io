@@ -190,6 +190,7 @@ table.card-table td {
 
 .card-table img {
     border-radius: 7px;
+    width: 95% !important;
 }
 
 .card-first-column {
