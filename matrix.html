@@ -4,8 +4,8 @@
     <title>CLRium #6: Concurrency</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=1000">                                       
-    <meta property="og:title" content="CLRium #6: Concurrency. Матрица докладов." />
-    <meta property="og:description" content="Самое полное описание конкуррентной и многопоточной разработки на платформе .NET" />
+    <meta property="og:title" content="CLRium #6: Concurrency" />
+    <meta property="og:description" content="Самое полное описание разработки конкуррентного и многопоточного кода на платформе .NET" />
     <meta property="og:image" content="img/thumbnail.png" />
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/matrix.css">
@@ -13,18 +13,21 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 </head>
 <body>
-<div id="header">
-    <img id="conflogo" src="img/logo-mini.png"/>
-    <div class="menu">
-        <div><a href="index.html">О конференции</a></div>
-        <div><a href="matrix.html">Доклады</a></div>
-        <a href="register.html" class="register_button">РЕГИСТРАЦИЯ</a>
+
+    <div id="header">
+        <img id="conflogo" src="img/logo-mini.png"/>
+        <div class="menu">
+            <div><a href="index.html">О конференции</a></div>
+            <div><a href="matrix.html">Доклады</a></div>
+            <a href="register.html" class="register_button">РЕГИСТРАЦИЯ</a>
+        </div>
     </div>
-</div>
-<div id="footer">
-</div>
-<div id="page">
-    <div id="matrix">
+    
+    <div id="footer">
+    </div>
+
+    <div id="page">
+    <div class="matrix">
         <!-- Fullsize invisible copy of background to have its size -->
         <img id="bg_sizes" class="invisible" src="img/matrix_bg.jpg"/>
 
@@ -34,8 +37,382 @@
 
         <!-- Speakers table -->
         <div class="content">
+                <div id="matrix_title">
+                    <div class="title">ДОКЛАДЫ<span class="subtitle">, День 1</span></div>
+                </div>
+                <br><br>
+                <div id="matrix_table">
+                    <table id="main-table" class="spb">
+                        <colgroup>
+                            <col class="time-column" />
+                            <col class="first-column" />
+                            <col class="second-column" />
+                            <col class="third-column" />
+                            <col class="fourth-column" />
+                            <col class="time-column-last" />
+                        </colgroup>
+                        <tbody>
+    
+                            <!-- HEADER ROW -->
+                            <tr class="header-row">
+                                <td class="table-header" colspan="6">
+                                    <p class="date-desc">Санкт-Петербург, 29-30 ноября 2019 года. Москва, 06-07 декабря 2019 года </p>
+                                </td>
+                            </tr>
+                            <tr class="short-row">
+                                <td class="time-column">
+                                    9<sup>00</sup>
+                                </td>
+                                <td class="cross-row-header" colspan="4">
+                                    Кофе-брейк<br><span class="cross-row-header-description">сборы перед началом семинара</span>
+                                </td>
+                                <td class="time-column">
+                                    9<sup>30</sup>
+                                </td>
+                            </tr>
+                            <!-- 10:00 - 14:00 HEADER -->
+                            <tr class="header-row">
+                                <td></td>
+                                <td class="table-header">
+                                    <br>
+                                    <span class="time-column">09<sup>30</sup> - 10<sup>15</sup></span>
+                                </td>
+                                <td class="table-header">
+                                    <br>
+                                    <span class="time-column">10<sup>30</sup> - 11<sup>15</sup></span>
+                                </td>
+                                <td class="table-header">
+                                    <br>
+                                    <span class="time-column">11<sup>30</sup> - 12<sup>15</sup></span>
+                                </td>
+                                <td class="table-header">
+                                    <br>
+                                    <span class="time-column">12<sup>30</sup> - 13<sup>15</sup></span>
+                                </td>
+                                <td></td>
+                            </tr>
+    
+                            <!-- 10:00 - 14:00 -->
+                            <tr class="short-row">
+                                <td class="time-column">
+                                </td>
+                                <td class="table-cell">
+                                    <div class="card">
+                                            <table class="card-table">
+                                                <colgroup>
+                                                    <col class="card-first-column" />
+                                                </colgroup>
+                                                <tbody>
+                                                <tr><td colspan="2" class="presentation-title">
+                                                    <img width="auto" src="./img/NotAssigned.png"/>
+                                                    <br>
+                                                    Параллелизация на уровне процессора
+                                                </td></tr>
+                                                <tr><td colspan="2" class="presentation-descr">
+                                                    <br>
+                                                    <i>(описание не готово)</i><br>
+                                                    Вводный доклад о видении параллельных вычислений с точки зрения процессора: мы рассмотрим все краеугольные механизмы, на основе которых работает наш код. 
+                                                </td></tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                </td>
+                                <td class="table-cell">
+                                    <div class="card">
+                                            <table class="card-table">
+                                                <colgroup>
+                                                    <col class="card-first-column" />
+                                                </colgroup>
+                                                <tbody>
+                                                    <tr><td colspan="2" class="presentation-title">
+                                                        <img width="auto" src="./img/NotAssigned.png"/>
+                                                        <br>
+                                                        Операционная система: процессы и потоки, часть 1
+                                                    </td></tr>
+                                                    <tr><td colspan="2" class="presentation-descr">
+                                                        <br>
+                                                        <i>(описание не готово)</i><br>
+                                                        Будет рассмотрено строение и состав процессов, строение и состав потоков. Различные виды процессов, диспетчеризация потоков, волокна.
+                                                    </td></tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                </td>
+                                <td class="table-cell">
+                                    <div class="card">
+                                            <table class="card-table">
+                                                <colgroup>
+                                                    <col class="card-first-column" />
+                                                </colgroup>
+                                                <tbody>
+                                                    <tr><td colspan="2" class="presentation-title">
+                                                        <img width="auto" src="./img/NotAssigned.png"/>
+                                                        <br>
+                                                        Операционная система: процессы и потоки, часть 2
+                                                    </td></tr>
+                                                    <tr><td colspan="2" class="presentation-descr">
+                                                        <br>
+                                                        <i>(описание не готово)</i><br>
+                                                        Будет рассмотрено строение и состав процессов, строение и состав потоков. Различные виды процессов, диспетчеризация потоков, волокна.
+                                                    </td></tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                </td>
+                                <td class="table-cell">
+                                    <div class="card">
+                                            <table class="card-table">
+                                                <colgroup>
+                                                    <col class="card-first-column" />
+                                                </colgroup>
+                                                <tbody>
+                                                    <tr><td colspan="2" class="presentation-title">
+                                                        <img width="auto" src="./img/NotAssigned.png"/>
+                                                        <br>
+                                                        Потоки уровня CLR
+                                                    </td></tr>
+                                                    <tr><td colspan="2" class="presentation-descr">
+                                                        <br>
+                                                        <i>(описание не готово)</i><br>
+                                                        Будут рассмотрены все базовые связки CLR с операционной системой и процессором: STA/MTA, volatile, MemoryBarrier, пул потоков и многие другие
+                                                    </td></tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                </td>
+                                <td class="time-column"></td>
+                            </tr>
+                            <tr class="short-row">
+                                <td class="time-column">
+                                    13<sup>15</sup>
+                                </td>
+                                <td class="cross-row-header" colspan="4">
+                                    Обед<br><span class="cross-row-header-description">общение по докладам</span>
+                                </td>
+                                <td class="time-column">
+                                    14<sup>15</sup>
+                                </td>
+                            </tr>
+    
+                            <!--  14:30 - 18:20 HEADER -->
+                            <tr class="header-row">
+                                <td></td>
+                                <td class="table-header">
+                                    <br>
+                                    <br>
+                                    <span class="time-column">14<sup>15</sup> - 15<sup>00</sup></span>
+                                </td>
+                                <td class="table-header">
+                                    <br>
+                                    <br>
+                                    <span class="time-column">15<sup>15</sup> - 16<sup>00</sup></span>
+                                </td>
+                                <td class="table-header">
+                                    <br>
+                                    <br>
+                                    <span class="time-column">16<sup>15</sup> - 17<sup>00</sup></span>
+                                </td>
+                                <td class="table-header">
+                                    <br>
+                                    <br>
+                                    <span class="time-column">17<sup>15</sup> - 18<sup>00</sup></span>
+                                </td>
+                                <td></td>
+                            </tr>
+    
+                            <!--  14:30 - 18:20  -->
+                            <tr class="short-row">
+                                <td class="time-column">
+                                </td>
+                                <td class="table-cell">
+                                    <div class="card">
+                                            <table class="card-table">
+                                                <colgroup>
+                                                    <col class="card-first-column" />
+                                                </colgroup>
+                                                <tbody>
+                                                    <tr><td colspan="2" class="presentation-title">
+                                                        <img width="auto" src="./img/NotAssigned.png"/>
+                                                        <br>
+                                                        Уровень BCL
+                                                    </td></tr>
+                                                    <tr><td colspan="2" class="presentation-descr">
+                                                        <br>
+                                                        <i>(описание не готово)</i><br>
+                                                        Будут рассмотрены все примитивы синхронизации. Цели их создания и типичные варианты использования.
+                                                    </td></tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                </td>
+                                <td class="table-cell">
+                                    <div class="card">
+                                            <table class="card-table">
+                                                <colgroup>
+                                                    <col class="card-first-column" />
+                                                </colgroup>
+                                                <tbody>
+                                                    <tr><td colspan="2" class="presentation-title">
+                                                        <img width="auto" src="./img/NotAssigned.png"/>
+                                                        <br>
+                                                        Уровень BCL
+                                                    </td></tr>
+                                                    <tr><td colspan="2" class="presentation-descr">
+                                                        <br>
+                                                        <i>(описание не готово)</i><br>
+                                                        Разработка планировщиков потоков
+                                                    </td></tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                </td>
+                                <td class="table-cell">
+                                    <div class="card">
+                                            <table class="card-table">
+                                                <colgroup>
+                                                    <col class="card-first-column" />
+                                                </colgroup>
+                                                <tbody>
+                                                    <tr><td colspan="2" class="presentation-title">
+                                                        <img width="auto" src="./img/NotAssigned.png"/>
+                                                        <br>
+                                                        Lock-free алгоритмы
+                                                    </td></tr>
+                                                    <tr><td colspan="2" class="presentation-descr">
+                                                        <br>
+                                                        <i>(описание не готово)</i><br>
+                                                        Будут рассмотрены цели разработки и использования lock-free алгоритмов, правила постановки задач к их использованию. Основные блоки, из которых они состоят, а также принципы их разработки.
+                                                    </td></tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                </td>
+                                <td class="table-cell">
+                                    <div class="card">
+                                            <table class="card-table">
+                                                <colgroup>
+                                                    <col class="card-first-column" />
+                                                </colgroup>
+                                                <tbody>
+                                                    <tr><td colspan="2" class="presentation-title">
+                                                        <img width="auto" src="./img/NotAssigned.png"/>
+                                                        <br>
+                                                        Разбор lock-free алгоритмов
+                                                    </td></tr>
+                                                    <tr><td colspan="2" class="presentation-descr">
+                                                        <br>
+                                                        <i>(описание не готово)</i><br>
+                                                        В данном докладе мы рассмотрим строение существующих lock-free алгоритмов: почему выбрана именно такая а не иная структура данных, как обеспечивается отсутствие блокировок и прочие вопросы.
+                                                    </td></tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                </td>
+                                <td class="time-column">
+                                </td>
+                            </tr>
+    
+                            <!--  18:15 - 20:00 HEADER -->
+                            <tr class="header-row">
+                                <td></td>
+                                <td class="table-header">
+                                    <br>
+                                    <br>
+                                </td>
+                                <td class="table-header">
+                                    <br>
+                                    <br>
+                                    <span class="time-column">18<sup>15</sup> - 19<sup>00</sup></span>
+                                </td>
+                                <td class="table-header">
+                                    <br>
+                                    <br>
+                                    <span class="time-column">19<sup>15</sup> - 20<sup>00</sup></span>
+                                </td>
+                                <td class="table-header">
+                                    <br>
+                                    <br>
+                                </td>
+                                <td></td>
+                            </tr>
+    
+                            <!--  18:30 - 20:20  -->
+                            <tr class="short-row">
+                                <td class="time-column">
+                                </td>
+                                <td class="table-cell">
+                                    <div class="card">
+                                    </div>
+                                </td>
+                                <td class="table-cell">
+                                    <div class="card">
+                                        <table class="card-table">
+                                            <colgroup>
+                                                <col class="card-first-column" />
+                                            </colgroup>
+                                            <tbody>
+                                                <tr><td colspan="2" class="presentation-title">
+                                                    <img width="auto" src="./img/NotAssigned.png"/>
+                                                    <br>
+                                                    Разработка собственного lock-free алгоритма
+                                                </td></tr>
+                                                <tr><td colspan="2" class="presentation-descr">
+                                                    <br>
+                                                    <i>(описание не готово)</i><br>
+                                                    На базе некоторого ТЗ мы шаг за шагом пройдем все шаги: от определения требований к работе методов, их времени работы и до разработки собственной структуры данных
+                                                </td></tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                </td>
+                                <td class="table-cell">
+                                    <div class="card">
+                                        <table class="card-table">
+                                            <colgroup>
+                                                <col class="card-first-column" />
+                                            </colgroup>
+                                            <tbody>
+                                                <tr><td colspan="2" class="presentation-title">
+                                                    <img width="auto" src="./img/NotAssigned.png"/>
+                                                    <br>
+                                                    Разработка собственного lock-free алгоритма
+                                                </td></tr>
+                                                <tr><td colspan="2" class="presentation-descr">
+                                                    <br>
+                                                    <i>(описание не готово)</i><br>
+                                                    На базе некоторого ТЗ мы шаг за шагом пройдем все шаги: от определения требований к работе методов, их времени работы и до разработки собственной структуры данных
+                                                </td></tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                </td>
+                                <td class="table-cell">
+                                    <div class="card"></div>
+                                </td>
+                                <td class="time-column">
+                                </td>
+                            </tr>
+    
+                            <!-- Footer -->
+                            <tr class="short-row">
+                                <td class="time-column">
+                                    20<sup>00</sup>
+                                </td>
+                                <td class="cross-row-header" colspan="4">
+                                    Завершение первого дня
+                                </td>
+                                <td class="time-column">
+                                    20<sup>00</sup>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+        </div>
+        <!-- Speakers table -->
+        <div class="content">
             <div id="matrix_title">
-                <div class="title">ДОКЛАДЫ</div>
+                <div class="title">ДОКЛАДЫ<span class="subtitle">, День 2</span></div>
             </div>
             <br><br>
             <div id="matrix_table">
@@ -51,20 +428,15 @@
                     <tbody>
 
                         <!-- HEADER ROW -->
-                        <tr class="header-row">
-                            <td class="table-header" colspan="6">
-                                <p class="date-desc">Санкт-Петербург, 30 ноября 2019 года. Москва, 07 декабря 2019 года </p>
-                            </td>
-                        </tr>
                         <tr class="short-row">
                             <td class="time-column">
-                                9<sup>30</sup>
+                                9<sup>00</sup>
                             </td>
                             <td class="cross-row-header" colspan="4">
                                 Кофе-брейк<br><span class="cross-row-header-description">сборы перед началом семинара</span>
                             </td>
                             <td class="time-column">
-                                10<sup>00</sup>
+                                9<sup>30</sup>
                             </td>
                         </tr>
                         <!-- 10:00 - 14:00 HEADER -->
@@ -72,19 +444,19 @@
                             <td></td>
                             <td class="table-header">
                                 <br>
-                                <span class="time-column">10<sup>00</sup> - 10<sup>50</sup></span>
+                                <span class="time-column">09<sup>30</sup> - 10<sup>15</sup></span>
                             </td>
                             <td class="table-header">
                                 <br>
-                                <span class="time-column">11<sup>00</sup> - 11<sup>50</sup></span>
+                                <span class="time-column">10<sup>30</sup> - 11<sup>15</sup></span>
                             </td>
                             <td class="table-header">
                                 <br>
-                                <span class="time-column">12<sup>00</sup> - 12<sup>50</sup></span>
+                                <span class="time-column">11<sup>30</sup> - 12<sup>15</sup></span>
                             </td>
                             <td class="table-header">
                                 <br>
-                                <span class="time-column">13<sup>00</sup> - 13<sup>50</sup></span>
+                                <span class="time-column">12<sup>30</sup> - 13<sup>15</sup></span>
                             </td>
                             <td></td>
                         </tr>
@@ -103,12 +475,12 @@
                                             <tr><td colspan="2" class="presentation-title">
                                                 <img width="auto" src="./img/NotAssigned.png"/>
                                                 <br>
-                                                Параллелизация на уровне процессора
+                                                Вводный доклад по асинхронным моделям APM и EAP в CLR
                                             </td></tr>
                                             <tr><td colspan="2" class="presentation-descr">
                                                 <br>
-						    <i>(описание не готово)</i><br>
-                                                Вводный доклад о видении параллельных вычислений с точки зрения процессора: мы рассмотрим все краеугольные механизмы, на основе которых работает наш код. 
+                                                <i>(описание не готово)</i><br>
+                                                Asynchronous Pattern Model и Event-based Asynchronous Pattern
                                             </td></tr>
                                             </tbody>
                                         </table>
@@ -124,12 +496,11 @@
                                                 <tr><td colspan="2" class="presentation-title">
                                                     <img width="auto" src="./img/NotAssigned.png"/>
                                                     <br>
-                                                    Операционная система: процессы и потоки, часть 1
+                                                    Функциональный подход к разработке асинхронного кода
                                                 </td></tr>
                                                 <tr><td colspan="2" class="presentation-descr">
                                                     <br>
-						    <i>(описание не готово)</i><br>
-                                                    Будет рассмотрено строение и состав процессов, строение и состав потоков. Различные виды процессов, диспетчеризация потоков, волокна.
+                                                    <i>(описание не готово)</i><br>                                                    
                                                 </td></tr>
                                             </tbody>
                                         </table>
@@ -145,12 +516,11 @@
                                                 <tr><td colspan="2" class="presentation-title">
                                                     <img width="auto" src="./img/NotAssigned.png"/>
                                                     <br>
-                                                    Операционная система: процессы и потоки, часть 2
+                                                    Библиотека TPL
                                                 </td></tr>
                                                 <tr><td colspan="2" class="presentation-descr">
                                                     <br>
-						    <i>(описание не готово)</i><br>
-                                                    Будет рассмотрено строение и состав процессов, строение и состав потоков. Различные виды процессов, диспетчеризация потоков, волокна.
+                                                    <i>(описание не готово)</i><br>
                                                 </td></tr>
                                             </tbody>
                                         </table>
@@ -166,11 +536,11 @@
                                                 <tr><td colspan="2" class="presentation-title">
                                                     <img width="auto" src="./img/NotAssigned.png"/>
                                                     <br>
-                                                    Потоки уровня CLR
+                                                    Особенности разработки с применением TPL
                                                 </td></tr>
                                                 <tr><td colspan="2" class="presentation-descr">
                                                     <br>
-						    <i>(описание не готово)</i><br>
+                                                    <i>(описание не готово)</i><br>
                                                     Будут рассмотрены все базовые связки CLR с операционной системой и процессором: STA/MTA, volatile, MemoryBarrier, пул потоков и многие другие
                                                 </td></tr>
                                             </tbody>
@@ -181,13 +551,13 @@
                         </tr>
                         <tr class="short-row">
                             <td class="time-column">
-                                13<sup>50</sup>
+                                13<sup>15</sup>
                             </td>
                             <td class="cross-row-header" colspan="4">
                                 Обед<br><span class="cross-row-header-description">общение по докладам</span>
                             </td>
                             <td class="time-column">
-                                15<sup>00</sup>
+                                14<sup>15</sup>
                             </td>
                         </tr>
 
@@ -197,22 +567,22 @@
                             <td class="table-header">
                                 <br>
                                 <br>
-                                <span class="time-column">15<sup>00</sup> - 15<sup>45</sup></span>
+                                <span class="time-column">14<sup>15</sup> - 15<sup>00</sup></span>
                             </td>
                             <td class="table-header">
                                 <br>
                                 <br>
-                                <span class="time-column">16<sup>00</sup> - 16<sup>45</sup></span>
+                                <span class="time-column">15<sup>15</sup> - 16<sup>00</sup></span>
                             </td>
                             <td class="table-header">
                                 <br>
                                 <br>
-                                <span class="time-column">17<sup>00</sup> - 17<sup>45</sup></span>
+                                <span class="time-column">16<sup>15</sup> - 17<sup>00</sup></span>
                             </td>
                             <td class="table-header">
                                 <br>
                                 <br>
-                                <span class="time-column">18<sup>00</sup> - 18<sup>45</sup></span>
+                                <span class="time-column">17<sup>15</sup> - 18<sup>00</sup></span>
                             </td>
                             <td></td>
                         </tr>
@@ -231,12 +601,12 @@
                                                 <tr><td colspan="2" class="presentation-title">
                                                     <img width="auto" src="./img/NotAssigned.png"/>
                                                     <br>
-                                                    Уровень BCL
+                                                    Библиотека PLINQ
                                                 </td></tr>
                                                 <tr><td colspan="2" class="presentation-descr">
                                                     <br>
-						    <i>(описание не готово)</i><br>
-                                                    Будут рассмотрены все примитивы синхронизации. Цели их создания и типичные варианты использования.
+                                                    <i>(описание не готово)</i><br>
+                                                    
                                                 </td></tr>
                                             </tbody>
                                         </table>
@@ -252,12 +622,12 @@
                                                 <tr><td colspan="2" class="presentation-title">
                                                     <img width="auto" src="./img/NotAssigned.png"/>
                                                     <br>
-                                                    Уровень BCL
+                                                    Особенности разработки с применением PLINQ
                                                 </td></tr>
                                                 <tr><td colspan="2" class="presentation-descr">
                                                     <br>
-						    <i>(описание не готово)</i><br>
-					            Разработка планировщиков потоков
+                                                    <i>(описание не готово)</i><br>
+                                                    
                                                 </td></tr>
                                             </tbody>
                                         </table>
@@ -273,12 +643,12 @@
                                                 <tr><td colspan="2" class="presentation-title">
                                                     <img width="auto" src="./img/NotAssigned.png"/>
                                                     <br>
-                                                    Lock-free алгоритмы
+                                                    Концепция и особенности async/await
                                                 </td></tr>
                                                 <tr><td colspan="2" class="presentation-descr">
                                                     <br>
-						    <i>(описание не готово)</i><br>
-					            Будут рассмотрены цели разработки и использования lock-free алгоритмов, правила постановки задач к их использованию. Основные блоки, из которых они состоят, а также принципы их разработки.
+                                                    <i>(описание не готово)</i><br>
+                                                    
                                                 </td></tr>
                                             </tbody>
                                         </table>
@@ -294,12 +664,12 @@
                                                 <tr><td colspan="2" class="presentation-title">
                                                     <img width="auto" src="./img/NotAssigned.png"/>
                                                     <br>
-                                                    Разбор lock-free алгоритмов
+                                                    Типичные проблемы в разработке async/await
                                                 </td></tr>
                                                 <tr><td colspan="2" class="presentation-descr">
                                                     <br>
-						    <i>(описание не готово)</i><br>
-                                                    В данном докладе мы рассмотрим строение существующих lock-free алгоритмов: почему выбрана именно такая а не иная структура данных, как обеспечивается отсутствие блокировок и прочие вопросы.
+                                                    <i>(описание не готово)</i><br>
+                                                    
                                                 </td></tr>
                                             </tbody>
                                         </table>
@@ -309,21 +679,22 @@
                             </td>
                         </tr>
 
-                        <!--  18:30 - 20:20 HEADER -->
+                        <!--  18:15 - 20:00 HEADER -->
                         <tr class="header-row">
                             <td></td>
                             <td class="table-header">
                                 <br>
                                 <br>
-                                <span class="time-column">19<sup>00</sup> - 19<sup>45</sup></span>
                             </td>
                             <td class="table-header">
                                 <br>
                                 <br>
+                                <span class="time-column">18<sup>15</sup> - 19<sup>00</sup></span>
                             </td>
                             <td class="table-header">
                                 <br>
                                 <br>
+                                <span class="time-column">19<sup>15</sup> - 20<sup>00</sup></span>
                             </td>
                             <td class="table-header">
                                 <br>
@@ -338,30 +709,49 @@
                             </td>
                             <td class="table-cell">
                                 <div class="card">
-                                        <table class="card-table">
-                                            <colgroup>
-                                                <col class="card-first-column" />
-                                            </colgroup>
-                                            <tbody>
-                                                <tr><td colspan="2" class="presentation-title">
-                                                    <img width="auto" src="./img/NotAssigned.png"/>
-                                                    <br>
-                                                    Разработка собственного lock-free алгоритма
-                                                </td></tr>
-                                                <tr><td colspan="2" class="presentation-descr">
-                                                    <br>
-						    <i>(описание не готово)</i><br>
-                                                    На базе некоторого ТЗ мы шаг за шагом пройдем все шаги: от определения требований к работе методов, их времени работы и до разработки собственной структуры данных
-                                                </td></tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                </div>
                             </td>
                             <td class="table-cell">
-                                <div class="card"></div>
+                                <div class="card">
+                                    <table class="card-table">
+                                        <colgroup>
+                                            <col class="card-first-column" />
+                                        </colgroup>
+                                        <tbody>
+                                            <tr><td colspan="2" class="presentation-title">
+                                                <img width="auto" src="./img/NotAssigned.png"/>
+                                                <br>
+                                                Rx.NET: знакомство и решаемые задачи
+                                            </td></tr>
+                                            <tr><td colspan="2" class="presentation-descr">
+                                                <br>
+                                                <i>(описание не готово)</i><br>
+                                               
+                                            </td></tr>
+                                        </tbody>
+                                    </table>
+                            </div>
                             </td>
                             <td class="table-cell">
-                                <div class="card"></div>
+                                <div class="card">
+                                    <table class="card-table">
+                                        <colgroup>
+                                            <col class="card-first-column" />
+                                        </colgroup>
+                                        <tbody>
+                                            <tr><td colspan="2" class="presentation-title">
+                                                <img width="auto" src="./img/NotAssigned.png"/>
+                                                <br>
+                                                Совмещение технологий и их выбор для решения конкретных задач конкурентного и асинхронного кода
+                                            </td></tr>
+                                            <tr><td colspan="2" class="presentation-descr">
+                                                <br>
+                                                <i>(описание не готово)</i><br>
+
+                                            </td></tr>
+                                        </tbody>
+                                    </table>
+                            </div>
                             </td>
                             <td class="table-cell">
                                 <div class="card"></div>
@@ -369,6 +759,8 @@
                             <td class="time-column">
                             </td>
                         </tr>
+
+                        <!-- Footer -->
                         <tr class="short-row">
                             <td class="time-column">
                                 20<sup>00</sup>
@@ -418,15 +810,12 @@
         theWindow.resize(resizeBg).trigger("resize");
     });
 </script>
+
+<!-- Google Analytics -->
 <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-12938027-10', 'auto');
-    ga('send', 'pageview');
-
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-12938027-10', 'auto'); ga('send', 'pageview');
 </script>
+
 </body>
 </html>

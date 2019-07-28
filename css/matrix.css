@@ -23,13 +23,13 @@ body {
 }
 
 
-#matrix {
+.matrix {
     margin: 0;
     width:100%;
     height:100%;
 }
 
-#matrix > .content {
+.matrix > .content {
     position: relative;
     min-width: 900px;
     margin: auto;
@@ -53,6 +53,10 @@ body {
     color: white;
     font-size: 50pt;
     font-weight: 700;
+}
+
+#matrix_title .subtitle {
+    font-size: 30pt;
 }
 
 #matrix_title > .cities {
