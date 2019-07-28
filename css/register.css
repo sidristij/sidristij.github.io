@@ -80,7 +80,7 @@
 #reg_info > p {
     color: white;
     font-family: 'Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
-    font-size: 14pt;
+    font-size: 12pt;
     font-weight: 400;
 }
 
@@ -108,7 +108,7 @@
     width:30%;
     color: white;
     font-family: 'Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
-    font-size: 14pt;
+    font-size: 12pt;
     font-weight: 500;
     margin-right: 30px;
 }
@@ -118,7 +118,7 @@
     width: 25%;
     color: white;
     font-family: 'Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
-    font-size: 14pt;
+    font-size: 12pt;
     font-weight: 500;
 }
 
