@@ -23,17 +23,13 @@
         </div>
     </div>
     
-    <div id="footer">
-    </div>
+    <div id="background"></div>
+    
+    <div id="footer"></div>
 
     <div id="page">
     <div class="matrix">
-        <!-- Fullsize invisible copy of background to have its size -->
-        <img id="bg_sizes" class="invisible" src="img/matrix_bg.jpg"/>
 
-        <!-- Real background, with is controlled by JS code (see it at the end of doc  -->
-        <!-- Should to know speakers count at all cities to have one size of BG at all cities -->
-        <div id="matrix_bg"></div>
 
         <!-- Speakers table -->
         <div class="content">
@@ -778,38 +774,7 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
 
-    var theWindow    = $(window),
-            $bg          = $("#matrix_bg"),
-            moscow_sizes = $('#bg_sizes'),
-            description  = $('.description > p');
-
-    function resizeBg() {
-
-        var window_width  = theWindow.width(),
-            window_height = theWindow.height(),
-            bg_width = moscow_sizes.width(),
-            bg_height = moscow_sizes.height();
-
-        var wdiff = Math.max(window_width, 1024) / bg_width;
-        var hdiff = Math.max(window_height, 800) / bg_height;
-        var ratio = Math.max(wdiff, hdiff);
-
-        var newWidth = Math.min(bg_width * ratio, window_width);
-        var newHeight = Math.min(bg_height * ratio, window_height);
-
-        // растянуть по вертикали, по горизонтали сцентровать
-        $bg.css({"background-size": bg_width * ratio + "px " + bg_height * ratio + "px"});
-    }
-
-    
-    resizeBg();
-    
-    $(window).load(function() {
-        theWindow.resize(resizeBg).trigger("resize");
-    });
-</script>
 
 <!-- Google Analytics -->
 <script>
