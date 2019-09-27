@@ -14,7 +14,7 @@
 
     #header {
         pointer-events: none;
-        height:111px;
+        height:110px;
         background-image: url(../img/header_gradient.png);
         background-repeat: repeat;
         position:fixed;
@@ -26,7 +26,7 @@
     }
 
     #footer {
-        height:111px;
+        height:110px;
         background-image: url(../img/footer_gradient.png);
         background-repeat: repeat;
         position:fixed;
