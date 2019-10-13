@@ -100,9 +100,9 @@
                                                 </colgroup>
                                                 <tbody>
                                                 <tr><td colspan="2" class="presentation-title">
-                                                    <img width="auto" src="./img/NotAssigned.png"/>
+                                                    <img width="auto" src="./img/thumbs/01.jpg"/>
                                                     <br>
-                                                    Операционная система: процессы
+                                                    Операционная система: процессы. Их состав, старт, останов
                                                 </td></tr>
                                                 <tr><td colspan="2" class="presentation-descr">
                                                     <ul>
@@ -126,17 +126,16 @@
                                                 </colgroup>
                                                 <tbody>
                                                     <tr><td colspan="2" class="presentation-title">
-                                                        <img width="auto" src="./img/NotAssigned.png"/>
+                                                        <img width="auto" src="./img/thumbs/02.jpg"/>
                                                         <br>
-                                                        Операционная система: потоки
+                                                        Операционная система: потоки, диспетчеризация pt.1
                                                     </td></tr>
                                                     <tr><td colspan="2" class="presentation-descr">
                                                         <ul>
                                                             <li>Рождение потока: состав структур данных, образующих поток;</li>
-                                                            <li>Диспетчеризация потоков, сценарии планирования, кванты времени, вытесняющая многозадачность и проч.</li>
-                                                            <li>Многопроцессорные системы;</li>
-                                                            <li>NUMA-системы;</li>
-                                                            <li>Коротко - про волокна;</li>
+                                                            <li>Диспетчеризация потоков, сценарии планирования, кванты времени</li>
+                                                            <li>Динамические, фиксированные кванты</li>
+                                                            <li>Приоретизация foreground процессов</li>
                                                         </ul>
                                                     </td></tr>
                                                 </tbody>
@@ -151,16 +150,20 @@
                                                 </colgroup>
                                                 <tbody>
                                                     <tr><td colspan="2" class="presentation-title">
-                                                        <img width="auto" src="./img/NotAssigned.png"/>
+                                                        <img width="auto" src="./img/thumbs/03.jpg"/>
                                                         <br>
-                                                        Процессы и потоки в .NET
+                                                        Операционная система: потоки, диспетчеризация pt.2
                                                     </td></tr>
                                                     <tr><td colspan="2" class="presentation-descr">
                                                         <ul>
-                                                            <li>Старт процесса в .NET: варианты старта, порядок инициализации</li>
-                                                            <li>Что такое поток в системе .NET</li>
-                                                            <li>Запуск потока, останов потока. Причины останова.</li>
-                                                            <li>STA/MTA, пул потоков, Thread Local Storage и многие другие</li>
+                                                            <li>Повышение приоритета</li>
+                                                            <li>Переключение контекста</li>
+                                                            <li>Сценарии планирования</li>
+                                                            <li>Потоки простоя</li>
+                                                            <li>Приостановка потока</li>
+                                                            <li>Замораживание</li>
+                                                            <li>Выбор потока</li>
+                                                            <li>Многопроцессорные системы</li>
                                                         </ul>
                                                     </td></tr>
                                                 </tbody>
@@ -175,28 +178,17 @@
                                                 </colgroup>
                                                 <tbody>
                                                     <tr><td colspan="2" class="presentation-title">
-                                                        <img width="auto" src="./img/NotAssigned.png"/>
+                                                        <img width="auto" src="./img/thumbs/04.jpg"/>
                                                         <br>
-                                                        Примитивы синхронизации
+                                                        Ручная работа со стеком и контекстом потока
                                                     </td></tr>
                                                     <tr><td colspan="2" class="presentation-descr">
-                                                        <br>
-                                                        Будут рассмотрены задачи каждого примитива синхронизации пользовательского режима:
                                                         <ul>
-                                                            <li>volatile</li>
-                                                            <li>Barrier</li>
-                                                            <li>Interlocked</li>
+                                                            <li>Рассмотрим process-independent контекст потока</li>
+                                                            <li>Рассмотрим строение стека потока в .NET</li>
+                                                            <li>Проведём имитацию вызовов методов в потоке</li>
+                                                            <li>Проведем дублирование оконечной части потока в другой поток</li>
                                                         </ul>
-                                                        и режима ядра:
-                                                        <ul>
-                                                            <li>Manual/Auto/CountdownResetEvent</li>
-                                                            <li>Mutex</li>
-                                                            <li>Semaphore</li>
-                                                            <li>ReaderWriterLock</li>
-                                                            <li>+ Monitor (смешанный)</li>
-                                                        </ul>
-
-                                                        Казалось бы простая тема предстанет перед вами с новой стороны.
                                                     </td></tr>
                                                 </tbody>
                                             </table>
@@ -256,17 +248,11 @@
                                                     <tr><td colspan="2" class="presentation-title">
                                                         <img width="auto" src="./img/NotAssigned.png"/>
                                                         <br>
-                                                        Примитивы синхронизации:<br>Spin версии
+                                                        Работа с потоками <br>уровня CLR
                                                     </td></tr>
                                                     <tr><td colspan="2" class="presentation-descr">
                                                         <br>
-                                                        Spin версии примитивов синхронизации. Их строение, задачи, цели использования. По результатам доклада вы станете способны разрабатывать свои собственные spin-примитивы синхронизации
-                                                        <ul>
-                                                            <li>SemaphoreSlim</li>
-                                                            <li>ManualResetEventSlim</li>
-                                                            <li>ReaderWriterLockSlim</li>
-                                                            <li>SpinWait/SpinLock</li>
-                                                        </ul>
+                                                        Будут рассмотрены основные механизмы обеспечения многопоточности уровня CLR
                                                     </td></tr>
                                                 </tbody>
                                             </table>
@@ -282,12 +268,18 @@
                                                     <tr><td colspan="2" class="presentation-title">
                                                         <img width="auto" src="./img/NotAssigned.png"/>
                                                         <br>
-                                                        Контексты синхронизации и пулы потоков
+                                                        Примитивы синхронизации
                                                     </td></tr>
                                                     <tr><td colspan="2" class="presentation-descr">
                                                         <br>
-                                                        <i>(описание не готово)</i><br>
-                                                        Разработка контекстов синхронизации, планировщиков.
+                                                        Будут рассмотрены задачи каждого примитива синхронизации пользовательского режима и режима ядра.
+                                                        Spin версии примитивов синхронизации. Их строение, задачи, цели использования. По результатам доклада вы станете способны разрабатывать свои собственные spin-примитивы синхронизации
+                                                        <ul>
+                                                            <li>SemaphoreSlim</li>
+                                                            <li>ManualResetEventSlim</li>
+                                                            <li>ReaderWriterLockSlim</li>
+                                                            <li>SpinWait/SpinLock</li>
+                                                        </ul>
                                                     </td></tr>
                                                 </tbody>
                                             </table>
