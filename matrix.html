@@ -163,7 +163,6 @@
                                                             <li>Приостановка потока</li>
                                                             <li>Замораживание</li>
                                                             <li>Выбор потока</li>
-                                                            <li>Многопроцессорные системы</li>
                                                         </ul>
                                                     </td></tr>
                                                 </tbody>
@@ -180,14 +179,16 @@
                                                     <tr><td colspan="2" class="presentation-title">
                                                         <img width="auto" src="./img/thumbs/04.jpg"/>
                                                         <br>
-                                                        Ручная работа со стеком и контекстом потока
+                                                        Диспетчеризация на SMT/NUMA ситсемах
                                                     </td></tr>
                                                     <tr><td colspan="2" class="presentation-descr">
                                                         <ul>
-                                                            <li>Рассмотрим process-independent контекст потока</li>
-                                                            <li>Рассмотрим строение стека потока в .NET</li>
-                                                            <li>Проведём имитацию вызовов методов в потоке</li>
-                                                            <li>Проведем дублирование оконечной части потока в другой поток</li>
+                                                            <li>SMT системы</li>
+                                                            <li>NUMA системы</li>
+                                                            <li>Thread Affinity</li>
+                                                            <li>Балансировка и масштабируемость планировщика</li>
+                                                            <li>Идеальный процессор, узел</li>
+                                                            <li>Выбор потока в SMT/NUMA системах</li>
                                                         </ul>
                                                     </td></tr>
                                                 </tbody>
@@ -240,6 +241,30 @@
                                 </td>
                                 <td class="table-cell">
                                     <div class="card">
+                                        <table class="card-table">
+                                            <colgroup>
+                                                <col class="card-first-column" />
+                                            </colgroup>
+                                            <tbody>
+                                                <tr><td colspan="2" class="presentation-title">
+                                                    <img width="auto" src="./img/thumbs/04.jpg"/>
+                                                    <br>
+                                                    Ручная работа со стеком и контекстом потока
+                                                </td></tr>
+                                                <tr><td colspan="2" class="presentation-descr">
+                                                    <ul>
+                                                        <li>Рассмотрим process-independent контекст потока</li>
+                                                        <li>Рассмотрим строение стека потока в .NET</li>
+                                                        <li>Проведём имитацию вызовов методов в потоке</li>
+                                                        <li>Проведем дублирование оконечной части потока в другой поток</li>
+                                                    </ul>
+                                                </td></tr>
+                                            </tbody>
+                                        </table>
+                                        </div>
+                                </td>
+                                <td class="table-cell">
+                                    <div class="card">
                                             <table class="card-table">
                                                 <colgroup>
                                                     <col class="card-first-column" />
@@ -248,11 +273,17 @@
                                                     <tr><td colspan="2" class="presentation-title">
                                                         <img width="auto" src="./img/NotAssigned.png"/>
                                                         <br>
-                                                        Работа с потоками <br>уровня CLR
+                                                        Примитивы синхронизации и их квантовый график
                                                     </td></tr>
                                                     <tr><td colspan="2" class="presentation-descr">
                                                         <br>
-                                                        Будут рассмотрены основные механизмы обеспечения многопоточности уровня CLR
+                                                        Каждый из примитивов синхронизации будет рассмотрен с точки 
+                                                        зрения реальной работы: на графике использования квантов потоками
+                                                        как на одноядерной, на многоядерной, так и на NUMA системах.
+                                                        Это даст полноценное понимание, когда можно использовать 
+                                                        Kernel-Space примитивы, когда User-Space, а когда - гибридные.
+                                                        Будут рассмотрены сценарии длинной блокировки, средней по времени,
+                                                        короткой и серии сверхкоротких блокировок.
                                                     </td></tr>
                                                 </tbody>
                                             </table>
@@ -268,51 +299,19 @@
                                                     <tr><td colspan="2" class="presentation-title">
                                                         <img width="auto" src="./img/NotAssigned.png"/>
                                                         <br>
-                                                        Примитивы синхронизации
+                                                        Строение Monitor.TryEnter()/.Enter()/.Leave()
                                                     </td></tr>
                                                     <tr><td colspan="2" class="presentation-descr">
                                                         <br>
-                                                        Будут рассмотрены задачи каждого примитива синхронизации пользовательского режима и режима ядра.
-                                                        Spin версии примитивов синхронизации. Их строение, задачи, цели использования. По результатам доклада вы станете способны разрабатывать свои собственные spin-примитивы синхронизации
-                                                        <ul>
-                                                            <li>SemaphoreSlim</li>
-                                                            <li>ManualResetEventSlim</li>
-                                                            <li>ReaderWriterLockSlim</li>
-                                                            <li>SpinWait/SpinLock</li>
-                                                        </ul>
-                                                    </td></tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                </td>
-                                <td class="table-cell">
-                                    <div class="card">
-                                            <table class="card-table">
-                                                <colgroup>
-                                                    <col class="card-first-column" />
-                                                </colgroup>
-                                                <tbody>
-                                                    <tr><td colspan="2" class="presentation-title">
-                                                        <img width="auto" src="./img/NotAssigned.png"/>
-                                                        <br>
-                                                        Вводная в алгоритмы, lock-free
-                                                    </td></tr>
-                                                    <tr><td colspan="2" class="presentation-descr">
-                                                        <br>
-                                                        Мотивация: с одной стороны - по нагрузке (исторически)
-                                                        <ul>
-                                                            <li>Вычислительная нагрузка - численные расчеты.</li>
-                                                            <li>Вычисления нагруженные данными - данных становиться все больше, надо их быстро обрабатывать.</li>
-                                                        </ul>
-                                                        Мотивация: со стороны архитектура вычислительных систем:
-                                                        <ul>
-                                                            <li>Многопроцессорные, многоядерные системы</li>
-                                                            <li>Системы с общей памятью (UMA, NUMA)</li>
-                                                            <li>Системы с распределенной памятью (в первую очередь разного рода кластеры)</li>
-                                                        </ul>
-                                                        Анализ алгоритма<br>
-                                                        Пример<br>
-                                                        Шаблоны параллелизации
+                                                        Как устроен lock() и во что он разворачивается, наверное, 
+                                                        знает уже каждый. Но не каждый знает, как работает Monitor.
+                                                        <br><br>
+                                                        В данном докладе мы рассмотрим исходники этого класса и 
+                                                        разберем по полочкам все его механизмы. А там есть на что посмотреть:
+                                                        это гибридный примитив синхронизации, который в лучшем случае блокирует 
+                                                        на User-Space, в худшем - уходя в Kernel Space через семафор. Борется с 
+                                                        lock convoy/starvation и вмещает в себя все то, что стоит понять, чтобы 
+                                                        научиться писать собственные примитивы синхронизации.
                                                     </td></tr>
                                                 </tbody>
                                             </table>
@@ -411,18 +410,28 @@
                                                 <tr><td colspan="2" class="presentation-title">
                                                     <img width="auto" src="./img/NotAssigned.png"/>
                                                     <br>
-                                                    Intrisics in .NET
+                                                    Вводная в алгоритмы, lock-free
                                                 </td></tr>
                                                 <tr><td colspan="2" class="presentation-descr">
+                                                    <br>
+                                                    Мотивация: с одной стороны - по нагрузке (исторически)
                                                     <ul>
-                                                        <li>Какие проблемы решались, когда вводили Intrisics;</li>
-                                                        <li>Какие связки существуют? Mono, .NET, Core;</li>
-                                                        <li>Примеры реализации в коде, замер бенчмарками;</li>
-                                                        <li>Ограничения на разрабатываемый код;</li>
+                                                        <li>Вычислительная нагрузка - численные расчеты.</li>
+                                                        <li>Вычисления нагруженные данными - данных становиться все больше, надо их быстро обрабатывать.</li>
                                                     </ul>
+                                                    Мотивация: со стороны архитектура вычислительных систем:
+                                                    <ul>
+                                                        <li>Многопроцессорные, многоядерные системы</li>
+                                                        <li>Системы с общей памятью (UMA, NUMA)</li>
+                                                        <li>Системы с распределенной памятью (в первую очередь разного рода кластеры)</li>
+                                                    </ul>
+                                                    Анализ алгоритма<br>
+                                                    Пример<br>
+                                                    Шаблоны параллелизации
                                                 </td></tr>
                                             </tbody>
                                         </table>
+                                    </div>
                                 </div>
                                 </td>
                                 <td class="table-cell">
@@ -506,28 +515,7 @@
                             </td>
                             <td class="table-cell">
                                 <div class="card">
-                                        <table class="card-table">
-                                            <colgroup>
-                                                <col class="card-first-column" />
-                                            </colgroup>
-                                            <tbody>
-                                            <tr><td colspan="2" class="presentation-title">
-                                                <img width="auto" src="./img/NotAssigned.png"/>
-                                                <br>
-                                                Вводный доклад по асинхронным моделям APM и EAP в CLR
-                                            </td></tr>
-                                            <tr><td colspan="2" class="presentation-descr">
-                                                <br>
-                                                <i>(описание не готово)</i><br>
-                                                Asynchronous Pattern Model и Event-based Asynchronous Pattern
-                                            </td></tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                            </td>
-                            <td class="table-cell">
-                                <div class="card">
-                                        <table class="card-table">
+                                    <table class="card-table">
                                             <colgroup>
                                                 <col class="card-first-column" />
                                             </colgroup>
@@ -535,15 +523,42 @@
                                                 <tr><td colspan="2" class="presentation-title">
                                                     <img width="auto" src="./img/NotAssigned.png"/>
                                                     <br>
-                                                    Функциональный подход к разработке асинхронного кода
+                                                    Функциональный подход
                                                 </td></tr>
                                                 <tr><td colspan="2" class="presentation-descr">
                                                     <br>
-                                                    <i>(описание не готово)</i><br>                                                    
+                                                    <ul>
+                                                        <li>Вводная: Основная проблема при параллелизме - синхронизация потоков. В функциональном походе этой проблемы нет,  т.к. нет переменных.</li>
+                                                        <li>Состояние в ФП. Функциональные коллекции. Пример функционального стека, очереди и дерева.</li>
+                                                        <li>Чистые функции в ФП, комбинация, отложенное вычисление. </li>
+                                                        <li>Шаблоны параллельного программирования и их реализация в функциональном виде: Fork/Join, Map/Reduce, реактивная модель, реактивная модель на основе агентов.</li>
+                                                        <li>Правильный выбор конкурентной модели программирования .</li>
+                                                    </ul>
                                                 </td></tr>
                                             </tbody>
                                         </table>
                                     </div>
+                            </td>
+                            <td class="table-cell">
+                                <div class="card">
+                                    <table class="card-table">
+                                        <colgroup>
+                                            <col class="card-first-column" />
+                                        </colgroup>
+                                        <tbody>
+                                        <tr><td colspan="2" class="presentation-title">
+                                            <img width="auto" src="./img/NotAssigned.png"/>
+                                            <br>
+                                            Вводный доклад по асинхронным моделям APM и EAP в CLR
+                                        </td></tr>
+                                        <tr><td colspan="2" class="presentation-descr">
+                                            <br>
+                                            Будут рассмотрены различные модели программирования асинхронного кода в .NET
+                                            APM, EAP, влияние контекстов синхронизации.
+                                        </td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </td>
                             <td class="table-cell">
                                 <div class="card">
@@ -555,11 +570,12 @@
                                                 <tr><td colspan="2" class="presentation-title">
                                                     <img width="auto" src="./img/NotAssigned.png"/>
                                                     <br>
-                                                    Библиотека TPL
+                                                    Контексты синхронизации
                                                 </td></tr>
                                                 <tr><td colspan="2" class="presentation-descr">
                                                     <br>
                                                     <i>(описание не готово)</i><br>
+                                                    Роль контекстов синхронизации, назначение, их разработка.
                                                 </td></tr>
                                             </tbody>
                                         </table>
@@ -781,12 +797,15 @@
                                             <tr><td colspan="2" class="presentation-title">
                                                 <img width="auto" src="./img/NotAssigned.png"/>
                                                 <br>
-                                                Совмещение технологий и их выбор для решения конкретных задач конкурентного и асинхронного кода
+                                                Intrisics in .NET
                                             </td></tr>
                                             <tr><td colspan="2" class="presentation-descr">
-                                                <br>
-                                                <i>(описание не готово)</i><br>
-
+                                                <ul>
+                                                    <li>Какие проблемы решались, когда вводили Intrisics;</li>
+                                                    <li>Какие связки существуют? Mono, .NET, Core;</li>
+                                                    <li>Примеры реализации в коде, замер бенчмарками;</li>
+                                                    <li>Ограничения на разрабатываемый код;</li>
+                                                </ul>
                                             </td></tr>
                                         </tbody>
                                     </table>
