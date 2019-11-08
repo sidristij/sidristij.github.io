@@ -549,12 +549,11 @@
                                         <tr><td colspan="2" class="presentation-title">
                                             <img width="auto" src="./img/NotAssigned.png"/>
                                             <br>
-                                            Вводный доклад по асинхронным моделям APM и EAP в CLR
+                                            Контексты синхронизации
                                         </td></tr>
                                         <tr><td colspan="2" class="presentation-descr">
                                             <br>
-                                            Будут рассмотрены различные модели программирования асинхронного кода в .NET
-                                            APM, EAP, влияние контекстов синхронизации.
+                                            Роль контекстов синхронизации, назначение, их разработка
                                         </td></tr>
                                         </tbody>
                                     </table>
@@ -570,12 +569,13 @@
                                                 <tr><td colspan="2" class="presentation-title">
                                                     <img width="auto" src="./img/NotAssigned.png"/>
                                                     <br>
-                                                    Контексты синхронизации
+                                                    Параллелизация по данным: PLINQ
                                                 </td></tr>
                                                 <tr><td colspan="2" class="presentation-descr">
                                                     <br>
-                                                    <i>(описание не готово)</i><br>
-                                                    Роль контекстов синхронизации, назначение, их разработка.
+                                                    PLINQ и MapReduce. PLINQ и чистые функции, изоляция и 
+                                                    контроль побочных эффектов. Аггрегирование, сокращение 
+                                                    и усечение данных. Свёртка. Разработка Map и Reduce. 
                                                 </td></tr>
                                             </tbody>
                                         </table>
@@ -591,12 +591,11 @@
                                                 <tr><td colspan="2" class="presentation-title">
                                                     <img width="auto" src="./img/NotAssigned.png"/>
                                                     <br>
-                                                    Особенности разработки с применением TPL
+                                                    Как устроен и работает PLINQ
                                                 </td></tr>
                                                 <tr><td colspan="2" class="presentation-descr">
                                                     <br>
-                                                    <i>(описание не готово)</i><br>
-                                                    Будут рассмотрены все базовые связки CLR с операционной системой и процессором: STA/MTA, volatile, MemoryBarrier, пул потоков и многие другие
+                                                    Мы заглянем во внутренности PLINQ: как устроена его архитектура, как работает библиотека классов. Рассмотрим работу подкапотного пространства чтобы интуитивно понимать, что происходит, когда мы пишем тот или иной код.
                                                 </td></tr>
                                             </tbody>
                                         </table>
@@ -656,12 +655,12 @@
                                                 <tr><td colspan="2" class="presentation-title">
                                                     <img width="auto" src="./img/NotAssigned.png"/>
                                                     <br>
-                                                    Библиотека PLINQ
+                                                    TPL и Async/Await 
                                                 </td></tr>
                                                 <tr><td colspan="2" class="presentation-descr">
                                                     <br>
-                                                    <i>(описание не готово)</i><br>
-                                                    
+                                                    Мы поговорим про библиотеку TPL, её составные части и решаемые задачи. 
+                                                    От описания библиотеки перейдем на описание инфраструктуры и задач async/await                                                    
                                                 </td></tr>
                                             </tbody>
                                         </table>
@@ -677,12 +676,14 @@
                                                 <tr><td colspan="2" class="presentation-title">
                                                     <img width="auto" src="./img/NotAssigned.png"/>
                                                     <br>
-                                                    Особенности разработки с применением PLINQ
+                                                    Машина состояний async/await
                                                 </td></tr>
                                                 <tr><td colspan="2" class="presentation-descr">
                                                     <br>
-                                                    <i>(описание не готово)</i><br>
-                                                    
+                                                    Во что разворачивается машина сосотояний async/await? Как она устроена? 
+                                                    Как по внешнему виду async/await метода понять, как он будет устроен на 
+                                                    самом деле и как он будет работать? Обо всём этом мы поговорим в данном 
+                                                    докладе.                                                    
                                                 </td></tr>
                                             </tbody>
                                         </table>
@@ -698,12 +699,13 @@
                                                 <tr><td colspan="2" class="presentation-title">
                                                     <img width="auto" src="./img/NotAssigned.png"/>
                                                     <br>
-                                                    Концепция и особенности async/await
+                                                    Распространённые ошибки в разработке async/await кода
                                                 </td></tr>
                                                 <tr><td colspan="2" class="presentation-descr">
                                                     <br>
-                                                    <i>(описание не готово)</i><br>
-                                                    
+                                                    В данном докладе будут рассмотрены типичные ошибки в разработке 
+                                                    async/await кода и разбор причин их возникновения: некорректность
+                                                    вызова ConfigureAwait, deadlocks, и прочие.                                                    
                                                 </td></tr>
                                             </tbody>
                                         </table>
@@ -719,12 +721,19 @@
                                                 <tr><td colspan="2" class="presentation-title">
                                                     <img width="auto" src="./img/NotAssigned.png"/>
                                                     <br>
-                                                    Типичные проблемы в разработке async/await
+                                                    ValueTask: причины введения, сценарии использовния
                                                 </td></tr>
                                                 <tr><td colspan="2" class="presentation-descr">
                                                     <br>
-                                                    <i>(описание не готово)</i><br>
-                                                    
+                                                    <ol>
+                                                        <li>Описание проблематики Task в рамках ValueTask</li>
+                                                        <li>ValueTask и синхронное завершение</li>
+                                                        <li>ValueTask и асинхронное завершение</li>
+                                                        <li>Non-generic ValueTasks</li>
+                                                        <li>Реализация IValueTaskSource</li>
+                                                        <li>Правильная модель использования ValueTasks</li>
+                                                        <li>Должны ли все новые асинхронные API возвращать ValueTask?</li>
+                                                    </ol>
                                                 </td></tr>
                                             </tbody>
                                         </table>
@@ -776,11 +785,20 @@
                                             <tr><td colspan="2" class="presentation-title">
                                                 <img width="auto" src="./img/NotAssigned.png"/>
                                                 <br>
-                                                Rx.NET: знакомство и решаемые задачи
+                                                Microsoft.VisualStudio.Threading
                                             </td></tr>
                                             <tr><td colspan="2" class="presentation-descr">
                                                 <br>
-                                                <i>(описание не готово)</i><br>
+                                                Возможности, примитивы, сравнение с system.threading:
+                                                <ol>
+                                                <li>AsyncSemaphore</li>
+                                                <li>AsyncReaderWriterLock+Upgrading</li>
+                                                <li>AsyncManualResetEvent</li>
+                                                <li>Как работают, есть ли блокировки</li>
+                                                </ol>
+                                                AsyncQueue: чем не устраивает ConcurentQueue?
+                                                <br>
+                                                Joinable task, преимущества для создания UI-приложений
                                                
                                             </td></tr>
                                         </tbody>
