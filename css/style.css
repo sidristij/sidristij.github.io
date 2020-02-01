@@ -78,7 +78,8 @@
     }
 
     #conflogo {
-        margin:30px;
+        margin: 30px;
+        height: 60px;
     }
 
     .invisible {
