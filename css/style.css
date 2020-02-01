@@ -314,6 +314,7 @@
     .about_text {
         font-weight: 400;
         font-family: 'Gotham Pro';
+        text-align: justify;
         padding: 30px;
     }
     .about_text h1 {
@@ -351,6 +352,43 @@
     }
     .about_right {
         display: flex;
+    }
+    .about_right h2 {
+        font-weight: 400;
+        font-family: 'Gotham Pro';
+    }
+    .about_right .about_subscribe {
+        padding: 30px 30px 0;
+    }
+    .about_right .form__t {
+        width: 100%;
+        height: 40px;
+        padding: 10px 15px;
+        background: #fff;
+        border: 1px solid #b2b2b2;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+        font-size: 18px;
+    }
+    .about_right .form__b {
+        height: 40px;
+        padding: 0 25px;
+        background: #664e88;
+        color: #fff;
+        cursor: pointer;
+        border: 0;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+        font-family: 'Gotham Pro';
+        font-size: 18px;
+    }
+    .about_right .form__con {
+        display: inline-block;
+        vertical-align: top;
+        margin: 6px 0;
+        width: 100%;
     }
     footer {
         background-color: #000;
