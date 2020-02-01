@@ -3,143 +3,173 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title>CLRium #7: Практика работы с многопоточным кодом</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=1000">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/register.css">
     <meta property="og:image" content="img/thumbnail.png" />
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/media.css">
     <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-<div id="header">
-    <img id="conflogo" src="img/logo-mini.png"/>
-    <div class="menu">
-        <div><a href="index.html">О конференции</a></div>
-        <div><a href="matrix.html">Доклады</a></div>
-        <a href="register.html" class="register_button">РЕГИСТРАЦИЯ</a>
-    </div>
-</div>
+    <header class="header">
+        <a href="#">
+            <img class="conflogo" src="img/logo-mini.png"/> 
+        </a>
+        <div class="menu">
+            <div><a href="index.html">О конференции</a></div>
+            <div><a href="matrix.html">Доклады</a></div>
+            <a href="register.html" class="register_button">РЕГИСТРАЦИЯ</a>
+        </div>
 
-<div id="background"></div>
+        <!-- mobile-menu -->
 
-<div id="page">
-    <div id="register">
-        <!-- fullsize bg to get sizes -->
-        <img id="register_sizes" class="invisible" src="img/register_bg.jpg"/>
-
-        <!-- page background -->
-        <div id="register_bg"></div>
-
-        <!-- content: conference content -->
-        <div class="content">
-            <div id="reg_container">
-                <div id="reg_info">
-                    <h2>Стоимость участия</h2>
-
-                    <p>Стоимость входного билета на семинар равна 5,000 рублей - и включает в себя сам семинар, записи докладов и кофе-брейки.</p>
-                    <p>Также можно приобрести только видеозаписи без посещения семинара. Для этого необходимо зарегистрироваться на "Видеозаписи семинара"</p>
-
-                    <h2>Менторские собеседования</h2>
-
-                    <p>При наличии свободных мест есть возможность провести менторские собеседования: три звонка по Skype с собеседование по теме конференции и выдачей плана дальнейшего изучения</p>
+        <div class="hamburger-menu">
+            <input id="menu__toggle" type="checkbox" />
+            <label class="menu__btn" for="menu__toggle">
+              <span></span>
+            </label>
         
-                    <h2>Запись с Москвы и Санкт-Петербурга</h2>
+            <ul class="menu__box">
+                <li><a class="menu__item" href="index.html">О конференции</a></li>
+                <li><a class="menu__item" href="matrix.html">Доклады</a></li>
+                <li><a class="menu__item" href="register.html">Регистрация</a></li>
+            </ul>
+        </div>
+    </header>
 
-                    <p>Запись докладов будет доступна всем кто купил соответствующий тип билета - после конференции.</p>
-                    
-                    <h2>Приобретение билета работодателем</h2>
+    <section class="register">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-4 offset-lg-1">
+                    <div class="register_info">
+                        <h2>Стоимость участия</h2>
 
-                    <p>Если Вы хотите попытать счастья и посетить семинар бесплатно для себя, вы можете скоординироваться с людьми из Вашей компании и написать коллективное письмо своему менеджеру.
-                    Оплата юр. лицами производится через бронирование билетов (ссылки справа) и указанием типа оплаты "Платит компания"</p>
+                        <p>Стоимость входного билета на семинар равна 5,000 рублей - и включает в себя сам семинар, записи докладов и кофе-брейки.</p>
+                        <p>Также можно приобрести только видеозаписи без посещения семинара. Для этого необходимо зарегистрироваться на "Видеозаписи семинара"</p>
 
-                    <h2>Электросвязь</h2>
+                        <h2>Менторские собеседования</h2>
 
-                    <p>Электропочта: <a href="mailto:sidristij@clrium.ru">sidristij@clrium.ru</a><br>
-                    Мобильный: +7 (921) 948-16-08<br>
-                    Skype: <a href="skype:stanislav.sidristyi">stanislav.sidristyi</a><br>
-                    Telegram: @sidristij</p>
+                        <p>При наличии свободных мест есть возможность провести менторские собеседования: три звонка по Skype с собеседование по теме конференции и выдачей плана дальнейшего изучения</p>
+            
+                        <h2>Запись с Москвы и Санкт-Петербурга</h2>
+
+                        <p>Запись докладов будет доступна всем кто купил соответствующий тип билета - после конференции.</p>
+                        
+                        <h2>Приобретение билета работодателем</h2>
+
+                        <p>Если Вы хотите попытать счастья и посетить семинар бесплатно для себя, вы можете скоординироваться с людьми из Вашей компании и написать коллективное письмо своему менеджеру.
+                        Оплата юр. лицами производится через бронирование билетов (ссылки справа) и указанием типа оплаты "Платит компания"</p>
+
+                        <h2>Электросвязь</h2>
+
+                        <p>Электропочта: <a href="mailto:sidristij@clrium.ru">sidristij@clrium.ru</a><br>
+                        Мобильный: +7 (921) 948-16-08<br>
+                        Skype: <a href="skype:stanislav.sidristyi">stanislav.sidristyi</a><br>
+                        Telegram: @sidristij</p>
+                    </div>
                 </div>
-            </div>
-            <div id="reg_buttons_area">
-                <div class="reg-city">
-                    <div class="city-name">САНКТ-ПЕТЕРБУРГ</div>
-                    <div class="city-descr">
-                        <div class="city-address">
-                            Арт-Центр ТКАЧИ<br>
-                            наб. Обводного канала, 60
+                <div class="col-lg-6 offset-lg-1">
+                    <div class="register_info register_right">
+                        <h2>САНКТ-ПЕТЕРБУРГ</h2>
+                        <div class="register_right__description">
+                            <p >
+                                Арт-Центр ТКАЧИ<br>
+                                наб. Обводного канала, 60
+                            </p>
+                            <p>
+                                18 апреля 2020<br>09<sup>00</sup> - 20<sup>00</sup>
+                            </p>
+                            <div class="register_btn">
+
+                                <script type="text/javascript" async="async" defer="defer" charset="UTF-8" src="https://timepad.ru/js/tpwf/loader/min/loader.js" data-timepad-customized="3019" data-timepad-widget-v2="event_register">
+                                    (function(){return {"event":{"id":"1240482"},"hidePreloading":true,"initialRoute":"button","buttonSettings":{"text":"РЕГИСТРАЦИЯ"}}; })();
+                                </script></div>
                         </div>
-                        <div class="date-time">
-                            18 апреля 2020<br>09<sup>00</sup> - 20<sup>00</sup>
-                        </div>
-                        <div class="city-go">
+                        <h2>МОСКВА</h2>
+                        <div class="register_right__description">
+                            <p>
+                                Гостиница "Салют"<br>
+                                Ленинский пр., д.158
+                            </p>
+                            <p>
+                                16 мая 2020<br>09<sup>00</sup> - 20<sup>00</sup>
+                            </p>
+                            <div class="register_btn">
+
                             <script type="text/javascript" async="async" defer="defer" charset="UTF-8" src="https://timepad.ru/js/tpwf/loader/min/loader.js" data-timepad-customized="3019" data-timepad-widget-v2="event_register">
-                                (function(){return {"event":{"id":"1240482"},"hidePreloading":true,"initialRoute":"button","buttonSettings":{"text":"РЕГИСТРАЦИЯ"}}; })();
-                            </script>
+                                (function(){return {"event":{"id":"1240646"},"hidePreloading":true,"initialRoute":"button","buttonSettings":{"text":"РЕГИСТРАЦИЯ"}}; })();
+                            </script></div>
                         </div>
-                    </div>
-                </div>
-                <div class="reg-city">
-                    <div class="city-name">МОСКВА</div>
-                    <div class="city-descr">
-                        <div class="city-address">
-                            Гостиница "Салют"<br>
-                            Ленинский пр., д.158
+                        <h2>Собеседования с ментором</h2>
+                        <div class="register_right__description">
+                            <p>
+                                Три собеседования: по 2 часа первое и второе, 1 час - третье 
+                            </p>
+                            <p>
+                                Дата и время<br>по договоренности
+                            </p>
+                            <div class="register_btn">
+
+                            
+                            <script type="text/javascript" async="async" defer="defer" charset="UTF-8" src="https://timepad.ru/js/tpwf/loader/min/loader.js" data-timepad-customized="3019" data-timepad-widget-v2="event_register">
+                                (function(){return {"event":{"id":"1241134"},"hidePreloading":true,"initialRoute":"button","buttonSettings":{"text":"РЕГИСТРАЦИЯ"}}; })();
+                            </script></div>
                         </div>
-                        <div class="date-time">
-                            16 мая 2020<br>09<sup>00</sup> - 20<sup>00</sup>
-                        </div>
-                        <div class="city-go">
-                                <script type="text/javascript" async="async" defer="defer" charset="UTF-8" src="https://timepad.ru/js/tpwf/loader/min/loader.js" data-timepad-customized="3019" data-timepad-widget-v2="event_register">
-                                    (function(){return {"event":{"id":"1240646"},"hidePreloading":true,"initialRoute":"button","buttonSettings":{"text":"РЕГИСТРАЦИЯ"}}; })();
-                                </script>
-                        </div>
-                    </div>
-                </div>
-                <div class="reg-city">
-                    <div class="city-name">Собеседования с ментором</div>
-                    <div class="city-descr">
-                        <div class="city-address">
-                            Три собеседования: по 2 часа первое и второе, 1 час - третье 
-                        </div>
-                        <div class="date-time">
-                            Дата и время<br>по договоренности
-                        </div>
-                        <div class="city-go">
-                                <script type="text/javascript" async="async" defer="defer" charset="UTF-8" src="https://timepad.ru/js/tpwf/loader/min/loader.js" data-timepad-customized="3019" data-timepad-widget-v2="event_register">
-                                    (function(){return {"event":{"id":"1241134"},"hidePreloading":true,"initialRoute":"button","buttonSettings":{"text":"РЕГИСТРАЦИЯ"}}; })();
-                                </script>
-                        </div>
-                    </div>
-                </div>
-                <div class="reg-city">
-                    <div class="city-name">Видеозаписи семинара</div>
-                    <div class="city-descr">
-                        <div class="city-address">
-                            Видеозаписи + домашние задания
-                        </div>
-                        <div class="date-time">
-                            Доступ к записям будет дан после 16 мая
-                        </div>
-                        <div class="city-go">
-                                <script type="text/javascript" async="async" defer="defer" charset="UTF-8" src="https://timepad.ru/js/tpwf/loader/min/loader.js" data-timepad-customized="3019" data-timepad-widget-v2="event_register">
-                                    (function(){return {"event":{"id":"1241457"},"hidePreloading":true,"initialRoute":"button","buttonSettings":{"text":"РЕГИСТРАЦИЯ"}}; })();
-                                </script>
+                        <h2>Видеозаписи семинара</h2>
+                        <div class="register_right__description">
+                            <p>
+                                Видеозаписи + домашние задания
+                            </p>
+                            <p>
+                                Доступ к записям будет дан после 16 мая
+                            </p>
+                            <div class="register_btn">
+
+                            <script type="text/javascript" async="async" defer="defer" charset="UTF-8" src="https://timepad.ru/js/tpwf/loader/min/loader.js" data-timepad-customized="3019" data-timepad-widget-v2="event_register">
+                                (function(){return {"event":{"id":"1241457"},"hidePreloading":true,"initialRoute":"button","buttonSettings":{"text":"РЕГИСТРАЦИЯ"}}; })();
+                            </script></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    </section>
 
-    ga('create', 'UA-12938027-10', 'auto');
-    ga('send', 'pageview');
+    <div class="register_bg"></div>
+    <footer >
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="footer_wrap">
+                        <img src="img/logo-mini.png">
+                        <p>sidristij@clrium.ru</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="js/index.js"></script>
 
-</script>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-12938027-10', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+        ym(25102367, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/25102367" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
 </body>
 </html>
