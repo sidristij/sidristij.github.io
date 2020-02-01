@@ -3,42 +3,121 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title>CLRium #7: Практика работы с многопоточным кодом</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=1000">
     <meta property="og:image" content="img/thumbnail.png" />
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/media.css">
     <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <div id="top_video_bg">
-        <video id="video_bg" loop muted autoplay poster="img/listeners.jpg">
-        <source src="./video/bg_video.mp4" type="video/mp4">
-        </video>
-    </div>
-    <div id="header">
-        <img id="conflogo" src="img/logo-w.svg" /> 
+    <header class="header fixed">
+        <a href="#">
+            <img class="conflogo" src="img/logo-w.svg"/> 
+        </a>
         <div class="menu">
             <div><a href="index.html">О конференции</a></div>
             <div><a href="matrix.html">Доклады</a></div>
             <a href="register.html" class="register_button">РЕГИСТРАЦИЯ</a>
         </div>
-    </div>
-    <div id="page">
-        <div id="index">
-            <!-- fullsize bg to get sizes -->
-            <img id="bg_sizes" class="invisible" src="img/listeners.jpg"/>
 
-            <div id="index_bg"></div>
+        <!-- mobile-menu -->
 
-            <!-- content: conference content -->
-            <div class="content">
-                <!-- <img id="qac_big_logo" src="img/big-logo.png"/> -->
-                <div class="description">
-                    <p>За <span style="color: darkorange;">6</span> лет проведения семинара нас посетило более <span style="color: darkorange;">4,000</span> человек</p>
+        <div class="hamburger-menu">
+            <input id="menu__toggle" type="checkbox" />
+            <label class="menu__btn" for="menu__toggle">
+              <span></span>
+            </label>
+        
+            <ul class="menu__box">
+                <li><a class="menu__item" href="index.html">О конференции</a></li>
+                <li><a class="menu__item" href="matrix.html">Доклады</a></li>
+                <li><a class="menu__item" href="register.html">Регистрация</a></li>
+            </ul>
+        </div>
+    </header>
+    <section>
+        <div class="top_video_bg">
+            <video class="video_bg" loop muted autoplay poster="img/listeners1.jpg">
+                <source src="./video/bg_video.mp4" type="video/mp4">
+            </video>
+        </div>
+        
+        <div class="index_bg"></div>
+        <div class="page">
+            <div class="index">
+                <!-- fullsize bg to get sizes -->
+                <!-- <img class="bg_sizes" class="invisible" src="img/listeners.jpg"/> -->
+    
+    
+                <!-- content: conference content -->
+                <div class="content">
+                    <!-- <img class="qac_big_logo" src="img/big-logo.png"/> -->
+                    <div class="description">
+                        <p>За <span style="color: darkorange;">6</span> лет проведения семинара нас посетило более <span style="color: darkorange;">4,000</span> человек</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+    <section class="about">
+        <div class="container">
+            <div class="row about_wrap">
+
+                <!-- <div class="about_wrap"> -->
+                    <div class="col-lg-6">
+                        <div class="about_text">
+                            <h1>CLRium</h1>
+                            <p>
+                                Серия семинаров CLRium имеют формат полнодневной миниконференции в один поток и отличаются от больших конференций несколькими аспектами:    
+                            </p>
+                            <ul>
+                                <li>каждый семинар посвящен какой-либо теме, которую раскрывает от самого начала и до самого конца;</li>
+                                <li>выбираемые темы - фундаментальны. Это значит, что знания по ним не будут устаревать очень длительное время. Достаточно просто пересмотреть видеозаписи если что-то будет забыто</li>
+                                <li>цена. Наши цены очень демократичны, а отдача - максимальная. Ведь вы не получите докладов на темы, которые вам не интересны</li>
+                                <li>отдельный вид билета - собеседования с личным ментором, с которым вы можете подтянуть недопонятые темы семинара</li>
+                            </ul>
+                        </div>
+                    </div>
+                
+                    <div class="col-lg-6">
+                        <div class="about_right">
+                            <div class="about_card">
+                                <img src="https://images.ctfassets.net/9n3x4rtjlya6/1tCpoCPQN6WU0e64I62YSa/4a9b22976b58c1dc9b9742c126675a3f/spb.jpg" alt="">
+                                <p class="about_card__title">Санкт-Петербург</p>
+                                <p class="about_card__subtitle">18 апреля, 2020 год</p>
+                                <a href="#" class="about_card__btn">Подробнее</a>
+                            </div>
+        
+                            <div class="about_card">
+                                <img src="https://images.ctfassets.net/9n3x4rtjlya6/3ia6UYgJhmaSGc4GMkGO0E/1add659a4afb7f4f932ae450cd398915/msk.jpg" alt="">
+                                <p class="about_card__title">Москва</p>
+                                <p class="about_card__subtitle">16 мая, 2020 год</p>
+                                <a href="#" class="about_card__btn">Подробнее</a>
+                            </div>
+                        </div>
+                            
+                    </div>
+                
+                <!-- </div> -->
+
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="footer_wrap">
+                        <img src="img/logo-mini.png">
+                        <p>sidristij@clrium.ru</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <!-- Google Analytics counter-->
     <script>
