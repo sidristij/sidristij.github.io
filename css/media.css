@@ -66,8 +66,11 @@
     }
 }
 @media (max-width: 575px) {
-    .header .conflogo {
+    .header-tmp {
         max-width: 150px;
+    }
+    .conflogo {
+        height: 40px;
     }
     .index {
         bottom: 80px;
