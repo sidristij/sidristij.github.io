@@ -22,9 +22,11 @@
         transition: all 1s;
         top: 0;
     }
+
     .fixed {
         position: fixed !important;
     }
+    
     .footer {
         height:110px;
         background-image: url(../img/footer_gradient.png);
@@ -48,7 +50,7 @@
         margin-top: 30px;
         width: 75%;
         height: 100%;
-        font-family: 'Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
+        font-family: 'Gotham Pro','Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
         color: white;
         font-size: 13pt;
         font-weight: 400;
@@ -69,7 +71,7 @@
         pointer-events: auto;
         float: right;
         height: 40px;
-        font-family: 'Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
+        font-family: 'Gotham Pro','Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
         font-size: 16pt;
         color: #fff;
         margin-top:40px;
@@ -173,7 +175,7 @@
       
         color: #333;
       
-        font-family: 'Roboto', sans-serif;
+        font-family: 'Gotham Pro','Roboto', sans-serif;
         font-size: 20px;
         font-weight: 600;
       
@@ -243,7 +245,7 @@
 
     .speakers_button {
         display: inline-block;
-        font-family: 'Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
+        font-family: 'Gotham Pro','Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
         width: auto;
         padding: 15px 60px;
         margin-left: 40px;
@@ -292,7 +294,7 @@
     .index .description p {
         font-weight: 400;
         font-size: 19pt;
-        font-family: 'Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
+        font-family: 'Gotham Pro','Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
            color: #d4d4d4;
            text-shadow: 0px 0px 2px rgba(0, 0, 0, 1);
         margin: 0 auto;
@@ -310,11 +312,14 @@
     }
 
     .about_text {
+        font-weight: 400;
+        font-family: 'Gotham Pro';
         padding: 30px;
     }
     .about_text h1 {
-        font-style: italic;
-        margin-bottom: 15PX;
+        font-weight: 400;
+        font-family: 'Gotham Pro';
+        margin-bottom: 15px;
     }
     .about_card {
         display: flex;
@@ -328,7 +333,7 @@
     }
     .about_card__title {
         font-size: 24px;
-        margin-top: 10px;
+        margin: 10px 0 0 0;
     }
     .about_card__btn {
         padding: 10px 30px;
@@ -407,10 +412,12 @@
     }
 
     .matrix_title {
+        font-family: 'Gotham Pro';
         padding: 20px;
         font-weight: 200;
     }
     .matrix p {
+        font-family: 'Gotham Pro';
         font-size: 17pt;
         text-align: center;
         color: #fff;
@@ -423,22 +430,26 @@
         color: #fff;
     }
     .matrix p.table_time {
+        font-family: 'Gotham Pro';
         vertical-align: top;
         text-align: center;
-        font-size: 22pt;
+        font-size: 15pt;
     }
     .table_light-bg {
+        font-family: 'Gotham Pro';
         background-color: rgba(255, 255, 255, 0.03);
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
     }
     .table_header {
+        font-family: 'Gotham Pro';
         padding: 20px;
         font-weight: 200;
         width: 100%;
     }
     .table_card {
+        font-family: 'Gotham Pro';
         padding: 20px;
         max-width: 25%;
     } 
@@ -450,44 +461,186 @@
         padding: 20px;
     }
     .table_card__title {
+        font-family: 'Gotham Pro';
         font-size: 14pt;
         font-weight: 600;
         padding: 10px 0 0;
     }
     .table_card__title {
+        font-family: 'Gotham Pro';
         font-size: 13pt;
     }
 
     /* REGISTER_PAGE */
     .register {
+        font-family: 'Gotham Pro';
         position: relative;
         z-index: 2;
         padding: 50px 0;
     }
     .register h2 {
+        font-family: 'Gotham Pro';
         color: #fee000;
         font-size: 17pt;
         font-weight: 400;
+        padding: 15px 0 0 0;
     }
     .register_right h2 {
+        font-family: 'Gotham Pro';
         font-size: 22pt;
     }
     .register_right p {
         display: inline-block;
         width: 30%;
         color: white;
-        font-family: 'Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
+        font-family: 'Gotham Pro','Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
         font-size: 12pt;
         font-weight: 500;
         margin-right: 30px;
     }
     .register_right__description {
+        font-family: 'Gotham Pro';
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
     .register p {
+        font-family: 'Gotham Pro';
         color: white;
         font-size: 12pt;
         font-weight: 400;
     }
+
+    /* This stylesheet generated by Transfonter (https://transfonter.org) on June 26, 2017 12:11 PM */
+
+@font-face {
+	font-family: 'Gotham Pro';
+	src: url('../fnt/GothamPro-BoldItalic.eot');
+	src: local('Gotham Pro Bold Italic'), local('GothamPro-BoldItalic'),
+		url('../fnt/GothamPro-BoldItalic.eot?#iefix') format('embedded-opentype'),
+		url('../fnt/GothamPro-BoldItalic.woff') format('woff'),
+		url('../fnt/GothamPro-BoldItalic.ttf') format('truetype');
+	font-weight: bold;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Gotham Pro';
+	src: url('../fnt/GothamPro-Italic.eot');
+	src: local('Gotham Pro Italic'), local('GothamPro-Italic'),
+		url('../fnt/GothamPro-Italic.eot?#iefix') format('embedded-opentype'),
+		url('../fnt/GothamPro-Italic.woff') format('woff'),
+		url('../fnt/GothamPro-Italic.ttf') format('truetype');
+	font-weight: normal;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Gotham Pro';
+	src: url('../fnt/GothamPro-Medium.eot');
+	src: local('Gotham Pro Medium'), local('GothamPro-Medium'),
+		url('../fnt/GothamPro-Medium.eot?#iefix') format('embedded-opentype'),
+		url('../fnt/GothamPro-Medium.woff') format('woff'),
+		url('../fnt/GothamPro-Medium.ttf') format('truetype');
+	font-weight: 500;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Gotham Pro';
+	src: url('../fnt/GothamPro-BlackItalic.eot');
+	src: local('Gotham Pro Black Italic'), local('GothamPro-BlackItalic'),
+		url('../fnt/GothamPro-BlackItalic.eot?#iefix') format('embedded-opentype'),
+		url('../fnt/GothamPro-BlackItalic.woff') format('woff'),
+		url('../fnt/GothamPro-BlackItalic.ttf') format('truetype');
+	font-weight: 900;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Gotham Pro';
+	src: url('../fnt/GothamPro-Bold.eot');
+	src: local('Gotham Pro Bold'), local('GothamPro-Bold'),
+		url('../fnt/GothamPro-Bold.eot?#iefix') format('embedded-opentype'),
+		url('../fnt/GothamPro-Bold.woff') format('woff'),
+		url('../fnt/GothamPro-Bold.ttf') format('truetype');
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Gotham Pro Narrow';
+	src: url('../fnt/GothamProNarrow-Bold.eot');
+	src: local('Gotham Pro Narrow Bold'), local('GothamProNarrow-Bold'),
+		url('../fnt/GothamProNarrow-Bold.eot?#iefix') format('embedded-opentype'),
+		url('../fnt/GothamProNarrow-Bold.woff') format('woff'),
+		url('../fnt/GothamProNarrow-Bold.ttf') format('truetype');
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Gotham Pro Narrow';
+	src: url('../fnt/GothamProNarrow-Medium.eot');
+	src: local('Gotham Pro Narrow Medium'), local('GothamProNarrow-Medium'),
+		url('../fnt/GothamProNarrow-Medium.eot?#iefix') format('embedded-opentype'),
+		url('../fnt/GothamProNarrow-Medium.woff') format('woff'),
+		url('../fnt/GothamProNarrow-Medium.ttf') format('truetype');
+	font-weight: 500;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Gotham Pro';
+	src: url('../fnt/GothamPro-LightItalic.eot');
+	src: local('Gotham Pro Light Italic'), local('GothamPro-LightItalic'),
+		url('../fnt/GothamPro-LightItalic.eot?#iefix') format('embedded-opentype'),
+		url('../fnt/GothamPro-LightItalic.woff') format('woff'),
+		url('../fnt/GothamPro-LightItalic.ttf') format('truetype');
+	font-weight: 300;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Gotham Pro';
+	src: url('../fnt/GothamPro-Light.eot');
+	src: local('Gotham Pro Light'), local('GothamPro-Light'),
+		url('../fnt/GothamPro-Light.eot?#iefix') format('embedded-opentype'),
+		url('../fnt/GothamPro-Light.woff') format('woff'),
+		url('../fnt/GothamPro-Light.ttf') format('truetype');
+	font-weight: 300;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Gotham Pro';
+	src: url('../fnt/GothamPro-Black.eot');
+	src: local('Gotham Pro Black'), local('GothamPro-Black'),
+		url('../fnt/GothamPro-Black.eot?#iefix') format('embedded-opentype'),
+		url('../fnt/GothamPro-Black.woff') format('woff'),
+		url('../fnt/GothamPro-Black.ttf') format('truetype');
+	font-weight: 900;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Gotham Pro';
+	src: url('../fnt/GothamPro.eot');
+	src: local('Gotham Pro'), local('GothamPro'),
+		url('../fnt/GothamPro.eot?#iefix') format('embedded-opentype'),
+		url('../fnt/GothamPro.woff') format('woff'),
+		url('../fnt/GothamPro.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Gotham Pro';
+	src: url('../fnt/GothamPro-MediumItalic.eot');
+	src: local('Gotham Pro Medium Italic'), local('GothamPro-MediumItalic'),
+		url('../fnt/GothamPro-MediumItalic.eot?#iefix') format('embedded-opentype'),
+		url('../fnt/GothamPro-MediumItalic.woff') format('woff'),
+		url('../fnt/GothamPro-MediumItalic.ttf') format('truetype');
+	font-weight: 500;
+	font-style: italic;
+}

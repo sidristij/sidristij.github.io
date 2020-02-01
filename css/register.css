@@ -38,7 +38,7 @@
     position: absolute;
     left: 0px;
     bottom: 0px;
-    font-family: 'Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Gotham Pro','Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
     color: white;
     font-size: 3.7vw; /*50pt;*/
     font-weight: 700;
@@ -70,19 +70,20 @@
 
 #reg_info > h2 {
     color: #fee000;
-    font-family: 'Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Gotham Pro','Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
     font-size: 17pt;
     font-weight: 400;
 }
 
 #reg_info > p {
     color: white;
-    font-family: 'Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Gotham Pro','Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
     font-size: 12pt;
     font-weight: 400;
 }
 
 #reg_buttons_area .reg-city {
+    font-family: 'Gotham Pro';
     height: 135px;
     width:100%;
 }
@@ -91,13 +92,14 @@
     display: inline-block;
     width: 100%;
     color: #fee000;
-    font-family: 'Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Gotham Pro','Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
     font-size: 22pt;
     font-weight: 400;
     margin-bottom: 20px;
 }
 
 .reg-city .city-descr {
+    font-family: 'Gotham Pro';
     min-width: 575px;
 }
 
@@ -105,7 +107,7 @@
     display: inline-block;
     width:30%;
     color: white;
-    font-family: 'Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Gotham Pro','Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
     font-size: 12pt;
     font-weight: 500;
     margin-right: 30px;
@@ -115,7 +117,7 @@
     display: inline-block;
     width: 25%;
     color: white;
-    font-family: 'Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Gotham Pro','Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
     font-size: 12pt;
     font-weight: 500;
 }
@@ -126,7 +128,7 @@
     height:100%;
     max-width: 230px;
     color: white;
-    font-family: 'Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Gotham Pro','Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
     font-size: 17pt;
     font-weight: 500;
 }
