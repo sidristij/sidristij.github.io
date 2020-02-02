@@ -273,6 +273,14 @@
         color: #d4d4d4;
     }
 
+    .top_placeholder_img_containter {
+        text-align: right;
+    }
+
+    .top_placeholder img {
+        height: 110px;
+    }
+
     .top_placeholder_index, .top_placeholder_index span {
         margin-top: -15px;
         font-family: 'Segoe UI';
