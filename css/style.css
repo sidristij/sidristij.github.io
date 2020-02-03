@@ -263,6 +263,7 @@
     }
 
     .top_video_bg {
+        background-color: black;
         filter: grayscale(1);
     }
 
