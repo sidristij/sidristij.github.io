@@ -561,13 +561,9 @@
     }
     .table_card__title {
         font-family: 'Gotham Pro';
-        font-size: 14pt;
-        font-weight: 600;
-        padding: 10px 0 0;
-    }
-    .table_card__title {
-        font-family: 'Gotham Pro';
         font-size: 13pt;
+        font-weight: 500;
+        padding: 10px 0 15px 0;
     }
 
     /* REGISTER_PAGE */
