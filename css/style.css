@@ -10,6 +10,10 @@
         background-color: #000;     
     }
 
+    p, h1, h2, h3 {
+        font-family: 'Gotham Pro','Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
+    }
+
     .header {
         height: 110px;
         background-image: url(../img/header_gradient.png);
