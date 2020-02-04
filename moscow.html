@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html><head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>CLRium #7: Практика работы с многопоточным кодом</title>
+    <meta charset="utf-8">
+    <meta property="og:image" content="img/thumbnail.png" />
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/media.css">
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <header class="header fixed">
+        <a href="#">
+            <img class="conflogo" src="img/logo-w-noindex.svg"/> 
+        </a>
+        <div class="menu">
+            <div><a href="index.html">О конференции</a></div>
+            <div><a href="mentor.html">Ментор</a></div>
+            <div><a href="matrix.html">Доклады</a></div>
+            <a href="register.html" class="register_button">РЕГИСТРАЦИЯ</a>
+        </div>
+
+        <!-- mobile-menu -->
+
+        <div class="hamburger-menu">
+            <input id="menu__toggle" type="checkbox" />
+            <label class="menu__btn" for="menu__toggle">
+              <span></span>
+            </label>
+        
+            <ul class="menu__box">
+                <li><a class="menu__item" href="index.html">О конференции</a></li>
+                <li><a class="menu__item" href="mentor.html">Ментор</a></li>
+                <li><a class="menu__item" href="matrix.html">Доклады</a></li>
+                <li><a class="menu__item" href="register.html">Регистрация</a></li>
+            </ul>
+        </div>
+    </header>
+    <section class="mentor_heading">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="mentor_heading_text">
+                        <h1>Москва</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="about city_about">
+        <div class="container">
+            <div class="row about_wrap">
+
+                <!-- <div class="about_wrap"> -->
+                    <div class="col-lg-8">
+                        <div class="city_d_text">
+                            <h2>Место проведения</h2>
+                            <p>
+                                Семинар CLRium #7: Parallelism in Practice пройдёт <strong>16 мая</strong> 
+                                в Москве в гостинице "Салют" (адрес: <a href="https://yandex.ru/maps/213/moscow/?ll=37.486975%2C55.656943&mode=routes&rtext=55.662683%2C37.482069~55.650983%2C37.482484&rtt=mt&ruri=~&z=15.68">г. Москва, Ленинский проспект, 158</a>). 
+                                От метро - всего лишь 4 минуты неспешным шагом.
+                            </p>
+                            
+                           
+                            <h3>Из центра города</h3>
+                            20 минут на метро до станции «Юго-западная», 30-40 минут на автотранспорте. От станции метро «Юго-Западная»: нужно выйти из 1-го вагона (направление из центра) налево в город, далее ещё раз налево для выхода из метро, далее повернуть направо на улицу 26 Бакинских Комиссаров - остановка автобусов: №281. Необходимо доехать до остановки «Отель Салют». 
+
+                            Далее нужно спуститься через подземный переход к отелю, пройти 50 метров до шлагбаума (центральный въезд в отель), держась правой стороны, пройти 50 метров до центрального входа.
+
+                            <h3>От аэропорта «Внуково»</h3>
+                            Автобусом №611 (кроме автобуса-экспресс) или маршрутном такси №45 до остановки отель «Салют», Время в пути до/от отеля 20-30 минут.
+
+                            <h3>От аэропорта «Домодедово»</h3>
+                            Автобусом-экспрессом до станции метро «Домодедовская», далее на метро до станции «Театральная», переход на станцию «Охотный Ряд», проезд до станции «Юго-Западная». Далее проезд общественным транспортом, автобус №281 до остановки отель «Салют». Время в пути до/от отеля 1 час 40 минут.
+
+                            <h3>От аэропорта «Шереметьево»</h3>
+                            Автобусом №851 до станции метро «Речной Вокзал», далее - проезд на метро до станции «Театральная», переход на станцию «Охотный Ряд», проезд до станции «Юго-Западная». Далее проезд общественным транспортом, автобус №281 до остановки отель «Салют». Время в пути 1 час 40 минут.
+                            <p>
+                                <!-- 2Gis Widget -->
+                                <a class="dg-widget-link" href="http://2gis.ru/spb/firm/5348552838532395/center/30.31784534454346,59.89372690405653/zoom/16?utm_medium=widget-source&utm_campaign=firmsonmap&utm_source=bigMap">
+                                    Посмотреть на карте Санкт-Петербурга
+                                </a>
+                                <div class="dg-widget-link">
+                                    <a href="http://2gis.ru/spb/firm/5348552838532395/photos/5348552838532395/center/30.31784534454346,59.89372690405653/zoom/17?utm_medium=widget-source&utm_campaign=firmsonmap&utm_source=photos">Фотографии компании</a>
+                                </div>
+                                <div class="dg-widget-link">
+                                    <a href="http://2gis.ru/spb/center/30.317851,59.893509/zoom/16/routeTab/rsType/bus/to/30.317851,59.893509╎Holiday Inn, гостиница?utm_medium=widget-source&utm_campaign=firmsonmap&utm_source=route">Найти проезд до Holiday Inn, гостиница</a>
+                                </div>
+                                <script charset="utf-8" src="https://widgets.2gis.com/js/DGWidgetLoader.js"></script>
+                                <script charset="utf-8">new DGWidgetLoader({"width":"100%","height":600,"borderColor":"#a3a3a3","pos":{"lat":59.89372690405653,"lon":30.31784534454346,"zoom":16},"opt":{"city":"spb"},"org":[{"id":"5348552838532395"}]});</script>
+                                <noscript style="color:#c00;font-size:16px;font-weight:bold;">Виджет карты использует JavaScript. Включите его в настройках вашего браузера.</noscript>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <!-- Begin Mailchimp Signup Form -->
+                        <div>
+                            <h2>Электровестник</h2>
+                            <p>
+                                Подписаться на новости и ранний доступ к материалам а также нашим статьям на Habr
+                            </p>
+                            <form action="https://clrium.us12.list-manage.com/subscribe/post?u=9c8336f33d998897f27a4f7c1&amp;id=b367ad585d" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                                <div id="mc_embed_signup_scroll">
+                                    <div class="form__con"><input type="email" value="" name="EMAIL" class="form__t" id="mce-EMAIL" placeholder="email address" required></div>
+                                    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_9c8336f33d998897f27a4f7c1_b367ad585d" tabindex="-1" value=""></div>
+                                    <div class="form__con"><input type="submit" value="Подписаться" name="subscribe" id="mc-embedded-subscribe" class="form__b"></div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="footer_wrap">
+                        <img src="img/logo-w-noindex.svg">
+                        <p>sidristij@clrium.ru</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+        ym(25102367, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/25102367" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+</body>
+</html>
