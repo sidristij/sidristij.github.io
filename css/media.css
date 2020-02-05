@@ -17,6 +17,9 @@
     .about_card__title {
         font-size: 16pt;
     }
+    .index_bg {
+        background-color: #000000aa;
+    }
 }
 @media (max-width: 991px) {
     .menu {
@@ -55,9 +58,6 @@
     .register {
         padding: 0;
     }
-    .about_card__title {
-        font-size: 20pt;
-    }
 }
 
 @media (max-width: 767px) {
@@ -76,6 +76,9 @@
     }
     .about_card__title {
         font-size: 18pt;
+    }
+    .index_bg {
+        background-color: transparent;
     }
 }
 
