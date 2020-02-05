@@ -5,11 +5,17 @@
     .md-visible {
         display: none;
     }
+    .about_card__title {
+        font-size: 20pt;
+    }
 }
 
 @media (max-width: 1200px) {
     .table_card {
         max-width: 50%;
+    }
+    .about_card__title {
+        font-size: 16pt;
     }
 }
 @media (max-width: 991px) {
@@ -49,7 +55,11 @@
     .register {
         padding: 0;
     }
+    .about_card__title {
+        font-size: 20pt;
+    }
 }
+
 @media (max-width: 767px) {
     .index {
         padding: 0 15px;
@@ -64,7 +74,11 @@
     .top_video_bg video {
         display: none;
     }
+    .about_card__title {
+        font-size: 18pt;
+    }
 }
+
 @media (max-width: 575px) {
     .header-tmp {
         max-width: 150px;
@@ -98,6 +112,10 @@
     }
 
     .mentor_heading h1 {
+        font-size: 24pt;
+    }
+
+    .about_card__title {
         font-size: 24pt;
     }
 }
