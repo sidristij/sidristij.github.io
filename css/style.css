@@ -42,6 +42,24 @@
         width: 100vw;
     }
 
+    .breadcrumbs_menu {
+        margin: 15px 0;
+    }
+
+    .breadcrumbs_menu .inactive_item {
+        display: inline-block;
+        padding: 5px;
+        font-family: 'Gotham Pro','Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    .breadcrumbs_menu .active_item {
+        background-color: #c13939;
+        display: inline-block;
+        color: white;
+        padding: 10px;
+        font-family: 'Gotham Pro','Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
+    }
+
     a {
         color: white;
         text-decoration: none;
