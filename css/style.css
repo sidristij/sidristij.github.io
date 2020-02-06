@@ -473,6 +473,12 @@
         margin: 10px 0;
     }
 
+    .what_important {
+        padding: 5px 0;
+        background-color: blanchedalmond;
+    }
+    
+
     /* MATRIX_PAGE */
     .matrix {
         z-index: 2;
@@ -616,7 +622,7 @@
         margin: 30px 0 15px 0;
     }
 
-    .city_about h3 {
+    .city_about h3, .mentor_about h3 {
         margin: 20px 0 15px 0;
         font-size: 15pt;
     }
