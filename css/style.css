@@ -599,6 +599,32 @@
         color: #fff;
         margin: 0;
     }
+    .samples_playlist {
+        margin: 0 -15px;
+    }
+    .samples_playlist .col-12 {
+        padding: 0;
+    }
+    .samples_playlist .col-12 a {
+        margin-right: 15px;
+    }
+    .youtube_samples .samples_playlist a {
+        display: inline-block;
+        background-color: #c13939;
+        height: 40px;
+        padding: 6px 25px 6px 25px;
+        color: #fff;
+        cursor: pointer;
+        border: 0;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+        font-family: 'Gotham Pro';
+        font-size: 18px;
+    }
+    .photos__item iframe {
+        padding: 4px 4px 4px 0;
+    }
     .matrix p.table_title  {
         font-size: 26pt;
     }
