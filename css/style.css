@@ -529,12 +529,12 @@
         margin: 30px 0 15px 0;
     }
 
-    .mentor_about img {
+    .about_right img {
         border-radius: 200px;
         width: auto;
     }
 
-    .mentor_about .about_card__title {
+    .about_right .about_card__title {
         font-weight: 500;
         margin: 10px 0;
     }

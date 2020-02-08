@@ -5,8 +5,8 @@
     .md-visible {
         display: none;
     }
-    .about_card__title {
-        font-size: 20pt;
+    .about_right p.about_card__title {
+        font-size: 18pt;
     }
 }
 
@@ -14,8 +14,8 @@
     .table_card {
         max-width: 50%;
     }
-    .about_card__title {
-        font-size: 16pt;
+    .about_right p.about_card__title {
+        font-size: 14pt;
     }
     .index_bg {
         background-color: #000000aa;
@@ -74,7 +74,7 @@
     .top_video_bg video {
         display: none;
     }
-    .about_card__title {
+    .about_right p.about_card__title {
         font-size: 18pt;
     }
     .index_bg {
@@ -118,7 +118,7 @@
         font-size: 24pt;
     }
 
-    .about_card__title {
+    .about_right p.about_card__title {
         font-size: 24pt;
     }
 }
