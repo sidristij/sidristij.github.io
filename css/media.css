@@ -83,6 +83,12 @@
 }
 
 @media (max-width: 575px) {
+    .youtube_samples h2 {
+        font-size: 1.5rem;
+    }
+    .youtube_samples h3 {
+        font-size: 1.2rem;
+    }
     .header-tmp {
         max-width: 150px;
     }
