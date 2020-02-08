@@ -607,6 +607,7 @@
     }
     .samples_playlist .col-12 a {
         margin-right: 15px;
+        margin-bottom: 15px;
     }
     .youtube_samples .samples_playlist a {
         display: inline-block;

@@ -144,7 +144,7 @@
                 </div>
             </div>
             <div class="youtube_samples">
-                <h2>За 6 лет нас посетило более <span class="red_brick">4,000</span> человек:</h2>
+                <h2>За <span class="red_brick">6</span> лет нас посетило более <span class="red_brick">4,000</span> человек:</h2>
                 
                 <!-- CLRium #6: Concurrency & Parallelism -->
                 <h3><span class="red_brick">#6</span>: Concurrency & Parallelism</h3>
@@ -158,19 +158,16 @@
                     TaskSchedulers, async/await и многие другие вопросы. Полное понимание CLRium #6 гарантирует полное 
                     понимание темы многопоточки.
                 </p>
-                <p class="d-block d-md-none">
-                    <img src="img/thumbs/conf/single.jpg" width="100%">
-                </p>
-                <div class="container d-none d-md-block photos__container">
+                <div class="container photos__container">
                     <div class="row">
-                        <div class="col-lg-3 col-md-4 photos__item"><img class="photos__img" src="img/thumbs/conf/01.jpg"></div>
-                        <div class="col-lg-3 col-md-4 photos__item"><img class="photos__img" src="img/thumbs/conf/02.jpg"></div>
-                        <div class="col-lg-3 col-md-4 photos__item"><img class="photos__img" src="img/thumbs/conf/03.jpg"></div>
-                        <div class="col-lg-3 col-md-4 photos__item"><img class="photos__img" src="img/thumbs/conf/04.jpg"></div>
-                        <div class="col-lg-3 col-md-4 photos__item"><img class="photos__img" src="img/thumbs/conf/05.jpg"></div>
-                        <div class="col-lg-3 col-md-4 photos__item"><img class="photos__img" src="img/thumbs/conf/06.jpg"></div>
-                        <div class="col-lg-3 col-md-4 photos__item d-md-none d-lg-block"><img class="photos__img" src="img/thumbs/conf/05.jpg"></div>
-                        <div class="col-lg-3 col-md-4 photos__item d-md-none d-lg-block"><img class="photos__img" src="img/thumbs/conf/06.jpg"></div>
+                        <div class="col-lg-3 col-md-4 col-6 photos__item"><img class="photos__img" src="img/thumbs/conf/01.jpg"></div>
+                        <div class="col-lg-3 col-md-4 col-6 photos__item"><img class="photos__img" src="img/thumbs/conf/02.jpg"></div>
+                        <div class="col-lg-3 col-md-4 col-6 photos__item"><img class="photos__img" src="img/thumbs/conf/03.jpg"></div>
+                        <div class="col-lg-3 col-md-4 col-6 photos__item"><img class="photos__img" src="img/thumbs/conf/04.jpg"></div>
+                        <div class="col-lg-3 col-md-4 col-6 photos__item d-none d-sm-block"><img class="photos__img" src="img/thumbs/conf/05.jpg"></div>
+                        <div class="col-lg-3 col-md-4 col-6 photos__item d-none d-sm-block"><img class="photos__img" src="img/thumbs/conf/06.jpg"></div>
+                        <div class="col-lg-3 col-md-4 col-6 photos__item d-none d-lg-block"><img class="photos__img" src="img/thumbs/conf/05.jpg"></div>
+                        <div class="col-lg-3 col-md-4 col-6 photos__item d-none d-lg-block"><img class="photos__img" src="img/thumbs/conf/06.jpg"></div>
                     </div>
                 </div>
                 <div class="container d-none d-lg-block photos__container">
@@ -196,40 +193,43 @@
                             </ol>
                         </div>
                     </div>
+                </div>
+                <div class="container photos__container">
                     <div class="row samples_playlist">
                         <div class="col-12">
-                            <a href="https://www.youtube.com/playlist?list=PLBwwJL9lzKMZJ3-kJoSfKsWfWxiRbjDXX">Плэйлист открытой части докладов</a>
-                            <a href="reg/clrium_previous.html">Приобрести все доклады</a>
+                            <a href="https://www.youtube.com/playlist?list=PLBwwJL9lzKMZJ3-kJoSfKsWfWxiRbjDXX" target="_blank">Плэйлист открытой части докладов</a>
+                            <a href="reg/clrium_previous.html" target="_blank">Приобрести все доклады</a>
                         </div>
                     </div>
-                </div>
-                
+                </div>        
+
                 <!-- CLRium #5: Garbage Collector -->
                 <h3><span class="red_brick">#5</span>: Garbage Collector</h3>
                 <p>
-                    Суть семинаров CLRium - взять тему и раскрыть её максимально глубоко. Настолько глубоко, чтобы не оставалось никаких
-                    вопросов. Именно поэтому #6 являлся двухдневным. Тема многопоточности обширна и многогранна и раскрыть её всего за 
-                    один день не представлялось возможным. А наша задача - научить. Что было рассказано? 
+                    Практически всё время существования платформы сборщик мусора был для нас чем-то закрытым, 
+                    не доступным, абсолютно не понятно как работающим семейством алгоритмов. Из источников, 
+                    проливающих свет на алгоритмы работы Garbage Collector было всего пара достойных: это древняя 
+                    статья на MSDN, достоверность которой ввиду её древности была под вопросом и книга <a href="https://www.red-gate.com/simple-talk/wp-content/uploads/RedGateBooks/ChrisFarrell/Under_the_Hood_of_NET_Management.pdf" target="_blank">Under the Hood of .NET Memory Management</a>, 
+                    которая содержала много всего интересного - с одной стороны. Но с другой - она тоже не была свежей и также вносила сомнения.
                 </p>
                 <p>    
-                    Уровень процессора, 
-                    операционной системы, блокирующие и неблокирующие алгоритмы, SynchronizationContext, TaskSchedulers, 
-                    async/await и многие другие вопросы. Полное понимание CLRium #6 гарантирует полное понимание темы многопоточки.
+                    Выход в open source ядра платформы и выход в свет книги Конрада Кокоса <a href="https://prodotnetmemory.com/" target="_blank">"Pro .NET Memory Management"</a> поставили точку
+                    в понимании алгоритмов работы Garbage Collector. И как следствие - появление данного семинара, который целиком и полностью раскрывает
+                    все грани работы GC.
                 </p>
-                <p class="d-block d-lg-none">
-                    <img src="img/thumbs/conf/single.jpg" width="100%">
-                </p>
-                <div class="container d-none d-lg-block photos__container">
+                <div class="container photos__container">
                     <div class="row">
-                        <div class="col-lg-4 photos__item"><img class="photos__img" src="img/thumbs/conf/01.jpg"></div>
-                        <div class="col-lg-4 photos__item"><img class="photos__img" src="img/thumbs/conf/02.jpg"></div>
-                        <div class="col-lg-4 photos__item"><img class="photos__img" src="img/thumbs/conf/03.jpg"></div>
-                        <div class="col-lg-4 photos__item"><img class="photos__img" src="img/thumbs/conf/04.jpg"></div>
-                        <div class="col-lg-4 photos__item"><img class="photos__img" src="img/thumbs/conf/05.jpg"></div>
-                        <div class="col-lg-4 photos__item"><img class="photos__img" src="img/thumbs/conf/06.jpg"></div>
+                        <div class="col-lg-3 col-md-4 col-6 photos__item"><img class="photos__img" src="img/thumbs/conf/01.jpg"></div>
+                        <div class="col-lg-3 col-md-4 col-6 photos__item"><img class="photos__img" src="img/thumbs/conf/02.jpg"></div>
+                        <div class="col-lg-3 col-md-4 col-6 photos__item"><img class="photos__img" src="img/thumbs/conf/03.jpg"></div>
+                        <div class="col-lg-3 col-md-4 col-6 photos__item"><img class="photos__img" src="img/thumbs/conf/04.jpg"></div>
+                        <div class="col-lg-3 col-md-4 col-6 photos__item d-none d-sm-block"><img class="photos__img" src="img/thumbs/conf/05.jpg"></div>
+                        <div class="col-lg-3 col-md-4 col-6 photos__item d-none d-sm-block"><img class="photos__img" src="img/thumbs/conf/06.jpg"></div>
+                        <div class="col-lg-3 col-md-4 col-6 photos__item d-none d-lg-block"><img class="photos__img" src="img/thumbs/conf/05.jpg"></div>
+                        <div class="col-lg-3 col-md-4 col-6 photos__item d-none d-lg-block"><img class="photos__img" src="img/thumbs/conf/06.jpg"></div>
                     </div>
                 </div>
-                <div class="container d-none d-lg-block photos__container">
+                <!-- <div class="container d-none d-lg-block photos__container">
                     <div class="row">
                         <div class="col-lg-6 photos__item">
                             <h3>Лучшие доклады</h3>
@@ -238,12 +238,20 @@
                             <h3>Отзывы</h3>
                         </div>
                     </div>
-                </div>
+                </div> -->
+                <div class="container photos__container">
+                    <div class="row samples_playlist">
+                        <div class="col-12">
+                            <a href="https://www.youtube.com/playlist?list=PLBwwJL9lzKMY3At-QQQijfiHdsYnOQ7vY" target="_blank">Плэйлист докладов</a>
+                        </div>
+                    </div>
+                </div>        
                 <!-- Остальные семинары -->
                 <h3>Остальные семинары</h3>
                 <p>
-                    Все остальные семинары можно посмотреть на <a href="https://youtube.com/clrium">нашем канале на YouTube</a>.
+                    Все остальные семинары можно посмотреть на <a href="https://youtube.com/clrium" target="_blank">нашем канале на YouTube</a>.
                 </p>
+                <p><br></p>
             </div>
         </div>
     </section>
