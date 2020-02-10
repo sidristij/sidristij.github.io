@@ -507,7 +507,14 @@
     }
     .footer_wrap p {
         margin: 0;
+        font-weight: 500;
     }
+    .footer_wrap .footer_link {
+        margin: 0;
+        font-weight: 200;
+        color: whitesmoke;
+    }
+    
 
     /* Mailchimp styles */
     #mc_embed_signup{
