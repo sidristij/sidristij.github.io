@@ -13,11 +13,11 @@
     p, li, h1, h2, h3 {
         font-family: 'Gotham Pro','Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
     }
-    ul {
+    .contents_area ul {
         list-style: none; /* Remove default bullets */
     }
     
-    ul li::before {
+    .contents_area ul li::before {
         content: "\25AA";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
         color: #c13939; /* Change the color */
         font-weight: bold; /* If you want it to be bold */
@@ -26,7 +26,7 @@
         margin-left: -1em; /* Also needed for space (tweak if needed) */
     }
 
-    ul li li::before {
+    .contents_area ul li li::before {
         content: "\25AB";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
     }
 
