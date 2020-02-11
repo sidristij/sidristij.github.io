@@ -311,8 +311,20 @@
     .ticket-card {
         border-radius: 5px;
         box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        transition: all .3s ease;
         padding: 20px;
         margin: auto;
+        cursor: pointer;
+    }
+
+    .ticket-card:hover {
+        text-decoration: none;
+        color: #000000;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
+
+    .ticket-card:hover h3 {
+        color: #007bff;
     }
 
     .ticket-card h3, .ticket-card p {
