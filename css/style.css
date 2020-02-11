@@ -288,6 +288,41 @@
         }
     }
 
+    .ticket-col {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        height: 100%;
+    }
+
+    .row.ticket-table {
+        display: table;
+     }
+    .ticket-col {
+        float: none;
+        display: table-cell;
+     }
+
+    .ticket-card {
+        border-radius: 5px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        padding: 20px;
+        margin: auto;
+    }
+
+    .ticket-card h3, .ticket-card p {
+        text-align: center;
+    }
+
+    .ticket-card h3 {
+        vertical-align: middle;
+        height: 3rem;
+    }
+
+    .ticket-card p {
+        font-size: 11.5pt;
+        font-weight: 400;
+    }
+
     .register_button {
         padding: 10px;
         background-color: #664e88;
