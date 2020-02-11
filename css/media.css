@@ -60,7 +60,12 @@
     }
 }
 
+/* Smartphone horizontal */
 @media (max-width: 767px) {
+    ul {
+        margin: 0;
+        padding-left: 25px;
+    }
     .index {
         padding: 0 15px;
         bottom: 100px;
@@ -82,7 +87,12 @@
     }
 }
 
+/* Smartphone */
 @media (max-width: 575px) {
+    ul {
+        margin: 0;
+        padding-left: 20px;
+    }
     .youtube_samples h2 {
         font-size: 1.5rem;
     }
