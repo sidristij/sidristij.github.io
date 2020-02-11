@@ -294,14 +294,6 @@
         height: 100%;
     }
 
-    .row.ticket-table {
-        display: table;
-     }
-    .ticket-col {
-        float: none;
-        display: table-cell;
-     }
-
     .ticket-card {
         border-radius: 5px;
         box-shadow: 0 10px 20px rgba(0,0,0,0.2);
@@ -323,6 +315,12 @@
         font-weight: 400;
     }
 
+    .ticket-card .ticket-buy {
+        margin-top:30px;
+    }
+    .register_variants {
+        margin-bottom: 30px;
+    }
     .register_button {
         padding: 10px;
         background-color: #664e88;
