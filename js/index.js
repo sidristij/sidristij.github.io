@@ -22,6 +22,6 @@ window.addEventListener('scroll', () => {
 })
 
 if (screen.width < 991) {
-    header.classList.add('fixed')
-    header.nextElementSibling.style.marginTop = headerHeight + 'px'
+  //  header.classList.add('fixed')
+  //  header.nextElementSibling.style.marginTop = headerHeight + 'px'
 }
