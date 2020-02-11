@@ -1,6 +1,5 @@
 const   header          = document.querySelector('header'),
         matrix          = document.querySelector('.matrix'),
-        register        = document.querySelector('.register'),
         headerHeight    = header.offsetHeight
 
 window.addEventListener('scroll', () => {
@@ -11,16 +10,10 @@ window.addEventListener('scroll', () => {
             if (matrix) {
                 matrix.style.marginTop = headerHeight + 'px'
             }
-            if (register) {
-                register.style.marginTop = headerHeight + 'px'
-            }
         } else {
             header.style.position = 'relative'
             if (matrix) {
                 matrix.style.marginTop = 0
-            }
-            if (register) {
-                register.style.marginTop = 0
             }
         }
     }
