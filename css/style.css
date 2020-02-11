@@ -323,8 +323,21 @@
         box-shadow: 0 10px 20px rgba(0,0,0,0.3);
     }
 
-    .ticket-card:hover h3 {
+    .ticket-link, .ticket-link:hover {
+        color: black;
+        text-decoration: none;
+    }
+
+    .ticket-link .ticket-buy {
         color: #007bff;
+        text-decoration: none;
+    }
+    .ticket-link:hover .ticket-buy {
+        color: #0056b3;
+    }
+
+    .ticket-card:hover h3 {
+        color: #0056b3;
     }
 
     .ticket-card h3, .ticket-card p {
