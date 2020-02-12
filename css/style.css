@@ -1,987 +1,1012 @@
 
-    /***
-     *
-     *  Common area
-     *
-     */
+/***
+    *
+    *  Common area
+    *
+    */
 
-    body {
-        margin: 0px;
-        background-color: #000;     
-    }
+body {
+    margin: 0px;
+    background-color: #000;     
+}
 
-    p, li, h1, h2, h3 {
-        font-family: 'Gotham Pro','Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
-    }
-    .contents_area ul {
-        list-style: none; /* Remove default bullets */
+p, li, h1, h2, h3 {
+    font-family: 'Gotham Pro','Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
+}
+.contents_area ul {
+    list-style: none; /* Remove default bullets */
+}
+
+.contents_area ul li::before {
+    content: "\25AA";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
+    color: #c13939; /* Change the color */
+    font-weight: bold; /* If you want it to be bold */
+    display: inline-block; /* Needed to add space between the bullet and the text */
+    width: 1em; /* Also needed for space (tweak if needed) */
+    margin-left: -1em; /* Also needed for space (tweak if needed) */
+}
+
+.contents_area ul li li::before {
+    content: "\25AB";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
+}
+
+.red_brick {
+    color: #c13939;
+}
+
+.youtube_samples h3 {
+    margin: 30px 0 10px 0;
+}
+
+.header {
+    height: 110px;
+    background-image: url(../img/header_gradient.png);
+    background-repeat: repeat;
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transition: all 1s;
+    top: 0;
+}
+
+.fixed {
+    position: fixed !important;
+}
+
+.footer {
+    height:110px;
+    background-image: url(../img/footer_gradient.png);
+    background-repeat: repeat;
+    position:fixed;
+    bottom:0px;
+    margin:auto;
+    z-index:100000;
+    width: 100vw;
+}
+
+.feedback_container {
+    padding-left: 15px !important;
+}
+
+.photos__container {
+    margin: 30px 0;
+}
+
+.photos__container ol {
+    margin-left: 0px;
+    padding-left: 20px;
+}
+
+.photos__container ol li {
+    margin-left: 0px;
+    padding-left: 5px;
+}
+
+.photos__item {
+    margin: 0px;
+    padding: 2px !important;
+    transition: opacity 0.25s ease;
+}
+
+.photos__img {
+    width: 100%;
+    height: 100%;
+}
+
+.breadcrumbs_menu {
+    margin: 15px 0;
+}
+
+.breadcrumbs_menu .inactive_item {
+    display: inline-block;
+    padding: 5px;
+    font-family: 'Gotham Pro','Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.breadcrumbs_menu .active_item {
+    background-color: #c13939;
+    display: inline-block;
+    color: white;
+    padding: 10px;
+    font-family: 'Gotham Pro','Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer .description {
+    display: block;
+    position: absolute;
+    left: 0;
+    margin-top: 30px;
+    width: 75%;
+    height: 100%;
+    font-family: 'Gotham Pro','Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
+    color: white;
+    font-size: 13pt;
+    font-weight: 400;
+    text-align: right;
+    vertical-align: middle;
+}
+
+.footer .speakers_welcome {
+    display: block;
+    position: absolute;
+    right: 0;
+    margin-top: 30px;
+    width: 25%;
+    height: 100%;
+}
+
+.header > .menu {
+    pointer-events: auto;
+    float: right;
+    height: 40px;
+    font-family: 'Gotham Pro','Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 13pt;
+    color: #fff;
+    margin-top:40px;
+    margin-right:40px;
+}
+
+.menu a {
+    color: #fff;
+}
+.menu a:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
+#menu__toggle {
+    opacity: 0;
     }
     
-    .contents_area ul li::before {
-        content: "\25AA";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
-        color: #c13939; /* Change the color */
-        font-weight: bold; /* If you want it to be bold */
-        display: inline-block; /* Needed to add space between the bullet and the text */
-        width: 1em; /* Also needed for space (tweak if needed) */
-        margin-left: -1em; /* Also needed for space (tweak if needed) */
+    #menu__toggle:checked ~ .menu__btn > span {
+    transform: rotate(45deg);
     }
-
-    .contents_area ul li li::before {
-        content: "\25AB";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
+    #menu__toggle:checked ~ .menu__btn > span::before {
+    top: 0;
+    transform: rotate(0);
+    background-color: black
     }
-
-    .red_brick {
-        color: #c13939;
+    #menu__toggle:checked ~ .menu__btn > span::after {
+    top: 0;
+    transform: rotate(90deg);
+    background-color: black
     }
-    
-    .youtube_samples h3 {
-        margin: 30px 0 10px 0;
+    #menu__toggle:checked ~ .menu__box {
+    visibility: visible;
+    right: 0;
     }
     
-    .header {
-        height: 110px;
-        background-image: url(../img/header_gradient.png);
-        background-repeat: repeat;
-        position: relative;
-        z-index: 10;
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        transition: all 1s;
-        top: 0;
-    }
-
-    .fixed {
-        position: fixed !important;
+    .menu__btn {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    
+    width: 26px;
+    height: 26px;
+    
+    cursor: pointer;
+    z-index: 1;
+    margin: 30px;
     }
     
-    .footer {
-        height:110px;
-        background-image: url(../img/footer_gradient.png);
-        background-repeat: repeat;
-        position:fixed;
-        bottom:0px;
-        margin:auto;
-        z-index:100000;
-        width: 100vw;
+    .menu__btn > span,
+    .menu__btn > span::before,
+    .menu__btn > span::after {
+    display: block;
+    position: absolute;
+    
+    width: 100%;
+    height: 2px;
+    
+    background-color: #fff;
+    
+    transition-duration: .25s;
     }
-
-    .feedback_container {
-        padding-left: 15px !important;
+    .menu__btn > span::before {
+    content: '';
+    top: -8px;
     }
-
-    .photos__container {
-        margin: 30px 0;
-    }
-
-    .photos__container ol {
-        margin-left: 0px;
-        padding-left: 20px;
+    .menu__btn > span::after {
+    content: '';
+    top: 8px;
     }
     
-    .photos__container ol li {
-        margin-left: 0px;
-        padding-left: 5px;
-    }
-
-    .photos__item {
-        margin: 0px;
-        padding: 2px !important;
-        transition: opacity 0.25s ease;
-    }
+    .menu__box {
+    display: block;
+    position: fixed;
+    visibility: hidden;
+    top: 0;
+    right: -100%;
     
-    .photos__img {
-        width: 100%;
-        height: 100%;
+    width: 300px;
+    height: 100%;
+    
+    margin: 0;
+    padding: 80px 0;
+    
+    list-style: none;
+    
+    background-color: #ECEFF1;
+    box-shadow: 1px 0px 6px rgba(0, 0, 0, .2);
+    
+    transition-duration: .25s;
     }
-
-    .breadcrumbs_menu {
-        margin: 15px 0;
-    }
-
-    .breadcrumbs_menu .inactive_item {
-        display: inline-block;
-        padding: 5px;
-        font-family: 'Gotham Pro','Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
-    }
-
-    .breadcrumbs_menu .active_item {
-        background-color: #c13939;
-        display: inline-block;
-        color: white;
-        padding: 10px;
-        font-family: 'Gotham Pro','Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
-    }
-
-    a {
-        color: white;
+    .menu__box li a:hover {
         text-decoration: none;
+        color: inherit;
+    }
+    .menu__item {
+    display: block;
+    padding: 12px 24px;
+    
+    color: #333;
+    
+    font-family: 'Gotham Pro','Roboto', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    
+    text-decoration: none;
+    
+    transition-duration: .25s;
+    }
+    .menu__item:hover {
+    background-color: #CFD8DC;
     }
 
-    .footer .description {
-        display: block;
-        position: absolute;
-        left: 0;
-        margin-top: 30px;
-        width: 75%;
-        height: 100%;
-        font-family: 'Gotham Pro','Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
-        color: white;
-        font-size: 13pt;
-        font-weight: 400;
-        text-align: right;
-        vertical-align: middle;
-    }
 
-    .footer .speakers_welcome {
-        display: block;
-        position: absolute;
-        right: 0;
-        margin-top: 30px;
-        width: 25%;
-        height: 100%;
-    }
+.conflogo {
+    margin: 30px;
+    height: 35px;
+}
 
-    .header > .menu {
-        pointer-events: auto;
-        float: right;
-        height: 40px;
-        font-family: 'Gotham Pro','Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
-        font-size: 13pt;
-        color: #fff;
-        margin-top:40px;
-        margin-right:40px;
-    }
+.invisible {
+    display: none;
+}
 
-    .menu a {
-        color: #fff;
-    }
-    .menu a:hover {
-        text-decoration: none;
-        color: #fff;
-    }
+.header > .menu > div {
+    display: inline;
+    margin-left: 10px;
+    margin-right: 10px;
+}
 
-    #menu__toggle {
-        opacity: 0;
-      }
-      
-      #menu__toggle:checked ~ .menu__btn > span {
-        transform: rotate(45deg);
-      }
-      #menu__toggle:checked ~ .menu__btn > span::before {
-        top: 0;
-        transform: rotate(0);
-        background-color: black
-      }
-      #menu__toggle:checked ~ .menu__btn > span::after {
-        top: 0;
-        transform: rotate(90deg);
-        background-color: black
-      }
-      #menu__toggle:checked ~ .menu__box {
-        visibility: visible;
-        right: 0;
-      }
-      
-      .menu__btn {
-        display: flex;
-        align-items: center;
-        position: fixed;
-        top: 0;
-        right: 0;
-      
-        width: 26px;
-        height: 26px;
-      
-        cursor: pointer;
-        z-index: 1;
-        margin: 30px;
-      }
-      
-      .menu__btn > span,
-      .menu__btn > span::before,
-      .menu__btn > span::after {
-        display: block;
-        position: absolute;
-      
-        width: 100%;
-        height: 2px;
-      
-        background-color: #fff;
-      
-        transition-duration: .25s;
-      }
-      .menu__btn > span::before {
-        content: '';
-        top: -8px;
-      }
-      .menu__btn > span::after {
-        content: '';
-        top: 8px;
-      }
-      
-      .menu__box {
-        display: block;
-        position: fixed;
-        visibility: hidden;
-        top: 0;
-        right: -100%;
-      
-        width: 300px;
-        height: 100%;
-      
-        margin: 0;
-        padding: 80px 0;
-      
-        list-style: none;
-      
-        background-color: #ECEFF1;
-        box-shadow: 1px 0px 6px rgba(0, 0, 0, .2);
-      
-        transition-duration: .25s;
-      }
-      .menu__box li a:hover {
-          text-decoration: none;
-          color: inherit;
-      }
-      .menu__item {
-        display: block;
-        padding: 12px 24px;
-      
-        color: #333;
-      
-        font-family: 'Gotham Pro','Roboto', sans-serif;
-        font-size: 20px;
-        font-weight: 600;
-      
-        text-decoration: none;
-      
-        transition-duration: .25s;
-      }
-      .menu__item:hover {
-        background-color: #CFD8DC;
-      }
+.video_bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%; 
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    background-color: black;
+}
 
-
-    .conflogo {
-        margin: 30px;
-        height: 35px;
-    }
-
-    .invisible {
-        display: none;
-    }
-
-    .header > .menu > div {
-        display: inline;
-        margin-left: 10px;
-        margin-right: 10px;
-    }
-
+@supports (object-fit: cover) {
     .video_bg {
-        position: absolute;
         top: 0;
         left: 0;
-        min-width: 100%; 
-        min-height: 100%;
-        width: auto;
-        height: auto;
-        background-color: black;
-    }
-
-    @supports (object-fit: cover) {
-        .video_bg {
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            min-width: 100%; 
-            min-height: 100%;
-            object-fit: cover;
-            position: relative;
-        }
-    }
-
-    .ticket-col {
-        margin-top: 10px;
-        margin-bottom: 10px;
-        height: 100%;
-    }
-
-    .ticket-card {
-        border-radius: 5px;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        transition: all .3s ease;
-        padding: 20px;
-        margin: auto;
-        cursor: pointer;
-    }
-
-    .ticket-card:hover {
-        text-decoration: none;
-        color: #000000;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-    }
-
-    .ticket-link, .ticket-link:hover {
-        color: black;
-        text-decoration: none;
-    }
-
-    .ticket-link .ticket-buy {
-        color: #007bff;
-        text-decoration: none;
-    }
-    .ticket-link:hover .ticket-buy {
-        color: #0056b3;
-    }
-
-    .ticket-card:hover h3 {
-        color: #0056b3;
-    }
-
-    .ticket-card h3, .ticket-card p {
-        text-align: center;
-    }
-
-    .ticket-card h3 {
-        vertical-align: middle;
-        height: 3rem;
-    }
-
-    .ticket-card p {
-        font-size: 11.5pt;
-        font-weight: 400;
-    }
-
-    .ticket-card .ticket-buy {
-        margin-top:30px;
-    }
-    .register_variants {
-        margin-top: 40px;
-        margin-bottom: 50px;
-    }
-    .register_button {
-        padding: 10px;
-        background-color: #664e88;
-        font-weight: 600;
-        border: #664e88;
-        transition: .3s;
-    }
-    .menu a.register_button:hover {
-        color: #664e88;
-        background-color: #fff;
-    }
-
-    .speakers_button {
-        display: inline-block;
-        font-family: 'Gotham Pro','Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
-        width: auto;
-        padding: 15px 60px;
-        margin-left: 40px;
-        color: white;
-        background-color: #f85163;
-        font-size: 16pt;
-        font-weight: 600;
-    }
-
-
-    /***
-     *
-     *  Index.html area
-     *
-     */
-     .top_placeholder, .top_placeholder .row {
-        margin: auto;
-        height: 100%;
-    }
-
-    .top_video_bg {
-        background-color: black;
-        filter: grayscale(1);
-    }
-
-    .top_placeholder div {
-        color: white;
-        font-family: 'Gotham Pro','Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
-        font-size: 19pt;
-        color: #d4d4d4;
-    }
-
-    .top_placeholder_img_containter {
-        text-align: right;
-    }
-
-    .top_placeholder img {
-        margin: -5px 0 0 0;
-        height: 110px;
-    }
-
-    .top_placeholder_index, .top_placeholder_index span {
-        margin-top: -15px;
-        font-family: 'Segoe UI';
-        font-size: 90pt;
-        font-style: italic;
-        text-align: center; 
-        vertical-align: middle;
-    }
-
-    .index > .content {
-        margin: auto;
-        position: relative;
-    }
-
-    .index {
-        position: relative;
-        bottom: 70px;
-    }
-
-    .index_bg {
-        position: absolute; top: 0; left: 0;
         width: 100%;
         height: 100vh;
-        background-color: #000000aa;
-        background-position: center center;
-        background-repeat: no-repeat;
-    }
-
-    .index > .content {
-        width: 100%;
-        height: 100%;
-    }
-
-    .index .description {
-        text-align: center;
-        margin: 0 auto;
-    }
-
-    .index .description p {
-        font-weight: 300;
-        font-size: 17pt;
-        font-family: 'Gotham Pro','Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
-        color: #d4d4d4;
-        text-shadow: 0px 0px 2px rgba(0, 0, 0, 1);
-        margin: 0 auto;
-    }
-
-    .about_text {
-        font-weight: 400;
-        font-family: 'Gotham Pro';
-        text-align: justify;
-        padding: 30px;
-    }
-    .about_text h1 {
-        font-weight: 400;
-        font-family: 'Gotham Pro';
-        margin-bottom: 15px;
-    }
-    .about_card {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 30px 15px;
-    }
-    .about_card img {
-        width: 100%;
-    }
-    .about_card__title {
-        font-size: 24px;
-        text-align: center;
-        margin: 10px 0 0 0;
-    }
-    .about_card__btn {
-        padding: 10px 30px;
-        background-color: #664e88;
-        font-weight: 600;
-        color: #fff;
-        border-radius: 25px;
-        text-decoration: none !important;
-        transition: .3s;
-    }
-    .about_card__btn:hover {
-        background-color: #fff;
-        color: #664e88;
-        border: 1px solid #664e88;
-    }
-    .about_right {
-        display: flex;
-    }
-    .about_right h2 {
-        font-weight: 400;
-        font-family: 'Gotham Pro';
-    }
-    .about_right .about_subscribe {
-        padding: 30px 30px 0;
-    }
-    .content__gdpr {
-        margin: 10px 0;
-    }
-
-    .checkbox.subfield span {
-        margin-left: 10px;
-    }
-    
-    .form__t {
-        width: 100%;
-        height: 40px;
-        padding: 10px 15px;
-        background: #fff;
-        border: 1px solid #b2b2b2;
-        -moz-border-radius: 5px;
-        -webkit-border-radius: 5px;
-        border-radius: 5px;
-        font-size: 18px;
-    }
-    .form__b {
-        height: 40px;
-        padding: 0 25px;
-        background: #664e88;
-        color: #fff;
-        cursor: pointer;
-        border: 0;
-        -moz-border-radius: 5px;
-        -webkit-border-radius: 5px;
-        border-radius: 5px;
-        font-family: 'Gotham Pro';
-        font-size: 18px;
-    }
-    .form__con {
-        display: inline-block;
-        vertical-align: top;
-        margin: 6px 0;
-        width: 100%;
-    }
-    footer {
-        background-color: #000;
-    }
-    .footer_wrap {
-        color: #fff;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin: 25px;
-    }
-    .footer_wrap img {
-        max-width: 150px;
-    }
-    .footer_wrap p {
-        margin: 0;
-        font-weight: 500;
-    }
-    .footer_wrap .footer_link {
-        margin: 0;
-        font-weight: 200;
-        color: whitesmoke;
-    }
-    
-
-    /* Mailchimp styles */
-    #mc_embed_signup{
-        background:#fff; clear:left; font:14px 'Gotham Pro', Helvetica,Arial,sans-serif; width:100%;
-    }
-    #mc_embed_signup form {
-        margin: 15px 0 0 0; 
-    }
-
-    /* MENTOR_PAGE */
-    .mentor_heading {
-        background-image: url(../img/listeners.jpg);
-        background-color: #000000aa;
-        background-position: center center;
-        background-repeat: no-repeat;
-        display: block;
-    }
-
-    .mentor_description {
-        display: block;
-    }
-
-    .mentor_heading_text {
-        margin: 120px 0 15px 0;
-    }
-
-    .mentor_heading h1 {
-        color: white;
-    }
-
-    .mentor_d_text h2 {
-        margin: 30px 0 15px 0;
-    }
-
-    .city_card img {
-        border-radius: 200px;
-        width: auto;
-    }
-
-    .video-container {
-        position: relative;
-        width: 100%;
-        height: 0;
-        padding-bottom: 56.25%;
-    }
-    .video {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    }
-
-    .about_right .about_card__title {
-        font-weight: 500;
-        margin: 10px 0;
-        text-align: center;
-    }
-
-    .about_right .about_card__img {
-        text-align: center;
-    }
-
-    .what_important {
-        padding: 5px 0;
-        background-color: blanchedalmond;
-    }
-    
-
-    /* MATRIX_PAGE */
-    .matrix {
-        z-index: 2;
+        min-width: 100%; 
+        min-height: 100%;
+        object-fit: cover;
         position: relative;
     }
-    .matrix h1 {
-        color: white;
-        font-size: 50pt;
-        font-weight: 700;
-        text-transform: uppercase;
-    }
-    .matrix_bg {
-        position: fixed;
-        top: 0;
-        left: 0;
-        background-color: #000000aa;
-        width: 100%;
-        height: 100%;
-        background-image: url(../img/matrix_bg.jpg);
-        background-repeat: no-repeat;
-        background-size: cover;
-        
-        filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/matrix_bg.jpg',sizingMethod='scale');
-        -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/matrix_bg.jpg',sizingMethod='scale')";
-    }
-    .register_bg {
-        position: fixed;
-        bottom: 0;
-        left: auto;
-        right: auto;
-        min-width: 1024px;
-        background-color: #000000aa;
-        width: 100%;
-        height: 100%;
-        background-image: url(../img/listeners.jpg);
-        background-repeat: no-repeat;
-        background-size: cover;
+}
 
-        filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/matrix_bg.jpg',sizingMethod='scale');
-        -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/matrix_bg.jpg',sizingMethod='scale')";
-    }
+.ticket-col {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 100%;
+}
 
-    .matrix_title {
-        font-family: 'Gotham Pro';
-        padding: 20px;
-        font-weight: 200;
-    }
-    .matrix p {
-        font-family: 'Gotham Pro';
-        font-size: 17pt;
-        text-align: center;
-        color: #fff;
-        margin: 0;
-    }
-    .samples_playlist {
-        margin: 0 -15px;
-    }
-    .samples_playlist .col-12 {
-        padding: 0;
-    }
-    .samples_playlist .col-12 a {
-        margin-right: 15px;
-        margin-bottom: 15px;
-    }
-    .youtube_samples .samples_playlist a {
-        display: inline-block;
-        background-color: #c13939;
-        height: 40px;
-        padding: 6px 25px 6px 25px;
-        color: #fff;
-        cursor: pointer;
-        border: 0;
-        -moz-border-radius: 5px;
-        -webkit-border-radius: 5px;
-        border-radius: 5px;
-        font-family: 'Gotham Pro';
-        font-size: 18px;
-    }
-    .photos__item iframe {
-        padding: 4px 4px 4px 0;
-    }
-    .matrix p.table_title  {
-        font-size: 26pt;
-    }
-    .matrix_table {
-        color: #fff;
-    }
-    .matrix p.table_time {
-        font-family: 'Gotham Pro';
-        vertical-align: top;
-        text-align: center;
-        font-size: 15pt;
-    }
-    .table_light-bg {
-        font-family: 'Gotham Pro';
-        background-color: rgba(255, 255, 255, 0.03);
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    .table_header {
-        font-family: 'Gotham Pro';
-        padding: 20px;
-        font-weight: 200;
-        width: 100%;
-    }
-    .table_card {
-        font-family: 'Gotham Pro';
-        padding: 20px;
-        max-width: 25%;
-    } 
-    .table_card img {
-        width: 100%;
-        border-radius: 7px;
-    }
-    .table_card__time {
-        padding: 20px;
-    }
-    .table_card__title {
-        font-family: 'Gotham Pro';
-        font-size: 13pt;
-        font-weight: 500;
-        padding: 10px 0 15px 0;
-    }
+.ticket-card {
+    border-radius: 5px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    transition: all .3s ease;
+    padding: 20px;
+    margin: auto;
+    cursor: pointer;
+}
 
-    /* REGISTER_PAGE */
-    .register {
-        font-family: 'Gotham Pro';
-        position: relative;
-        z-index: 2;
-        padding: 50px 0;
-    }
-    .register h2 {
-        font-family: 'Gotham Pro';
-        color: #fee000;
-        font-size: 17pt;
-        font-weight: 400;
-        padding: 15px 0 0 0;
-    }
-    .register_right h2 {
-        font-family: 'Gotham Pro';
-        font-size: 22pt;
-    }
-    .register_right p {
-        display: inline-block;
-        width: 30%;
-        color: white;
-        font-family: 'Gotham Pro','Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
-        font-size: 12pt;
-        font-weight: 500;
-        margin-right: 30px;
-    }
-    .register_right__description {
-        font-family: 'Gotham Pro';
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-    .register p {
-        font-family: 'Gotham Pro';
-        color: white;
-        font-size: 12pt;
-        font-weight: 400;
-    }
+.ticket-card:hover {
+    text-decoration: none;
+    color: #000000;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
 
-    /* Cities */
-    .city_about h2 {
-        margin: 30px 0 15px 0;
-    }
+.ticket-link, .ticket-link:hover {
+    color: black;
+    text-decoration: none;
+}
 
-    .city_about h3, .mentor_about h3 {
-        margin: 20px 0 15px 0;
-        font-size: 15pt;
-    }
+.ticket-link .ticket-buy {
+    color: #007bff;
+    text-decoration: none;
+}
+.ticket-link:hover .ticket-buy {
+    color: #0056b3;
+}
 
-    .city_about p {
-        font-family: 'Gotham Pro','Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
-        font-size: 12pt;
-    }
-    .city_about .form__t {
-        width: 100%;
-        height: 40px;
-        padding: 10px 15px;
-        background: #fff;
-        border: 1px solid #b2b2b2;
-        -moz-border-radius: 5px;
-        -webkit-border-radius: 5px;
-        border-radius: 5px;
-        font-size: 18px;
-    }
-    .city_about .form__b {
-        height: 40px;
-        padding: 0 25px;
-        background: #664e88;
-        color: #fff;
-        cursor: pointer;
-        border: 0;
-        -moz-border-radius: 5px;
-        -webkit-border-radius: 5px;
-        border-radius: 5px;
-        font-family: 'Gotham Pro';
-        font-size: 18px;
-    }
-    .city_about .form__con {
-        display: inline-block;
-        vertical-align: top;
-        margin: 6px 0;
-        width: 100%;
-    }
+.ticket-card:hover h3 {
+    color: #0056b3;
+}
 
-    @font-face {
-        font-family: 'Gotham Pro';
-        src: url('../fnt/GothamPro-BoldItalic.eot');
-        src: local('Gotham Pro Bold Italic'), local('GothamPro-BoldItalic'),
-            url('../fnt/GothamPro-BoldItalic.eot?#iefix') format('embedded-opentype'),
-            url('../fnt/GothamPro-BoldItalic.woff') format('woff'),
-            url('../fnt/GothamPro-BoldItalic.ttf') format('truetype');
-        font-weight: bold;
-        font-style: italic;
-    }
+.ticket-card h3, .ticket-card p {
+    text-align: center;
+}
 
-    @font-face {
-        font-family: 'Gotham Pro';
-        src: url('../fnt/GothamPro-Italic.eot');
-        src: local('Gotham Pro Italic'), local('GothamPro-Italic'),
-            url('../fnt/GothamPro-Italic.eot?#iefix') format('embedded-opentype'),
-            url('../fnt/GothamPro-Italic.woff') format('woff'),
-            url('../fnt/GothamPro-Italic.ttf') format('truetype');
-        font-weight: normal;
-        font-style: italic;
-    }
+.ticket-card h3 {
+    vertical-align: middle;
+    height: 3rem;
+}
 
-    @font-face {
-        font-family: 'Gotham Pro';
-        src: url('../fnt/GothamPro-Medium.eot');
-        src: local('Gotham Pro Medium'), local('GothamPro-Medium'),
-            url('../fnt/GothamPro-Medium.eot?#iefix') format('embedded-opentype'),
-            url('../fnt/GothamPro-Medium.woff') format('woff'),
-            url('../fnt/GothamPro-Medium.ttf') format('truetype');
-        font-weight: 500;
-        font-style: normal;
-    }
+.ticket-card p {
+    font-size: 11.5pt;
+    font-weight: 400;
+}
 
-    @font-face {
-        font-family: 'Gotham Pro';
-        src: url('../fnt/GothamPro-BlackItalic.eot');
-        src: local('Gotham Pro Black Italic'), local('GothamPro-BlackItalic'),
-            url('../fnt/GothamPro-BlackItalic.eot?#iefix') format('embedded-opentype'),
-            url('../fnt/GothamPro-BlackItalic.woff') format('woff'),
-            url('../fnt/GothamPro-BlackItalic.ttf') format('truetype');
-        font-weight: 900;
-        font-style: italic;
-    }
+.ticket-card .ticket-buy {
+    margin-top:30px;
+}
+.register_variants {
+    margin-top: 40px;
+    margin-bottom: 50px;
+}
+.register_button {
+    padding: 10px;
+    background-color: #664e88;
+    font-weight: 600;
+    border: #664e88;
+    transition: .3s;
+}
+.menu a.register_button:hover {
+    color: #664e88;
+    background-color: #fff;
+}
 
-    @font-face {
-        font-family: 'Gotham Pro';
-        src: url('../fnt/GothamPro-Bold.eot');
-        src: local('Gotham Pro Bold'), local('GothamPro-Bold'),
-            url('../fnt/GothamPro-Bold.eot?#iefix') format('embedded-opentype'),
-            url('../fnt/GothamPro-Bold.woff') format('woff'),
-            url('../fnt/GothamPro-Bold.ttf') format('truetype');
-        font-weight: bold;
-        font-style: normal;
-    }
+.speakers_button {
+    display: inline-block;
+    font-family: 'Gotham Pro','Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
+    width: auto;
+    padding: 15px 60px;
+    margin-left: 40px;
+    color: white;
+    background-color: #f85163;
+    font-size: 16pt;
+    font-weight: 600;
+}
 
-    @font-face {
-        font-family: 'Gotham Pro Narrow';
-        src: url('../fnt/GothamProNarrow-Bold.eot');
-        src: local('Gotham Pro Narrow Bold'), local('GothamProNarrow-Bold'),
-            url('../fnt/GothamProNarrow-Bold.eot?#iefix') format('embedded-opentype'),
-            url('../fnt/GothamProNarrow-Bold.woff') format('woff'),
-            url('../fnt/GothamProNarrow-Bold.ttf') format('truetype');
-        font-weight: bold;
-        font-style: normal;
-    }
 
-    @font-face {
-        font-family: 'Gotham Pro Narrow';
-        src: url('../fnt/GothamProNarrow-Medium.eot');
-        src: local('Gotham Pro Narrow Medium'), local('GothamProNarrow-Medium'),
-            url('../fnt/GothamProNarrow-Medium.eot?#iefix') format('embedded-opentype'),
-            url('../fnt/GothamProNarrow-Medium.woff') format('woff'),
-            url('../fnt/GothamProNarrow-Medium.ttf') format('truetype');
-        font-weight: 500;
-        font-style: normal;
-    }
+/***
+    *
+    *  Index.html area
+    *
+    */
+    .top_placeholder, .top_placeholder .row {
+    margin: auto;
+    height: 100%;
+}
 
-    @font-face {
-        font-family: 'Gotham Pro';
-        src: url('../fnt/GothamPro-LightItalic.eot');
-        src: local('Gotham Pro Light Italic'), local('GothamPro-LightItalic'),
-            url('../fnt/GothamPro-LightItalic.eot?#iefix') format('embedded-opentype'),
-            url('../fnt/GothamPro-LightItalic.woff') format('woff'),
-            url('../fnt/GothamPro-LightItalic.ttf') format('truetype');
-        font-weight: 300;
-        font-style: italic;
-    }
+.top_video_bg {
+    background-color: black;
+    filter: grayscale(1);
+}
 
-    @font-face {
-        font-family: 'Gotham Pro';
-        src: url('../fnt/GothamPro-Light.eot');
-        src: local('Gotham Pro Light'), local('GothamPro-Light'),
-            url('../fnt/GothamPro-Light.eot?#iefix') format('embedded-opentype'),
-            url('../fnt/GothamPro-Light.woff') format('woff'),
-            url('../fnt/GothamPro-Light.ttf') format('truetype');
-        font-weight: 300;
-        font-style: normal;
-    }
+.top_placeholder div {
+    color: white;
+    font-family: 'Gotham Pro','Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 19pt;
+    color: #d4d4d4;
+}
 
-    @font-face {
-        font-family: 'Gotham Pro';
-        src: url('../fnt/GothamPro-Black.eot');
-        src: local('Gotham Pro Black'), local('GothamPro-Black'),
-            url('../fnt/GothamPro-Black.eot?#iefix') format('embedded-opentype'),
-            url('../fnt/GothamPro-Black.woff') format('woff'),
-            url('../fnt/GothamPro-Black.ttf') format('truetype');
-        font-weight: 900;
-        font-style: normal;
-    }
+.top_placeholder_img_containter {
+    text-align: right;
+}
 
-    @font-face {
-        font-family: 'Gotham Pro';
-        src: url('../fnt/GothamPro.eot');
-        src: local('Gotham Pro'), local('GothamPro'),
-            url('../fnt/GothamPro.eot?#iefix') format('embedded-opentype'),
-            url('../fnt/GothamPro.woff') format('woff'),
-            url('../fnt/GothamPro.ttf') format('truetype');
-        font-weight: normal;
-        font-style: normal;
-    }
+.top_placeholder img {
+    margin: -5px 0 0 0;
+    height: 110px;
+}
 
-    @font-face {
-        font-family: 'Gotham Pro';
-        src: url('../fnt/GothamPro-MediumItalic.eot');
-        src: local('Gotham Pro Medium Italic'), local('GothamPro-MediumItalic'),
-            url('../fnt/GothamPro-MediumItalic.eot?#iefix') format('embedded-opentype'),
-            url('../fnt/GothamPro-MediumItalic.woff') format('woff'),
-            url('../fnt/GothamPro-MediumItalic.ttf') format('truetype');
-        font-weight: 500;
-        font-style: italic;
-    }
+.top_placeholder_index, .top_placeholder_index span {
+    margin-top: -15px;
+    font-family: 'Segoe UI';
+    font-size: 90pt;
+    font-style: italic;
+    text-align: center; 
+    vertical-align: middle;
+}
+
+.index > .content {
+    margin: auto;
+    position: relative;
+}
+
+.index {
+    position: relative;
+    bottom: 70px;
+}
+
+.index_bg {
+    position: absolute; top: 0; left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #000000aa;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.index > .content {
+    width: 100%;
+    height: 100%;
+}
+
+.index .description {
+    text-align: center;
+    margin: 0 auto;
+}
+
+.index .description p {
+    font-weight: 300;
+    font-size: 17pt;
+    font-family: 'Gotham Pro','Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
+    color: #d4d4d4;
+    text-shadow: 0px 0px 2px rgba(0, 0, 0, 1);
+    margin: 0 auto;
+}
+
+.about_text {
+    font-weight: 400;
+    font-family: 'Gotham Pro';
+    text-align: justify;
+    padding: 30px;
+}
+.about_text h1 {
+    font-weight: 400;
+    font-family: 'Gotham Pro';
+    margin-bottom: 15px;
+}
+.about_card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 15px;
+}
+.about_card img {
+    width: 100%;
+}
+.about_card__title {
+    font-size: 24px;
+    text-align: center;
+    margin: 10px 0 0 0;
+}
+.about_card__btn {
+    padding: 10px 30px;
+    background-color: #664e88;
+    font-weight: 600;
+    color: #fff;
+    border-radius: 25px;
+    text-decoration: none !important;
+    transition: .3s;
+}
+.about_card__btn:hover {
+    background-color: #fff;
+    color: #664e88;
+    border: 1px solid #664e88;
+}
+.about_right {
+    display: flex;
+}
+.about_right h2 {
+    font-weight: 400;
+    font-family: 'Gotham Pro';
+}
+.about_right .about_subscribe {
+    padding: 30px 30px 0;
+}
+.content__gdpr {
+    margin: 10px 0;
+}
+
+.checkbox.subfield span {
+    margin-left: 10px;
+}
+
+.form__t {
+    width: 100%;
+    height: 40px;
+    padding: 10px 15px;
+    background: #fff;
+    border: 1px solid #b2b2b2;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    font-size: 18px;
+}
+.form__b {
+    height: 40px;
+    padding: 0 25px;
+    background: #664e88;
+    color: #fff;
+    cursor: pointer;
+    border: 0;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    font-family: 'Gotham Pro';
+    font-size: 18px;
+}
+.form__con {
+    display: inline-block;
+    vertical-align: top;
+    margin: 6px 0;
+    width: 100%;
+}
+footer {
+    background-color: #000;
+}
+.footer_wrap {
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 25px;
+}
+.footer_wrap img {
+    max-width: 150px;
+}
+.footer_wrap p {
+    margin: 0;
+    font-weight: 500;
+}
+.footer_wrap .footer_link {
+    margin: 0;
+    font-weight: 200;
+    color: whitesmoke;
+}
+
+
+/* Mailchimp styles */
+#mc_embed_signup{
+    background:#fff; clear:left; font:14px 'Gotham Pro', Helvetica,Arial,sans-serif; width:100%;
+}
+#mc_embed_signup form {
+    margin: 15px 0 0 0; 
+}
+
+/* MENTOR_PAGE */
+.mentor_heading {
+    background-image: url(../img/listeners.jpg);
+    background-color: #000000aa;
+    background-position: center center;
+    background-repeat: no-repeat;
+    display: block;
+}
+
+.mentor_description {
+    display: block;
+}
+
+.mentor_heading_text {
+    margin: 120px 0 15px 0;
+}
+
+.mentor_heading h1 {
+    color: white;
+}
+
+.mentor_d_text h2 {
+    margin: 30px 0 15px 0;
+}
+
+.city_card img {
+    border-radius: 200px;
+    width: auto;
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+}
+.video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.about_right .about_card__title {
+    font-weight: 500;
+    margin: 10px 0;
+    text-align: center;
+}
+
+.about_right .about_card__img {
+    text-align: center;
+}
+
+.what_important {
+    padding: 5px 0;
+    background-color: blanchedalmond;
+}
+
+
+/* MATRIX_PAGE */
+.matrix {
+    z-index: 2;
+    position: relative;
+}
+.matrix h1 {
+    color: white;
+    font-size: 50pt;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.matrix_bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #000000aa;
+    width: 100%;
+    height: 100%;
+    background-image: url(../img/matrix_bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/matrix_bg.jpg',sizingMethod='scale');
+    -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/matrix_bg.jpg',sizingMethod='scale')";
+}
+.register_bg {
+    position: fixed;
+    bottom: 0;
+    left: auto;
+    right: auto;
+    min-width: 1024px;
+    background-color: #000000aa;
+    width: 100%;
+    height: 100%;
+    background-image: url(../img/listeners.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/matrix_bg.jpg',sizingMethod='scale');
+    -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/matrix_bg.jpg',sizingMethod='scale')";
+}
+
+.matrix_title {
+    font-family: 'Gotham Pro';
+    padding: 20px;
+    font-weight: 200;
+}
+.matrix p {
+    font-family: 'Gotham Pro';
+    font-size: 17pt;
+    text-align: center;
+    color: #fff;
+    margin: 0;
+}
+.samples_playlist {
+    margin: 0 -15px;
+}
+.samples_playlist .col-12 {
+    padding: 0;
+}
+.samples_playlist .col-12 a {
+    margin-right: 15px;
+    margin-bottom: 15px;
+}
+.youtube_samples .samples_playlist a {
+    display: inline-block;
+    background-color: #c13939;
+    height: 40px;
+    padding: 6px 25px 6px 25px;
+    color: #fff;
+    cursor: pointer;
+    border: 0;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    font-family: 'Gotham Pro';
+    font-size: 18px;
+}
+.photos__item iframe {
+    padding: 4px 4px 4px 0;
+}
+.matrix p.table_title  {
+    font-size: 26pt;
+}
+.matrix_table {
+    color: #fff;
+}
+.matrix p.table_time {
+    font-family: 'Gotham Pro';
+    vertical-align: top;
+    text-align: center;
+    font-size: 15pt;
+}
+.table_light-bg {
+    font-family: 'Gotham Pro';
+    background-color: rgba(255, 255, 255, 0.03);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.table_header {
+    font-family: 'Gotham Pro';
+    padding: 20px;
+    font-weight: 200;
+    width: 100%;
+}
+.table_card {
+    font-family: 'Gotham Pro';
+    padding: 20px;
+    max-width: 25%;
+} 
+.table_card img {
+    width: 100%;
+    border-radius: 7px;
+}
+.table_card__time {
+    padding: 20px;
+}
+.table_card__title {
+    font-family: 'Gotham Pro';
+    font-size: 13pt;
+    font-weight: 500;
+    padding: 10px 0 15px 0;
+}
+
+/* REGISTER_PAGE */
+.register {
+    font-family: 'Gotham Pro';
+    position: relative;
+    z-index: 2;
+    padding: 50px 0;
+}
+.register h2 {
+    font-family: 'Gotham Pro';
+    color: #fee000;
+    font-size: 17pt;
+    font-weight: 400;
+    padding: 15px 0 0 0;
+}
+.register_right h2 {
+    font-family: 'Gotham Pro';
+    font-size: 22pt;
+}
+.register_right p {
+    display: inline-block;
+    width: 30%;
+    color: white;
+    font-family: 'Gotham Pro','Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 12pt;
+    font-weight: 500;
+    margin-right: 30px;
+}
+.register_right__description {
+    font-family: 'Gotham Pro';
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.register p {
+    font-family: 'Gotham Pro';
+    color: white;
+    font-size: 12pt;
+    font-weight: 400;
+}
+
+/* Cities */
+.city_about h2 {
+    margin: 30px 0 15px 0;
+}
+
+.city_about h3, .mentor_about h3 {
+    margin: 20px 0 15px 0;
+    font-size: 15pt;
+}
+
+.city_about p {
+    font-family: 'Gotham Pro','Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 12pt;
+}
+.city_about .form__t {
+    width: 100%;
+    height: 40px;
+    padding: 10px 15px;
+    background: #fff;
+    border: 1px solid #b2b2b2;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    font-size: 18px;
+}
+.city_about .form__b {
+    height: 40px;
+    padding: 0 25px;
+    background: #664e88;
+    color: #fff;
+    cursor: pointer;
+    border: 0;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    font-family: 'Gotham Pro';
+    font-size: 18px;
+}
+.city_about .form__con {
+    display: inline-block;
+    vertical-align: top;
+    margin: 6px 0;
+    width: 100%;
+}
+.footer-link {
+    color: white;
+    margin: 0 7px;
+}
+.footer-link:hover {
+    color: salmon;
+}
+
+@font-face {
+    font-family: 'Gotham Pro';
+    src: url('../fnt/GothamPro-BoldItalic.eot');
+    src: local('Gotham Pro Bold Italic'), local('GothamPro-BoldItalic'),
+        url('../fnt/GothamPro-BoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('../fnt/GothamPro-BoldItalic.woff') format('woff'),
+        url('../fnt/GothamPro-BoldItalic.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Gotham Pro';
+    src: url('../fnt/GothamPro-Italic.eot');
+    src: local('Gotham Pro Italic'), local('GothamPro-Italic'),
+        url('../fnt/GothamPro-Italic.eot?#iefix') format('embedded-opentype'),
+        url('../fnt/GothamPro-Italic.woff') format('woff'),
+        url('../fnt/GothamPro-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Gotham Pro';
+    src: url('../fnt/GothamPro-Medium.eot');
+    src: local('Gotham Pro Medium'), local('GothamPro-Medium'),
+        url('../fnt/GothamPro-Medium.eot?#iefix') format('embedded-opentype'),
+        url('../fnt/GothamPro-Medium.woff') format('woff'),
+        url('../fnt/GothamPro-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gotham Pro';
+    src: url('../fnt/GothamPro-BlackItalic.eot');
+    src: local('Gotham Pro Black Italic'), local('GothamPro-BlackItalic'),
+        url('../fnt/GothamPro-BlackItalic.eot?#iefix') format('embedded-opentype'),
+        url('../fnt/GothamPro-BlackItalic.woff') format('woff'),
+        url('../fnt/GothamPro-BlackItalic.ttf') format('truetype');
+    font-weight: 900;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Gotham Pro';
+    src: url('../fnt/GothamPro-Bold.eot');
+    src: local('Gotham Pro Bold'), local('GothamPro-Bold'),
+        url('../fnt/GothamPro-Bold.eot?#iefix') format('embedded-opentype'),
+        url('../fnt/GothamPro-Bold.woff') format('woff'),
+        url('../fnt/GothamPro-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gotham Pro Narrow';
+    src: url('../fnt/GothamProNarrow-Bold.eot');
+    src: local('Gotham Pro Narrow Bold'), local('GothamProNarrow-Bold'),
+        url('../fnt/GothamProNarrow-Bold.eot?#iefix') format('embedded-opentype'),
+        url('../fnt/GothamProNarrow-Bold.woff') format('woff'),
+        url('../fnt/GothamProNarrow-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gotham Pro Narrow';
+    src: url('../fnt/GothamProNarrow-Medium.eot');
+    src: local('Gotham Pro Narrow Medium'), local('GothamProNarrow-Medium'),
+        url('../fnt/GothamProNarrow-Medium.eot?#iefix') format('embedded-opentype'),
+        url('../fnt/GothamProNarrow-Medium.woff') format('woff'),
+        url('../fnt/GothamProNarrow-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gotham Pro';
+    src: url('../fnt/GothamPro-LightItalic.eot');
+    src: local('Gotham Pro Light Italic'), local('GothamPro-LightItalic'),
+        url('../fnt/GothamPro-LightItalic.eot?#iefix') format('embedded-opentype'),
+        url('../fnt/GothamPro-LightItalic.woff') format('woff'),
+        url('../fnt/GothamPro-LightItalic.ttf') format('truetype');
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Gotham Pro';
+    src: url('../fnt/GothamPro-Light.eot');
+    src: local('Gotham Pro Light'), local('GothamPro-Light'),
+        url('../fnt/GothamPro-Light.eot?#iefix') format('embedded-opentype'),
+        url('../fnt/GothamPro-Light.woff') format('woff'),
+        url('../fnt/GothamPro-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gotham Pro';
+    src: url('../fnt/GothamPro-Black.eot');
+    src: local('Gotham Pro Black'), local('GothamPro-Black'),
+        url('../fnt/GothamPro-Black.eot?#iefix') format('embedded-opentype'),
+        url('../fnt/GothamPro-Black.woff') format('woff'),
+        url('../fnt/GothamPro-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gotham Pro';
+    src: url('../fnt/GothamPro.eot');
+    src: local('Gotham Pro'), local('GothamPro'),
+        url('../fnt/GothamPro.eot?#iefix') format('embedded-opentype'),
+        url('../fnt/GothamPro.woff') format('woff'),
+        url('../fnt/GothamPro.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gotham Pro';
+    src: url('../fnt/GothamPro-MediumItalic.eot');
+    src: local('Gotham Pro Medium Italic'), local('GothamPro-MediumItalic'),
+        url('../fnt/GothamPro-MediumItalic.eot?#iefix') format('embedded-opentype'),
+        url('../fnt/GothamPro-MediumItalic.woff') format('woff'),
+        url('../fnt/GothamPro-MediumItalic.ttf') format('truetype');
+    font-weight: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Font Awesome 5 Free';
+    font-style: normal;
+    font-weight: 400;
+    font-display: auto;
+    src: url("../fnt/fa-regular-400.eot");
+    src: url("../fnt/fa-regular-400.eot?#iefix") format("embedded-opentype"), 
+         url("../fnt/fa-regular-400.woff2") format("woff2"), 
+         url("../fnt/fa-regular-400.woff") format("woff"), 
+         url("../fnt/fa-regular-400.ttf") format("truetype"), 
+         url("../fnt/fa-regular-400.svg#fontawesome") format("svg"); 
+}
+    
+.fa {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 400; 
+}
