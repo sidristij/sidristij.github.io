@@ -85,6 +85,21 @@
     .index_bg {
         background-color: transparent;
     }
+    .index_social {
+        padding-bottom: 5px;
+    }
+    .index_social a {
+        font-size: 14pt;
+    }
+    .footer_wrap a {
+        font-size: 12pt;
+    }
+    .footer_wrap img {
+        height: 19px;
+    }
+    .footer_wrap {
+        margin: 10px;
+    }
 }
 
 /* Smartphone */
@@ -111,9 +126,6 @@
     }
     .index .description p {
         font-size: 16px;
-    }
-    .footer_wrap img {
-        max-width: 130px;
     }
     .about_right {
         flex-direction: column;
