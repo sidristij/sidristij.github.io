@@ -13,6 +13,10 @@ body {
 p, li, h1, h2, h3 {
     font-family: 'Gotham Pro','Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
 }
+.contents_area {
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
 .contents_area ul {
     list-style: none; /* Remove default bullets */
 }
@@ -825,7 +829,7 @@ footer {
 
 /* Cities */
 .city_about h2 {
-    margin: 30px 0 15px 0;
+    margin: 40px 0 15px 0;
 }
 
 .city_about h3, .mentor_about h3 {

@@ -10,6 +10,7 @@
     }
 }
 
+/* -lg- */
 @media (max-width: 1200px) {
     .table_card {
         max-width: 50%;
@@ -20,8 +21,21 @@
     .index_bg {
         background-color: #000000aa;
     }
+    .city_about h2 {
+        font-size: 1.6rem;
+        margin-top: 40px;
+        margin-bottom: 8px;
+    }
 }
+
 @media (max-width: 991px) {
+    .contents_area {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    .what_important {
+        margin-top: 15px;
+    }
     .menu {
         display: none;
     }
