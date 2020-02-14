@@ -367,13 +367,13 @@ a {
 }
 .register_button {
     padding: 10px;
-    background-color: darkred;
+    background-color: #c13939;
     font-weight: 600;
-    border: darkred;
+    border: #c13939;
     transition: .3s;
 }
 .menu a.register_button:hover {
-    color: darkred;
+    color: #c13939;
     background-color: #fff;
 }
 
