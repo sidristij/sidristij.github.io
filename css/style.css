@@ -44,7 +44,7 @@ p, li, h1, h2, h3 {
 
 .header {
     height: 110px;
-    background-image: url(../img/header_gradient.png);
+    background-image: url(../img/header_gradient.webp);
     background-repeat: repeat;
     position: relative;
     z-index: 10;
@@ -61,7 +61,7 @@ p, li, h1, h2, h3 {
 
 .footer {
     height:110px;
-    background-image: url(../img/footer_gradient.png);
+    background-image: url(../img/footer_gradient.webp);
     background-repeat: repeat;
     position:fixed;
     bottom:0px;
@@ -604,7 +604,7 @@ footer {
 
 /* MENTOR_PAGE */
 .mentor_heading {
-    background-image: url(../img/listeners.jpg);
+    background-image: url(../img/listeners.webp);
     background-color: #000000aa;
     background-position: center center;
     background-repeat: no-repeat;
@@ -680,12 +680,12 @@ footer {
     background-color: #000000aa;
     width: 100%;
     height: 100%;
-    background-image: url(../img/matrix_bg.jpg);
+    background-image: url(../img/matrix_bg.webp);
     background-repeat: no-repeat;
     background-size: cover;
     
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/matrix_bg.jpg',sizingMethod='scale');
-    -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/matrix_bg.jpg',sizingMethod='scale')";
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/matrix_bg.webp',sizingMethod='scale');
+    -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/matrix_bg.webp',sizingMethod='scale')";
 }
 .register_bg {
     position: fixed;
@@ -696,12 +696,12 @@ footer {
     background-color: #000000aa;
     width: 100%;
     height: 100%;
-    background-image: url(../img/listeners.jpg);
+    background-image: url(../img/listeners.webp);
     background-repeat: no-repeat;
     background-size: cover;
 
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/matrix_bg.jpg',sizingMethod='scale');
-    -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/matrix_bg.jpg',sizingMethod='scale')";
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/matrix_bg.webp',sizingMethod='scale');
+    -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/matrix_bg.webp',sizingMethod='scale')";
 }
 
 .matrix_title {
