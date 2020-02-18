@@ -31,6 +31,7 @@ window.addEventListener('scroll', () => {
     function addVideoSource() {
       const videoPlayer = document.querySelector('.video_bg');
       const videoSrc = videoPlayer.dataset.src;
+      var frame = 0;
     
       var mpSource = document.createElement('source');
       mpSource.setAttribute('src', videoSrc);
@@ -41,6 +42,11 @@ window.addEventListener('scroll', () => {
         if (this.currentTime > this.duration - 1) {
           videoEnded();
         }
+        
+        if(frame == 0) {
+          $('.video_bg').animate({opacity: 1}, 200);
+        }
+        frame++;
       });
   
       function videoEnded() {

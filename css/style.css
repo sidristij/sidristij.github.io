@@ -7,7 +7,6 @@
 
 body {
     margin: 0px;
-    background-color: #000;     
 }
 
 p, li, h1, h2, h3 {
@@ -19,6 +18,10 @@ p, li, h1, h2, h3 {
 }
 .contents_area ul {
     list-style: none; /* Remove default bullets */
+}
+
+video.video_bg {
+    opacity: 0;
 }
 
 .contents_area ul li::before {
