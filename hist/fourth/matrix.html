@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html><head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>CLRium #4</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=1000">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/matrix.css">
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+</head>
+<body>
+<div id="header">
+    <img id="qaclogo" src="img/qac_mini.png"/>
+    <div class="menu">
+        <div><a href="index.html">О конференции</a></div>
+        <div><a href="matrix.html">Доклады</a></div>
+        <a href="register.html" class="register_button">РЕГИСТРАЦИЯ</a>
+    </div>
+</div>
+<div id="footer">
+</div>
+<div id="page">
+    <div id="matrix">
+        <!-- Fullsize invisible copy of background to have its size -->
+        <img id="bg_sizes" class="invisible" src="img/matrix_bg.jpg"/>
+
+        <!-- Real background, with is controlled by JS code (see it at the end of doc  -->
+        <!-- Should to know speakers count at all cities to have one size of BG at all cities -->
+        <div id="matrix_bg"></div>
+
+        <!-- Speakers table -->
+        <div class="content">
+            <div id="matrix_title">
+                <div class="title">ДОКЛАДЫ</div>
+            </div>
+            <br><br>
+            <div id="matrix_table">
+                <table id="main-table" class="spb">
+                    <colgroup>
+                        <col class="time-column" />
+                        <col class="first-column" />
+                        <col class="second-column" />
+                        <col class="third-column" />
+                        <col class="fourth-column" />
+                        <col class="time-column-last" />
+                    </colgroup>
+                    <tbody>
+
+                        <!-- HEADER ROW -->
+                        <tr class="header-row">
+                            <td class="table-header" colspan="6">
+                                <p class="date-desc">Санкт-Петербург, 13 апреля 2019 года. Москва, 20 апреля 2019 года </p>
+                            </td>
+                        </tr>
+                        <tr class="short-row">
+                            <td class="time-column">
+                                9<sup>30</sup>
+                            </td>
+                            <td class="cross-row-header" colspan="4">
+                                Кофе-брейк<br><span class="cross-row-header-description">сборы перед началом семинара</span>
+                            </td>
+                            <td class="time-column">
+                                10<sup>00</sup>
+                            </td>
+                        </tr>
+                        <!-- 10:00 - 14:00 HEADER -->
+                        <tr class="header-row">
+                            <td></td>
+                            <td class="table-header">
+                                <br>
+                                <span class="time-column">10<sup>00</sup> - 10<sup>50</sup></span>
+                            </td>
+                            <td class="table-header">
+                                <br>
+                                <span class="time-column">11<sup>00</sup> - 11<sup>50</sup></span>
+                            </td>
+                            <td class="table-header">
+                                <br>
+                                <span class="time-column">12<sup>00</sup> - 12<sup>50</sup></span>
+                            </td>
+                            <td class="table-header">
+                                <br>
+                                <span class="time-column">13<sup>00</sup> - 13<sup>50</sup></span>
+                            </td>
+                            <td></td>
+                        </tr>
+
+                        <!-- 10:00 - 14:00 -->
+                        <tr class="short-row">
+                            <td class="time-column">
+                            </td>
+                            <td class="table-cell">
+                                <div class="card">
+                                        <table class="card-table">
+                                            <colgroup>
+                                                <col class="card-first-column" />
+                                            </colgroup>
+                                            <tbody>
+                                            <tr><td colspan="2" class="presentation-title">
+                                                <img width="auto" src="./img/NotAssigned.png"/>
+                                                <br>
+                                                Доклад в стадии рассмотрения
+                                            </td></tr>
+                                            <tr><td colspan="2" class="presentation-descr">
+                                                <br>
+                                                Доклад о современных технологиях платформы .NET
+                                            </td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                            </td>
+                            <td class="table-cell">
+                                <div class="card">
+                                        <table class="card-table">
+                                            <colgroup>
+                                                <col class="card-first-column" />
+                                            </colgroup>
+                                            <tbody>
+                                            <tr><td colspan="2" class="presentation-title">
+                                                <img width="auto" src="./img/NotAssigned.png"/>
+                                                <br>
+                                                Доклад в стадии рассмотрения
+                                            </td></tr>
+                                            <tr><td colspan="2" class="presentation-descr">
+                                                <br>
+                                                Доклад о современных технологиях платформы .NET
+                                            </td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                            </td>
+                            <td class="table-cell">
+                                <div class="card">
+                                        <table class="card-table">
+                                            <colgroup>
+                                                <col class="card-first-column" />
+                                            </colgroup>
+                                            <tbody>
+                                            <tr><td colspan="2" class="presentation-title">
+                                                <img width="auto" src="./img/NotAssigned.png"/>
+                                                <br>
+                                                Доклад в стадии рассмотрения
+                                            </td></tr>
+                                            <tr><td colspan="2" class="presentation-descr">
+                                                <br>
+                                                Доклад о современных технологиях платформы .NET
+                                            </td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                            </td>
+                            <td class="table-cell">
+                                <div class="card">
+                                        <table class="card-table">
+                                            <colgroup>
+                                                <col class="card-first-column" />
+                                            </colgroup>
+                                            <tbody>
+                                            <tr><td colspan="2" class="presentation-title">
+                                                <img width="auto" src="./img/NotAssigned.png"/>
+                                                <br>
+                                                Доклад в стадии рассмотрения
+                                            </td></tr>
+                                            <tr><td colspan="2" class="presentation-descr">
+                                                <br>
+                                                Доклад о современных технологиях платформы .NET
+                                            </td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                            </td>
+                            <td class="time-column"></td>
+                        </tr>
+                        <tr class="short-row">
+                            <td class="time-column">
+                                13<sup>50</sup>
+                            </td>
+                            <td class="cross-row-header" colspan="4">
+                                Обед<br><span class="cross-row-header-description">общение по докладам</span>
+                            </td>
+                            <td class="time-column">
+                                14<sup>30</sup>
+                            </td>
+                        </tr>
+
+                        <!--  14:30 - 18:20 HEADER -->
+                        <tr class="header-row">
+                            <td></td>
+                            <td class="table-header">
+                                <br>
+                                <br>
+                                <span class="time-column">14<sup>30</sup> - 15<sup>20</sup></span>
+                            </td>
+                            <td class="table-header">
+                                <br>
+                                <br>
+                                <span class="time-column">15<sup>30</sup> - 16<sup>20</sup></span>
+                            </td>
+                            <td class="table-header">
+                                <br>
+                                <br>
+                                <span class="time-column">16<sup>30</sup> - 17<sup>20</sup></span>
+                            </td>
+                            <td class="table-header">
+                                <br>
+                                <br>
+                                <span class="time-column">17<sup>30</sup> - 18<sup>20</sup></span>
+                            </td>
+                            <td></td>
+                        </tr>
+
+                        <!--  14:30 - 18:20  -->
+                        <tr class="short-row">
+                            <td class="time-column">
+                            </td>
+                            <td class="table-cell">
+                                <div class="card">
+                                        <table class="card-table">
+                                            <colgroup>
+                                                <col class="card-first-column" />
+                                            </colgroup>
+                                            <tbody>
+                                            <tr><td colspan="2" class="presentation-title">
+                                                <img width="auto" src="./img/NotAssigned.png"/>
+                                                <br>
+                                                Доклад в стадии рассмотрения
+                                            </td></tr>
+                                            <tr><td colspan="2" class="presentation-descr">
+                                                <br>
+                                                Доклад о современных технологиях платформы .NET
+                                            </td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                            </td>
+                            <td class="table-cell">
+                                <div class="card">
+                                        <table class="card-table">
+                                            <colgroup>
+                                                <col class="card-first-column" />
+                                            </colgroup>
+                                            <tbody>
+                                            <tr><td colspan="2" class="presentation-title">
+                                                <img width="auto" src="./img/NotAssigned.png"/>
+                                                <br>
+                                                Доклад в стадии рассмотрения
+                                            </td></tr>
+                                            <tr><td colspan="2" class="presentation-descr">
+                                                <br>
+                                                Доклад о современных технологиях платформы .NET
+                                            </td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                            </td>
+                            <td class="table-cell">
+                                <div class="card">
+                                        <table class="card-table">
+                                            <colgroup>
+                                                <col class="card-first-column" />
+                                            </colgroup>
+                                            <tbody>
+                                            <tr><td colspan="2" class="presentation-title">
+                                                <img width="auto" src="./img/NotAssigned.png"/>
+                                                <br>
+                                                Доклад в стадии рассмотрения
+                                            </td></tr>
+                                            <tr><td colspan="2" class="presentation-descr">
+                                                <br>
+                                                Доклад о современных технологиях платформы .NET
+                                            </td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                            </td>
+                            <td class="table-cell">
+                                <div class="card">
+                                        <table class="card-table">
+                                            <colgroup>
+                                                <col class="card-first-column" />
+                                            </colgroup>
+                                            <tbody>
+                                            <tr><td colspan="2" class="presentation-title">
+                                                <img width="auto" src="./img/NotAssigned.png"/>
+                                                <br>
+                                                Доклад в стадии рассмотрения
+                                            </td></tr>
+                                            <tr><td colspan="2" class="presentation-descr">
+                                                <br>
+                                                Доклад о современных технологиях платформы .NET
+                                            </td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                            </td>
+                            <td class="time-column">
+                            </td>
+                        </tr>
+
+                        <!--  18:30 - 20:20 HEADER -->
+                        <tr class="header-row">
+                            <td></td>
+                            <td class="table-header">
+                                <br>
+                                <br>
+                                <span class="time-column">18<sup>30</sup> - 19<sup>20</sup></span>
+                            </td>
+                            <td class="table-header">
+                                <br>
+                                <br>
+                                <span class="time-column">19<sup>30</sup> - 20<sup>20</sup></span>
+                            </td>
+                            <td class="table-header">
+                                <br>
+                                <br>
+                            </td>
+                            <td class="table-header">
+                                <br>
+                                <br>
+                            </td>
+                            <td></td>
+                        </tr>
+
+                        <!--  18:30 - 20:20  -->
+                        <tr class="short-row">
+                            <td class="time-column">
+                            </td>
+                            <td class="table-cell">
+                                <div class="card">
+                                        <table class="card-table">
+                                            <colgroup>
+                                                <col class="card-first-column" />
+                                            </colgroup>
+                                            <tbody>
+                                            <tr><td colspan="2" class="presentation-title">
+                                                <img width="auto" src="./img/NotAssigned.png"/>
+                                                <br>
+                                                Доклад в стадии рассмотрения
+                                            </td></tr>
+                                            <tr><td colspan="2" class="presentation-descr">
+                                                <br>
+                                                Доклад о современных технологиях платформы .NET
+                                            </td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                            </td>
+                            <td class="table-cell">
+                                <div class="card">
+                                        <table class="card-table">
+                                            <colgroup>
+                                                <col class="card-first-column" />
+                                            </colgroup>
+                                            <tbody>
+                                            <tr><td colspan="2" class="presentation-title">
+                                                <img width="auto" src="./img/NotAssigned.png"/>
+                                                <br>
+                                                Доклад в стадии рассмотрения
+                                            </td></tr>
+                                            <tr><td colspan="2" class="presentation-descr">
+                                                <br>
+                                                Доклад о современных технологиях платформы .NET
+                                            </td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                            </td>
+                            <td class="table-cell">
+                                <div class="card"></div>
+                            </td>
+                            <td class="table-cell">
+                                <div class="card"></div>
+                            </td>
+                            <td class="time-column">
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+    var theWindow    = $(window),
+            $bg          = $("#matrix_bg"),
+            moscow_sizes = $('#bg_sizes'),
+            description  = $('.description > p');
+
+    function resizeBg() {
+
+        var window_width  = theWindow.width(),
+            window_height = theWindow.height(),
+            bg_width = moscow_sizes.width(),
+            bg_height = moscow_sizes.height();
+
+        var wdiff = Math.max(window_width, 1024) / bg_width;
+        var hdiff = Math.max(window_height, 800) / bg_height;
+        var ratio = Math.max(wdiff, hdiff);
+
+        var newWidth = Math.min(bg_width * ratio, window_width);
+        var newHeight = Math.min(bg_height * ratio, window_height);
+
+        // растянуть по вертикали, по горизонтали сцентровать
+        $bg.css({"background-size": bg_width * ratio + "px " + bg_height * ratio + "px"});
+    }
+
+    
+    resizeBg();
+    
+    $(window).load(function() {
+        theWindow.resize(resizeBg).trigger("resize");
+    });
+</script>
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-12938027-10', 'auto');
+    ga('send', 'pageview');
+
+</script>
+</body>
+</html>

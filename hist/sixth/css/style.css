@@ -1,0 +1,196 @@
+
+    /***
+     *
+     *  Common area
+     *
+     */
+
+    body {
+        margin: 0px;
+        background-color: #000;
+        min-width: 1024px;
+        /*min-height: 800px;*/
+    }
+
+    #header {
+        pointer-events: none;
+        height:110px;
+        background-image: url(../img/header_gradient.png);
+        background-repeat: repeat;
+        position:fixed;
+        top:0px;
+        margin:auto;
+        z-index:100000;
+        width: 100vw;
+        min-width: 1024px;
+    }
+
+    #footer {
+        height:110px;
+        background-image: url(../img/footer_gradient.png);
+        background-repeat: repeat;
+        position:fixed;
+        bottom:0px;
+        margin:auto;
+        z-index:100000;
+        width: 100vw;
+        min-width: 1024px;
+    }
+
+    a {
+        color: white;
+        text-decoration: none;
+    }
+
+    #footer .description {
+        display: block;
+        position: absolute;
+        left: 0;
+        margin-top: 30px;
+        width: 75%;
+        height: 100%;
+        font-family: 'Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
+        color: white;
+        font-size: 13pt;
+        font-weight: 400;
+        text-align: right;
+        vertical-align: middle;
+    }
+
+    #footer .speakers_welcome {
+        display: block;
+        position: absolute;
+        right: 0;
+        margin-top: 30px;
+        width: 25%;
+        height: 100%;
+    }
+
+    #header > .menu {
+        pointer-events: auto;
+        float: right;
+        height: 40px;
+        font-family: 'Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 16pt;
+        color: #fff;
+        margin-top:40px;
+        margin-right:40px;
+    }
+
+    #conflogo {
+        margin:30px;
+    }
+
+    .invisible {
+        display: none;
+    }
+
+    #header > .menu > div {
+        display: inline;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .register_button {
+        padding: 10px;
+        background-color: #664e88;
+        font-weight: 600;
+    }
+
+    .speakers_button {
+        display: inline-block;
+        font-family: 'Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
+        width: auto;
+        padding: 15px 60px;
+        margin-left: 40px;
+        color: white;
+        background-color: #f85163;
+        font-size: 16pt;
+        font-weight: 600;
+    }
+
+
+    /***
+     *
+     *  Index.html area
+     *
+     */
+
+    #index > .content {
+        margin: auto;
+        position: relative;
+    }
+
+    #index {
+        height: 100vh;
+        /*min-height: 800px;*/
+        min-width: 1024px;
+    }
+
+    #index_bg {
+        position: fixed; top: 0; left: 0;
+        width: 100%;
+        height: 100%;
+        min-width: 1024px;
+        /*min-height: 800px;*/
+        background-color: #000000aa;
+        background-position: center center;
+        background-repeat: no-repeat;
+    }
+
+    #top_video_bg {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        overflow: hidden;
+    }
+
+    #video_bg {
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    #index > .content {
+        position: relative;
+        min-width: 840px;
+        margin: auto;
+        width: 40%;
+        height: 100%;
+    }
+
+    #index .description {
+        position: relative;
+        top: 93%;
+        min-width: 840px;
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    #index .description p {
+        font-weight: 400;
+        font-size: 19pt;
+        font-family: 'Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
+           color: #d4d4d4;
+           text-shadow: 0px 0px 2px rgba(0, 0, 0, 1);
+        margin: 0 auto;
+        width: 840px;
+    }
+
+    #index .logo {
+        margin: 50px auto;
+        width: 15%;
+    }
+
+    #qac_big_logo {
+        position: absolute;
+        width:100%;
+        top:30%;
+    }

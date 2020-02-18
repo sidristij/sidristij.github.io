@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html><head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>CLRium #5: Garbage Collector</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=1000">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/matrix.css">
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+</head>
+<body>
+<div id="header">
+    <img id="qaclogo" src="img/qac_mini.png"/>
+    <div class="menu">
+        <div><a href="index.html">О конференции</a></div>
+        <div><a href="matrix.html">Доклады</a></div>
+        <a href="register.html" class="register_button">РЕГИСТРАЦИЯ</a>
+    </div>
+</div>
+<div id="footer">
+</div>
+<div id="page">
+    <div id="matrix">
+        <!-- Fullsize invisible copy of background to have its size -->
+        <img id="bg_sizes" class="invisible" src="img/matrix_bg.jpg"/>
+
+        <!-- Real background, with is controlled by JS code (see it at the end of doc  -->
+        <!-- Should to know speakers count at all cities to have one size of BG at all cities -->
+        <div id="matrix_bg"></div>
+
+        <!-- Speakers table -->
+        <div class="content">
+            <div id="matrix_title">
+                <div class="title">ДОКЛАДЫ</div>
+            </div>
+            <br><br>
+            <div id="matrix_table">
+                <table id="main-table" class="spb">
+                    <colgroup>
+                        <col class="time-column" />
+                        <col class="first-column" />
+                        <col class="second-column" />
+                        <col class="third-column" />
+                        <col class="fourth-column" />
+                        <col class="time-column-last" />
+                    </colgroup>
+                    <tbody>
+
+                        <!-- HEADER ROW -->
+                        <tr class="header-row">
+                            <td class="table-header" colspan="6">
+                                <p class="date-desc">Санкт-Петербург, 13 апреля 2019 года. Москва, 20 апреля 2019 года </p>
+                            </td>
+                        </tr>
+                        <tr class="short-row">
+                            <td class="time-column">
+                                9<sup>30</sup>
+                            </td>
+                            <td class="cross-row-header" colspan="4">
+                                Кофе-брейк<br><span class="cross-row-header-description">сборы перед началом семинара</span>
+                            </td>
+                            <td class="time-column">
+                                10<sup>00</sup>
+                            </td>
+                        </tr>
+                        <!-- 10:00 - 14:00 HEADER -->
+                        <tr class="header-row">
+                            <td></td>
+                            <td class="table-header">
+                                <br>
+                                <span class="time-column">10<sup>00</sup> - 10<sup>50</sup></span>
+                            </td>
+                            <td class="table-header">
+                                <br>
+                                <span class="time-column">11<sup>00</sup> - 11<sup>50</sup></span>
+                            </td>
+                            <td class="table-header">
+                                <br>
+                                <span class="time-column">12<sup>00</sup> - 12<sup>50</sup></span>
+                            </td>
+                            <td class="table-header">
+                                <br>
+                                <span class="time-column">13<sup>00</sup> - 13<sup>50</sup></span>
+                            </td>
+                            <td></td>
+                        </tr>
+
+                        <!-- 10:00 - 14:00 -->
+                        <tr class="short-row">
+                            <td class="time-column">
+                            </td>
+                            <td class="table-cell">
+                                <div class="card">
+                                        <table class="card-table">
+                                            <colgroup>
+                                                <col class="card-first-column" />
+                                            </colgroup>
+                                            <tbody>
+                                            <tr><td colspan="2" class="presentation-title">
+                                                <img width="auto" src="./img/gc-layers.png"/>
+                                                <br>
+                                                Организация памяти
+                                            </td></tr>
+                                            <tr><td colspan="2" class="presentation-descr">
+                                                <br>
+                                                Вводным докладом, для разогрева рассмотрим организацию памяти на базовом уровне. SOH, LOH, Thread stack, cards table и прочие примитивы.
+                                            </td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                            </td>
+                            <td class="table-cell">
+                                <div class="card">
+                                        <table class="card-table">
+                                            <colgroup>
+                                                <col class="card-first-column" />
+                                            </colgroup>
+                                            <tbody>
+                                            <tr><td colspan="2" class="presentation-title">
+                                                <img width="auto" src="./img/gc-allocation.png"/>
+                                                <br>
+                                                Выделение памяти
+                                            </td></tr>
+                                            <tr><td colspan="2" class="presentation-descr">
+                                                <br>
+                                                Той процедуре, о которой обычно говорят "для выделения памяти передвигается указатель на конец блока занятой памяти" мы посвятим 45 минут, рассматривая все кейсы: от упомянутого самого простого до самого сложного кейса, который привлекает StackOverflow
+                                            </td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                            </td>
+                            <td class="table-cell">
+                                <div class="card">
+                                        <table class="card-table">
+                                            <colgroup>
+                                                <col class="card-first-column" />
+                                            </colgroup>
+                                            <tbody>
+                                            <tr><td colspan="2" class="presentation-title">
+                                                <img width="auto" src="./img/gc-intro.png"/>
+                                                <br>
+                                                Garbage Collection: введение в сборку мусора
+                                            </td></tr>
+                                            <tr><td colspan="2" class="presentation-descr">
+                                                <br>
+                                                Стадии сборки мусора, причины разделения, производительность. 
+                                                Механизмы, запускающие сборку мусора, приостанавливающие выполнение программ
+                                                на время сборки мусора, выбор поколения для сборки мусора
+                                            </td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                            </td>
+                            <td class="table-cell">
+                                <div class="card">
+                                        <table class="card-table">
+                                            <colgroup>
+                                                <col class="card-first-column" />
+                                            </colgroup>
+                                            <tbody>
+                                            <tr><td colspan="2" class="presentation-title">
+                                                <img width="auto" src="./img/gc-mark.png"/>
+                                                <br>
+                                                Garbage Collection: фаза маркировки
+                                            </td></tr>
+                                            <tr><td colspan="2" class="presentation-descr">
+                                                <br>
+                                                Проход по объектам, корни обхода дерева объектов. 
+                                                Финализация, внутренние корни GC, корни GC handles, утечки памяти, 
+                                                связанные с корнями.
+                                            </td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                            </td>
+                            <td class="time-column"></td>
+                        </tr>
+                        <tr class="short-row">
+                            <td class="time-column">
+                                13<sup>50</sup>
+                            </td>
+                            <td class="cross-row-header" colspan="4">
+                                Обед<br><span class="cross-row-header-description">общение по докладам</span>
+                            </td>
+                            <td class="time-column">
+                                15<sup>00</sup>
+                            </td>
+                        </tr>
+
+                        <!--  14:30 - 18:20 HEADER -->
+                        <tr class="header-row">
+                            <td></td>
+                            <td class="table-header">
+                                <br>
+                                <br>
+                                <span class="time-column">15<sup>00</sup> - 15<sup>45</sup></span>
+                            </td>
+                            <td class="table-header">
+                                <br>
+                                <br>
+                                <span class="time-column">16<sup>00</sup> - 16<sup>45</sup></span>
+                            </td>
+                            <td class="table-header">
+                                <br>
+                                <br>
+                                <span class="time-column">17<sup>00</sup> - 17<sup>45</sup></span>
+                            </td>
+                            <td class="table-header">
+                                <br>
+                                <br>
+                                <span class="time-column">18<sup>00</sup> - 18<sup>45</sup></span>
+                            </td>
+                            <td></td>
+                        </tr>
+
+                        <!--  14:30 - 18:20  -->
+                        <tr class="short-row">
+                            <td class="time-column">
+                            </td>
+                            <td class="table-cell">
+                                <div class="card">
+                                        <table class="card-table">
+                                            <colgroup>
+                                                <col class="card-first-column" />
+                                            </colgroup>
+                                            <tbody>
+                                            <tr><td colspan="2" class="presentation-title">
+                                                <img width="auto" src="./img/system-io-pipelines.png"/>
+                                                <br>
+                                                System.IO.Pipeline
+                                            </td></tr>
+                                            <tr><td colspan="2" class="presentation-descr">
+                                                <br>
+                                                Совершенно новый API по работе с вводом-выводом
+                                            </td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                            </td>
+                            <td class="table-cell">
+                                <div class="card">
+                                        <table class="card-table">
+                                            <colgroup>
+                                                <col class="card-first-column" />
+                                            </colgroup>
+                                            <tbody>
+                                            <tr><td colspan="2" class="presentation-title">
+                                                <img width="auto" src="./img/gc-plan.png"/>
+                                                <br>
+                                                Garbage Collection: фаза планирования
+                                            </td></tr>
+                                            <tr><td colspan="2" class="presentation-descr">
+                                                <br>
+                                                Куча малых объектов: зоны маркированных и немаркированных объектов. Таблица свободных участков, закреплённые объекты. Границы поколений, отказ в смене поколения. Куча больших объектов.
+                                            </td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                            </td>
+                            <td class="table-cell">
+                                <div class="card">
+                                        <table class="card-table">
+                                            <colgroup>
+                                                <col class="card-first-column" />
+                                            </colgroup>
+                                            <tbody>
+                                            <tr><td colspan="2" class="presentation-title">
+                                                <img width="auto" src="./img/gc-sweep-collect.png"/>
+                                                <br>
+                                                Garbage Collection: фаза зачистки и сжатия
+                                            </td></tr>
+                                            <tr><td colspan="2" class="presentation-descr">
+                                                <br>
+                                                Правила зачистки и сжатия для куч больших и малых объектов.
+                                            </td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                            </td>
+                            <td class="table-cell">
+                                <div class="card">
+                                        <table class="card-table">
+                                            <colgroup>
+                                                <col class="card-first-column" />
+                                            </colgroup>
+                                            <tbody>
+                                            <tr><td colspan="2" class="presentation-title">
+                                                <img width="auto" src="./img/gc-advanced.png"/>
+                                                <br>
+                                                Продвинутые особенности сборки мусора
+                                            </td></tr>
+                                            <tr><td colspan="2" class="presentation-descr">
+                                                <br>
+                                                Режимы рабочей станции и сервера, .NET Framework vs .NET Core, Workstation Concurrent/Non-Concurrent. Concurrent sweep, server non-concurrent, background server. No GC regions, low latency, sustained low latency.
+                                            </td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                            </td>
+                            <td class="time-column">
+                            </td>
+                        </tr>
+
+                        <!--  18:30 - 20:20 HEADER -->
+                        <tr class="header-row">
+                            <td></td>
+                            <td class="table-header">
+                                <br>
+                                <br>
+                                <span class="time-column">19<sup>00</sup> - 19<sup>45</sup></span>
+                            </td>
+                            <td class="table-header">
+                                <br>
+                                <br>
+                            </td>
+                            <td class="table-header">
+                                <br>
+                                <br>
+                            </td>
+                            <td class="table-header">
+                                <br>
+                                <br>
+                            </td>
+                            <td></td>
+                        </tr>
+
+                        <!--  18:30 - 20:20  -->
+                        <tr class="short-row">
+                            <td class="time-column">
+                            </td>
+                            <td class="table-cell">
+                                <div class="card">
+                                        <table class="card-table">
+                                            <colgroup>
+                                                <col class="card-first-column" />
+                                            </colgroup>
+                                            <tbody>
+                                            <tr><td colspan="2" class="presentation-title">
+                                                <img width="auto" src="./img/NotAssigned.png"/>
+                                                <br>
+                                                Адские практики работы с памятью
+                                            </td></tr>
+                                            <tr><td colspan="2" class="presentation-descr">
+                                                <br>
+                                                Напоследок я покажу пару примеров адовой манипуляции с памятью
+                                            </td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                            </td>
+                            <td class="table-cell">
+                                <div class="card"></div>
+                            </td>
+                            <td class="table-cell">
+                                <div class="card"></div>
+                            </td>
+                            <td class="table-cell">
+                                <div class="card"></div>
+                            </td>
+                            <td class="time-column">
+                            </td>
+                        </tr>
+                        <tr class="short-row">
+                            <td class="time-column">
+                                20<sup>00</sup>
+                            </td>
+                            <td class="cross-row-header" colspan="4">
+                                Завершение семинара
+                            </td>
+                            <td class="time-column">
+                                20<sup>00</sup>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+    var theWindow    = $(window),
+            $bg          = $("#matrix_bg"),
+            moscow_sizes = $('#bg_sizes'),
+            description  = $('.description > p');
+
+    function resizeBg() {
+
+        var window_width  = theWindow.width(),
+            window_height = theWindow.height(),
+            bg_width = moscow_sizes.width(),
+            bg_height = moscow_sizes.height();
+
+        var wdiff = Math.max(window_width, 1024) / bg_width;
+        var hdiff = Math.max(window_height, 800) / bg_height;
+        var ratio = Math.max(wdiff, hdiff);
+
+        var newWidth = Math.min(bg_width * ratio, window_width);
+        var newHeight = Math.min(bg_height * ratio, window_height);
+
+        // растянуть по вертикали, по горизонтали сцентровать
+        $bg.css({"background-size": bg_width * ratio + "px " + bg_height * ratio + "px"});
+    }
+
+    
+    resizeBg();
+    
+    $(window).load(function() {
+        theWindow.resize(resizeBg).trigger("resize");
+    });
+</script>
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-12938027-10', 'auto');
+    ga('send', 'pageview');
+
+</script>
+</body>
+</html>

@@ -1,0 +1,187 @@
+
+/***
+ *
+ *  Register.html area
+ *
+ */
+
+#online_bg {
+    position: fixed; top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    min-width: 1024px;
+    min-height: 800px;
+    background-image: url("../img/register_bg.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+#online > .content {
+    position: relative;
+    min-width: 900px;
+    margin: auto;
+    top: 130px;
+    width: 80%;
+    height: 100%;
+}
+
+#online_title {
+    position: absolute;
+    width:  100%;
+    height: 100px;
+}
+
+#online_title > .title {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    font-family: 'Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
+    color: white;
+    font-size: 3.7vw; /*50pt;*/
+    font-weight: 700;
+}
+
+#reg_conteiner {
+    overflow: hidden;
+    position: absolute;
+    top: 130px;
+    height: 100%;
+    width: 100%;
+}
+
+#reg_info {
+    position: absolute;
+    top: 130px;
+    left: 0px;
+    width: 50%;
+    height: 100%;
+}
+
+.youtube {
+    width: 100%;
+    height: 480px;
+}
+.wtf-class{
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+#reg_buttons_area {
+    position: absolute;
+    top: 130px;
+    left: 55%;
+    width: 50%;
+    height: 100%;
+}
+
+#reg_info > h2 {
+    color: #fee000;
+    font-family: 'Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 17pt;
+    font-weight: 400;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#reg_info > p {
+    color: white;
+    font-family: 'Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 14pt;
+    font-weight: 400;
+}
+
+#reg_buttons_area .reg-city {
+    height: 135px;
+    width:620px;
+}
+
+.reg-city .city-name {
+    display: inline-block;
+    width: 100%;
+    color: #fee000;
+    font-family: 'Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 22pt;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+.reg-city .city-descr {
+    min-width: 575px;
+}
+
+.city-descr .city-address  {
+    display: inline-block;
+    width:30%;
+    color: white;
+    font-family: 'Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 14pt;
+    font-weight: 500;
+    margin-right: 30px;
+}
+
+.city-descr .date-time  {
+    display: inline-block;
+    width: 25%;
+    color: white;
+    font-family: 'Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 14pt;
+    font-weight: 500;
+}
+
+.city-descr .city-go  {
+    display: inline-block;
+    width: 200px;
+    height:100%;
+    max-width: 230px;
+    color: white;
+    font-family: 'Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 17pt;
+    font-weight: 500;
+}
+
+.city-go a {
+    display: block;
+    float: left;
+    background-color: #e37c00;
+    width:100%;
+    height:50px;
+    line-height: 50px;
+    text-align: center;
+}
+
+@media (max-width: 1200px) {
+
+    #register_title {
+        height: 130px;
+        text-align: center;
+    }
+
+    #register_title .title {
+        font-size: 50pt;
+        font-weight: 700;
+        width: 100%;
+        bottom: 30px;
+    }
+
+    #reg_info {
+        width: 35%;
+    }
+
+    .reg-city {
+        height: 160px;
+    }
+
+    .city-descr .city-address {
+        width: 30%;
+    }
+
+    .city-descr .date-time {
+        width: 20%;
+    }
+
+    #reg_buttons_area {
+        left: 40%;
+        width: 65%;
+    }
+}

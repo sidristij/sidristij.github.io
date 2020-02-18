@@ -1,0 +1,228 @@
+
+/***
+ *
+ *  Matrix.html area
+ *
+ */
+body {
+    margin: 0px;
+    background-color: #000;
+    min-width: 1600px;
+    min-height: 800px;
+}
+
+#matrix_bg {
+    position: fixed; top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    min-width: 1024px;
+    min-height: 800px;
+    background-image: url("../img/matrix_bg.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+
+#matrix {
+    margin: 0;
+    width:100%;
+    height:100%;
+}
+
+#matrix > .content {
+    position: relative;
+    min-width: 900px;
+    margin: auto;
+    top: 130px;
+    width: 100%;
+    height: 100%;
+}
+
+#matrix_title {
+    position: relative;
+    font-family: 'Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
+    width:  75%;
+    height: 100px;
+    margin: 0px auto;
+}
+
+#matrix_title > .title {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    color: white;
+    font-size: 50pt;
+    font-weight: 700;
+}
+
+#matrix_title > .cities {
+    position: absolute;
+    right: 0px;
+    bottom: 15px;
+}
+
+.cities a {
+    text-align: right;
+    font-family: 'Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
+    text-decoration: none;
+    color: white;
+    font-size: 16pt;
+    font-weight: 300;
+    margin: 0px 6px;
+}
+
+a.choosed {
+    text-decoration: underline;
+}
+
+#matrix_table {
+    width: 100%;
+    heihgt: auto;
+}
+
+#main-table {
+    table-layout: fixed;
+    width:100%;
+    font-family: 'Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
+    color: white;
+    border-spacing: 0px;
+}
+
+#main-table>tbody>tr>td {
+    padding: 20px;
+}
+
+#main-table>colgroup .first-column,
+#main-table>colgroup .third-column {
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+.tbd {
+    text-align: center;
+    font-size: 50pt;
+    font-weight: 200;
+    vertical-align: middle;
+}
+.talks {
+    text-align: center;
+    font-size: 35pt;
+    font-weight: 200;
+    vertical-align: middle;
+}
+
+.table-cell {
+    padding: 10px;
+    vertical-align: top;
+}
+
+.time-column {
+    width: 100px;
+}
+
+.time-column-last {
+    width: 100px;
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+.first-column, .second-column, .third-column, .fourth-column {
+    width: 25%;
+}
+
+.table-header {
+    text-align: center;
+}
+
+.time-column {
+    vertical-align: top;
+    text-align: center;
+    font-size: 22pt;
+}
+
+.time-column sup {
+    vertical-align:text-top; font-size:75%;
+}
+
+.hall-name {
+    font-size: 25pt;
+    font-weight: 500;
+    margin: 0px;
+}
+
+.hall-desc {
+    font-size: 17pt;
+    font-weight: 100;
+    margin: 0px;
+}
+
+.date-desc {
+    font-size: 17pt;
+    font-weight: 200;
+    margin: 0px;
+}
+
+tr.short-row {
+    height: 120px;
+}
+
+.cross-row-header {
+    text-align: center;
+    vertical-align: middle;
+    font-size: 26pt;
+    font-weight: 100;
+}
+
+.cross-row-header-description {
+    font-size: 20pt;
+}
+
+/* CARD */
+table.card-table {
+    padding: 0px;
+    width: 100%;
+    text-align: left;
+    font-size: 16pt;
+    table-layout: fixed;
+}
+
+table.card-table td {
+    padding: 0px;
+}
+
+.card-table img {
+    border-radius: 7px;
+    width: 95% !important;
+}
+
+.card-first-column {
+    width: 90px;
+}
+
+.card-header tr {
+    height: 38px;
+}
+
+.card-header .author {
+    font-weight: 500;
+    padding-left: 10px;
+}
+
+.card .author-desc {
+    font-size: 12pt;
+    padding-left: 10px;
+}
+
+.presentation-title {
+    height: 80px;
+    padding: 20px 0px;
+    font-size: 15pt;
+    font-weight: 600;
+}
+
+.presentation-descr {
+    height: 100px;
+    padding: 20px 0px;
+    font-size: 14pt;
+    font-weight: 100;
+    vertical-align: top;
+}
+
