@@ -12,6 +12,7 @@ body {
 p, li, h1, h2, h3 {
     font-family: 'Gotham Pro','Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
 }
+
 .contents_area {
     margin-top: 20px;
     margin-bottom: 40px;
@@ -121,7 +122,7 @@ video.video_bg {
 }
 
 a {
-    color: white;
+    color: #0056b3;
     text-decoration: none;
 }
 
