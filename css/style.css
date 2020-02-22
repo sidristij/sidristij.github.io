@@ -884,6 +884,41 @@ footer {
     color: salmon;
 }
 
+/* Spakers about */
+.speaker_about h2 {
+    margin: 20px 0 15px 0;
+}
+
+.speaker_about h3 {
+    margin: 20px 0 15px 0;
+    font-size: 15pt;
+}
+
+.speaker_about p {
+    font-family: 'Gotham Pro','Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 12pt;
+}
+
+section.speaker_about {
+    margin-bottom: 25px;
+}
+
+.speaker_company {
+    color: darkslategray;
+}
+
+.speaker_about_container {
+    margin-top: 25px;
+}
+.speaker_about .thumbnail {
+    text-align: center;
+}
+.speaker_about a {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 12pt;
+}
+
 @font-face {
     font-family: 'Gotham Pro';
     src: url('../webfonts/GothamPro-BoldItalic.eot');

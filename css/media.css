@@ -26,6 +26,14 @@
         margin-top: 40px;
         margin-bottom: 8px;
     }
+    .speaker_about h2 {
+        font-size: 1.6rem;
+        margin-top: 20px;
+        margin-bottom: 8px;
+    }
+    .thumbnail {
+        margin-bottom: 0px;
+    }
 }
 
 @media (max-width: 991px) {
@@ -72,6 +80,9 @@
     .register {
         padding: 0;
     }
+    section.speaker_about {
+        margin-bottom: 0px;
+    }
 }
 
 /* Smartphone horizontal */
@@ -113,7 +124,7 @@
     }
     .footer_wrap {
         margin: 10px;
-    }
+    }    
 }
 
 /* Smartphone */

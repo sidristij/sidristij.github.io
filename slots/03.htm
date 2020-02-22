@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html><head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>CLRium #7: Практика работы с многопоточным кодом</title>
+    <meta charset="utf-8">
+    <meta property="og:image" content="img/thumbnail.webp" />
+    <link rel="stylesheet" href="../css/min.css">
+    <link rel="shortcut icon" href="../img/favicon-2.png" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <header class="header fixed">
+        <a href="/">
+            <img class="conflogo" src="../img/logo-w-noindex.svg"/> 
+        </a>
+        <div class="menu">
+            <div><a href="../index.html">О конференции</a></div>
+            <div><a href="../mentor.html">Ментор</a></div>
+            <div><a href="../practice.html">Практика</a></div>
+            <div><a href="../matrix.html">Доклады</a></div>
+            <a href="../register.html" class="register_button">РЕГИСТРАЦИЯ</a>
+        </div>
+
+        <!-- mobile-menu -->
+
+        <div class="hamburger-menu">
+            <input id="menu__toggle" type="checkbox" />
+            <label class="menu__btn" for="menu__toggle">
+              <span></span>
+            </label>
+        
+            <ul class="menu__box">
+                <li><a class="menu__item" href="../index.html">О семинаре</a></li>
+                <li><a class="menu__item" href="../mentor.html">Ментор</a></li>
+                <li><a class="menu__item" href="../matrix.html">Доклады</a></li>
+                <li><a class="menu__item" href="../practice.html">Практика</a></li>
+                <li><a class="menu__item" href="../register.html">Регистрация</a></li>
+            </ul>
+        </div>
+    </header>
+    <section class="mentor_heading">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="mentor_heading_text">
+                        <h1>Стратегии блокировки</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="about city_about">
+        <div class="container">
+            <div class="row about_wrap">
+                    <div class="col-lg-8">
+                        <p class="d-none d-lg-inline-block"><br></p>
+                        <div class="city_d_text">
+                            <p>Когда у нас есть параллельный код, то возникает вопрос о синхронизации потоков. Как это делать? Большинство программистов используют разного рода блокировки, примитивы синхронизации и стратегии. Блокировки несут с собой риски.</p>
+                            <p>В этом докладе мы по говорим о рисках и проблемах, которые тянут за собой блокировки, а также обсудим различные стратегии для снижения этих рисков. В заключении поговорим о тестировании алгоритмов с блокировками.</p>
+                            <h2>Докладчик</h2>
+                            <div class="container speaker_about_container">
+                                <div class="row">
+                                    <div class="col-sm-3 col-12 thumbnail">
+                                        <img src="../img/agoncharov.webp" width="100%">
+                                        <a href="https://t.me/a_cross"><i class="fab fa-telegram"></i> a_cross</a>
+                                    </div>
+                                    <div class="col-sm-9 col-12 offset-0">
+                                        <h3>Андрей Гончаров</h3>
+                                        <p><strong class="speaker_company">Центр Речевых Технологий</strong></p>
+                                        <p>В промышленной разработке с 2006 года. Начинал с C/C++, но довольно быстро ушел в мир .NET. </p>
+                                        <p>Работал в различных компаниях от стартапов до крупных, вроде Лаборатории Касперского. </p>
+                                        <p>Спектр задач, которые приходилось решать, также довольно широк — от численных расчетов до распределенных систем.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 d-none d-lg-inline-block">
+                        <!-- Begin Mailchimp Signup Form -->
+                        <!-- <div>
+                            <h2>Электровестник</h2>
+                            <p>
+                                Подписаться на новости и ранний доступ к материалам а также нашим статьям на Habr
+                            </p>
+                            <form action="https://clrium.us12.list-manage.com/subscribe/post?u=9c8336f33d998897f27a4f7c1&amp;id=b367ad585d" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                                <div id="mc_embed_signup_scroll">
+                                    <div class="form__con"><input type="email" value="" name="EMAIL" class="form__t" id="mce-EMAIL" placeholder="email address" required></div>
+                                    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_9c8336f33d998897f27a4f7c1_b367ad585d" tabindex="-1" value=""></div>
+                                    <div class="form__con"><input type="submit" value="Подписаться" name="subscribe" id="mc-embedded-subscribe" class="form__b"></div>
+                                </div>
+                            </form>
+                        </div> -->
+                    </div>
+            </div>
+        </div>
+        <!-- What is important too?  -->
+        <div class="d-block d-lg-none what_important">
+            <div class="container about_wrap">
+                <h3>Что ещё может быть важно?</h3>
+                <p>
+                    Ввиду того, что времени на общение с каждым участником выделено много, 
+                    количество собеседований ограничено. Поэтому если у Вас возникло желание пообщаться, 
+                    рекомендуем не откладывать покупку билета. 
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="footer_wrap">
+                        <img src="../img/logo-w-noindex.svg">
+                        <p>
+                            <a class="footer-link" target="_blank" href="mailto:sidristij@clrium.ru"><i class="far fa-envelope" aria-hidden="true"></i></a>
+                            <a class="footer-link" target="_blank" href="https://vk.com/clrium"><i class="fab fa-vk" aria-hidden="true"></i></a>
+                            <a class="footer-link" target="_blank" href="https://youtube.com/clrium"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+                            <a class="footer-link" target="_blank" href="https://github.com/clrium"><i class="fab fa-github" aria-hidden="true"></i></a>
+                            <a class="footer-link" target="_blank" href="skype:stanislav.sidristyi"><i class="fab fa-skype" aria-hidden="true"></i></a>
+                            <a class="footer-link" target="_blank" href="https://t.me/clrium_group"><i class="fab fa-telegram" aria-hidden="true"></i></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="../js/min.js"></script>
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" async>
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+        ym(25102367, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/25102367" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+</body>
+</html>
