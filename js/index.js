@@ -1,6 +1,6 @@
 const   header          = document.querySelector('header'),
         matrix          = document.querySelector('.matrix'),
-        headerHeight    = header.offsetHeight
+        headerHeight    = header.offsetHeight;
 
 window.addEventListener('scroll', () => {
 
@@ -17,7 +17,7 @@ window.addEventListener('scroll', () => {
             }
         }
     }
-})
+});
 
 (function() {
 
@@ -44,7 +44,7 @@ window.addEventListener('scroll', () => {
         }
         
         if(frame == 0) {
-          $('.video_bg').animate({opacity: 1}, 200);
+          $('.video_bg').animate({opacity: 1}, 250);
         }
         frame++;
       });
@@ -65,4 +65,4 @@ window.addEventListener('scroll', () => {
         document.querySelector('.video3').src = src[2];
     }
   
-  }());
+  })();
