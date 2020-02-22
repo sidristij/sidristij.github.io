@@ -4,7 +4,11 @@
     <title>CLRium #7: Практика работы с многопоточным кодом</title>
     <meta charset="utf-8">
     <meta property="og:image" content="img/thumbnail.webp" />
-    <link rel="stylesheet" href="../css/min.css">
+    <!-- <link rel="stylesheet" href="../css/min.css"> -->
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/awesome.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/media.css">
     <link rel="shortcut icon" href="../img/favicon-2.png" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -43,34 +47,47 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="mentor_heading_text">
-                        <h1>Анализ производительности и бенчмаркинг</h1>
+                        <h1>Доклад</h1>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <section class="about city_about">
+    <section class="about speaker_about">
         <div class="container">
-            <div class="row about_wrap">
-                    <div class="col-lg-8">
-                        <p class="d-none d-lg-inline-block"><br></p>
-                        <div class="city_d_text">
-                            <p>Когда у нас уже есть какой-то код, который работает, но работает медленнее чем мы бы хотели, то нужно понять, какая часть действительно является узким местом. Или другой вопрос, у нас есть нефункциональные требования, по производительности, удовлетворяет ли наша система этим требованиям. Если не удовлетворяет, то почему? А если залить новые изменения, будет ли система удовлетворять НФР?</p>
-                            <p>Ответы на такого рода вопросы, и схожие с ними, ищутся по средством анализа производительности, написания тестов на производительность, нагрузочных тестов и бенчмаркинга.  В данном докладе, мы рассмотрим все эти вопросы на конкретном примере. Рассмотрим весть процесс анализа, инструменты и пакеты, которые могут помочь разработчику.</p>
-                            <h2>Докладчик</h2>
-                            <div class="container speaker_about_container">
-                                <div class="row">
-                                    <div class="col-sm-3 col-12 thumbnail">
-                                        <img src="../img/agoncharov.webp" width="100%">
-                                        <a href="https://t.me/a_cross"><i class="fab fa-telegram"></i> a_cross</a>
-                                    </div>
-                                    <div class="col-sm-9 col-12 offset-0">
-                                        <h3>Андрей Гончаров</h3>
-                                        <p><strong class="speaker_company">Центр Речевых Технологий</strong></p>
-                                        <p>В промышленной разработке с 2006 года. Начинал с C/C++, но довольно быстро ушел в мир .NET. </p>
-                                        <p>Работал в различных компаниях от стартапов до крупных, вроде Лаборатории Касперского. </p>
-                                        <p>Спектр задач, которые приходилось решать, также довольно широк — от численных расчетов до распределенных систем.</p>
-                                    </div>
+            <div class="row">
+                <div class="col-lg-8">
+                    <p class="d-none d-lg-inline-block"><br></p>
+                    <div class="city_d_text">
+                        <div class="breadcrumbs_menu">
+                            <div class="inactive_item">О семинаре</div>
+                            <div class="inactive_item">→</div>
+                            <div class="inactive_item">Сетка докладов</div>
+                            <div class="inactive_item">→</div>
+                            <div class="active_item">10<sup>15</sup> - 11<sup>00</sup></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="city_d_text">
+                        <h2>Анализ производительности и бенчмаркинг</h2>
+                        <p>Когда у нас уже есть какой-то код, который работает, но работает медленнее чем мы бы хотели, то нужно понять, какая часть действительно является узким местом. Или другой вопрос, у нас есть нефункциональные требования, по производительности, удовлетворяет ли наша система этим требованиям. Если не удовлетворяет, то почему? А если залить новые изменения, будет ли система удовлетворять НФР?</p>
+                        <p>Ответы на такого рода вопросы, и схожие с ними, ищутся по средством анализа производительности, написания тестов на производительность, нагрузочных тестов и бенчмаркинга.  В данном докладе, мы рассмотрим все эти вопросы на конкретном примере. Рассмотрим весть процесс анализа, инструменты и пакеты, которые могут помочь разработчику.</p>
+                        <h2>Докладчик</h2>
+                        <div class="container speaker_about_container">
+                            <div class="row">
+                                <div class="col-sm-3 col-12 thumbnail">
+                                    <img src="../img/agoncharov.webp" width="100%">
+                                    <a href="https://t.me/a_cross"><i class="fab fa-telegram"></i> a_cross</a>
+                                </div>
+                                <div class="col-sm-9 col-12 offset-0">
+                                    <h3>Андрей Гончаров</h3>
+                                    <p><strong class="speaker_company">Центр Речевых Технологий</strong></p>
+                                    <p>В промышленной разработке с 2006 года. Начинал с C/C++, но довольно быстро ушел в мир .NET. </p>
+                                    <p>Работал в различных компаниях от стартапов до крупных, вроде Лаборатории Касперского. </p>
+                                    <p>Спектр задач, которые приходилось решать, также довольно широк — от численных расчетов до распределенных систем.</p>
                                 </div>
                             </div>
                         </div>
@@ -91,6 +108,7 @@
                             </form>
                         </div> -->
                     </div>
+                </div>
             </div>
         </div>
         <!-- What is important too?  -->
