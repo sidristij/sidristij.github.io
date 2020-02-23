@@ -919,6 +919,17 @@ section.speaker_about {
     font-size: 12pt;
 }
 
+.matrix-time {
+    padding-top: 20px;
+    font-size: 17pt;
+}
+.matrix-description h2 {
+    margin: 20px 0 15px 0;
+}
+.matrix-rest {
+    background-color: antiquewhite;
+}
+
 @font-face {
     font-family: 'Gotham Pro';
     src: url('../webfonts/GothamPro-BoldItalic.eot');

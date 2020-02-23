@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html><head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>CLRium #7: Практика работы с многопоточным кодом</title>
+    <meta charset="utf-8">
+    <meta property="og:image" content="img/thumbnail.webp" />
+    <!-- <link rel="stylesheet" href="../css/min.css"> -->
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="./css/awesome.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/media.css">
+    <link rel="shortcut icon" href="/img/favicon-2.png" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <header class="header fixed">
+        <a href="/">
+            <img class="conflogo" src="img/logo-w-noindex.svg"/> 
+        </a>
+        <div class="menu">
+            <div><a href="index.html">О конференции</a></div>
+            <div><a href="mentor.html">Ментор</a></div>
+            <div><a href="practice.html">Практика</a></div>
+            <div><a href="matrix.html">Доклады</a></div>
+            <a href="register.html" class="register_button">РЕГИСТРАЦИЯ</a>
+        </div>
+
+        <!-- mobile-menu -->
+
+        <div class="hamburger-menu">
+            <input id="menu__toggle" type="checkbox" />
+            <label class="menu__btn" for="menu__toggle">
+              <span></span>
+            </label>
+        
+            <ul class="menu__box">
+                <li><a class="menu__item" href="index.html">О семинаре</a></li>
+                <li><a class="menu__item" href="mentor.html">Ментор</a></li>
+                <li><a class="menu__item" href="matrix.html">Доклады</a></li>
+                <li><a class="menu__item" href="practice.html">Практика</a></li>
+                <li><a class="menu__item" href="register.html">Регистрация</a></li>
+            </ul>
+        </div>
+    </header>
+    
+    <section class="mentor_heading">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="mentor_heading_text">
+                        <h1>Расписание докладов</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about city_about contents_area">
+        <div class="container matrix-rest">
+            <div class="row">
+                <div class="col-lg-10">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-2 matrix-time">
+                                09<sup>00</sup> - 09<sup>30</sup>
+                            </div>
+                            <div class="col-10 matrix-description">
+                                <h2>Сборы перед семинаром</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-2 matrix-time">
+                                09<sup>30</sup> - 10<sup>15</sup>
+                            </div>
+                            <div class="col-10 matrix-description">
+                                <h3>Элементы теории производительности</h3>
+                                <p>Часто бывает так, что мы думаем стоит ли какой-то кусок задачи реализовывать в виде параллельного кода. Это может быть функционал, который мы еще не начинали делать, или кусок кода, который был определен как узкое место по производительности.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-10">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-2 matrix-time">
+                                10<sup>30</sup> - 11<sup>15</sup>
+                            </div>
+                            <div class="col-10 matrix-description">
+                                <h3>Анализ производительности и бенчмаркинг</h3>
+                                <p>
+                                    Когда у нас уже есть какой-то код, который работает, но работает медленнее чем мы бы хотели, 
+                                    то нужно понять, какая часть действительно является узким местом. 
+                                    Или другой вопрос: у нас есть не функциональные требования, по производительности. 
+                                    Удовлетворяет ли наша система этим требованиям? Если не удовлетворяет, то почему? 
+                                    А если залить новые изменения, будет ли система удовлетворять НФР?
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-10">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-2 matrix-time">
+                                11<sup>30</sup> - 12<sup>15</sup>
+                            </div>
+                            <div class="col-10 matrix-description">
+                                <h3>Стратегии блокировки</h3>
+                                <p>Когда у нас есть параллельный код, то возникает вопрос о синхронизации потоков. Как это делать? Большинство программистов используют разного рода блокировки, примитивы синхронизации и стратегии. Блокировки несут с собой риски.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-10">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-2 matrix-time">
+                                12<sup>30</sup> - 13<sup>15</sup>
+                            </div>
+                            <div class="col-10 matrix-description">
+                                <h3>Неблокирующие алгоритмы</h3>
+                                <p>Блокировки — наиболее частый способ синхронизации данных. Но не единственный. Если мы хотим выжать максимум в масштабируемости, хотим добиться гарантированного прогресса выполнения, то надо смотреть в сторону неблокирующих алгоритмов и структур данных.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container matrix-rest">
+            <div class="row">
+                <div class="col-lg-10">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-2 matrix-time">
+                                13<sup>15</sup> - 14<sup>15</sup>
+                            </div>
+                            <div class="col-10 matrix-description">
+                                <h2>Обед, общение по докладам</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-2 matrix-time">
+                                14<sup>15</sup> - 15<sup>00</sup>
+                            </div>
+                            <div class="col-10 matrix-description">
+                                <h3>Элементы теории производительности</h3>
+                                <p>Часто бывает так, что мы думаем стоит ли какой-то кусок задачи реализовывать в виде параллельного кода. Это может быть функционал, который мы еще не начинали делать, или кусок кода, который был определен как узкое место по производительности.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-10">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-2 matrix-time">
+                                15<sup>15</sup> - 16<sup>00</sup>
+                            </div>
+                            <div class="col-10 matrix-description">
+                                <h3>Анализ производительности и бенчмаркинг</h3>
+                                <p>
+                                    Когда у нас уже есть какой-то код, который работает, но работает медленнее чем мы бы хотели, 
+                                    то нужно понять, какая часть действительно является узким местом. 
+                                    Или другой вопрос: у нас есть не функциональные требования, по производительности. 
+                                    Удовлетворяет ли наша система этим требованиям? Если не удовлетворяет, то почему? 
+                                    А если залить новые изменения, будет ли система удовлетворять НФР?
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-10">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-2 matrix-time">
+                                16<sup>15</sup> - 17<sup>00</sup>
+                            </div>
+                            <div class="col-10 matrix-description">
+                                <h3>Стратегии блокировки</h3>
+                                <p>Когда у нас есть параллельный код, то возникает вопрос о синхронизации потоков. Как это делать? Большинство программистов используют разного рода блокировки, примитивы синхронизации и стратегии. Блокировки несут с собой риски.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-10">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-2 matrix-time">
+                                17<sup>15</sup> - 18<sup>00</sup>
+                            </div>
+                            <div class="col-10 matrix-description">
+                                <h3>Неблокирующие алгоритмы</h3>
+                                <p>Блокировки — наиболее частый способ синхронизации данных. Но не единственный. Если мы хотим выжать максимум в масштабируемости, хотим добиться гарантированного прогресса выполнения, то надо смотреть в сторону неблокирующих алгоритмов и структур данных.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-10">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-2 matrix-time">
+                                18<sup>15</sup> - 19<sup>00</sup>
+                            </div>
+                            <div class="col-10 matrix-description">
+                                <h3>Стратегии блокировки</h3>
+                                <p>Когда у нас есть параллельный код, то возникает вопрос о синхронизации потоков. Как это делать? Большинство программистов используют разного рода блокировки, примитивы синхронизации и стратегии. Блокировки несут с собой риски.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-10">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-2 matrix-time">
+                                19<sup>15</sup> - 20<sup>00</sup>
+                            </div>
+                            <div class="col-10 matrix-description">
+                                <h3>Неблокирующие алгоритмы</h3>
+                                <p>Блокировки — наиболее частый способ синхронизации данных. Но не единственный. Если мы хотим выжать максимум в масштабируемости, хотим добиться гарантированного прогресса выполнения, то надо смотреть в сторону неблокирующих алгоритмов и структур данных.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>    
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="footer_wrap">
+                        <img src="img/logo-w-noindex.svg">
+                        <p>
+                            <a class="footer-link" target="_blank" href="mailto:sidristij@clrium.ru"><i class="far fa-envelope" aria-hidden="true"></i></a>
+                            <a class="footer-link" target="_blank" href="https://vk.com/clrium"><i class="fab fa-vk" aria-hidden="true"></i></a>
+                            <a class="footer-link" target="_blank" href="https://youtube.com/clrium"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+                            <a class="footer-link" target="_blank" href="https://github.com/clrium"><i class="fab fa-github" aria-hidden="true"></i></a>
+                            <a class="footer-link" target="_blank" href="skype:stanislav.sidristyi"><i class="fab fa-skype" aria-hidden="true"></i></a>
+                            <a class="footer-link" target="_blank" href="https://t.me/clrium_group"><i class="fab fa-telegram" aria-hidden="true"></i></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="js/min.js"></script>
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" async>
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+        ym(25102367, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/25102367" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+</body>
+</html>
