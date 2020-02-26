@@ -910,6 +910,9 @@ section.speaker_about {
 .speaker_about_container {
     margin-top: 25px;
 }
+.speaker_about_container h3 {
+    margin-top: 0;
+}
 .speaker_about .thumbnail {
     text-align: center;
 }
