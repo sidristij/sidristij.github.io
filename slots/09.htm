@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html><head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>CLRium #7: Практика работы с многопоточным кодом</title>
+    <meta charset="utf-8">
+    <meta property="og:image" content="img/thumbnail.webp" />
+    <!-- <link rel="stylesheet" href="../css/min.css"> -->
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/awesome.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/media.css">
+    <link rel="shortcut icon" href="../img/favicon-2.png" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <header class="header fixed">
+        <a href="/">
+            <img class="conflogo" src="../img/logo-w-noindex.svg"/> 
+        </a>
+        <div class="menu">
+            <div><a href="../index.html">О конференции</a></div>
+            <div><a href="../mentor.html">Ментор</a></div>
+            <div><a href="../practice.html">Практика</a></div>
+            <div><a href="../matrix.html">Доклады</a></div>
+            <a href="../register.html" class="register_button">РЕГИСТРАЦИЯ</a>
+        </div>
+
+        <!-- mobile-menu -->
+
+        <div class="hamburger-menu">
+            <input id="menu__toggle" type="checkbox" />
+            <label class="menu__btn" for="menu__toggle">
+              <span></span>
+            </label>
+        
+            <ul class="menu__box">
+                <li><a class="menu__item" href="../index.html">О семинаре</a></li>
+                <li><a class="menu__item" href="../mentor.html">Ментор</a></li>
+                <li><a class="menu__item" href="../matrix.html">Доклады</a></li>
+                <li><a class="menu__item" href="../practice.html">Практика</a></li>
+                <li><a class="menu__item" href="../register.html">Регистрация</a></li>
+            </ul>
+        </div>
+    </header>
+    <section class="mentor_heading">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="mentor_heading_text">
+                        <h1>Доклад</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="about speaker_about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <p class="d-none d-lg-inline-block"><br></p>
+                    <div class="city_d_text">
+                        <div class="breadcrumbs_menu">
+                            <div class="inactive_item">О семинаре</div>
+                            <div class="inactive_item">→</div>
+                            <div class="inactive_item">Сетка докладов</div>
+                            <div class="inactive_item">→</div>
+                            <div class="active_item">18<sup>15</sup> - 19<sup>00</sup></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="city_d_text">
+                        <h2>Rx.NET: как писать код на Rx легко и безопасно?</h2>
+                        <p>
+                            Rx.NET с одной стороны широко известен. С другой - им почему-то мало пользуются. И причин, возможно, несколько: 
+                            нет ясности с контекстами синхронизации, полной картины его возможностей и огромные трудности при отладке. Все эти вопросы мы и попробуем решить.
+                        </p>
+                        <p>
+                            
+                        </p>
+                        <h2>Докладчик</h2>
+                        <div class="container speaker_about_container">
+                            <div class="row">
+                                <div class="col-sm-3 col-12 thumbnail">
+                                    <img src="../img/ssidristij.webp" width="100%">
+                                    <a href="https://t.me/sidristij"><i class="fab fa-telegram"></i> sidristij</a>
+                                </div>
+                                <div class="col-sm-9 col-12 offset-0">
+                                    <h3>Станислав Сидристый</h3>
+                                    <p><strong class="speaker_company">EPAM</strong></p>
+                                    <p>Станислав работал во многих крупных компаниях, набирая опыт разработки на платформе .NET. Спикер многих конференций, в том числе .NEXT, SpbDotNet, автор и основной спикер семинаров CLRium.</p>
+                                    <p>Интересы Станислава долгое время лежали в области алгоритмов управления памятью и техник манимулирования рантаймом CLR из unsafe кода. Но в последнее время вектор изменен на более практичную часть разработки: многопоточность, блокирующие и неблокирующие алгоритмы</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- side widget -->
+                <div class="col-lg-4 d-none d-lg-inline-block speaker-to-watch">
+                    <!-- Side panel -->
+                    <h2>Полезно</h2>
+                    <p>Если охота подойти к теме максимально подготовленным, то можно посмотреть следующие материалы.</p>
+                    <p>Это <strong>не</strong> обязательно, но желательно:</p>
+                    <div class="video-container"><iframe class="video video1" src="https://www.youtube.com/embed/RtPI5t4eAqQ" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+                    <!-- <div class="video-container"><iframe class="video video1" src="https://www.youtube.com/embed/Sq_h5bVWJ0k" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div> -->
+                </div>
+    
+            </div>
+        </div>
+        <!-- What is important too?  -->
+        <div class="d-block d-lg-none what_important">
+            <div class="container about_wrap">
+                <h3>Что ещё может быть важно?</h3>
+                <p>
+                    Ввиду того, что времени на общение с каждым участником выделено много, 
+                    количество собеседований ограничено. Поэтому если у Вас возникло желание пообщаться, 
+                    рекомендуем не откладывать покупку билета. 
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="footer_wrap">
+                        <img src="../img/logo-w-noindex.svg">
+                        <p>
+                            <a class="footer-link" target="_blank" href="mailto:sidristij@clrium.ru"><i class="far fa-envelope" aria-hidden="true"></i></a>
+                            <a class="footer-link" target="_blank" href="https://vk.com/clrium"><i class="fab fa-vk" aria-hidden="true"></i></a>
+                            <a class="footer-link" target="_blank" href="https://youtube.com/clrium"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+                            <a class="footer-link" target="_blank" href="https://github.com/clrium"><i class="fab fa-github" aria-hidden="true"></i></a>
+                            <a class="footer-link" target="_blank" href="skype:stanislav.sidristyi"><i class="fab fa-skype" aria-hidden="true"></i></a>
+                            <a class="footer-link" target="_blank" href="https://t.me/clrium_group"><i class="fab fa-telegram" aria-hidden="true"></i></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="../js/min.js"></script>
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" async>
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+        ym(25102367, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/25102367" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+</body>
+</html>
