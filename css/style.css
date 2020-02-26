@@ -924,7 +924,9 @@ section.speaker_about {
 .speaker-to-watch .video-container {
     margin: 10px 0;
 }
-
+h2.speaker_header {
+    margin-top: 40px;
+}
 .matrix-time {
     padding-top: 20px;
     font-size: 17pt;

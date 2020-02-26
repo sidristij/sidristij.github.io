@@ -31,6 +31,9 @@
         margin-top: 20px;
         margin-bottom: 8px;
     }
+    h2.speaker_header {
+        margin-top: 30px;
+    }
     .thumbnail {
         margin-bottom: 0px;
     }
