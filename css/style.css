@@ -918,6 +918,9 @@ section.speaker_about {
     margin-top: 10px;
     font-size: 12pt;
 }
+.speaker-to-watch .video-container {
+    margin: 10px 0;
+}
 
 .matrix-time {
     padding-top: 20px;
