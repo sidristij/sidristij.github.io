@@ -990,11 +990,12 @@ h2.speaker_header {
     height: 7rem;
     vertical-align: middle;
     margin: auto 0;
-    /* color: #c13939; */
+    color: #193450;
 }
 .matrix-description {
     margin-bottom: 30px;
     padding-top: 70px;
+    color: #193450;
 }
 .matrix-avatar {
     text-align: center;
