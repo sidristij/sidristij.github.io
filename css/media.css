@@ -89,6 +89,9 @@
     section.speaker_about {
         margin-bottom: 0px;
     }
+    .matrix-fixed-container {
+        margin-top:25px;
+    }
 }
 
 /* Smartphone horizontal - SM */
