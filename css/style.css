@@ -972,8 +972,8 @@ h2.speaker_header {
     width: 100%;
 }
 .matrix-more-link {
-    border-color: indigo;
-    color: indigo;
+    border-color: #0056b3;
+    color: #0056b3;
     border-radius: 0;
     font-size: 15pt;
 }
@@ -992,7 +992,11 @@ h2.speaker_header {
     margin: 15px 0;
 }
 .matrix-rest {
-    background-color: antiquewhite;
+    text-align: center;
+}
+.matrix-rest h2 {
+    font-size: 25pt;
+    margin: 30px 0;
 }
 
 @font-face {

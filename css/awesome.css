@@ -148,6 +148,10 @@
   
   .fa-telegram-plane:before {
     content: "\f3fe"; }
+  
+  .fa-long-arrow-alt-right:before {
+      content: "\f30b";
+  }
 @font-face {
   font-family: 'Font Awesome 5 Brands';
   font-style: normal;
