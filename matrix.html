@@ -4,14 +4,23 @@
     <title>CLRium #7: Практика работы с многопоточным кодом</title>
     <meta charset="utf-8">
     <meta property="og:image" content="img/thumbnail.webp" />
-    <link rel="stylesheet" href="css/min.css">
+    <!-- <link rel="stylesheet" href="../css/min.css"> -->
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="./css/awesome.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/media.css">
     <link rel="shortcut icon" href="/img/favicon-2.png" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <header class="header">
+    <header class="header fixed">
         <a href="/">
             <img class="conflogo" src="img/logo-w-noindex.svg"/> 
+            <span class="d-xs-inline d-sm-none" >XS</span>
+            <span class="d-none d-sm-inline d-md-none" >SM</span>
+            <span class="d-none d-md-inline d-lg-none" >MD</span>
+            <span class="d-none d-lg-inline d-xl-none" >LG</span>
+            <span class="d-none d-xl-inline d-none" >XL</span>
         </a>
         <div class="menu">
             <div><a href="index.html">О конференции</a></div>
@@ -39,308 +48,283 @@
         </div>
     </header>
     
-    <section class="matrix contents_area">
-       <div class="container-fluid">
-           <div class="row">
-               <div class="offset-lg-1 col-lg-10">
-               </div>
-           </div>
-       </div> 
-       
-       <div class="matrix_table">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-1">
-                        <p class="table_time lg-visible">
-                            9 <sup>00</sup>
-                        </p>
-                        <p class="table_time md-visible">
-                            9 <sup>00</sup> - 9 <sup>30</sup>
-                        </p>
-                    </div>
-                    <div class="col-lg-10">
-
-                        <div class="table_light-bg">
-                            <div class="table_header">
-                                <!-- <p class="table_title">Кофе-брейк</p> -->
-                                <p class="table_subtitle">Cборы перед началом семинара, кофе-брейк</p>  
-                            </div>    
-                        </div>  
-
-                    </div>
-                    <div class="col-lg-1">
-                        <p class="table_time lg-visible">
-                            9 <sup>30</sup>
-                        </p>
+    <section class="mentor_heading">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="mentor_heading_text">
+                        <h1>Расписание докладов</h1>
                     </div>
                 </div>
-
-                <div class="row">
-                    <div class="col-lg-10 offset-lg-1">
-                        <div class="table_light-bg">
-                            <!-- 01 -->
-                            <div class="table_card">
-                                <p class="table_card__time">
-                                    9<sup>30</sup> - 10<sup>15</sup>
-                                </p>
-                                <div class="table_card__img">
-                                    <img src="./img/NotAssigned.webp" alt="">
-                                </div>
-                                <div class="table_card__description">
-                                    <div class="table_card__title">
-                                        Как предсказать производительность кода?
-                                    </div>
-                                    <div class="table_card__subtitle">
-                                        Мы выясним, как еще до написания первой строчки кода, сказать даст ли распараллеливание какой-либо положительный эффект, 
-                                        и как этот эффект будет зависеть от разного рода параметров.
-                                        Инструментарий Intel® Advisor (из пакета Intel Parallel Studio XE)
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- 02 -->
-                            <div class="table_card">
-                                <p class="table_card__time">
-                                    10<sup>30</sup> - 11<sup>15</sup>
-                                </p>
-                                <div class="table_card__img">
-                                    <img src="./img/NotAssigned.webp" alt="">
-                                </div>
-                                <div class="table_card__description">
-                                    <div class="table_card__title">
-                                        Анализ производительности и бенчмаркинг
-                                    </div>
-                                    <div class="table_card__subtitle">
-                                        Какая часть кода является узким местом? 
-                                        Удовлетворяет ли наша система требованиям по производительности?
-                                        Если не удовлетворяет, то почему? 
-                                        Ответы на такого рода вопросы ищутся посредством анализа производительности, 
-                                        написания тестов на производительность, нагрузочных тестов и бенчмаркинга.
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- 03 -->
-                            <div class="table_card">
-                                <p class="table_card__time">
-                                    11<sup>30</sup> - 12<sup>15</sup>
-                                </p>
-                                <div class="table_card__img">
-                                    <img src="./img/NotAssigned.webp" alt="">
-                                </div>
-                                <div class="table_card__description">
-                                    <div class="table_card__title">
-                                        <i>Слот пока не занят докладом<br><br></i>
-                                    </div>
-                                    <div class="table_card__subtitle">
-                                        <i>Описания пока нет</i>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- 04 -->
-                            <div class="table_card">
-                                <p class="table_card__time">
-                                    12<sup>30</sup> - 13<sup>15</sup>
-                                </p>
-                                <div class="table_card__img">
-                                    <img src="./img/NotAssigned.webp" alt="">
-                                </div>
-                                <div class="table_card__description">
-                                    <div class="table_card__title">
-                                        <i>Слот пока не занят докладом<br><br></i>
-                                    </div>
-                                    <div class="table_card__subtitle">
-                                        <i>Описания пока нет</i>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-1">
-                        <p class="table_time lg-visible">
-                            13 <sup>15</sup>
-                        </p>
-                        <p class="table_time md-visible">
-                            13 <sup>15</sup> - 14 <sup>15</sup>
-                        </p>
-                    </div>
-                    <div class="col-lg-10">
-
-                        <div class="table_light-bg">
-                            <div class="table_header">
-                                <!-- <p class="table_title">Обед</p> -->
-                                <p class="table_subtitle">Обед, общение по докладам</p>  
-                            </div>    
-                        </div>  
-
-                    </div>
-                    <div class="col-lg-1">
-                        <p class="table_time lg-visible">
-                            14 <sup>15</sup>
-                        </p>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-10 offset-lg-1">
-                        <div class="table_light-bg">
-
-                            <!-- 05 -->
-                            <div class="table_card">
-                                <p class="table_card__time">
-                                    14<sup>15</sup> - 15<sup>00</sup>
-                                </p>
-                                <div class="table_card__img">
-                                    <img src="./img/NotAssigned.webp" alt="">
-                                </div>
-                                <div class="table_card__description">
-                                    <div class="table_card__title">
-                                        <i>Слот пока не занят докладом<br><br></i>
-                                    </div>
-                                    <div class="table_card__subtitle">
-                                        <i>Описания пока нет</i>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- 06 AG -->
-                            <div class="table_card">
-                                <p class="table_card__time">
-                                    15<sup>15</sup> - 16<sup>00</sup>
-                                </p>
-                                <div class="table_card__img">
-                                    <img src="./img/NotAssigned.webp" alt="">
-                                </div>
-                                <div class="table_card__description">
-                                    <div class="table_card__title">
-                                        Стратегии блокировки<br><br><br>
-                                    </div>
-                                    <div class="table_card__subtitle">
-                                        В этом докладе мы по говорим о рисках и проблемах, которые тянут 
-                                        за собой блокировки, а также обсудим различные стратегии для снижения этих рисков. 
-                                        В заключении поговорим о тестировании алгоритмов с блокировками.
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- 07 AG -->
-                            <div class="table_card">
-                                <p class="table_card__time">
-                                    16<sup>15</sup> - 17<sup>00</sup>
-                                </p>
-                                <div class="table_card__img">
-                                    <img src="./img/NotAssigned.webp" alt="">
-                                </div>
-                                <div class="table_card__description">
-                                    <div class="table_card__title">
-                                        Практика неблокирующих алгоритмов<br>
-                                    </div>
-                                    <div class="table_card__subtitle">
-                                        Если мы хотим выжать максимум в масштабируемости, хотим добиться гарантированного 
-                                        прогресса выполнения, то надо смотреть в сторону неблокирующих алгоритмов и структур 
-                                        данных. Поговорим про практику их построения.
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- 08 -->
-                            <div class="table_card">
-                                <p class="table_card__time">
-                                    17<sup>15</sup> - 18<sup>00</sup>
-                                </p>
-                                <div class="table_card__img">
-                                    <img src="./img/NotAssigned.webp" alt="">
-                                </div>
-                                <div class="table_card__description">
-                                    <div class="table_card__title">
-                                        Akka.NET: акторная модель параллелизма<br><br>
-                                    </div>
-                                    <div class="table_card__subtitle">
-                                        Акторная модель позволяет легко разрабатывать многопоточные и 
-                                        распределенные системы не задумываясь о синхронизации и блокировках.
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- 09 -->
-                            <div class="table_card">
-                                <p class="table_card__time">
-                                    18<sup>15</sup> - 19<sup>00</sup>
-                                </p>
-                                <div class="table_card__img">
-                                    <img src="./img/NotAssigned.webp" alt="">
-                                </div>
-                                <div class="table_card__description">
-                                    <div class="table_card__title">
-                                        Rx.NET: как писать код на Rx легко и безопасно?<br><br>
-                                    </div>
-                                    <div class="table_card__subtitle">
-                                        Rx.NET с одной стороны широко известен. С другой - им почему-то мало пользуются. 
-                                        Причин возможно несколько: нет ясности с контекстами синхронизации, полной картины его возможонстей и трудности при отладке. Все эти вопросы мы и попробуем решить. 
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- 10 -->
-                            <div class="table_card">
-                                <p class="table_card__time">
-                                    19<sup>15</sup> - 20<sup>00</sup>
-                                </p>
-                                <div class="table_card__img">
-                                    <img src="./img/NotAssigned.webp" alt="">
-                                </div>
-                                <div class="table_card__description">
-                                    <div class="table_card__title">
-                                        Управление многопоточным кодом при помощи JetBrains RD
-                                    </div>
-                                    <div class="table_card__subtitle">
-                                        Новый production-ready пакет от компании JetBrains позволяет с легкостью 
-                                        управлять временем жизни сущностей. В том числе - в многопоточной среде, 
-                                        позволяя создавать лёгкий в понимании и отладке, код 
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-1">
-                        <p class="table_time lg-visible">
-                            20 <sup>00</sup>
-                        </p>
-                        <p class="table_time md-visible">
-                            20 <sup>00</sup> - 20 <sup>00</sup>
-                        </p>
-                    </div>
-                    <div class="col-lg-10">
-
-                        <div class="table_light-bg">
-                            <div class="table_header">
-                                <p class="table_subtitle">Завершение семинара</p>
-                            </div>    
-                        </div>  
-
-                    </div>
-                    <div class="col-lg-1">
-                        <p class="table_time lg-visible">
-                            20 <sup>00</sup>
-                        </p>
-                    </div>
-                </div>
-
             </div>
-       </div>
+        </div>
     </section>
-    
-    <div class="matrix_bg"></div>
-    <footer >
+
+    <section class="about matrix-container contents_area">
+        <div class="matrix-fixed-container">
+            <div class="container">
+                <p>
+                    Сетка докладов едина как для Москвы, так и для Санкт-Петербурга и состоит из 9 слотов. 
+                    Если прошлый семинар должен был <u>подготовить</u> вас к практике, то в рамках текущего семинара
+                    каждый доклад является практическим. 
+                </p>
+                <p class="d-none d-md-inline">
+                    Помимо возможности поднатореть с личным ментором, существует ещё одна возможность, коренным образом 
+                    отличающая данный семинар от всех предыдущих: наличие домашних заданий по докладам и коллективной работы над ними. 
+                    Надеемся, что этот формат будет вам очень полезен, т.к. закрепит те знания, которые вы приобретёте на самом семинаре.
+                </p>
+                <h1><br></h1>
+            </div>
+            <div class="matrix-rest">
+                <h2>Сборы, кофе-брейк <sup class="matrix-slot-time"><i class="fa fa-clock-o" aria-hidden="true"></i> 09:00</sup></h2>
+            </div>
+            <div class="slots-container">
+                <div class="row">
+
+                    <!-- #1 -->
+                    <div class="col-12 col-md-6 matrix-description">
+                        <div class="matrix-slot">
+                            <div class="matrix-avatar">
+                                <img src="./img/agoncharov.webp">
+                            </div>
+                            <h3>Предсказание производительности при распараллеливании кода</h3>
+                            <p class="matrix-slot-who">Андрей Гончаров</p>
+                            <p class="matrix-slot-time"><i class="fa fa-clock-o" aria-hidden="true"></i> 10:00</p>
+                            <p class="d-none d-sm-inline d-md-none d-lg-inline">
+                                Часто бывает так, что мы думаем стоит ли какой-то кусок задачи реализовывать в виде 
+                                параллельного кода. Это может быть функционал, который мы еще не начинали делать, 
+                                или кусок кода, который был определен как узкое место по производительности.
+                            </p>
+                            <p class="d-inline d-sm-none d-md-inline d-lg-none">
+                                Часто бывает так, что мы думаем стоит ли какой-то кусок задачи реализовывать в виде 
+                                параллельного кода. Это может быть функционал, который мы еще не начинали... 
+                            </p>
+                            <div class="matrix-more">
+                                <a  href="./slots/01.htm" class="btn matrix-more-link">Подробности</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- #2 -->
+                    <div class="col-12 col-md-6 matrix-description">
+                        <div class="matrix-slot">
+                            <div class="matrix-avatar">
+                                <img src="./img/agoncharov.webp">
+                            </div>
+                            <h3>Анализ производительности<br> и бенчмаркинг</h3>
+                            <p class="matrix-slot-who">Андрей Гончаров</p>
+                            <p class="matrix-slot-time"><i class="fa fa-clock-o" aria-hidden="true"></i> 11:00</p>
+                            <p class="d-none d-sm-inline d-md-none d-lg-inline">
+                                Когда у нас уже есть какой-то код, который работает, но работает медленнее чем мы бы хотели, 
+                                то нужно понять, какая часть действительно является узким местом. 
+                                Или другой вопрос: у нас есть не функциональные требования, по производительности. 
+                                Удовлетворяет ли наша система этим требованиям? Если не удовлетворяет, то почему? 
+                                А если залить новые изменения, будет ли система удовлетворять НФР?
+                            </p>
+                            <p class="d-inline d-sm-none d-md-inline d-lg-none">
+                                Когда у нас уже есть какой-то код, который работает, но работает медленнее чем мы бы хотели, 
+                                то нужно понять, какая часть действительно является узким местом. 
+                                Или другой вопрос: у нас есть не функциональные требования, по производи...
+                            </p>
+                            <div class="matrix-more">
+                                <a  href="./slots/02.htm" class="btn matrix-more-link">Подробности</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- #3 -->
+                    <div class="col-12 col-md-6 matrix-description">
+                        <div class="matrix-slot">
+                            <div class="matrix-avatar">
+                                <img src="./img/ssidristij.webp">
+                            </div>
+                            <h3>Название доклада<br> скоро будет опубликовано</h3>
+                            <p class="matrix-slot-who">Станислав Сидристый</p>
+                            <p class="matrix-slot-time"><i class="fa fa-clock-o" aria-hidden="true"></i> 12:00</p>
+                            <p class="d-none d-sm-inline d-md-none d-lg-inline">
+                                Тема доклада пока находится в разработке.
+                            </p>
+                            <p class="d-inline d-sm-none d-md-inline d-lg-none">
+                                Тема доклада пока находится в разработке.
+                            </p>
+                            <div class="matrix-more">
+                                <a  href="#" class="btn matrix-more-link">Подробности</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- #4 -->
+                    <div class="col-12 col-md-6 matrix-description">
+                        <div class="matrix-slot">
+                            <div class="matrix-avatar">
+                                <img src="./img/ssidristij.webp">
+                            </div>
+                            <h3>Название доклада<br> скоро будет опубликовано</h3>
+                            <p class="matrix-slot-who">Станислав Сидристый</p>
+                            <p class="matrix-slot-time"><i class="fa fa-clock-o" aria-hidden="true"></i> 13:00</p>
+                            <p class="d-none d-sm-inline d-md-none d-lg-inline">
+                                Тема доклада пока находится в разработке.
+                            </p>
+                            <p class="d-inline d-sm-none d-md-inline d-lg-none">
+                                Тема доклада пока находится в разработке.
+                            </p>
+                            <div class="matrix-more">
+                                <a  href="#" class="btn matrix-more-link">Подробности</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="matrix-rest">
+                <h2>Обед  <sup class="matrix-slot-time"><i class="fa fa-clock-o" aria-hidden="true"></i> 14:00</sup></h2>
+            </div>
+            <div class="slots-container">
+                <div class="row">
+
+                    <!-- #5 -->
+                    <div class="col-12 col-md-6 matrix-description">
+                        <div class="matrix-slot">
+                            <div class="matrix-avatar">
+                                <img src="./img/ssidristij.webp">
+                            </div>
+                            <h3>Название доклада<br> скоро будет опубликовано</h3>
+                            <p class="matrix-slot-who">Станислав Сидристый</p>
+                            <p class="matrix-slot-time"><i class="fa fa-clock-o" aria-hidden="true"></i> 15:00</p>
+                            <p class="d-none d-sm-inline d-md-none d-lg-inline">
+                                Тема доклада пока находится в разработке.
+                            </p>
+                            <p class="d-inline d-sm-none d-md-inline d-lg-none">
+                                Тема доклада пока находится в разработке.
+                            </p>
+                            <div class="matrix-more">
+                                <a  href="#" class="btn matrix-more-link">Подробности</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- #6 -->
+                    <div class="col-12 col-md-6 matrix-description">
+                        <div class="matrix-slot">
+                            <div class="matrix-avatar">
+                                <img src="./img/agoncharov.webp">
+                            </div>
+                            <h3>Разработка стратегий<br> работы с блокировками</h3>
+                            <p class="matrix-slot-who">Андрей Гончаров</p>
+                            <p class="matrix-slot-time"><i class="fa fa-clock-o" aria-hidden="true"></i> 16:00</p>
+                            <p class="d-none d-sm-inline d-md-none d-lg-inline">
+                                В этом докладе мы по говорим о рисках и проблемах, которые тянут за собой блокировки, 
+                                различных стратегиях для снижения этих рисков и тестировании алгоритмов с блокировками, работающих в различных сценариях.
+                            </p>
+                            <p class="d-inline d-sm-none d-md-inline d-lg-none">
+                                В этом докладе мы по говорим о рисках и проблемах, которые тянут за собой блокировки, 
+                                различных стратегиях для снижения этих рисков и тестировании алгоритмов с блокировками, работающих в различных сценариях.
+                            </p>
+                            <div class="matrix-more">
+                                <a  href="./slots/06.htm" class="btn matrix-more-link">Подробности</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- #7 -->
+                    <div class="col-12 col-md-6 matrix-description">
+                        <div class="matrix-slot">
+                            <div class="matrix-avatar">
+                                <img src="./img/agoncharov.webp">
+                            </div>
+                            <h3>Практика разработки и анализа неблокирующих алгоритмов</h3>
+                            <p class="matrix-slot-who">Андрей Гончаров</p>
+                            <p class="matrix-slot-time"><i class="fa fa-clock-o" aria-hidden="true"></i> 17:00</p>
+                            <p class="d-none d-sm-inline d-md-none d-lg-inline">
+                                Если мы хотим выжать максимум в области масштабируемости, хотим добиться гарантированного 
+                                и предсказуемого прогресса выполнения, необходимо смотреть в сторону неблокирующих алгоритмов 
+                                и структур данных.
+                            </p>
+                            <p class="d-inline d-sm-none d-md-inline d-lg-none">
+                                Если мы хотим выжать максимум в области масштабируемости, хотим добиться гарантированного 
+                                и предсказуемого прогресса выполнения, необходимо смотреть в сторону неблокирующих алгоритмов 
+                                и структур данных.
+                            </p>
+                            <div class="matrix-more">
+                                <a  href="./slots/07.htm" class="btn matrix-more-link">Подробности</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- #8 -->
+                    <div class="col-12 col-md-6 matrix-description">
+                        <div class="matrix-slot">
+                            <div class="matrix-avatar">
+                                <img src="./img/ssidristij.webp">
+                            </div>
+                            <h3>Akka.NET: акторная модель параллелизма</h3>
+                            <p class="matrix-slot-who">Станислав Сидристый</p>
+                            <p class="matrix-slot-time"><i class="fa fa-clock-o" aria-hidden="true"></i> 18:00</p>
+                            <p class="d-none d-sm-inline d-md-none d-lg-inline">
+                                Акторная модель позволяет легко разрабатывать многопоточные и распределенные системы не 
+                                задумываясь о синхронизации и блокировках.
+                            </p>
+                            <p class="d-inline d-sm-none d-md-inline d-lg-none">
+                                Акторная модель позволяет легко разрабатывать многопоточные и распределенные системы не 
+                                задумываясь о синхронизации и блокировках.
+                            </p>
+                            <div class="matrix-more">
+                                <a  href="./slots/08.htm" class="btn matrix-more-link">Подробности</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- #9 -->
+                    <div class="col-12 col-md-6 matrix-description">
+                        <div class="matrix-slot">
+                            <div class="matrix-avatar">
+                                <img src="./img/ssidristij.webp">
+                            </div>
+                            <h3>Rx.NET: как писать код на Rx легко и безопасно?</h3>
+                            <p class="matrix-slot-who">Станислав Сидристый</p>
+                            <p class="matrix-slot-time"><i class="fa fa-clock-o" aria-hidden="true"></i> 19:00</p>
+                            <p class="d-none d-sm-inline d-md-none d-lg-inline">
+                                Rx.NET с одной стороны широко известен. С другой - им почему-то мало пользуются. И причин, возможно, несколько: 
+                                нет ясности с контекстами синхронизации, полной картины его возможностей и огромные трудности при отладке. 
+                                Все эти вопросы мы и попробуем решить.
+                            </p>
+                            <p class="d-inline d-sm-none d-md-inline d-lg-none">
+                                    Rx.NET с одной стороны широко известен. С другой - им почему-то мало пользуются. И причин, возможно, несколько: 
+                                    нет ясности с контекстами синхронизации, полной картины его возможностей и огромные трудности при отладке. 
+                                    Все эти вопросы мы и попробуем решить.
+                            </p>
+                            <div class="matrix-more">
+                                <a  href="./slots/09.htm" class="btn matrix-more-link">Подробности</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- #10 -->
+                    <div class="col-12 col-md-6 matrix-description">
+                        <div class="matrix-slot">
+                            <div class="matrix-avatar">
+                                <img src="./img/ssidristij.webp">
+                            </div>
+                            <h3>Управление многопоточным кодом при помощи JetBrains.Lifetimes</h3>
+                            <p class="matrix-slot-who">Станислав Сидристый</p>
+                            <p class="matrix-slot-time"><i class="fa fa-clock-o" aria-hidden="true"></i> 20:00</p>
+                            <p class="d-none d-sm-inline d-md-none d-lg-inline">
+                                Новый production-ready пакет от компании JetBrains позволяет с легкостью управлять временем жизни сущностей.
+                                В том числе - в многопоточной среде, позволяя создавать лёгкий в понимании и отладке, код.
+                            </p>
+                            <p class="d-inline d-sm-none d-md-inline d-lg-none">
+                                Новый production-ready пакет от компании JetBrains позволяет с легкостью управлять временем жизни сущностей.
+                                В том числе - в многопоточной среде, позволяя создавать лёгкий в понимании и отладке, код.
+                            </p>
+                            <div class="matrix-more">
+                                <a  href="./slots/10.htm" class="btn matrix-more-link">Подробности</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
