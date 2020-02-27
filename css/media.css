@@ -1,3 +1,4 @@
+/* XL */
 @media (min-width: 992px) {
     .hamburger-menu {
         display: none;
@@ -10,7 +11,7 @@
     }
 }
 
-/* -lg- */
+/* LG */
 @media (max-width: 1200px) {
     .table_card {
         max-width: 50%;
@@ -38,6 +39,8 @@
         margin-bottom: 0px;
     }
 }
+
+/* MD */
 
 @media (max-width: 991px) {
     .contents_area {
@@ -206,5 +209,11 @@
     }
     .matrix-rest h2 {
         font-size: 20pt;
+    }
+    .matrix-avatar img {
+        height: 100px;
+    }
+    .matrix-avatar {
+        margin: -70px 0 30px 0;
     }
 }
