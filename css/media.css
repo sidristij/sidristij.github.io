@@ -219,4 +219,7 @@
     .matrix-avatar {
         margin: -70px 0 30px 0;
     }
+    .matrix-more-link {
+        font-size: 12pt;
+    }
 }

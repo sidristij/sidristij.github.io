@@ -55,58 +55,51 @@
     </section>
     <section class="about speaker_about">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-8">
-                    <p class="d-none d-lg-inline-block"><br></p>
-                    <div class="city_d_text">
-                        <div class="breadcrumbs_menu">
-                            <div class="inactive_item"><a href="../">О семинаре</a></div>
-                            <div class="inactive_item">→</div>
-                            <div class="inactive_item"><a href="../matrix.html">Сетка докладов</a></div>
-                            <div class="inactive_item">→</div>
-                            <div class="active_item">10<sup>15</sup> - 11<sup>00</sup></div>
-                        </div>
+        <div class="row">
+            <div class="col-lg-8">
+                <p class="d-none d-lg-inline-block"><br></p>
+                <div class="city_d_text">
+                    <div class="breadcrumbs_menu">
+                        <div class="inactive_item"><a href="../">О семинаре</a></div>
+                        <div class="inactive_item">→</div>
+                        <div class="inactive_item"><a href="../matrix.html">Сетка докладов</a></div>
+                        <div class="inactive_item">→</div>
+                        <div class="active_item">10<sup>30</sup> - 11<sup>15</sup></div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="city_d_text">
-                        <h2><span class="red_brick">#2</span> Анализ производительности и бенчмаркинг</h2>
-                        <p>
-                            Когда у нас уже есть какой-то код, который работает, но работает медленнее чем мы бы хотели, 
-                            то нужно понять, какая часть действительно является узким местом. 
-                            Или другой вопрос: у нас есть не функциональные требования, по производительности. 
-                            Удовлетворяет ли наша система этим требованиям? Если не удовлетворяет, то почему? 
-                            А если залить новые изменения, будет ли система удовлетворять НФР?
-                        </p>
-                        <p>
-                            Ответы на такого рода вопросы и схожие с ними ищутся посредством анализа производительности, 
-                            написания тестов на производительность, нагрузочных тестов и бенчмаркинга.
-                            В данном докладе, мы рассмотрим все эти вопросы на конкретном примере.
-                            Рассмотрим весть процесс анализа, инструменты и пакеты, которые могут помочь разработчику.
-                        </p>
-                        <h2 class="speaker_header">Докладчик</h2>
-                        <div class="container speaker_about_container">
-                            <div class="row">
-                                <div class="col-sm-3 col-12 thumbnail">
-                                    <img src="../img/agoncharov.webp" width="100%">
-                                    <a href="https://t.me/a_cross"><i class="fab fa-telegram"></i> a_cross</a>
-                                </div>
-                                <div class="col-sm-9 col-12 offset-0">
-                                    <h3>Андрей Гончаров</h3>
-                                    <p><strong class="speaker_company">Центр Речевых Технологий</strong></p>
-                                    <p>В промышленной разработке с 2006 года. Начинал с C/C++, но довольно быстро ушел в мир .NET. </p>
-                                    <p>Работал в различных компаниях от стартапов до крупных, вроде Лаборатории Касперского. </p>
-                                    <p>Спектр задач, которые приходилось решать, также довольно широк — от численных расчетов до распределенных систем.</p>
-                                </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="city_d_text">
+                    <h2><span class="red_brick">#2</span> Предсказание производительности при распараллеливании кода</h2>
+                    <p>Часто бывает так, что мы думаем стоит ли какой-то кусок задачи реализовывать в виде параллельного кода. Это может быть функционал, который мы еще не начинали делать, или кусок кода, который был определен как узкое место по производительности.</p>
+                    <p>Думаю, многие сталкивались с ситуацией, когда программист просто берет и пишет код сразу параллельным.</p>
+                    <p>Но, правильно ли это? Что даст параллельная реализация? Приведет ли она к повышению производительности. Хорошо бы ответить на все эти вопросы еще до старта разработки или рефакторинга.</p>
+                    <p>В докладе "Элементы теории производительности" мы поговорим об основных характеристиках параллельных алгоритмов и о чем они говорят. Мы выясним, как еще до написания первой строчки кода, сказать даст ли распараллеливание какой-либо положительный эффект, и как этот эффект будет зависеть от разного рода параметров.</p>
+                    <p>Затем рассмотрим основные приемы, используемые при переходе к параллельным реализациям. </p>
+                    <p>Закончим доклад рассмотрением инструмента Intel® Advisor (из пакета Intel Parallel Studio XE).</p>
+
+                    <h2 class="speaker_header">Докладчик</h2>
+                    <div class="container speaker_about_container">
+                        <div class="row">
+                            <div class="col-sm-3 col-12 thumbnail">
+                                <img src="../img/agoncharov.webp" width="100%">
+                                <a href="https://t.me/a_cross"><i class="fab fa-telegram"></i> a_cross</a>
+                            </div>
+                            <div class="col-sm-9 col-12 offset-0">
+                                <h3>Андрей Гончаров</h3>
+                                <p><strong class="speaker_company">Центр Речевых Технологий</strong></p>
+                                <p>В промышленной разработке с 2006 года. Начинал с C/C++, но довольно быстро ушел в мир .NET. </p>
+                                <p>Работал в различных компаниях от стартапов до крупных, вроде Лаборатории Касперского. </p>
+                                <p>Спектр задач, которые приходилось решать, также довольно широк — от численных расчетов до распределенных систем.</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 d-none d-lg-inline-block speaker-to-watch">
+            </div>
+            <div class="col-lg-4 d-none d-lg-inline-block speaker-to-watch">
 
-                </div>
             </div>
         </div>
         <!-- What is important too?  -->
