@@ -55,98 +55,61 @@
         </div>
     </section>
 
-    <section class="about city_about contents_area">
-        <div class="container matrix-rest">
+    <section class="about matrix-container contents_area">
+        <div class="slots-container">
             <div class="row">
-                <div class="col-lg-10">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-2 matrix-time">
-                                09<sup>00</sup> - 09<sup>30</sup>
-                            </div>
-                            <div class="col-10 matrix-description">
-                                <h2>Сборы перед семинаром</h2>
-                            </div>
-                        </div>
+                <div class="col-6 matrix-description">
+                    <div class="matrix-slot">
+                    <h3>Предсказание производительности при распараллеливании кода</h3>
+                    <p class="matrix-slot-who">Андрей Гончаров</p>
+                    <p class="matrix-slot-time"><i class="fa fa-clock-o" aria-hidden="true"></i> 09:30</p>
+                    <p>
+                        Часто бывает так, что мы думаем стоит ли какой-то кусок задачи реализовывать в виде 
+                        параллельного кода. Это может быть функционал, который мы еще не начинали делать, 
+                        или кусок кода, который был определен как узкое место по производительности.
+                    </p>
+                    <div class="matrix-more">
+                        <a  href="./slots/01.htm" 
+                            class="btn matrix-more-link">
+                          Подробности
+                        </a>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-2 matrix-time">
-                                09<sup>30</sup> - 10<sup>15</sup>
-                            </div>
-                            <div class="col-10 matrix-description">
-                                <h3>Элементы теории производительности</h3>
-                                <p>Часто бывает так, что мы думаем стоит ли какой-то кусок задачи реализовывать в виде параллельного кода. Это может быть функционал, который мы еще не начинали делать, или кусок кода, который был определен как узкое место по производительности.</p>
-                            </div>
-                        </div>
-                    </div>
+            <div class="col-6 matrix-description">
+                    <div class="matrix-slot">
+                        <p>10:30</p>
+                    <h3>Анализ производительности и бенчмаркинг</h3>
+                    <p>
+                        Когда у нас уже есть какой-то код, который работает, но работает медленнее чем мы бы хотели, 
+                        то нужно понять, какая часть действительно является узким местом. 
+                        Или другой вопрос: у нас есть не функциональные требования, по производительности. 
+                        Удовлетворяет ли наша система этим требованиям? Если не удовлетворяет, то почему? 
+                        А если залить новые изменения, будет ли система удовлетворять НФР?
+                    </p>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-10">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-2 matrix-time">
-                                10<sup>30</sup> - 11<sup>15</sup>
-                            </div>
-                            <div class="col-10 matrix-description">
-                                <h3>Анализ производительности и бенчмаркинг</h3>
-                                <p>
-                                    Когда у нас уже есть какой-то код, который работает, но работает медленнее чем мы бы хотели, 
-                                    то нужно понять, какая часть действительно является узким местом. 
-                                    Или другой вопрос: у нас есть не функциональные требования, по производительности. 
-                                    Удовлетворяет ли наша система этим требованиям? Если не удовлетворяет, то почему? 
-                                    А если залить новые изменения, будет ли система удовлетворять НФР?
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-6 matrix-description">
+                    <div class="matrix-slot">
+                        <h3>Стратегии блокировки</h3>
+                    <p>Когда у нас есть параллельный код, то возникает вопрос о синхронизации потоков. Как это делать? Большинство программистов используют разного рода блокировки, примитивы синхронизации и стратегии. Блокировки несут с собой риски.</p>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-10">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-2 matrix-time">
-                                11<sup>30</sup> - 12<sup>15</sup>
-                            </div>
-                            <div class="col-10 matrix-description">
-                                <h3>Стратегии блокировки</h3>
-                                <p>Когда у нас есть параллельный код, то возникает вопрос о синхронизации потоков. Как это делать? Большинство программистов используют разного рода блокировки, примитивы синхронизации и стратегии. Блокировки несут с собой риски.</p>
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-6 matrix-description">
+                    <div class="matrix-slot">
+                        <h3>Неблокирующие алгоритмы</h3>
+                    <p>Блокировки — наиболее частый способ синхронизации данных. Но не единственный. Если мы хотим выжать максимум в масштабируемости, хотим добиться гарантированного прогресса выполнения, то надо смотреть в сторону неблокирующих алгоритмов и структур данных.</p>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-10">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-2 matrix-time">
-                                12<sup>30</sup> - 13<sup>15</sup>
-                            </div>
-                            <div class="col-10 matrix-description">
-                                <h3>Неблокирующие алгоритмы</h3>
-                                <p>Блокировки — наиболее частый способ синхронизации данных. Но не единственный. Если мы хотим выжать максимум в масштабируемости, хотим добиться гарантированного прогресса выполнения, то надо смотреть в сторону неблокирующих алгоритмов и структур данных.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
         <div class="container matrix-rest">
-            <div class="row">
+            <div class="row matrix-row">
                 <div class="col-lg-10">
                     <div class="container">
                         <div class="row">
                             <div class="col-2 matrix-time">
-                                13<sup>15</sup> - 14<sup>15</sup>
+                                13:15
                             </div>
                             <div class="col-10 matrix-description">
                                 <h2>Обед, общение по докладам</h2>
@@ -157,12 +120,12 @@
             </div>
         </div>
         <div class="container">
-            <div class="row">
+            <div class="row matrix-row">
                 <div class="col-lg-10">
                     <div class="container">
                         <div class="row">
                             <div class="col-2 matrix-time">
-                                14<sup>15</sup> - 15<sup>00</sup>
+                                14:15
                             </div>
                             <div class="col-10 matrix-description">
                                 <h3>Элементы теории производительности</h3>
@@ -172,12 +135,12 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row matrix-row">
                 <div class="col-lg-10">
                     <div class="container">
                         <div class="row">
                             <div class="col-2 matrix-time">
-                                15<sup>15</sup> - 16<sup>00</sup>
+                                15:15
                             </div>
                             <div class="col-10 matrix-description">
                                 <h3>Анализ производительности и бенчмаркинг</h3>
@@ -193,12 +156,12 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row matrix-row">
                 <div class="col-lg-10">
                     <div class="container">
                         <div class="row">
                             <div class="col-2 matrix-time">
-                                16<sup>15</sup> - 17<sup>00</sup>
+                                16:15
                             </div>
                             <div class="col-10 matrix-description">
                                 <h3>Стратегии блокировки</h3>
@@ -208,12 +171,12 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row matrix-row">
                 <div class="col-lg-10">
                     <div class="container">
                         <div class="row">
                             <div class="col-2 matrix-time">
-                                17<sup>15</sup> - 18<sup>00</sup>
+                                17:15
                             </div>
                             <div class="col-10 matrix-description">
                                 <h3>Неблокирующие алгоритмы</h3>
@@ -223,12 +186,12 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row matrix-row">
                 <div class="col-lg-10">
                     <div class="container">
                         <div class="row">
                             <div class="col-2 matrix-time">
-                                18<sup>15</sup> - 19<sup>00</sup>
+                                18:15
                             </div>
                             <div class="col-10 matrix-description">
                                 <h3>Стратегии блокировки</h3>
@@ -238,12 +201,12 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row matrix-row">
                 <div class="col-lg-10">
                     <div class="container">
                         <div class="row">
                             <div class="col-2 matrix-time">
-                                19<sup>15</sup> - 20<sup>00</sup>
+                                19:15
                             </div>
                             <div class="col-10 matrix-description">
                                 <h3>Неблокирующие алгоритмы</h3>

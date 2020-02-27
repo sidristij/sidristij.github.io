@@ -131,9 +131,12 @@
   .fa-github-square:before {
     content: "\f092"; }
   
-    .fa-skype:before {
+  .fa-skype:before {
     content: "\f17e"; }
   
+  .fa-clock-o:before {
+    content: "\f017"; }
+    
   .fa-slack:before {
     content: "\f198"; }
   
