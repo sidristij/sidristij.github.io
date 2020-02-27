@@ -927,6 +927,8 @@ section.speaker_about {
 h2.speaker_header {
     margin-top: 40px;
 }
+
+/* Matrix */
 .matrix-time {
     font-size: 14pt;
     font-weight: 600;
@@ -948,6 +950,7 @@ h2.speaker_header {
     border-style: solid;
     border-width: 1px;
     padding: 50px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.03);
 }
 .slots-container {
     margin: 50px;

@@ -88,7 +88,7 @@
     }
 }
 
-/* Smartphone horizontal */
+/* Smartphone horizontal - SM */
 @media (max-width: 767px) {
     ul {
         margin: 0;
@@ -130,7 +130,7 @@
     }    
 }
 
-/* Smartphone */
+/* Smartphone - XS */
 @media (max-width: 575px) {
     ul {
         margin: 0;
@@ -171,10 +171,40 @@
     }
 
     .mentor_heading h1 {
-        font-size: 24pt;
+        font-size: 20pt;
     }
 
     .about_right p.about_card__title {
         font-size: 24pt;
+    }
+
+    /* Matrix */
+    .matrix-slot h3 {
+        font-size: 14pt;
+    }
+    .matrix-slot {
+        padding: 25px;
+        box-shadow: none;
+    }
+    .slots-container {
+        margin: 20px;
+    }
+    .matrix-slot-who {
+        font-size: 14pt; 
+        font-weight: 500;
+        color: #333333;
+        text-align: center;
+    }
+    .matrix-more {
+        margin-top: 25px;
+    }
+    .matrix-slot p {
+        font-size: 12pt;
+    }
+    .matrix-description {
+        margin-bottom: 30px;
+    }
+    .matrix-rest h2 {
+        font-size: 20pt;
     }
 }
