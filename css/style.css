@@ -9,7 +9,7 @@ body {
     margin: 0px;
 }
 
-p, li, h1, h2, h3 {
+p, a, span, li, h1, h2, h3 {
     font-family: 'Gotham Pro','Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
 }
 
@@ -973,6 +973,9 @@ h2.speaker_header {
     align-self: flex-end;
     justify-content: center;
     width: 100%;
+}
+.btn:focus {
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.3);
 }
 .matrix-more-link {
     border-color: #0056b3;
