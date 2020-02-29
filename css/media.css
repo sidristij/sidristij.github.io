@@ -9,6 +9,14 @@
     .about_right p.about_card__title {
         font-size: 18pt;
     }
+    .matrix-slot h3 {
+        vertical-align: middle;
+        margin: 0;
+        display: table-cell;
+    }
+    .matrix-fixed-container p {
+        font-size: 13pt;
+    }
 }
 
 /* LG */
@@ -86,11 +94,22 @@
     .register {
         padding: 0;
     }
+    /* matrix */
     section.speaker_about {
         margin-bottom: 0px;
     }
-    .matrix-fixed-container {
-        margin-top:25px;
+    .matrix-avatar img {
+        height: 125px;
+    }
+    .matrix-slot h3 {
+        font-size: 13pt;
+        height: 5rem;
+    }
+    .matrix-slot p {
+        font-size: 12pt;
+    }
+    .matrix-more-link {
+        font-size: 13pt;
     }
 }
 
@@ -134,6 +153,25 @@
     .footer_wrap {
         margin: 10px;
     }    
+
+    /* matrix */
+    .matrix-avatar img {
+        height: 150px;
+    }
+    .matrix-slot h3 {
+        font-size: 18pt;
+        height: auto;
+        margin: 15px 0;
+    }
+    .matrix-slot p {
+        font-size: 13   pt;
+    }
+    .matrix-more-link {
+        font-size: 13pt;
+    }
+    .slots-container {
+        margin: auto 80px;
+    }
 }
 
 /* Smartphone - XS */

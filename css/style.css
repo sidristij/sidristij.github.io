@@ -886,7 +886,7 @@ footer {
 
 /* Spakers about */
 .speaker_about h2 {
-    margin: 20px 0 15px 0;
+    margin: 35px 0 35px 0;
 }
 
 .speaker_about h3 {
@@ -1021,7 +1021,7 @@ h2.speaker_header {
 }
 .matrix-fixed-container {
     max-width: 1200px;
-    margin: auto;
+    margin: 30px auto auto auto;
 }
 
 @font-face {
