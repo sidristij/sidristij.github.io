@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html><head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>CLRium #7: Практика работы с многопоточным кодом</title>
+    <meta charset="utf-8">
+    <meta property="og:image" content="./img/thumbnail.webp" />
+    <link rel="stylesheet" href="./css/min.css">
+    <link rel="shortcut icon" href="./img/favicon-2.png" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <header class="header fixed">
+        <a href="./">
+            <img class="conflogo" src="./img/logo-w-noindex.svg"/> 
+        </a>
+        <div class="menu">
+            <div><a href="index.html">О конференции</a></div>
+            <div><a href="mentor.html">Ментор</a></div>
+            <div><a href="practice.html">Практика</a></div>
+            <div><a href="matrix.html">Доклады</a></div>
+            <a href="register.html" class="register_button">РЕГИСТРАЦИЯ</a>
+        </div>
+
+        <!-- mobile-menu -->
+
+        <div class="hamburger-menu">
+            <input id="menu__toggle" type="checkbox" />
+            <label class="menu__btn" for="menu__toggle">
+              <span></span>
+            </label>
+        
+            <ul class="menu__box">
+                <li><a class="menu__item" href="index.html">О семинаре</a></li>
+                <li><a class="menu__item" href="mentor.html">Ментор</a></li>
+                <li><a class="menu__item" href="matrix.html">Доклады</a></li>
+                <li><a class="menu__item" href="practice.html">Практика</a></li>
+                <li><a class="menu__item" href="register.html">Регистрация</a></li>
+            </ul>
+        </div>
+    </header>
+    <section class="mentor_heading">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="mentor_heading_text">
+                        <h1>Письмо работодателю</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="about city_about contents_area">
+        <div class="container">
+            <div class="row about_wrap">
+                <div class="col-lg-8">
+                    <div class="mentor_d_text">
+                        <p>
+                            Добрый день,
+                        </p>
+                        <p>
+                            Юрий Иванович, сегодня я хотел бы обратиться к Вам с небольшой просьбой. 
+                            В нашем городе проходит очень важный семинар, который мне хотелось бы посетить. 
+                            Тема семинара коррелирует с нашими задачами и сильно поможет в их решении: это многопоточка и 
+                            конкурентность. У меня, как и у каждого работника много задач как на работе, так и дома. 
+                            И поэтому очень сложно выкроить время на саморазвитие: дома хочется всё-таки заниматься 
+                            задачами жизненными, а на работе — работой. Поэтому наличие вот такого семинара — это хорошая 
+                            возможность выкроить время на то, чтобы выслушать и воспользоваться материалом, который кто-то 
+                            за тебя разжевал и рассказал только самое важное.
+                        </p>
+                        <p>
+                            Семинар длится один день+выдают задачки на дом: 18 апреля в Санкт-Петербурге и 16 мая - в Москве. 
+                            Но, с одной стороны материал который будет выдан за один день при обычном изучении по множеству источников, 
+                            отнял бы как минимум месяц, а с другой, даты семинара выбраны довольно удачно: в эти даты по проекту ничего срочного 
+                            не запланировано. 
+                        </p>
+                        <p>
+                            Есть его анонс на Хабре: <a href="https://habr.com/ru/company/clrium/blog/485214/">https://habr.com/ru/company/clrium/blog/485214/</a>
+                            И сам семинар: <a href="https://clrium.ru">CLRium</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4 d-none d-lg-block">
+                    <!-- Begin Mailchimp Signup Form -->
+                    <div id="mc_embed_signup">
+                        <h2>Электровестник</h2>
+                        <form action="https://clrium.us12.list-manage.com/subscribe/post?u=9c8336f33d998897f27a4f7c1&amp;id=b367ad585d" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                            <div class="mc-field-group">
+                                <label for="mce-EMAIL">Электропочта<span class="asterisk">*</span></label>
+                                <input type="email" value=""  name="EMAIL" class="required email form__t" id="mce-EMAIL">
+                            </div>
+                            <div id="mergeRow-gdpr" class="mergeRow gdpr-mergeRow content__gdprBlock mc-field-group">
+                                <div class="content__gdpr">
+                                    <fieldset class="mc_fieldset gdprRequired mc-field-group" name="interestgroup_field">
+                                    <label class="checkbox subfield" for="gdpr_54249"><input type="checkbox" id="gdpr_54249" name="gdpr[54249]" value="Y" class="av-checkbox gdpr"><span>Я разрешаю обработку персональных данных</span> </label>
+                                    </fieldset>                                                
+                                </div>
+                                <div id="mce-responses" class="clear">
+                                    <div class="response" id="mce-error-response" style="display:none"></div>
+                                    <div class="response" id="mce-success-response" style="display:none"></div>
+                                </div>
+                                
+                                <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                                <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_9c8336f33d998897f27a4f7c1_b367ad585d" tabindex="-1" value=""></div>
+                                <div class="clear"><input type="submit" value="Подписаться" name="subscribe" id="mc-embedded-subscribe" class="button form__b"></div>
+                                </div>
+                        </form>
+                    </div>
+                    <!-- Begin Mailchimp Signup Form -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="footer_wrap">
+                        <img src="./img/logo-w-noindex.svg">
+                        <p>
+                            <a class="footer-link" target="_blank" href="mailto:sidristij@clrium.ru"><i class="far fa-envelope" aria-hidden="true"></i></a>
+                            <a class="footer-link" target="_blank" href="https://vk.com/clrium"><i class="fab fa-vk" aria-hidden="true"></i></a>
+                            <a class="footer-link" target="_blank" href="https://youtube.com/clrium"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+                            <a class="footer-link" target="_blank" href="https://github.com/clrium"><i class="fab fa-github" aria-hidden="true"></i></a>
+                            <a class="footer-link" target="_blank" href="skype:stanislav.sidristyi"><i class="fab fa-skype" aria-hidden="true"></i></a>
+                            <a class="footer-link" target="_blank" href="https://t.me/clrium_group"><i class="fab fa-telegram" aria-hidden="true"></i></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="js/min.js"></script>
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" async>
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+        ym(25102367, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/25102367" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+</body>
+</html>
