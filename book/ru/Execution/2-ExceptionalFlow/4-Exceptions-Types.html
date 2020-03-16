@@ -1,0 +1,761 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.NET Platform Architecture</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <style>
+        body {
+    padding: 60px 60px 60px 100px;
+}
+
+p, li {
+    margin: 0 0 14px;
+    font-family: PF Regal,PF Regal Text Pro,Georgia,serif;
+    font-size: 20px;
+    line-height: 32px;
+}
+
+ol, ul {
+    padding-left: 35px;
+    margin-top: 1.1rem;
+    margin-bottom: 1.1rem;
+}
+
+ol li {
+    padding-left: 10px;	
+}
+
+ul li {
+    padding-left: 5px;	
+}
+
+code, .lang-csharp span, .lang-csharp pre {
+    font-family: JB Mono, monospace !important;
+}
+
+.lang-csharp {
+    padding: 4px 0px 14px 0px;
+}
+
+
+.lang-csharp > div {
+    border-left-color: #eee;
+    border-left-style: dotted;
+    border-left-width: 3px;
+    padding-left: 25px;
+}
+
+code {
+    font-size: 14px;
+    border: gainsboro;
+    border-width: 1px;
+    border-style: solid;
+    padding: 2px;
+    color: darkslateblue;
+}
+
+.lang-csharp span, .lang-csharp pre {
+    font-size: 13px;
+    line-height: 20px;
+}
+
+p a {
+    text-decoration: none;
+    color: inherit;
+    box-shadow: inset 0 -1px #b88b59;
+}
+
+p img {
+    width: 95%;
+}
+
+img < p {
+    text-align: center;
+}
+
+blockquote p {
+    margin: 16px 0;
+    padding: 12px 12px 13px;
+    border: 1px solid rgba(0,0,0,.08);
+    border-radius: 8px;
+    background: #fff8c4;
+    font-family: Proxima Nova,Arial,Helvetica Neue,sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+blockquote p code {
+    font-family: consolas, monospace;
+    font-size: 17px;
+    background-color: aliceblue;
+    padding: 4px 6px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+}
+
+h1 {
+    font-size: 38px;
+    font-family: PF Regal,PF Regal Text Pro,Georgia,serif;
+    font-weight: 400;
+    margin: 40px 0 10px 0;
+}
+
+h1 b {
+    font-family: Proxima Nova,Arial,Helvetica Neue,sans-serif;
+    font-weight: 700;
+    font-size: 37px;
+    line-height: 42px;
+}
+
+h2 {
+    margin-top: 35px;
+    margin-bottom: 10px;
+    font-family: Proxima Nova,Arial,Helvetica Neue,sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+    border-bottom-color: aliceblue;
+    border-bottom-style: solid;
+    padding-bottom: 5px;
+}
+
+h3 {
+    margin: 30px 0 10px 0;
+    border-bottom-color: azure;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    font-size: 17pt;
+    font-weight: 300;
+}
+
+
+// Fonts
+@font-face {
+    font-family: 'JB Mono';
+    src: local('JetBrains Mono'),
+    url('../../../res/fonts/woff2/JetBrainsMono-Italic.woff2') format('woff2'),
+    url('../../../res/fonts/woff/JetBrainsMono-Italic.woff') format('woff'),
+    url('../../../res/fonts/ttf/JetBrainsMono-Italic.ttf') format('truetype');
+    font-weight: 400;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'JB Mono';
+    src: local('JetBrains Mono'),
+    url('../../../res/fonts/woff2/JetBrainsMono-Regular.woff2') format('woff2'),
+    url('../../../res/fonts/woff/JetBrainsMono-Regular.woff') format('woff'),
+    url('../../../res/fonts/ttf/JetBrainsMono-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'JB Mono';
+    src: local('JetBrains Mono'),
+    url('../../../res/fonts/woff2/JetBrainsMono-Medium-Italic.woff2') format('woff2'),
+    url('../../../res/fonts/woff/JetBrainsMono-Medium-Italic.woff') format('woff'),
+    url('../../../res/fonts/ttf/JetBrainsMono-Medium-Italic.ttf') format('truetype');
+    font-weight: 600;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'JB Mono';
+    src: local('JetBrains Mono'),
+    url('../../../res/fonts/woff2/JetBrainsMono-Medium.woff2') format('woff2'),
+    url('../../../res/fonts/woff/JetBrainsMono-Medium.woff') format('woff'),
+    url('../../../res/fonts/ttf/JetBrainsMono-Medium.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'PF Regal Text Pro';
+    src: local('PF Regal Text Pro RegularA'), local('PF-Regal-Text-Pro-RegularA'),
+    url('../../../res/fonts/woff2/PFRegalTextPro-RegularA.woff2') format('woff2'),
+    url('../../../res/fonts/woff/PFRegalTextPro-RegularA.woff') format('woff'),
+    url('../../../res/fonts/ttf/PFRegalTextPro-RegularA.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'PF Regal Text Pro';
+    src: local('PF Regal Text Pro RegularB'), local('PF-Regal-Text-Pro-RegularB'),
+    url('../../../res/fonts/woff2/PFRegalTextPro-RegularB.woff2') format('woff2'),
+    url('../../../res/fonts/woff/PFRegalTextPro-RegularB.woff') format('woff'),
+    url('../../../res/fonts/ttf/PFRegalTextPro-RegularB.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'PF Regal Text Pro';
+    src: local('PF Regal Text Pro RegularB Italic'), local('PF-Regal-Text-Pro-RegularB-Italic'),
+    url('../../../res/fonts/woff2/PFRegalTextPro-RegularBItalic.woff2') format('woff2'),
+    url('../../../res/fonts/woff/PFRegalTextPro-RegularBItalic.woff') format('woff'),
+    url('../../../res/fonts/ttf/PFRegalTextPro-RegularBItalic.ttf') format('truetype');
+    font-weight: 600;
+    font-style: italic;
+}
+  
+    </style>
+
+<div style="margin:auto; width:100%;">
+<div style="width:1000px;">
+    <h3 id="clr-exceptions">CLR Exceptions</h3>
+<blockquote>
+<p><a href="https://github.com/sidristij/dotnetbook/issues/51">Ссылка на обсуждение</a></p>
+</blockquote>
+<p>Существует ряд исключительных ситуаций, которые скажем так... Несколько более исключительны, чем другие. Причем если попытаться их классифицировать, то, как и было сказано в самом начале главы, есть исключения родом из самого .NET приложения, а есть исключения родом из unsafe мира. Их в свою очередь можно разделить на две подкатегории: иcключительные ситуации ядра CLR (которое по своей сути - unsafe) и любой unsafe код внешних библиотек.</p>
+<p>[todo]</p>
+<h4 id="threadabortexception">ThreadAbortException</h4>
+<p>Вообще, это может показаться не очевидным, но существует четыре типа Thread Abort.</p>
+<ul>
+<li>Грубый вариант ThreadAbort, который, отрабатывая, не может быть никак остановлен и который не запускает обработчиков исключительных ситуаций вообще включая секции <code>finally</code></li>
+<li>Вызов метода Thread.Abort() на текущем потоке</li>
+<li>Асинхронное исключение ThreadAbortException, вызванное из другого потока</li>
+<li>Если во время выгрузки AppDomain существуют потоки, в рамках которых запущены методы, скомпилированные для этого домена, будет произведён ThreadAbort тех потоков, в которых эти методы запущены</li>
+</ul>
+<blockquote>
+<p>Стоит заметить, что ThreadAbortException довольно часто используется в <em>большом</em> .NET Framework, однако его не существует на CoreCLR, .NET Core или же под Windows 8 &quot;Modern app profile&quot;. Попробуем узнать, почему.</p>
+</blockquote>
+<p>Итак, если мы имеем дело с не принципиальным типом обрыва потока, когда мы ещё можем с ним что-то сделать (т.е. второй, третий и четвёртый вариант), виртуальная машина при возникновении такого исключения начинает идти по всем обработчикам исключительных ситуаций и искать как обычно те, тип исключения которых является тем, что было выброшено либо более базовым. В нашем случае это три типа: <code>ThreadAbortException</code>, <code>Exception</code> и <code>object</code> (помним что Exception - это по своей сути - хранилище данных и тип исключения может быть любым. Даже <code>int</code>). Отрабатывая <em>все</em> подходящие <code>catch</code> блоки виртуальная машина пробрасыват <code>ThreadAbortException</code> дальше по цепочке обработки исключений попутно входя во все <code>finally</code> блоки. В целом, ситуации в двух примерах, описанных ниже абсолютно одинаковые:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">var</span> thread = <span style="color:Blue;">new</span> Thread(() =&gt;
+{
+    <span style="color:Blue;">try</span> {
+        <span style="color:Green;">// ...</span>
+    } <span style="color:Blue;">catch</span> (Exception ex)
+    {
+        <span style="color:Green;">// ...</span>
+    }
+});
+thread.Start();
+<span style="color:Green;">//...</span>
+thread.Abort();
+
+<span style="color:Blue;">var</span> thread = <span style="color:Blue;">new</span> Thread(() =&gt;
+{
+    <span style="color:Blue;">try</span> {
+        <span style="color:Green;">// ...</span>
+    } <span style="color:Blue;">catch</span> (Exception ex)
+    {
+        <span style="color:Green;">// ...</span>
+        <span style="color:Blue;">if</span>(ex <span style="color:Blue;">is</span> ThreadAbortException)
+        {
+            <span style="color:Blue;">throw</span>;
+        }
+    }
+});
+thread.Start();
+<span style="color:Green;">//...</span>
+thread.Abort();
+</pre></div>
+</div>
+<p>Конечно же, всегда возникнет ситуация, когда возникающий ThreadAbort может быть нами вполне ожидаем. Тогда может возникнуть понятное желание его всё-таки обработать. Как раз для таких случаев был разработан и открыт метод <code>Thread.ResetAbort()</code>, который делает именно то, что нам нужно: останавливает сквозной проброс исключения через всю цепочку обработчиков, делая его обработанным:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">void</span> Main()
+{
+    <span style="color:Blue;">var</span> barrier = <span style="color:Blue;">new</span> Barrier(2);
+
+    <span style="color:Blue;">var</span> thread = <span style="color:Blue;">new</span> Thread(() =&gt;
+    {
+        <span style="color:Blue;">try</span> {
+            barrier.SignalAndWait();  <span style="color:Green;">// Breakpoint #1</span>
+            Thread.Sleep(TimeSpan.FromSeconds(30));
+        }
+        <span style="color:Blue;">catch</span> (ThreadAbortException exception)
+        {
+            <span style="color:#A31515;">&quot;Resetting abort&quot;</span>.Dump();
+            Thread.ResetAbort();
+        }
+
+        <span style="color:#A31515;">&quot;Caught successfully&quot;</span>.Dump();
+        barrier.SignalAndWait();     <span style="color:Green;">// Breakpoint #2</span>
+    });
+
+    thread.Start();
+    barrier.SignalAndWait();         <span style="color:Green;">// Breakpoint #1</span>
+
+    thread.Abort();
+    barrier.SignalAndWait();         <span style="color:Green;">// Breakpoint #2</span>
+}
+
+Output:
+Resetting abort
+Catched successfully
+</pre></div>
+</div>
+<p>Однако реально ли стоит этим пользоваться? И стоит ли обижаться на разработчиков CoreCLR что там этот код попросту выпилен? Представьте что вы - пользователь кода, который по вашему мнению &quot;повис&quot; и у вас возникло непреодолимое желание вызвать для него <code>ThreadAbortException</code>. Когда вы хотите оборвать жизнь потока все чего вы хотите - чтобы он действительно завершил свою работу. Мало того, редкий алгоритм просто обрывает поток и бросает его, уходя к своим делам. Обычно внешний алгоритм решает дождаться корректного завершения операций. Или же наоборот: может решить, что поток более уже ничего делать не будет, декрементирует некие внутренние счётчики и более не будет завязываться на то, что есть какая-то многопоточная обработка какого-либо кода. Тут, в общем, не скажешь, что хуже. Я даже так вам скажу: отработав много лет программистом я до сих пор не могу вам дать прекрасный способ его вызова и обработки. Сами посудите: вы бросаете <code>ThreadAbort</code> не <em>прямо сейчас</em> а в любом случае спустя некоторое время после осознания безвыходности ситуации. Т.е. вы можете как попасть по обработчику <code>ThreadAbortException</code>, так и промахнуться мимо него: &quot;зависший код&quot; мог оказаться вовсе не зависшим, а попросту долго работающим. И как раз в тот момент, когда вы хотели оборвать его жизнь, он мог вырваться из ожидания и корректно продолжить работу. Т.е. без лишней лирики выйти из блока <code>try-catch(ThreadAbortException) { Thread.ResetAbort(); }</code>. Что мы получим? Оборванный поток, который ни в чем не виноват. Шла уборщица, выдернула провод, сеть пропала. Метод ожидал таймаута, уборщица вернула провод, все заработало, но ваш контролирующий код не дождался и убил поток. Хорошо? Нет. Как-то можно защититься? Нет. Но вернёмся к навязчивой идее легализации <code>Thread.Abort()</code>: мы кинули кувалдой в поток и ожидаем что он с вероятностью 100% оборвётся, но этого может не произойти. Во-первых, становится не понятно как его оборвать в таком случае. Ведь тут все может быть намного сложнее: в повисшем потоке может быть такая логика, которая перехватывает <code>ThreadAbortException</code>, останавливает его при помощи <code>ResetAbort</code>, однако продолжает висеть из-за сломанной логики. Что тогда? Делать безусловный <code>thread.Interrupt()</code>? Попахивает попыткой обойти ошибку в логике программы грубыми методами. Плюс, я вам гарантирую что у вас поплывут утечки: <code>thread.Interrupt()</code> не будет заниматься вызовом <code>catch</code> и <code>finally</code>, а это значит что при всем опыте и сноровке очистить ресурсы вы не сможете: ваш поток просто исчезнет, а находясь в соседнем потоке вы можете не знать ссылок на все ресурсы, которые были заняты умирающим потоком. Также прошу заметить что в случае промаха <code>ThreadAbortException</code> мимо <code>catch(ThreadAbortException) { Thread.ResetAbort(); }</code> у вас точно также потекут ресурсы.</p>
+<p>После того что вы прочитали чуть выше я надеюсь, вы остались в некотором состоянии запутанности и желания перечитать абзац. И это будет совершенно правильная мысль: это будет доказательством того, что пользоваться <code>Thread.Abort()</code> попросту нельзя. Как и нельзя пользоваться <code>thread.Interrupt();</code>. Оба метода приводят к неконтролируемому поведению вашего приложения. По своей сути они нарушают принцип целостности: основной принцип .NET Framework.</p>
+<p>Однако, чтобы понять для каких целей этот метод введён в эксплуатацию достаточно посмотреть исходные коды .NET Framework и найти места использования <code>Thread.ResetAbort()</code>. Ведь именно его наличие по сути легализует <code>thread.Abort()</code>.</p>
+<p><strong>Класс ISAPIRuntime</strong> <a href="https://referencesource.microsoft.com/#System.Web/Hosting/ISAPIRuntime.cs,192">ISAPIRuntime.cs</a></p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">try</span> {
+
+    <span style="color:Green;">// ...</span>
+
+}
+<span style="color:Blue;">catch</span>(Exception e) {
+    <span style="color:Blue;">try</span> {
+        WebBaseEvent.RaiseRuntimeError(e, <span style="color:Blue;">this</span>);
+    } <span style="color:Blue;">catch</span> {}
+
+    <span style="color:Green;">// Have we called HSE_REQ_DONE_WITH_SESSION?  If so, don&#39;t re-throw.</span>
+    <span style="color:Blue;">if</span> (wr != <span style="color:Blue;">null</span> &amp;&amp; wr.Ecb == IntPtr.Zero) {
+        <span style="color:Blue;">if</span> (pHttpCompletion != IntPtr.Zero) {
+            UnsafeNativeMethods.SetDoneWithSessionCalled(pHttpCompletion);
+        }
+        <span style="color:Green;">// if this is a thread abort exception, cancel the abort</span>
+        <span style="color:Blue;">if</span> (e <span style="color:Blue;">is</span> ThreadAbortException) {
+            Thread.ResetAbort();
+        }
+        <span style="color:Green;">// IMPORTANT: if this thread is being aborted because of an AppDomain.Unload,</span>
+        <span style="color:Green;">// the CLR will still throw an AppDomainUnloadedException. The native caller</span>
+        <span style="color:Green;">// must special case COR_E_APPDOMAINUNLOADED(0x80131014) and not</span>
+        <span style="color:Green;">// call HSE_REQ_DONE_WITH_SESSION more than once.</span>
+        <span style="color:Blue;">return</span> 0;
+    }
+
+    <span style="color:Green;">// re-throw if we have not called HSE_REQ_DONE_WITH_SESSION</span>
+    <span style="color:Blue;">throw</span>;
+}
+</pre></div>
+</div>
+<p>В данном примере происходит вызов некоторого внешнего кода и если тот был завершён не корректно: с <code>ThreadAbortException</code>, то при определённых условиях помечаем поток как более не прерываемый. Т.е. по сути обрабатываем <code>ThreadAbort</code>. Почему в данном конкретно случае мы обрываем <code>Thread.Abort</code>? Потому что в данном случае мы имеем дело с серверным кодом, а он в свою очередь вне зависимости от наших ошибок вернуть корректные коды ошибок вызывающей стороне. Обрыв потока привёл бы к тому что сервер не смог бы вернуть нужный код ошибки пользователю, а это совершенно не правильно. Также оставлен комментарий о <code>Thread.Abort()</code> во время <code>AppDomin.Unload()</code>, что является экстремальной ситуацией для ThreadAbort поскольку такой процесс не остановить и даже если вы сделаете <code>Thread.ResetAbort</code>. Это хоть и остановит сам Abortion, но не остановит выгрузку потока с доменом, в котором он находится: поток же не может исполнять инструкции кода, загруженного в домен, который отгружен.</p>
+<p><strong>Класс HttpContext</strong> <a href="https://referencesource.microsoft.com/#System.Web/HttpContext.cs,1864">HttpContext.cs</a></p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">internal</span> <span style="color:Blue;">void</span> InvokeCancellableCallback(WaitCallback callback, Object state) {
+    <span style="color:Green;">// ...</span>
+ 
+    <span style="color:Blue;">try</span> {
+        BeginCancellablePeriod();  <span style="color:Green;">// request can be cancelled from this point</span>
+        <span style="color:Blue;">try</span> {
+            callback(state);
+        }
+        <span style="color:Blue;">finally</span> {
+            EndCancellablePeriod();  <span style="color:Green;">// request can be cancelled until this point</span>
+        }
+        WaitForExceptionIfCancelled();  <span style="color:Green;">// wait outside of finally</span>
+    }
+    <span style="color:Blue;">catch</span> (ThreadAbortException e) {
+        <span style="color:Blue;">if</span> (e.ExceptionState != <span style="color:Blue;">null</span> &amp;&amp;
+            e.ExceptionState <span style="color:Blue;">is</span> HttpApplication.CancelModuleException &amp;&amp;
+            ((HttpApplication.CancelModuleException)e.ExceptionState).Timeout) {
+
+            Thread.ResetAbort();
+            PerfCounters.IncrementCounter(AppPerfCounter.REQUESTS_TIMED_OUT);
+
+            <span style="color:Blue;">throw</span> <span style="color:Blue;">new</span> HttpException(SR.GetString(SR.Request_timed_out),
+                                <span style="color:Blue;">null</span>, WebEventCodes.RuntimeErrorRequestAbort);
+        }
+    }
+}
+</pre></div>
+</div>
+<p>Здесь приведён прекрасный пример перехода от неуправляемого асинхронного исключения <code>ThreadAbortException</code> к управляемому <code>HttpException</code> с логгированием ситуации в журнал счётчиков производительности.</p>
+<p><strong>Класс HttpApplication</strong> <a href="https://referencesource.microsoft.com/#System.Web/HttpApplication.cs,2270">HttpApplication.cs</a></p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+ <span style="color:Blue;">internal</span> Exception ExecuteStep(IExecutionStep step, <span style="color:Blue;">ref</span> <span style="color:Blue;">bool</span> completedSynchronously) 
+ {
+    Exception error = <span style="color:Blue;">null</span>;
+
+    <span style="color:Blue;">try</span> {
+        <span style="color:Blue;">try</span> {
+
+        <span style="color:Green;">// ...</span>
+
+        }
+        <span style="color:Blue;">catch</span> (Exception e) {
+            error = e;
+
+            <span style="color:Green;">// ...</span>
+
+            <span style="color:Green;">// This might force ThreadAbortException to be thrown</span>
+            <span style="color:Green;">// automatically, because we consumed an exception that was</span>
+            <span style="color:Green;">// hiding ThreadAbortException behind it</span>
+
+            <span style="color:Blue;">if</span> (e <span style="color:Blue;">is</span> ThreadAbortException &amp;&amp;
+                ((Thread.CurrentThread.ThreadState &amp; ThreadState.AbortRequested) == 0))  {
+                <span style="color:Green;">// Response.End from a COM+ component that re-throws ThreadAbortException</span>
+                <span style="color:Green;">// It is not a real ThreadAbort</span>
+                <span style="color:Green;">// VSWhidbey 178556</span>
+                error = <span style="color:Blue;">null</span>;
+                _stepManager.CompleteRequest();
+            }
+        }
+        <span style="color:Blue;">catch</span> {
+            <span style="color:Green;">// ignore non-Exception objects that could be thrown</span>
+        }
+    }
+    <span style="color:Blue;">catch</span> (ThreadAbortException e) {
+        <span style="color:Green;">// ThreadAbortException could be masked as another one</span>
+        <span style="color:Green;">// the try-catch above consumes all exceptions, only</span>
+        <span style="color:Green;">// ThreadAbortException can filter up here because it gets</span>
+        <span style="color:Green;">// auto rethrown if no other exception is thrown on catch</span>
+        <span style="color:Blue;">if</span> (e.ExceptionState != <span style="color:Blue;">null</span> &amp;&amp; e.ExceptionState <span style="color:Blue;">is</span> CancelModuleException) {
+            <span style="color:Green;">// one of ours (Response.End or timeout) -- cancel abort</span>
+
+            <span style="color:Green;">// ...</span>
+
+            Thread.ResetAbort();
+        }
+    }
+}
+</pre></div>
+</div>
+<p>Здесь описывается очень интересный случай: когда мы ждём не настоящий <code>ThreadAbort</code> (мне вот в некотором смысле жалко команду CLR и .NET Framework. Сколько не стандартных ситуаций им приходится обрабатывать, подумать страшно). Обработка ситуации идёт в два этапа: внутренним обработчиком мы ловим <code>ThreadAbortException</code> но при этом проверяем наш поток на флаг реальной прерываемости. Если поток не помечен как прерывающийся, то на самом деле это не настоящий ThreadAbortException. Такие ситуации мы должны обработать соответствующим образом: спокойно поймать исключение и обработать его. Если же мы получаем настоящий ThreadAbort, то он уйдёт во внешний <code>catch</code> поскольку <code>ThreadAbortException</code> должен войти во все подходящие обработчики. Если он удовлетворяет необходимым условиям, он также будет обработан путём очистки флага <code>ThreadState.AbortRequested</code> методом <code>Thread.ResetAbort()</code>.</p>
+<p>Если говорить про примеры самого вызова <code>Thread.Abort()</code>, то все примеры кода в .NET Framework написаны так, что могут быть переписаны без его использования. Для наглядности приведу только один:</p>
+<p><strong>Класс QueuePathDialog</strong> <a href="https://referencesource.microsoft.com/#System.Messaging/System/Messaging/Design/QueuePathDialog.cs,364">QueuePathDialog.cs</a></p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">protected</span> <span style="color:Blue;">override</span> <span style="color:Blue;">void</span> OnHandleCreated(EventArgs e)
+{
+    <span style="color:Blue;">if</span> (!populateThreadRan)
+    {
+        populateThreadRan = <span style="color:Blue;">true</span>;
+        populateThread = <span style="color:Blue;">new</span> Thread(<span style="color:Blue;">new</span> ThreadStart(<span style="color:Blue;">this</span>.PopulateThread));
+        populateThread.Start();
+    }
+
+    <span style="color:Blue;">base</span>.OnHandleCreated(e);
+}
+
+<span style="color:Blue;">protected</span> <span style="color:Blue;">override</span> <span style="color:Blue;">void</span> OnFormClosing(FormClosingEventArgs e)
+{
+    <span style="color:Blue;">this</span>.closed = <span style="color:Blue;">true</span>;
+
+    <span style="color:Blue;">if</span> (populateThread != <span style="color:Blue;">null</span>)
+    {
+        populateThread.Abort();
+    }
+
+    <span style="color:Blue;">base</span>.OnFormClosing(e);
+}
+
+<span style="color:Blue;">private</span> <span style="color:Blue;">void</span> PopulateThread()
+{
+    <span style="color:Blue;">try</span>
+    {
+        IEnumerator messageQueues = MessageQueue.GetMessageQueueEnumerator();
+        <span style="color:Blue;">bool</span> locate = <span style="color:Blue;">true</span>;
+        <span style="color:Blue;">while</span> (locate)
+        {
+            <span style="color:Green;">// ...</span>
+            <span style="color:Blue;">this</span>.BeginInvoke(<span style="color:Blue;">new</span> FinishPopulateDelegate(<span style="color:Blue;">this</span>.OnPopulateTreeview), <span style="color:Blue;">new</span> <span style="color:Blue;">object</span>[] { queues });
+        }
+    }
+    <span style="color:Blue;">catch</span>
+    {
+        <span style="color:Blue;">if</span> (!<span style="color:Blue;">this</span>.closed)
+            <span style="color:Blue;">this</span>.BeginInvoke(<span style="color:Blue;">new</span> ShowErrorDelegate(<span style="color:Blue;">this</span>.OnShowError), <span style="color:Blue;">null</span>);
+    }
+
+    <span style="color:Blue;">if</span> (!<span style="color:Blue;">this</span>.closed)
+        <span style="color:Blue;">this</span>.BeginInvoke(<span style="color:Blue;">new</span> SelectQueueDelegate(<span style="color:Blue;">this</span>.OnSelectQueue), <span style="color:Blue;">new</span> <span style="color:Blue;">object</span>[] { <span style="color:Blue;">this</span>.selectedQueue, 0 });
+}
+</pre></div>
+</div>
+<h5 id="theradabortexception-appdomain.unload">TheradAbortException во время AppDomain.Unload</h5>
+<p>Попробуем отгрузить AppDomain во время исполнения кода, который в него загружен. Для этого искусственно создадим не вполне нормальную ситуацию, но достаточно интересную с точки зрения исполнения кода. В данном примере у нас два потока: один создан для того чтобы получить в нем ThreadAbortException, а другой - основной. В основном мы создаём новый домен, в котором запускаем новый поток. Задача этого потока - уйти в основной домен. Чтобы методы дочернего домена остались бы только в Stack Trace. После этого основной домен отгружает дочерний:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">class</span> Program : MarshalByRefObject
+{
+    <span style="color:Blue;">static</span> <span style="color:Blue;">void</span> Main()
+    {
+        <span style="color:Blue;">try</span>
+        {
+            <span style="color:Blue;">var</span> domain = ApplicationLogger.Go(<span style="color:Blue;">new</span> Program());
+            Thread.Sleep(300);
+            AppDomain.Unload(domain);
+
+        } <span style="color:Blue;">catch</span> (ThreadAbortException exception)
+        {
+            Console.WriteLine(<span style="color:#A31515;">&quot;Main AppDomain aborted too, {0}&quot;</span>, exception.Message);
+        }
+    }
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> InsideMainAppDomain()
+    {
+        <span style="color:Blue;">try</span>
+        {
+            Console.WriteLine($<span style="color:#A31515;">&quot;InsideMainAppDomain() called inside {AppDomain.CurrentDomain.FriendlyName} domain&quot;</span>);
+
+            <span style="color:Green;">// AppDomain.Unload will be called while this Sleep</span>
+            Thread.Sleep(-1);
+        }
+        <span style="color:Blue;">catch</span> (ThreadAbortException exception)
+        {
+            Console.WriteLine(<span style="color:#A31515;">&quot;Subdomain aborted, {0}&quot;</span>, exception.Message);
+
+            <span style="color:Green;">// This sleep to allow user to see console contents</span>
+            Thread.Sleep(-1);
+        }
+    }
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">class</span> ApplicationLogger : MarshalByRefObject
+    {
+        <span style="color:Blue;">private</span> <span style="color:Blue;">void</span> StartThread(Program pro)
+        {
+            <span style="color:Blue;">var</span> thread = <span style="color:Blue;">new</span> Thread(() =&gt;
+            {
+                pro.InsideMainAppDomain();
+            });
+            thread.Start();
+        }
+
+        <span style="color:Blue;">public</span> <span style="color:Blue;">static</span> AppDomain Go(Program pro)
+        {
+            <span style="color:Blue;">var</span> dom = AppDomain.CreateDomain(<span style="color:#A31515;">&quot;ApplicationLogger&quot;</span>, <span style="color:Blue;">null</span>, <span style="color:Blue;">new</span> AppDomainSetup
+            {
+                ApplicationBase = AppDomain.CurrentDomain.BaseDirectory,
+            });
+
+            <span style="color:Blue;">var</span> proxy = (ApplicationLogger)dom.CreateInstanceAndUnwrap(<span style="color:Blue;">typeof</span>(ApplicationLogger).Assembly.FullName, <span style="color:Blue;">typeof</span>(ApplicationLogger).FullName);
+            proxy.StartThread(pro);
+
+            <span style="color:Blue;">return</span> dom;
+        }
+    }
+
+}
+</pre></div>
+</div>
+<p>Происходит крайне интересная вещь. Код выгрузки домена помимо самой выгрузки ищет вызванные в этом домене методы, которые ещё не завершили работу в том числе в глубине стека вызова методов и вызывает <code>ThreadAbortException</code> в этих потоках. Это важно, хоть и не очевидно: если домен отгружен, нельзя осуществить возврат в метод, из которого был вызван метод основного домена, но который находится в выгружаемом. Т.е. другими словами AppDomain.Unload может выбрасывать потоки, исполняющие в данный момент код из других доменов. Прервать <code>Thread.Abort</code> в таком случае не получится: исполнять код выгруженного домена вы не сможете, а значит <code>Thread.Abort</code> завершит своё дело, даже если вы вызовите <code>Thread.ResetAbort</code>.</p>
+<h5 id="threadabortexception-1">Выводы по ThreadAbortException</h5>
+<ul>
+<li>Это - асинхронное исключение, а значит, оно может возникнуть в любой точке вашего кода (но, стоит отметить, что для этого надо постараться);</li>
+<li>Обычно код обрабатывает только те ошибки, которые ждёт: нет доступа к файлу, ошибка парсинга строки и прочие подобные. Наличие асинхронного (в плане возникновения в любом месте кода) исключения создаёт ситуацию, когда try-catch могут быть не обработаны: вы же не можете быть готовым к ThreadAbort в любом месте приложения. И получается, что это исключение в любом случае породит утечки;</li>
+<li>Обрыв потока может также происходить из-за выгрузки какого-либо домена. Если в Stack Trace потока существуют вызовы методов отгружаемого домена, поток получит ThreadAbortException без возможности <code>ResetAbort</code>;</li>
+<li>В общем случае не должно возникать ситуаций, когда вам нужно вызвать Thread.Abort(), поскольку результат практически всегда - не предсказуем.</li>
+<li>CoreCLR более не содержит ручной вызов <code>Thread.Abort()</code>: он просто удалён из класса. Но это не означает, что его нет возможности получить.</li>
+</ul>
+<h4 id="executionengineexception">ExecutionEngineException</h4>
+<p>В комментарии к этому исключению стоит атрибут <code>Obsolete</code> с комментарием:</p>
+<blockquote>
+<p>This type previously indicated an unspecified fatal error in the runtime. The runtime no longer raises this exception so this type is obsolete</p>
+</blockquote>
+<p>И вообще-то это - неправда. Возможно, автору комментария очень бы хотелось чтобы это когда-либо стало правдой, однако чтобы продемонстрировать что это не так, достаточно вернуться к примеру исключения в <code>FirstChanceException</code>:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">void</span> Main()
+{
+    <span style="color:Blue;">var</span> counter = 0;
+
+    AppDomain.CurrentDomain.FirstChanceException += (_, args) =&gt; {
+        Console.WriteLine(args.Exception.Message);
+        <span style="color:Blue;">if</span>(++counter == 1) {
+            <span style="color:Blue;">throw</span> <span style="color:Blue;">new</span> ArgumentOutOfRangeException();
+        }
+    };
+
+    <span style="color:Blue;">throw</span> <span style="color:Blue;">new</span> Exception(<span style="color:#A31515;">&quot;Hello!&quot;</span>);
+}
+</pre></div>
+</div>
+<p>Результатом данного кода будет <code>ExecutionEngineException</code>, хотя ожидаемое мной поведение Unhandled Exception <code>ArgumentOutOfRangeException</code> из инструкции <code>throw new Exception(&quot;Hello!&quot;)</code>. Возможно это показалось страным разработчикам ядра и они посчитали что корректнее выбросить <code>ExecutionEngineException</code>.</p>
+<p>Второй вполне простой путь получить <code>ExecutionEngineException</code> - это не корректно настроить маршаллинг в мир unsafe. Если вы напутаете с размерами типов, передадите больше чем надо, чем испортите, например, стек потока, ждите <code>ExecutionEngineException</code>. И это будет логичный, правильный результат: ведь в данной ситуации CLR вошла в состояние, которое она нашла не консистентным. Не понятным, как его восстанавливать. И как результат, <code>ExecutionEngineException</code>.</p>
+<p>Отдельно стоит поговорить про диагностику <code>ExecutionEngineException</code>. Каковы могут быть причины его возникновения? Если исключение вдруг возникло в вашем коде, необходимо ответить на несколько вопросов:</p>
+<ul>
+<li>Используются ли в вашем приложении unsafe библиотеки? Вами или же может сторонними библиотеками. Попробуйте для начала выяснить, где конкретно приложение получает данную ошибку. Если код уходит в unsafe мир и получает <code>ExecutionEngineException</code> там, тогда необходимо тщательно проверить сходимость сигнатур методов: в нашем коде и в импортируемом. Помните, что если импортируются модули, написанные на Delphi и прочих вариациях языка Pascal, то аргументы должны идти в обратном порядке (настройка производится в <code>DllImport</code>: <code>CallingConvention.StdCall</code>);</li>
+<li>Подписаны ли вы на FirstChanceException? Возможно, его код вызвал исключение. В таком случае просто оберните обработчик в <code>try-catch(Exception)</code> и обязательно сохраните в журнал ошибок происходящее;</li>
+<li>Может быть ваше приложение частично собрано под одну платформу, а частично - под другую. Попробуйте очистить кэш nuget пакетов, полностью пересобрать приложение с нуля: с очищенными вручную папками obj/bin</li>
+<li>Проблема иногда бывает в самом фреймворке. Например, в ранних версиях .NET Framework 4.0. В этом случае стоит протестировать отдельный участок кода, который вызывает ошибку - на более новой версии фреймворка;</li>
+</ul>
+<p>В целом бояться этого исключения не стоит: оно возникает достаточно редко чтобы позабыть о нем до следующей радостной с ним встречи.</p>
+<h4 id="nullreferenceexception">NullReferenceException</h4>
+<blockquote>
+<p>TODO</p>
+</blockquote>
+<h4 id="securityexception">SecurityException</h4>
+<blockquote>
+<p>TODO</p>
+</blockquote>
+<h4 id="outofmemoryexception">OutOfMemoryException</h4>
+<blockquote>
+<p>TODO</p>
+</blockquote>
+<h3 id="corrupted-state-exceptions">Corrupted State Exceptions</h3>
+<p>После становления платформы и её популяризации, после того как огромная масса программистов начала мигрировать с C/C++ и MFC (Microsoft Foundation Classes) на более приятные мозгу среды разработки: сюда помимо .NET Framework можно отнести в первую очередь Qt, Java и С++ Builder, нам был дан вектор на виртуализацию исполнения кода приложения от окружающей среды. Со временем, удачно свёрстанный архитектурно, .NET Framework начал занимать свою нишу. С годами, окрепнув и набирая массу, можно начинать рассуждать не с точки зрения приспособленца, а с точки зрения силы. И если раньше мы в большинстве случаев были вынуждены работать с феерическим пластом компонентов, написанных на COM/ATL/ActiveX (вы помните перетаскивание на формочки иконок COM/ActiveX компонент в Borland C++ Builder?), то теперь всем нам стало сильно легче жить. Ведь теперь соответствующие технологии <em>достаточно</em> редки чтобы волноваться и появилась возможность сделать их несколько не удобными чтобы от них начали отказываться полностью, переходя на современный и ладный .NET Framework. Старые технологии, которые не то что существовали 5-10 лет назад, а на самом деле существуют и здравствуют и ныне, кажется нам чем-то архаичным, забытым, &quot;кривым&quot; и допотопным. А потому можно сделать ещё один шаг к закрытию песочницы: сделать её ещё более непробиваемой, сделать её ещё более managed.</p>
+<p>И один из этих шагов - введение понятия <code>Corrupted State Exceptions</code>, что по сути ставит ряд исключительных ситуаций вне закона. Давайте разберёмся, что это за исключительные ситуации, а саму историю ещё раз проследим на одной из них - <code>AccessViolationException</code>:</p>
+<p><strong>Файл util.cpp</strong> <a href="https://github.com/dotnet/coreclr/blob/479b1e654cd5a13bb1ce47288cf78776b858bced/src/utilcode/util.cpp#L3163-L3197">util.cpp</a></p>
+<div class="lang-cpp editor-colors"><div style="color:Black;background-color:White;"><pre>
+BOOL IsProcessCorruptedStateException(DWORD dwExceptionCode, BOOL fCheckForSO <span style="color:Green;">/*=TRUE*/</span>)
+{
+    <span style="color:Green;">// ...</span>
+
+    <span style="color:Green;">// If we have been asked not to include SO in the CSE check</span>
+    <span style="color:Green;">// and the code represent SO, then exit now.</span>
+    <span style="color:Blue;">if</span> ((fCheckForSO == FALSE) &amp;&amp; (dwExceptionCode == STATUS_STACK_OVERFLOW))
+    {
+        <span style="color:Blue;">return</span> fIsCorruptedStateException;
+    }
+
+    <span style="color:Blue;">switch</span>(dwExceptionCode)
+    {
+        <span style="color:Blue;">case</span> STATUS_ACCESS_VIOLATION:
+        <span style="color:Blue;">case</span> STATUS_STACK_OVERFLOW:
+        <span style="color:Blue;">case</span> EXCEPTION_ILLEGAL_INSTRUCTION:
+        <span style="color:Blue;">case</span> EXCEPTION_IN_PAGE_ERROR:
+        <span style="color:Blue;">case</span> EXCEPTION_INVALID_DISPOSITION:
+        <span style="color:Blue;">case</span> EXCEPTION_NONCONTINUABLE_EXCEPTION:
+        <span style="color:Blue;">case</span> EXCEPTION_PRIV_INSTRUCTION:
+        <span style="color:Blue;">case</span> STATUS_UNWIND_CONSOLIDATE:
+            fIsCorruptedStateException = TRUE;
+            <span style="color:Blue;">break</span>;
+    }
+
+    <span style="color:Blue;">return</span> fIsCorruptedStateException;
+}
+</pre></div>
+</div>
+<p>Рассмотрим описания наших исключительных ситуаций:</p>
+<table>
+<thead>
+<tr>
+<th>Код ошибки</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>STATUS_ACCESS_VIOLATION</td>
+<td>Достаточно частая ошибка попытки работы с участком памяти, на который нет прав. Память с точки зрения процесса линейная, но работать можно далеко не со всем диапазоном: только с теми &quot;островками&quot;, которые были выделены операционной системой, а также с теми, на которые хватает прав (например, есть диапазоны, которыми владеет только операционная система или же можно только исполнять код но не читать как данные)</td>
+</tr>
+<tr>
+<td>STATUS_STACK_OVERFLOW</td>
+<td>Эта ошибка известна всем: ошибка нехватки памяти в стеке потока под вызов очередного метода</td>
+</tr>
+<tr>
+<td>EXCEPTION_ILLEGAL_INSTRUCTION</td>
+<td>Очередной код, считанный процессором из тела метода не был распознан как инструкция</td>
+</tr>
+<tr>
+<td>EXCEPTION_IN_PAGE_ERROR</td>
+<td>Поток предпринял попытку работы со страницей памяти, которой не существует</td>
+</tr>
+<tr>
+<td>EXCEPTION_INVALID_DISPOSITION</td>
+<td>Механизм обработки исключений вернул не правильный обработчик. Такое исключение никогда не должно возникать в программах, написанных на высокоуровневых языках (например, С++)</td>
+</tr>
+<tr>
+<td>EXCEPTION_NONCONTINUABLE_EXCEPTION</td>
+<td>Поток сделал попытку продолжить исполнение программы после возникновения исключения, продолжить исполнение кода после которого не возможно. Тут имеется ввиду не блоки catch/fault/finally, а подобие фильтров исключений, которые позволяют исправить ошибку, которая привела к исключению и предпринять ещё одну попытку выполнить код, приведший к ошибке</td>
+</tr>
+<tr>
+<td>EXCEPTION_PRIV_INSTRUCTION</td>
+<td>Попытка выполнить привилегированную инструкцию процессора</td>
+</tr>
+<tr>
+<td>STATUS_UNWIND_CONSOLIDATE</td>
+<td>Исключение, относящееся к размотке стека и не являющееся предметом наших обсуждений</td>
+</tr>
+</tbody>
+</table>
+<p>Прошу заметить, что по своей сути только два из них достойны перехвата: это <code>STATUS_ACCESS_VIOLATION</code> и <code>STATUS_STACK_OVERFLOW</code>. Остальные ошибки исключительны даже для исключительных ситуаций. Они скорее относятся к классу фатальных ошибок и нами рассматриваться не могут. А потому, давайте остановимся на этих двух более подробно:</p>
+<h4 id="accessviolationexception">AccessViolationException</h4>
+<p>Получение этого исключения - одна из тех новостей, которые не хотелось бы никому получить. А когда получаешь, становится совсем не ясно что с этим делать. <code>AccessViolationException</code> - это исключение &quot;промаха&quot; мимо выделенного для приложения участка памяти и по своей сути выбрасывается при попытке чтения или записи в защищённую область памяти. Здесь под словом &quot;защита&quot; лучше понимать именно попытку работы с ещё не выделенным участком памяти или же уже освобождённым. Тут, заметьте не имеется ввиду процесс выделения и освобождения памяти сборщиком мусора. Тот просто размечает уже выделенную память под свои и ваши нужды. Память - она имеет в некоторой степени слоистую структуру. Когда после слоя управления памятью сборщиком мусора идёт слой управления выделением памяти библиотеками ядра CLR, а за ними - операционной системой - из пула доступных фрагментов линейного адресного пространства. Так вот когда приложение промахивается мимо своей памяти и пытается работать с невыделенным участком либо с участком, приложению не предназначенному, тогда и возникает это исключение. Когда оно возникает, вам доступно не так много вариантов для анализа:</p>
+<ul>
+<li>Если StackTrace уходит в недра CLR, вам сильно не повезло: это скорее всего ошибка ядра. Однако этот случай почти никогда не срабатывает. Из вариантов обхода - либо действовать как-то иначе либо обновить версию ядра если возможно;</li>
+<li>Если же StackTrace уходит в unsafe код некоторой библиотеки, тут доступны такие варианты: либо вы напутали с настройкой маршаллинга либо же в unsafe библиотеке закралась серьёзная ошибка. Тщательно проверьте аргументы метода: возможно аргументы нативного метода имеют другую разрядность или же другой порядок или попросту размер. Проверьте что структуры передаются там где надо - по ссылке, а там, где надо - по значению</li>
+</ul>
+<p>Чтобы перехватить такое исключение на данный момент необходимо показать JIT компилятору что это реально необходимо. В противном случае оно перехвачено никак не будет и вы получите упавшее приложение. Однако, конечно же, его стоит перехватывать только тогда, когда вы понимаете что вы сможете его правильно обработать: его наличие может свидетельствовать о произошедшей утечке памяти если она была выделена unsafe методом между точкой его вызова и точкой выброса <code>AccessViolationException</code> и тогда хоть приложение и не будет &quot;завалено&quot;, но его работа возможно станет не корректной: ведь перехватив поломку вызова метода вы наверняка попробуете вызвать этот метод ещё раз, в будущем. А в этом случае что может пойти не так не известно никому: вы не можете знать каким образом было нарушено состояние приложения в прошлый раз. Однако, если желание перехватить такое исключение у вас сохранилось, прошу посмотреть на таблицу возможности перехвата этого исключения в различных версиях .NET Framework:</p>
+<table>
+<thead>
+<tr>
+<th>Версия .NET Framework</th>
+<th>AccessViolationExeception</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.0</td>
+<td>NullReferenceException</td>
+</tr>
+<tr>
+<td>2.0, 3.5</td>
+<td>AccessViolation перехватить можно</td>
+</tr>
+<tr>
+<td>4.0+</td>
+<td>AccessViolation перехватить можно, но необходима настройка</td>
+</tr>
+<tr>
+<td>.NET Core</td>
+<td>AccessViolation перехватить <em>нельзя</em></td>
+</tr>
+</tbody>
+</table>
+<p>Т.е. другими словами, если вам попалоось очень старое приложение на .NET Framework 1.0, <del>покажите его мне</del> вы получите NRE, что будет в некоторой степени обманом: вы отдали указатель со значением больше нуля, а получили NullReferenceException. Однако, на мой взгляд, такое поведение обосновано: находясь в мире управляемого кода вам меньше всего должно хотеться изучать типы ошибок неуправляемого кода и NRE - что по сути и есть &quot;плохой указатель на объект&quot; в мире .NET - тут вполне подходит. Однако, мир был бы прекрасен если бы все так было просто. В реальных ситуациях пользователям решительно не хватало этого типа исключений и потому - достаточно скоро - его ввели в версии 2.0. Просуществовав несколько лет в перехватываемом варианте, исключение перестало быть перехватываемым, однако появилась специальная настройка, которая позволяет включить перехват. Такой порядок выбора в команде CLR в целом на каждом этапе выглядит достаточно обоснованным. Посудите сами:</p>
+<ul>
+<li><code>1.0</code> Ошибка промаха мимо выделенных участков памяти должна быть именно исключительной ситуацией потому как если приложение работает с каким-либо адресом, оно его откуда-то получило. В managed мире этим местом является оператор <code>new</code>. В unmanaged мире - в целом любой участок кода может выступать точкой для возникновения такой ошибки. И хотя с точки зрения философии смысл обоих исключений диаметрально противоположен (NRE - работа с не проинициализированным указателем, AVE - работа с некорректно проинициализированным указателем), с точки зрения идеологии .NET некорректно проинициализированных указателей быть не может. Оба случая можно свести к одному и придать философский смысл: не корректно заданный указатель. А потому давайте так и сделаем: в обоих случаях будем выбрасывать <code>NullReferenceException</code>.</li>
+<li><code>2.0</code> На ранних этапах существования .NET Framework оказалось что кода, который наследуется через COM библиотеки больше собственного: существует огромная кодовая база коммерческих компонент для взаимодействия с сетью, UI, БД и прочими подсистемами. А значит, вопрос получения именно <code>AccessViolationException</code> всё-таки стоит: неверная диагностика проблем может сделать процесс поимки проблемы более дорогим. В .NET Framework введено исключение <code>AccessViolationException</code>.</li>
+<li><code>4.0</code> .NET Framework укоренился, потеснив традиционную разработку на низкоуровневых языках программирования. Резко сокращено количество COM компонент: практически все основные задачи уже решаются в рамках самого фреймворка, а работа в unsafe кодом начинает считаться чем-то странным, неправильным. В этих условиях можно вернуться к идеологии, введённой в фреймворк с самого начала: .NET - он только для .NET. Unsafe код - это не норма, а вынужденное состояние, а потому идеологичность наличия перехвата <code>AccessViolationException</code> идёт вразрез с идеологией понятия фреймворк - как платформа (т.е. имитация полной песочницы со своими законами). Однако мы все ещё находимся в реалиях платформы, на которой работаем и во многих ситуациях перехватывать это исключение все ещё необходимо: вводим специальный режим перехвата: только если введена соответствующая конфигурация;</li>
+<li><code>.NET Core</code> Наконец, сбылась мечта команды CLR: .NET более не предполагает законности работы с unsafe кодом, а потому существование <code>AccessViolationException</code> теперь вне закона даже на уровне конфигурации. .NET вырос настолько, чтобы самостоятельно устанавливать правила. Теперь существование этого исключения в приложении приведёт его к гибели, а потому любой unsafe код (т.е. сам CLR) обязан быть безопасным с точки зрения этого исключения. Если оно появляется в unsafe библиотеке, с ней просто не будут работать, а значит, разработчики сторонних компонент на unsafe языках будут более аккуратными и обрабатывать его - у себя.</li>
+</ul>
+<p>Вот так, на примере одного исключения можно проследить историю становления .NET Framework как платформы: от неуверенного подчинения внешним правилам до самостоятельного установления правил самой платформой.</p>
+<p>После всего сказанного осталось раскрыть последнюю тему: как включить обработку данного исключения в <code>4.0+</code>. Итак, чтобы включить обработку исключения данного типа в конкретном методе, необходимо:</p>
+<ul>
+<li>Добавить в секцию <code>configuration/runtime</code> следующий код: <code>&lt;legacyCorruptedStateExceptionsPolicy enabled=&quot;true|false&quot;/&gt;</code></li>
+<li>Для каждого метода, где <em>необходимо</em> обработать <code>AccessViolationException</code>, надо добавить два атрибута: <code>HandleProcessCorruptedStateExceptions</code> и <code>SecurityCritical</code>. Эти атрибуты позволяют включить обработку Corrupted State Exceptions, для <em>конкретных</em> методов, а не для всех вообще. Эта схема очень правильная, поскольку вы должны быть точно уверены, что хотите их обрабатывать и знать, где: иногда более правильный вариант - просто завалить приложение на бок.</li>
+</ul>
+<p>Для примера включения обработчика <code>CSE</code> и их примитивной обработки рассмотрим следующий код:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+[HandleProcessCorruptedStateExceptions, SecurityCritical]
+<span style="color:Blue;">public</span> <span style="color:Blue;">bool</span> TryCallNativeApi()
+{
+    <span style="color:Blue;">try</span>
+    {
+        <span style="color:Green;">// Запуск метода, который может выбросить AccessViolationException</span>
+    }
+    <span style="color:Blue;">catch</span> (Exception e)
+    {
+        <span style="color:Green;">// Журналирование, выход</span>
+        System.Console.WriteLine(e.Message);
+        <span style="color:Blue;">return</span> <span style="color:Blue;">false</span>;
+    }
+
+  <span style="color:Blue;">return</span> <span style="color:Blue;">true</span>;
+}
+</pre></div>
+</div>
+<h4 id="stackoverflowexception">StackOverflowException</h4>
+<p>Последний тип исключений, о котором стоит поговорить - это ошибка переполнения стека. Она возникает тогда, когда, по сути, в массиве, выделенном под стек кончается память. Само строение стека мы подробно обсудили в соответствующей главе (<a href="./ThreadStack.html">Стек потока</a>), а здесь без сильного углубления остановимся на самой ошибке.</p>
+<p>Итак, когда наступает нехватка памяти под стек потока (либо упёрлись в следующий занятый участок памяти и нет возможности выделить следующую страницу виртуальной памяти) или же поток упёрся в разрешённый диапазон памяти, происходит попытка доступа к адресному пространству, которое называется Guard page. По сути, этот диапазон - ловушка и не занимает никакой физической памяти. Вместо реального чтения или записи процессор вызывает специализированное прерывание, которое должно запросить у операционной системы новый участок памяти под рост стека потока. В случае достижения максимально-разрешенных значений операционная система вместо выделения нового участка генерирует исключительную ситуацию с кодом <code>STATUS_STACK_OVERFLOW</code>, которая будучи проброшенной через <code>Structured Exception Handling</code> механизм в .NET обрушивает текущий поток исполнения как более не корректный.</p>
+<p>Прошу заметить что хоть данное исключение и является <code>Corrupted State Exception</code>, перехватить его при помощи <code>HandleProcessCorruptedStateExceptions</code> не представляется возможным. Т.е. следующий код не отработает:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Green;">// Main.cs</span>
+[HandleProcessCorruptedStateExceptions, SecurityCritical]
+<span style="color:Blue;">static</span> <span style="color:Blue;">void</span> Main()
+{
+    <span style="color:Blue;">try</span>
+    {
+        Recursive();
+    } <span style="color:Blue;">catch</span> (Exception exception)
+    {
+        Console.WriteLine(<span style="color:#A31515;">&quot;Catched Stack Overflow!&quot;</span>);
+    }
+}
+
+<span style="color:Blue;">static</span> <span style="color:Blue;">void</span> Recursive()
+{
+    Recursive();
+}
+
+<span style="color:Green;">// app.config:</span>
+&lt;configuration&gt;
+  &lt;runtime&gt;
+    &lt;legacyCorruptedStateExceptionsPolicy enabled=<span style="color:#A31515;">&quot;true&quot;</span>/&gt;
+  &lt;/runtime&gt;
+&lt;/configuration&gt;
+</pre></div>
+</div>
+<p>А не представляется возможным потому что переполнение стека может быть вызвано двумя путями: первый - это намеренный вызов рекурсивного метода, который не слишком аккуратен чтобы контролировать собственную глубину. Тут может возникнуть желание исправить ситуацию, перехватив выброс исключения. Однако, если подумать, мы тем самым легализуем данную ситуацию, позволяя ей случиться вновь, что выглядит скорее не дальновидным чем случаем проявления заботы. И вторая - случайность - получение StackOverflowException при вполне себе обычном вызове. Просто в данный момент глубина стека вызовов оказалась слишком критичной. В данном примере перехватывать исключение выглядит как что-то совсем дикое: приложение работало штатно, все шло хорошо, как вдруг легальный вызов метода при корректно работающих алгоритмах вызвал выброс исключения с дальнейшей развёрткой стека до ожидающего такого поведения участка кода. Хм... Ещё раз: мы ждём, что на следующем участке ничего не отработает потому что в стеке кончится память. Как по мне, это полный абсурд.</p>
+
+</div>
+</div>
+</body>
+</html>

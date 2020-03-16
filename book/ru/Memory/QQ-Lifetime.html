@@ -1,0 +1,322 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.NET Platform Architecture</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <style>
+        body {
+    padding: 60px 60px 60px 100px;
+}
+
+p, li {
+    margin: 0 0 14px;
+    font-family: PF Regal,PF Regal Text Pro,Georgia,serif;
+    font-size: 20px;
+    line-height: 32px;
+}
+
+ol, ul {
+    padding-left: 35px;
+    margin-top: 1.1rem;
+    margin-bottom: 1.1rem;
+}
+
+ol li {
+    padding-left: 10px;	
+}
+
+ul li {
+    padding-left: 5px;	
+}
+
+code, .lang-csharp span, .lang-csharp pre {
+    font-family: JB Mono, monospace !important;
+}
+
+.lang-csharp {
+    padding: 4px 0px 14px 0px;
+}
+
+
+.lang-csharp > div {
+    border-left-color: #eee;
+    border-left-style: dotted;
+    border-left-width: 3px;
+    padding-left: 25px;
+}
+
+code {
+    font-size: 14px;
+    border: gainsboro;
+    border-width: 1px;
+    border-style: solid;
+    padding: 2px;
+    color: darkslateblue;
+}
+
+.lang-csharp span, .lang-csharp pre {
+    font-size: 13px;
+    line-height: 20px;
+}
+
+p a {
+    text-decoration: none;
+    color: inherit;
+    box-shadow: inset 0 -1px #b88b59;
+}
+
+p img {
+    width: 95%;
+}
+
+img < p {
+    text-align: center;
+}
+
+blockquote p {
+    margin: 16px 0;
+    padding: 12px 12px 13px;
+    border: 1px solid rgba(0,0,0,.08);
+    border-radius: 8px;
+    background: #fff8c4;
+    font-family: Proxima Nova,Arial,Helvetica Neue,sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+blockquote p code {
+    font-family: consolas, monospace;
+    font-size: 17px;
+    background-color: aliceblue;
+    padding: 4px 6px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+}
+
+h1 {
+    font-size: 38px;
+    font-family: PF Regal,PF Regal Text Pro,Georgia,serif;
+    font-weight: 400;
+    margin: 40px 0 10px 0;
+}
+
+h1 b {
+    font-family: Proxima Nova,Arial,Helvetica Neue,sans-serif;
+    font-weight: 700;
+    font-size: 37px;
+    line-height: 42px;
+}
+
+h2 {
+    margin-top: 35px;
+    margin-bottom: 10px;
+    font-family: Proxima Nova,Arial,Helvetica Neue,sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+    border-bottom-color: aliceblue;
+    border-bottom-style: solid;
+    padding-bottom: 5px;
+}
+
+h3 {
+    margin: 30px 0 10px 0;
+    border-bottom-color: azure;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    font-size: 17pt;
+    font-weight: 300;
+}
+
+
+// Fonts
+@font-face {
+    font-family: 'JB Mono';
+    src: local('JetBrains Mono'),
+    url('../../res/fonts/woff2/JetBrainsMono-Italic.woff2') format('woff2'),
+    url('../../res/fonts/woff/JetBrainsMono-Italic.woff') format('woff'),
+    url('../../res/fonts/ttf/JetBrainsMono-Italic.ttf') format('truetype');
+    font-weight: 400;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'JB Mono';
+    src: local('JetBrains Mono'),
+    url('../../res/fonts/woff2/JetBrainsMono-Regular.woff2') format('woff2'),
+    url('../../res/fonts/woff/JetBrainsMono-Regular.woff') format('woff'),
+    url('../../res/fonts/ttf/JetBrainsMono-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'JB Mono';
+    src: local('JetBrains Mono'),
+    url('../../res/fonts/woff2/JetBrainsMono-Medium-Italic.woff2') format('woff2'),
+    url('../../res/fonts/woff/JetBrainsMono-Medium-Italic.woff') format('woff'),
+    url('../../res/fonts/ttf/JetBrainsMono-Medium-Italic.ttf') format('truetype');
+    font-weight: 600;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'JB Mono';
+    src: local('JetBrains Mono'),
+    url('../../res/fonts/woff2/JetBrainsMono-Medium.woff2') format('woff2'),
+    url('../../res/fonts/woff/JetBrainsMono-Medium.woff') format('woff'),
+    url('../../res/fonts/ttf/JetBrainsMono-Medium.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'PF Regal Text Pro';
+    src: local('PF Regal Text Pro RegularA'), local('PF-Regal-Text-Pro-RegularA'),
+    url('../../res/fonts/woff2/PFRegalTextPro-RegularA.woff2') format('woff2'),
+    url('../../res/fonts/woff/PFRegalTextPro-RegularA.woff') format('woff'),
+    url('../../res/fonts/ttf/PFRegalTextPro-RegularA.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'PF Regal Text Pro';
+    src: local('PF Regal Text Pro RegularB'), local('PF-Regal-Text-Pro-RegularB'),
+    url('../../res/fonts/woff2/PFRegalTextPro-RegularB.woff2') format('woff2'),
+    url('../../res/fonts/woff/PFRegalTextPro-RegularB.woff') format('woff'),
+    url('../../res/fonts/ttf/PFRegalTextPro-RegularB.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'PF Regal Text Pro';
+    src: local('PF Regal Text Pro RegularB Italic'), local('PF-Regal-Text-Pro-RegularB-Italic'),
+    url('../../res/fonts/woff2/PFRegalTextPro-RegularBItalic.woff2') format('woff2'),
+    url('../../res/fonts/woff/PFRegalTextPro-RegularBItalic.woff') format('woff'),
+    url('../../res/fonts/ttf/PFRegalTextPro-RegularBItalic.ttf') format('truetype');
+    font-weight: 600;
+    font-style: italic;
+}
+  
+    </style>
+
+<div style="margin:auto; width:100%;">
+<div style="width:1000px;">
+    <h2 id="lifetime">Шаблон Lifetime</h2>
+<p>После того как мы так подробно рассмотрели шаблон освобождения ресурсов под названием IDisposable, мы сформулировали ряд проблемных зон этого шаблона, которые усложняют его использование. Чтобы решить эти проблемы, мы должны разработать некие противодействия, которые приведут нас к абсолютно новому и мощному инструменту. Итак, если представить что мы хотим изменить шаблон IDisposable или заменить чем-то другим, избавив при этом его от присущих ему недостатков, то что мы должны сделать? Давайте возьмем группу минусов из предыдущей главы и попробуем где это вообще возможно переделать поведение так, чтобы получить плюсы:</p>
+<ol>
+<li>Чтобы избежать не явности объявления разрушаемости объекта, мы должны ввести новый способ уведомления о том, что класс разрушаем. Причем необходимо сделать это так, чтобы пользователь экземпляра не смог бы обойти этот механизм стороной. А какой код экземпляра типа отрабатывает в любом случае? Только конструктор. Получается, конструктор должен обладать такими свойствами, которые подскажут вызвавшему его коду что экземпляр разрушаем. И механизмов тут может быть целых два: либо имя класса должно содержать ключевое слово (например, по аналогии с <code>Async</code>, слово <code>Disposable</code>) либо должен быть некий параметр, который необходимо передать конструктору;</li>
+<li>Проблема необходимости тянуть за собой некий интерфейс чтобы разрушить сущность может быть решена выносом контроля за временем жизни сущности из самой сущности. По сути, реализацией inversion of control процесса разрушения объекта в некий сторонний механизм;</li>
+<li>Третья проблема - существование объекта после его разрушения. Её, к сожалению, решить просто не возможно: недетерминированное удаление памяти из-под объекта делает эту задачу нерешаемой;</li>
+<li>Вопрос с <code>explicit</code> реализацией <code>IDisposable</code> уходит сам собой если IDisposable не реализовывать;</li>
+<li>Проблематика разделения выделения ресурсов и их освобождения по разным методам может быть решена регистрацией ресурсов в некотором контейнере, освобождение которого будет происходить автоматически;</li>
+<li>Если говорить о сложности разрушения графа объектов, разделенных на некие слои, которые разрушаются сами по себе (например, может быть необходимо чтобы был разрушен какой-то один слой графа, а остальные должны корректно существовать дальше), отписываясь от изменений в соседних слоях, то тут можно явно выделить одну общую особенность: о чём бы ни шла речь, логически мы говорим о неких группах объектов, время жизни которых зависит друг от друга. Т.е. введя понятие зависимости времени жизни одной сущности от времени жизни другой сущности мы решим проблему очистки конкретной группы объектов не затрагивая другую группу;</li>
+</ol>
+<p>Объединяя все выше сказанное, можно сделать базовый вывод что IDisposable не дает нам полной гибкости в управлении разрушением состояния объектов. Он безусловно полезен в рамках некоторой группы сценариев, но не является универсальным инструментом, который способен решить все задачи.</p>
+<p>Давайте же найдем тот механизм, который призван помочь нам в разрушении сложных структур объектов. Итак, основываясь на ранее перечисленных рассуждениях о механизмах улучшения шаблона IDisposable, составим список тезисов:</p>
+<ul>
+<li>Наш класс либо должен как-то особо называться либо что-либо принимать в качестве параметра конструктора;</li>
+<li>Процесс разрушения должен быть отдан на сторону;</li>
+<li>Процесс разрушения должен быть автоматизирован;</li>
+<li>Также должна существовать некая зависимость времени жизни одних объектов от времени жизни других других;</li>
+<li>Мы при этом не должны каждый раз писать всю инфраструктуру, как мы делаем это для случая с IDisposable;</li>
+</ul>
+<p>Поэтому:</p>
+<ul>
+<li>Процессом разрушения должна заниматься отдельная сущность. Назовём её <code>Lifetime</code>;</li>
+<li>Конструктор класса должен принимать на вход экземпляр типа <code>Lifetime</code> если жизнь экземпляра нашего класса зависит от времени жизни внешнего <code>Lifetime</code> либо создавать свой собственный если зависимостей не существует;</li>
+</ul>
+<p>Теперь, в новых реалиях, внешний код будет передавать нам специальный экземпляр <code>Lifetime</code>, от которого мы будем зависеть и относительно времени жизни которого мы будем существовать. А чтобы нас разрушить, внешний тип не будет разрушать нас напрямую: вместо этого он закончит время жизни экземпляра <code>Lifetime</code>, который самостоятельно завершить время жизни всех, кто на него подписан.</p>
+<p>С таким подходом мы более не отдаем каждому, кто имеет ссылку на наш объект возможность разрушить нас. Помните что мы имели в шаблоне IDisposable? При проектировании класса мы должны были реализовать интерфейс IDisposable: сделать метод <code>Dispose()</code> публичным для всех. Это значит что любой, кто получал ссылку на экземпляр нашего типа получал также средство уничтожения экземпляра нашего типа. Теперь ситуация совершенно иная: конструктор экземпляра типа получает в качестве параметра отрезок собственной жизни как внешнюю зависимость. Не выставляя при этом никаких методов наружу. Получается, что в данном сценарии временем жизни нашего экземпляра типа владеет только тот, кто его создал и никто иной. С шаблоном IDisposable единственный путь обойти публикацию метода - реализовать этот интерфейс неявно, скрыв таким образом метод <code>Dispose</code>. Однако, неявная реализация интерфейса будет вызывать много вопросов, т.к. современные IDE позволяют легко и просто увидеть наличие этого метода в структуре типа.</p>
+<p>Теперь осталось закрыть еще один вопрос: разделение зон ответственности. Ведь если у нас появляется задача передать кому-либо свой <code>Lifetime</code>, не хотелось бы отдавать контроль над возможностью вызова метода запуска разрушения, который закончит жизнь всех, кто подписан на переданный экземпляр <code>Lifetime</code>.</p>
+<p>Также, чтобы использующие <code>Lifetime</code> сущности не могли прервать время его жизни самостоятельно, необходимо ввести разделение зон ответственности между участниками процесса:</p>
+<ol>
+<li><code>LifetimeDef</code>. Экземпляр данного типа хранится у того объекта, который будет владеть завершением времени жизни зависящих от него объектов;</li>
+<li><code>Lifetime</code> создается экземпляром <code>LifetimeDef</code> и будет передан всем тем, кто будет так или иначе зависеть от владельца. Сами они не могут вызвать метод <code>Terminate</code>: он доступен только у <code>LifetimeDef</code>. Забота экземпляров типов, которые получили <code>Lifetime</code> - просто накидать внутрь него действий, которые будут их разрушать.</li>
+<li><code>OuterLifetime</code> - инкапсулирует понятие readonly <code>Lifetime</code>. Другими словами, это средство защиты от конечного программиста: чтобы он не мог в переданную зависимость добавить действия по уничтожению своей. Этот тип используется, когда вы отдаете кому-либо экземпляр <code>Lifetime</code> так, чтобы относительно него можно было бы только создать новый, зависимый <code>LifetimeDef</code>. Но добавить туда свои собственные было бы не возможно. Публично, как и <code>Lifetime</code>, <code>OuterLifetime</code> содержит только свойство <code>IsTerminated</code>, однако на основе него можно создать зависимый экземпляр <code>LifetimeDef</code>, на основе которого можно осуществлять менеджмент жизни собственного экземпляра.</li>
+</ol>
+<p>Рассмотрим самый базовый вариант интерфейса типа:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">public</span> <span style="color:Blue;">class</span> Lifetime
+{
+    <span style="color:Blue;">public</span> <span style="color:Blue;">static</span> Lifetime Eternal = Define(<span style="color:#A31515;">&quot;Eternal&quot;</span>).Lifetime;
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">bool</span> IsTerminated { <span style="color:Blue;">get</span>; <span style="color:Blue;">internal</span> <span style="color:Blue;">set</span>; }
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> Add(Action action);
+}
+</pre></div>
+</div>
+<p>Что мы здесь видим? Есть новая сущность, <code>Lifetime</code>. Сущность эта имеет свойство <code>IsTerminated</code>, которое призвано помочь в понимании, закончилось ли время жизни Lifetime и всех, кто от него зависит или еще нет. Задать список действий, которые должны произойти в случае смерти экземпляра типа <code>Lifetime</code> можно путем их добавления во внутренний список методом <code>Add</code>.</p>
+<p>Также давайте рассмотрим второй краеугольный камень этого шаблона: класс <code>LifetimeDef</code>, который владеет правом на останов срока жизни экземпляра <code>Lifetime</code>, которым владеет.</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">public</span> <span style="color:Blue;">class</span> LifetimeDef : IDisposable
+{
+    <span style="color:Blue;">public</span> Lifetime Lifetime { <span style="color:Blue;">get</span>; }
+    <span style="color:Blue;">public</span> <span style="color:Blue;">string</span> Name { <span style="color:Blue;">get</span>; }
+
+    <span style="color:Blue;">private</span> <span style="color:Blue;">const</span> <span style="color:Blue;">string</span> Noname = <span style="color:#A31515;">&quot;Unnamed&quot;</span>;
+
+    <span style="color:Blue;">public</span> LifetimeDef(<span style="color:Blue;">string</span> name = <span style="color:Blue;">null</span>)
+    {
+        Name = name ?? Noname;
+        Lifetime = <span style="color:Blue;">new</span> Lifetime();
+    }
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> Terminate()
+    {
+        Lifetime.Terminate();
+    }
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> Dispose()
+    {
+        Terminate();
+    }
+}
+</pre></div>
+</div>
+<p>Для удобности он содержит необязательное поле <code>Name</code>. Это введено чтобы при отладке множественные экземпляры типа <code>LifetimeDef</code> не вводили бы в заблужение и позволяли бы легко находить необходимые сущности. Метод <code>Terminate</code> обрывает жизнь экземпляру класса Lifetime, а реализация шаблона <code>IDisposable</code> позволяет использовать <code>LifetimeDef</code> в классических сценариях. Например, в блоке <code>using</code>:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+[Test]
+<span style="color:Blue;">void</span> EntityTest()
+{
+    Entity entity;
+    <span style="color:Blue;">using</span>(<span style="color:Blue;">var</span> ldf = Lifetime.Define())
+    {
+        entity = <span style="color:Blue;">new</span> Entity(lfd.Lifetime);
+        entity.OpenConnection();
+        <span style="color:Green;">//...</span>
+    }
+
+    Assert.Equal(State.Closed, entity.ConnectionState)
+}
+</pre></div>
+</div>
+<h2 id="section">Сценарии использования</h2>
+<p>Для того чтобы разобраться, с чем мы имеем дело, я предлагаю рассмотреть ряд примеров.</p>
+<h3 id="section-1">Пример 1</h3>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+
+<span style="color:Blue;">public</span> <span style="color:Blue;">class</span> Subscriber
+{
+    <span style="color:Blue;">public</span> Subscriber(DataSource dataSource, Lifetime lft)
+    {
+        dataSource.DataArrived.Add(<span style="color:Blue;">this</span>.OnDataArrived);
+        lft.Add(() =&gt; dataSource.DataArrived.Remove(<span style="color:Blue;">this</span>.OnDataArrived));
+    }
+
+    <span style="color:Green;">// Other methods</span>
+}
+
+</pre></div>
+</div>
+
+</div>
+</div>
+</body>
+</html>

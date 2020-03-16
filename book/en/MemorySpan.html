@@ -1,0 +1,1083 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.NET Platform Architecture</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <style>
+        body {
+    padding: 60px 60px 60px 100px;
+}
+
+p, li {
+    margin: 0 0 14px;
+    font-family: PF Regal,PF Regal Text Pro,Georgia,serif;
+    font-size: 20px;
+    line-height: 32px;
+}
+
+ol, ul {
+    padding-left: 35px;
+    margin-top: 1.1rem;
+    margin-bottom: 1.1rem;
+}
+
+ol li {
+    padding-left: 10px;	
+}
+
+ul li {
+    padding-left: 5px;	
+}
+
+code, .lang-csharp span, .lang-csharp pre {
+    font-family: JB Mono, monospace !important;
+}
+
+.lang-csharp {
+    padding: 4px 0px 14px 0px;
+}
+
+
+.lang-csharp > div {
+    border-left-color: #eee;
+    border-left-style: dotted;
+    border-left-width: 3px;
+    padding-left: 25px;
+}
+
+code {
+    font-size: 14px;
+    border: gainsboro;
+    border-width: 1px;
+    border-style: solid;
+    padding: 2px;
+    color: darkslateblue;
+}
+
+.lang-csharp span, .lang-csharp pre {
+    font-size: 13px;
+    line-height: 20px;
+}
+
+p a {
+    text-decoration: none;
+    color: inherit;
+    box-shadow: inset 0 -1px #b88b59;
+}
+
+p img {
+    width: 95%;
+}
+
+img < p {
+    text-align: center;
+}
+
+blockquote p {
+    margin: 16px 0;
+    padding: 12px 12px 13px;
+    border: 1px solid rgba(0,0,0,.08);
+    border-radius: 8px;
+    background: #fff8c4;
+    font-family: Proxima Nova,Arial,Helvetica Neue,sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+blockquote p code {
+    font-family: consolas, monospace;
+    font-size: 17px;
+    background-color: aliceblue;
+    padding: 4px 6px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+}
+
+h1 {
+    font-size: 38px;
+    font-family: PF Regal,PF Regal Text Pro,Georgia,serif;
+    font-weight: 400;
+    margin: 40px 0 10px 0;
+}
+
+h1 b {
+    font-family: Proxima Nova,Arial,Helvetica Neue,sans-serif;
+    font-weight: 700;
+    font-size: 37px;
+    line-height: 42px;
+}
+
+h2 {
+    margin-top: 35px;
+    margin-bottom: 10px;
+    font-family: Proxima Nova,Arial,Helvetica Neue,sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+    border-bottom-color: aliceblue;
+    border-bottom-style: solid;
+    padding-bottom: 5px;
+}
+
+h3 {
+    margin: 30px 0 10px 0;
+    border-bottom-color: azure;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    font-size: 17pt;
+    font-weight: 300;
+}
+
+
+// Fonts
+@font-face {
+    font-family: 'JB Mono';
+    src: local('JetBrains Mono'),
+    url('../res/fonts/woff2/JetBrainsMono-Italic.woff2') format('woff2'),
+    url('../res/fonts/woff/JetBrainsMono-Italic.woff') format('woff'),
+    url('../res/fonts/ttf/JetBrainsMono-Italic.ttf') format('truetype');
+    font-weight: 400;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'JB Mono';
+    src: local('JetBrains Mono'),
+    url('../res/fonts/woff2/JetBrainsMono-Regular.woff2') format('woff2'),
+    url('../res/fonts/woff/JetBrainsMono-Regular.woff') format('woff'),
+    url('../res/fonts/ttf/JetBrainsMono-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'JB Mono';
+    src: local('JetBrains Mono'),
+    url('../res/fonts/woff2/JetBrainsMono-Medium-Italic.woff2') format('woff2'),
+    url('../res/fonts/woff/JetBrainsMono-Medium-Italic.woff') format('woff'),
+    url('../res/fonts/ttf/JetBrainsMono-Medium-Italic.ttf') format('truetype');
+    font-weight: 600;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'JB Mono';
+    src: local('JetBrains Mono'),
+    url('../res/fonts/woff2/JetBrainsMono-Medium.woff2') format('woff2'),
+    url('../res/fonts/woff/JetBrainsMono-Medium.woff') format('woff'),
+    url('../res/fonts/ttf/JetBrainsMono-Medium.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'PF Regal Text Pro';
+    src: local('PF Regal Text Pro RegularA'), local('PF-Regal-Text-Pro-RegularA'),
+    url('../res/fonts/woff2/PFRegalTextPro-RegularA.woff2') format('woff2'),
+    url('../res/fonts/woff/PFRegalTextPro-RegularA.woff') format('woff'),
+    url('../res/fonts/ttf/PFRegalTextPro-RegularA.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'PF Regal Text Pro';
+    src: local('PF Regal Text Pro RegularB'), local('PF-Regal-Text-Pro-RegularB'),
+    url('../res/fonts/woff2/PFRegalTextPro-RegularB.woff2') format('woff2'),
+    url('../res/fonts/woff/PFRegalTextPro-RegularB.woff') format('woff'),
+    url('../res/fonts/ttf/PFRegalTextPro-RegularB.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'PF Regal Text Pro';
+    src: local('PF Regal Text Pro RegularB Italic'), local('PF-Regal-Text-Pro-RegularB-Italic'),
+    url('../res/fonts/woff2/PFRegalTextPro-RegularBItalic.woff2') format('woff2'),
+    url('../res/fonts/woff/PFRegalTextPro-RegularBItalic.woff') format('woff'),
+    url('../res/fonts/ttf/PFRegalTextPro-RegularBItalic.ttf') format('truetype');
+    font-weight: 600;
+    font-style: italic;
+}
+  
+    </style>
+
+<div style="margin:auto; width:100%;">
+<div style="width:1000px;">
+    <h1 id="memoryt-and-spant">Memory&lt;T&gt; and Span&lt;T&gt;</h1>
+<blockquote>
+<p><a href="https://github.com/sidristij/dotnetbook/issues/55">A link to the discussion</a></p>
+</blockquote>
+<p>Starting from .NET Core 2.0 and .NET Framework 4.5 we can use new data types:  <code>Span</code> and <code>Memory</code>. To use them, you just need to install the <code>System.Memory</code> nuget package:</p>
+<ul>
+<li><code>PM&gt; Install-Package System.Memory</code></li>
+</ul>
+<p>These data types are notable because the CLR team has done a great job to implement their special support inside the code of .NET Core 2.1+ JIT compiler by embedding these data types right into the core. What kind of data types are these and why are they worth a whole chapter?</p>
+<p>If we talk about problems that made these types appear, I should name three of them. The first one is unmanaged code.</p>
+<p>Both the language and the platform have existed for many years along with means to work with unmanaged code. So, why release another API to work with unmanaged code if the former basically existed for many years? To answer this question, we should understand what we lacked before.</p>
+<p>The platform developers already tried to facilitate the use of unmanaged resources for us. They implemented auto wrappers for imported methods and marshaling that works automatically in most cases. Here also belongs <code>stackalloc</code>, mentioned in the chapter about a thread stack. However, as I see it, the first C# developers came from C++ world (my case), but now they shift from more high-level languages (I know a developer who wrote in JavaScript before). This means people are getting more suspicious to unmanaged code and C/C+ constructs, so much the more to Assembler.</p>
+<p>As a result, projects contain less and less unsafe code and the confidence in the platform API grows more and more. This is easy to check if we search for <code>stackalloc</code> use cases in public repositories  — they are scarce. However, let’s take any code that uses it:</p>
+<p><strong>Interop.ReadDir class</strong>
+<a href="https://github.com/dotnet/coreclr/blob/b29f6328510207970763580d6f4db864e4b198af/src/mscorlib/shared/Interop/Unix/System.Native/Interop.ReadDir.cs#L71-L83">/src/mscorlib/shared/Interop/Unix/System.Native/Interop.ReadDir.cs</a></p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">unsafe</span>
+{
+    <span style="color:Green;">// s_readBufferSize is zero when the native implementation does not support reading into a buffer.</span>
+    <span style="color:Blue;">byte</span>* buffer = <span style="color:Blue;">stackalloc</span> <span style="color:Blue;">byte</span>[s_readBufferSize];
+    InternalDirectoryEntry temp;
+    <span style="color:Blue;">int</span> ret = ReadDirR(dir.DangerousGetHandle(), buffer, s_readBufferSize, <span style="color:Blue;">out</span> temp);
+    <span style="color:Green;">// We copy data into DirectoryEntry to ensure there are no dangling references.</span>
+    outputEntry = ret == 0 ?
+                <span style="color:Blue;">new</span> DirectoryEntry() { InodeName = GetDirectoryEntryName(temp), InodeType = temp.InodeType } :
+                <span style="color:Blue;">default</span>(DirectoryEntry);
+
+    <span style="color:Blue;">return</span> ret;
+}
+</pre></div>
+</div>
+<p>We can see why it is not popular. Just skim this code and question yourself  whether you trust it. I guess the answer is ‘No’. Then, ask yourself why. It is obvious: not only do we see the word <code>Dangerous</code>, which kind of suggests that something may go wrong, but there is the <code>unsafe</code> keyword and <code>byte* buffer = stackalloc byte[s_readBufferSize];</code> line (specifically — <code>byte*</code>) that change our attitude. This is a trigger for you to think: “Wasn’t there another way to do it”? So, let’s get deeper into psychoanalysis: why might you think that way? On the one hand, we use language constructs and the syntax offered here is far from, for example, C++/CLI, which allows anything (even inserting pure Assembler code). On the other hand, this syntax looks unusual.</p>
+<p>The second issue developers thought of implicitly or explicitly is incompatibility of  string and char[] types. Although, logically a string is an array of characters, but you can’t cast a string to char[]: you can only create a new object and copy the content of a string to an array. This incompatibility is introduced to optimize strings in terms of storage (there are no readonly arrays). However, problems appear when you start working with files. How to read them? As a string or as an array? If you choose an array you cannot use some methods designed to work with strings. What about reading as a string? It may be too long. If you need to parse it then, what parser should you choose for primitive data types: you don’t always want to parse them manually (integers, floats, given in different formats). We have a lot of proven algorithms that do it quicker and more efficiently, don’t we? However, such algorithms often work with strings that contain nothing but a primitive type itself. So, there is a dilemma.</p>
+<p>The third problem is that the data required by an algorithm rarely make a continuous, solid data slice within a section of an array read from some source.  For example, in case of files or data read from a socket, we have some part of  those already processed by an algorithm, followed by a part of data that must be processed by our method, and then by not yet processed data.  Ideally, our method wants only the data for which this method was designed. For example, a method that parses integers won’t be happy with a string that contains some words with an expected number somewhere among them. This method wants a number and nothing else. Or, if we pass an entire array, there is a requirement to indicate, for example, the offset for a number from the beginning of the array.</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">int</span> ParseInt(<span style="color:Blue;">char</span>[] input, <span style="color:Blue;">int</span> index)
+{
+    <span style="color:Blue;">while</span>(<span style="color:Blue;">char</span>.IsDigit(input[index]))
+    {
+        <span style="color:Green;">// ...</span>
+        index++;
+    }
+}
+</pre></div>
+</div>
+<p>However, this approach is poor, as this method gets unnecessary data. In other words <em>the method is called for contexts it was not designed for</em>, and has to solve some external tasks. This is a bad design. How to avoid these problems? As an option we can use the <code>ArraySegment&lt;T&gt;</code> type that can give access to a section of an array:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">int</span> ParseInt(IList&lt;<span style="color:Blue;">char</span>&gt;[] input)
+{
+    <span style="color:Blue;">while</span>(<span style="color:Blue;">char</span>.IsDigit(input.Array[index]))
+    {
+        <span style="color:Green;">// ...</span>
+        index++;
+    }
+}
+
+<span style="color:Blue;">var</span> arraySegment = <span style="color:Blue;">new</span> ArraySegment(array, <span style="color:Blue;">from</span>, length);
+<span style="color:Blue;">var</span> res = ParseInt((IList&lt;<span style="color:Blue;">char</span>&gt;)arraySegment);
+</pre></div>
+</div>
+<p>However, I think this is too much both in terms of logic and a decrease in performance. <code>ArraySegment</code> is poorly designed and slows the access to elements 7 times more in comparison with the same operations done with an array.</p>
+<p>So how do we solve these problems? How do we get developers back to using unmanaged code and give them a unified and quick tool to work with heterogeneous data sources:  arrays, strings and unmanaged memory. It was necessary to give them a sense of confidence that they can’t do a mistake unknowingly. It was necessary to give them an instrument that doesn’t diminish native data types in terms of performance but solves the listed problems. <code>Span&lt;T&gt;</code> and <code>Memory&lt;T&gt;</code> types are exactly these instruments.</p>
+<h2 id="spant-readonlyspant">Span&lt;T&gt;, ReadOnlySpan&lt;T&gt;</h2>
+<p><code>Span</code> type is an instrument to work with data within a section of a data array or with a subrange of its values. As in case of an array it allows both reading and writing to the elements of this subrange, but with one important constraint: you get or create a <code>Span&lt;T&gt;</code> only for a <em>temporary</em> work with an array, Just to  call a group of methods. However, to get a general understanding let’s compare the types of data which <code>Span</code> is designed for and look at its possible use scenarios.</p>
+<p>The first type of data is a usual array. Arrays work with <code>Span</code> in the following way:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+    <span style="color:Blue;">var</span> array = <span style="color:Blue;">new</span> [] {1,2,3,4,5,6};
+    <span style="color:Blue;">var</span> span = <span style="color:Blue;">new</span> Span&lt;<span style="color:Blue;">int</span>&gt;(array, 1, 3);
+    <span style="color:Blue;">var</span> position = span.BinarySearch(3);
+    Console.WriteLine(span[position]);  <span style="color:Green;">// -&gt; 3</span>
+</pre></div>
+</div>
+<p>At first, we create an array of data, as shown by this example. Next, we create <code>Span</code> (or a subset) which references to the array, and makes a previously initialized value range accessible to code that uses the array.</p>
+<p>Here we see the first feature of this type of data  i.e. the ability to create a certain context. Let’s expand our idea of contexts:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">void</span> Main()
+{
+    <span style="color:Blue;">var</span> array = <span style="color:Blue;">new</span> [] {<span style="color:#A31515;">&#39;1&#39;</span>,<span style="color:#A31515;">&#39;2&#39;</span>,<span style="color:#A31515;">&#39;3&#39;</span>,<span style="color:#A31515;">&#39;4&#39;</span>,<span style="color:#A31515;">&#39;5&#39;</span>,<span style="color:#A31515;">&#39;6&#39;</span>};
+    <span style="color:Blue;">var</span> span = <span style="color:Blue;">new</span> Span&lt;<span style="color:Blue;">char</span>&gt;(array, 1, 3);
+    <span style="color:Blue;">if</span>(TryParseInt32(span, <span style="color:Blue;">out</span> <span style="color:Blue;">var</span> res))
+    {
+        Console.WriteLine(res);
+    }
+    <span style="color:Blue;">else</span>
+    {
+        Console.WriteLine(<span style="color:#A31515;">&quot;Failed to parse&quot;</span>);
+    }
+}
+
+<span style="color:Blue;">public</span> <span style="color:Blue;">bool</span> TryParseInt32(Span&lt;<span style="color:Blue;">char</span>&gt; input, <span style="color:Blue;">out</span> <span style="color:Blue;">int</span> result)
+{
+    result = 0;
+    <span style="color:Blue;">for</span> (<span style="color:Blue;">int</span> i = 0; i &lt; input.Length; i++)
+    {
+        <span style="color:Blue;">if</span>(input[i] &lt; <span style="color:#A31515;">&#39;0&#39;</span> || input[i] &gt; <span style="color:#A31515;">&#39;9&#39;</span>)
+            <span style="color:Blue;">return</span> <span style="color:Blue;">false</span>;
+    result = result * 10 + ((<span style="color:Blue;">int</span>)input[i] - <span style="color:#A31515;">&#39;0&#39;</span>);
+    }
+    <span style="color:Blue;">return</span> <span style="color:Blue;">true</span>;
+}
+
+-----
+234
+</pre></div>
+</div>
+<p>As we see <code>Span&lt;T&gt;</code> provides abstract access to a memory range both for reading and writing. What does it give us? If we remember what else we can use <code>Span</code> for, we will think about unmanaged resources and strings:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Green;">// Managed array</span>
+<span style="color:Blue;">var</span> array = <span style="color:Blue;">new</span>[] { <span style="color:#A31515;">&#39;1&#39;</span>, <span style="color:#A31515;">&#39;2&#39;</span>, <span style="color:#A31515;">&#39;3&#39;</span>, <span style="color:#A31515;">&#39;4&#39;</span>, <span style="color:#A31515;">&#39;5&#39;</span>, <span style="color:#A31515;">&#39;6&#39;</span> };
+<span style="color:Blue;">var</span> arrSpan = <span style="color:Blue;">new</span> Span&lt;<span style="color:Blue;">char</span>&gt;(array, 1, 3);
+<span style="color:Blue;">if</span> (TryParseInt32(arrSpan, <span style="color:Blue;">out</span> <span style="color:Blue;">var</span> res1))
+{
+    Console.WriteLine(res1);
+}
+
+<span style="color:Green;">// String</span>
+<span style="color:Blue;">var</span> srcString = <span style="color:#A31515;">&quot;123456&quot;</span>;
+<span style="color:Blue;">var</span> strSpan = srcString.AsSpan();
+<span style="color:Blue;">if</span> (TryParseInt32(strSpan, <span style="color:Blue;">out</span> <span style="color:Blue;">var</span> res2))
+{
+    Console.WriteLine(res2);
+}
+
+<span style="color:Green;">// void *</span>
+Span&lt;<span style="color:Blue;">char</span>&gt; buf = <span style="color:Blue;">stackalloc</span> <span style="color:Blue;">char</span>[6];
+buf[0] = <span style="color:#A31515;">&#39;1&#39;</span>; buf[1] = <span style="color:#A31515;">&#39;2&#39;</span>; buf[2] = <span style="color:#A31515;">&#39;3&#39;</span>;
+buf[3] = <span style="color:#A31515;">&#39;4&#39;</span>; buf[4] = <span style="color:#A31515;">&#39;5&#39;</span>; buf[5] = <span style="color:#A31515;">&#39;6&#39;</span>;
+
+<span style="color:Blue;">if</span> (TryParseInt32(buf, <span style="color:Blue;">out</span> <span style="color:Blue;">var</span> res3))
+{
+    Console.WriteLine(res3);
+}
+
+-----
+234
+234
+234
+</pre></div>
+</div>
+<p>That means <code>Span&lt;T&gt;</code> is a tool to unify ways of working with memory,  both managed and unmanaged. It ensures safety while working with such data during Garbage Collection.  That is if memory ranges with unmanaged resources start to move, it will be safe.</p>
+<p>However, should we be so excited? Could we achieve this earlier? For example, in case of managed arrays there is no doubt about it:  you just need to wrap an array in one more class (e.g. long-existing [ArraySegment] (<a href="https://referencesource.microsoft.com/#mscorlib/system/arraysegment.cs,31">https://referencesource.microsoft.com/#mscorlib/system/arraysegment.cs,31</a>)) thus giving a similar interface and that is it. Moreover, you can do the same with strings  — they have necessary methods.  Again, you just need to wrap a string in the same type and provide methods to work with it. However, to store a string, a buffer and an array in one type you will have much to do with keeping references to each possible variant in a single instance (with only one active variant, obviously).</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">public</span> <span style="color:Blue;">readonly</span> <span style="color:Blue;">ref</span> <span style="color:Blue;">struct</span> OurSpan&lt;T&gt;
+{
+    <span style="color:Blue;">private</span> T[] _array;
+    <span style="color:Blue;">private</span> <span style="color:Blue;">string</span> _str;
+    <span style="color:Blue;">private</span> T * _buffer;
+
+    <span style="color:Green;">// ...</span>
+}
+</pre></div>
+</div>
+<p>Or, based on architecture you can create three types that implement a uniform interface. Thus, it is not possible to create a uniform interface between these data types that is different from <code>Span&lt;T&gt;</code> and keep the maximum performance.</p>
+<p>Next, there is a question of what is <code>ref struct</code> in respect to <code>Span</code>? These are exactly those “structures existing only on stack” that we hear about during job interviews so often. It means this data type can be allocated on the stack only and cannot go to the heap. This is why <code>Span</code>, which is a ref structure, is a context data type that enables work of methods but not that of objects in memory. That is what we need to base on when trying to understand it.</p>
+<p>Now we can define the <code>Span</code> type and the related <code>ReadOnlySpan</code> type:</p>
+<blockquote>
+<p>Span is a data type that implements a uniform interface to work with heterogeneous types of data arrays and enables passing a subset of an array to a method so that the speed of access to the original array would be constant and highest regardless of the depth of the context.</p>
+</blockquote>
+<p>Indeed,  if we have a code like</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">public</span> <span style="color:Blue;">void</span> Method1(Span&lt;<span style="color:Blue;">byte</span>&gt; buffer)
+{
+    buffer[0] = 0;
+    Method2(buffer.Slice(1,2));
+}
+Method2(Span&lt;<span style="color:Blue;">byte</span>&gt; buffer)
+{
+    buffer[0] = 0;
+    Method3(buffer.Slice(1,1));
+}
+Method3(Span&lt;<span style="color:Blue;">byte</span>&gt; buffer)
+{
+    buffer[0] = 0;
+}
+</pre></div>
+</div>
+<p>the speed of access to the original buffer will be the highest as you work with a managed pointer and not a managed object. That means you work with an unsafe type in a managed wrapper, but not with a .NET managed type.</p>
+<h3 id="spant-usage-examples">Span&lt;T&gt; usage examples</h3>
+<p>A human by nature cannot fully understand the purpose of a certain instrument until he or she gets some experience. So, let’s turn to some examples.</p>
+<h4 id="valuestringbuilder">ValueStringBuilder</h4>
+<p>One of the most interesting examples in respect to algorithms is the <code>ValueStringBuilder</code> type. However, it is buried deep inside mscorlib and marked with the <code>internal</code> modifier as many other very interesting data types. This means we would not find this remarkable instrument for optimization if we haven’t researched the mscorlib source code.</p>
+<p>What is the main disadvantage of the <code>StringBuilder</code> system type? Its main drawback is  the type and its basis — it is a reference type and is based on <code>char[]</code>, i.e. a character array. At least, this means two things: we use the heap (though not much) anyway and increase the chances to miss the CPU cash.</p>
+<p>Another issue with <code>StringBuilder</code> that I faced is the construction of small strings,  that is when the resulting string must be short  e.g. less than 100 characters. Short formatting raises issues on performance.</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+    $<span style="color:#A31515;">&quot;{x} is in range [{min};{max}]&quot;</span>
+</pre></div>
+</div>
+<p>To what extent is this variant worse than manual construction through <code>StringBuilder</code>? The answer is not always obvious.  It depends on the place of construction  and the frequency of calling this method. Initially, <code>string.Format</code> allocates memory for internal <code>StringBuilder</code> that will create an array of characters (SourceString.Length + args.Length * 8). If during array construction it turns out that the length was incorrectly determined, another <code>StringBuilder</code> will be created to construct the rest. This will lead to the creation of a single linked list. As a result, it must return the constructed string  which means another copying. That is a waste. It would be great if we could get rid of allocating the array of a formed string on the heap: this would solve one of our problems.</p>
+<p>Let’s look at this type from the depth of <code>mscorlib</code>:</p>
+<p><strong>ValueStringBuilder class</strong>
+<a href="https://github.com/dotnet/coreclr/blob/efebb38f3c18425c57f94ff910a50e038d13c848/src/mscorlib/shared/System/Text/ValueStringBuilder.cs">/src/mscorlib/shared/System/Text/ValueStringBuilder</a></p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+    <span style="color:Blue;">internal</span> <span style="color:Blue;">ref</span> <span style="color:Blue;">struct</span> ValueStringBuilder
+    {
+        <span style="color:Green;">// this field will be active if we have too many characters</span>
+        <span style="color:Blue;">private</span> <span style="color:Blue;">char</span>[] _arrayToReturnToPool;
+        <span style="color:Green;">// this field will be the main</span>
+        <span style="color:Blue;">private</span> Span&lt;<span style="color:Blue;">char</span>&gt; _chars;
+        <span style="color:Blue;">private</span> <span style="color:Blue;">int</span> _pos;
+        <span style="color:Green;">// the type accepts the buffer from the outside, delegating the choice of its size to a calling party</span>
+        <span style="color:Blue;">public</span> ValueStringBuilder(Span&lt;<span style="color:Blue;">char</span>&gt; initialBuffer)
+        {
+            _arrayToReturnToPool = <span style="color:Blue;">null</span>;
+            _chars = initialBuffer;
+            _pos = 0;
+        }
+
+        <span style="color:Blue;">public</span> <span style="color:Blue;">int</span> Length
+        {
+            <span style="color:Blue;">get</span> =&gt; _pos;
+            <span style="color:Blue;">set</span>
+            {
+                <span style="color:Blue;">int</span> delta = value - _pos;
+                <span style="color:Blue;">if</span> (delta &gt; 0)
+                {
+                    Append(<span style="color:#A31515;">&#39;\0&#39;</span>, delta);
+                }
+                <span style="color:Blue;">else</span>
+                {
+                    _pos = value;
+                }
+            }
+        }
+
+        <span style="color:Green;">// Here we get the string by copying characters from the array into another array</span>
+        <span style="color:Blue;">public</span> <span style="color:Blue;">override</span> <span style="color:Blue;">string</span> ToString()
+        {
+            <span style="color:Blue;">var</span> s = <span style="color:Blue;">new</span> <span style="color:Blue;">string</span>(_chars.Slice(0, _pos));
+            Clear();
+            <span style="color:Blue;">return</span> s;
+        }
+
+        <span style="color:Green;">// To insert a required character into the middle of the string</span>
+        <span style="color:Green;">//you should add space into the characters of that string and then copy that character</span>
+        <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> Insert(<span style="color:Blue;">int</span> index, <span style="color:Blue;">char</span> value, <span style="color:Blue;">int</span> count)
+        {
+            <span style="color:Blue;">if</span> (_pos &gt; _chars.Length - count)
+            {
+                Grow(count);
+            }
+
+            <span style="color:Blue;">int</span> remaining = _pos - index;
+            _chars.Slice(index, remaining).CopyTo(_chars.Slice(index + count));
+            _chars.Slice(index, count).Fill(value);
+            _pos += count;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> Append(<span style="color:Blue;">char</span> c)
+        {
+            <span style="color:Blue;">int</span> pos = _pos;
+            <span style="color:Blue;">if</span> (pos &lt; _chars.Length)
+            {
+                _chars[pos] = c;
+                _pos = pos + 1;
+            }
+            <span style="color:Blue;">else</span>
+            {
+                GrowAndAppend(c);
+            }
+        }
+
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        <span style="color:Blue;">private</span> <span style="color:Blue;">void</span> GrowAndAppend(<span style="color:Blue;">char</span> c)
+        {
+            Grow(1);
+            Append(c);
+        }
+
+        <span style="color:Green;">// If the original array passed by the constructor wasn’t enough</span>
+        <span style="color:Green;">// we allocate an array of a necessary size from the pool of free arrays</span>
+        <span style="color:Green;">// It would be ideal if the algorithm considered</span>
+        <span style="color:Green;">// discreteness of array size to avoid pool fragmentation. </span>
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        <span style="color:Blue;">private</span> <span style="color:Blue;">void</span> Grow(<span style="color:Blue;">int</span> requiredAdditionalCapacity)
+        {
+            Debug.Assert(requiredAdditionalCapacity &gt; _chars.Length - _pos);
+
+            <span style="color:Blue;">char</span>[] poolArray = ArrayPool&lt;<span style="color:Blue;">char</span>&gt;.Shared.Rent(Math.Max(_pos + requiredAdditionalCapacity, _chars.Length * 2));
+
+            _chars.CopyTo(poolArray);
+
+            <span style="color:Blue;">char</span>[] toReturn = _arrayToReturnToPool;
+            _chars = _arrayToReturnToPool = poolArray;
+            <span style="color:Blue;">if</span> (toReturn != <span style="color:Blue;">null</span>)
+            {
+                ArrayPool&lt;<span style="color:Blue;">char</span>&gt;.Shared.Return(toReturn);
+            }
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        <span style="color:Blue;">private</span> <span style="color:Blue;">void</span> Clear()
+        {
+            <span style="color:Blue;">char</span>[] toReturn = _arrayToReturnToPool;
+            <span style="color:Blue;">this</span> = <span style="color:Blue;">default</span>; <span style="color:Green;">// for safety, to avoid using pooled array if this instance is erroneously appended to again</span>
+            <span style="color:Blue;">if</span> (toReturn != <span style="color:Blue;">null</span>)
+            {
+                ArrayPool&lt;<span style="color:Blue;">char</span>&gt;.Shared.Return(toReturn);
+            }
+        }
+
+        <span style="color:Green;">// Missing methods:  the situation is crystal clear</span>
+        <span style="color:Blue;">private</span> <span style="color:Blue;">void</span> AppendSlow(<span style="color:Blue;">string</span> s);
+        <span style="color:Blue;">public</span> <span style="color:Blue;">bool</span> TryCopyTo(Span&lt;<span style="color:Blue;">char</span>&gt; destination, <span style="color:Blue;">out</span> <span style="color:Blue;">int</span> charsWritten);
+        <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> Append(<span style="color:Blue;">string</span> s);
+        <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> Append(<span style="color:Blue;">char</span> c, <span style="color:Blue;">int</span> count);
+        <span style="color:Blue;">public</span> <span style="color:Blue;">unsafe</span> <span style="color:Blue;">void</span> Append(<span style="color:Blue;">char</span>* value, <span style="color:Blue;">int</span> length);
+        <span style="color:Blue;">public</span> Span&lt;<span style="color:Blue;">char</span>&gt; AppendSpan(<span style="color:Blue;">int</span> length);
+    }
+</pre></div>
+</div>
+<p>This class is functionally similar to its senior fellow <code>StringBuilder</code>, although having one interesting and very important feature:  it is a value type. That means it is stored and passed entirely by value. Also, a new <code>ref</code> type modifier, which is a part of a type declaration signature, indicates that this type has an additional constraint: it can be allocated only on the stack. I mean passing its instances to class fields will produce an error. What is all this stuff for? To answer this question, you just need to look at the <code>StringBuilder</code> class, the essence of which we have just described:</p>
+<p><strong>StringBuilder class</strong> <a href="https://github.com/dotnet/coreclr/blob/68f72dd2587c3365a9fe74d1991f93612c3bc62a/src/mscorlib/src/System/Text/StringBuilder.cs#L47-L62">/src/mscorlib/src/System/Text/StringBuilder.cs</a></p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">public</span> <span style="color:Blue;">sealed</span> <span style="color:Blue;">class</span> StringBuilder : ISerializable
+{
+    <span style="color:Green;">// A StringBuilder is internally represented as a linked list of blocks each of which holds</span>
+    <span style="color:Green;">// a chunk of the string.  It turns out string as a whole can also be represented as just a chunk,</span>
+    <span style="color:Green;">// so that is what we do.</span>
+    <span style="color:Blue;">internal</span> <span style="color:Blue;">char</span>[] m_ChunkChars;                <span style="color:Green;">// The characters in this block</span>
+    <span style="color:Blue;">internal</span> StringBuilder m_ChunkPrevious;      <span style="color:Green;">// Link to the block logically before this block</span>
+    <span style="color:Blue;">internal</span> <span style="color:Blue;">int</span> m_ChunkLength;                  <span style="color:Green;">// The index in m_ChunkChars that represent the end of the block</span>
+    <span style="color:Blue;">internal</span> <span style="color:Blue;">int</span> m_ChunkOffset;                  <span style="color:Green;">// The logical offset (sum of all characters in previous blocks)</span>
+    <span style="color:Blue;">internal</span> <span style="color:Blue;">int</span> m_MaxCapacity = 0;
+
+    <span style="color:Green;">// ...</span>
+
+    <span style="color:Blue;">internal</span> <span style="color:Blue;">const</span> <span style="color:Blue;">int</span> DefaultCapacity = 16;
+</pre></div>
+</div>
+<p><code>StringBuilder</code> is a class that contains a reference to an array of characters. Thus, when you create it, there appear two objects in fact:  <code>StringBuilder</code> and an array of characters which is at least 16 characters in size. This is why it is essential to set the expected length of a string: it will be built by generating a single linked list of arrays with 16 characters each. Admit, that is a waste. In terms of <code>ValueStringBuilder</code> type, it means no default <code>capacity</code>, as it borrows external memory. Also, it is a value type, and it makes a user allocate a buffer for characters on the stack.  Thus, the whole instance of a type is put on the stack together with its contents and the issue of optimization is solved. As there is no need to allocate memory on the heap, there are no problems with a decrease in performance when dealing with the heap. So, you might have a question:  why don’t we always use <code>ValueStringBuilder</code> (or its custom analog as we cannot use the original because it is internal)? The answer is:  it depends on a task. Will a resulting string have a definite size? Will it have a known maximum length? If you answer “yes” and if the string doesn’t exceed reasonable boundaries, you can use the value version of <code>StringBuilder</code>. However, if you expect lengthy strings, use the usual version.</p>
+<h4 id="valuelistbuilder">ValueListBuilder</h4>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">internal</span> <span style="color:Blue;">ref</span> <span style="color:Blue;">partial</span> <span style="color:Blue;">struct</span> ValueListBuilder&lt;T&gt;
+{
+    <span style="color:Blue;">private</span> Span&lt;T&gt; _span;
+    <span style="color:Blue;">private</span> T[] _arrayFromPool;
+    <span style="color:Blue;">private</span> <span style="color:Blue;">int</span> _pos;
+
+    <span style="color:Blue;">public</span> ValueListBuilder(Span&lt;T&gt; initialSpan)
+    {
+        _span = initialSpan;
+        _arrayFromPool = <span style="color:Blue;">null</span>;
+        _pos = 0;
+    }
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">int</span> Length { <span style="color:Blue;">get</span>; <span style="color:Blue;">set</span>; }
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">ref</span> T <span style="color:Blue;">this</span>[<span style="color:Blue;">int</span> index] { <span style="color:Blue;">get</span>; }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> Append(T item);
+
+    <span style="color:Blue;">public</span> ReadOnlySpan&lt;T&gt; AsSpan();
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> Dispose();
+
+    <span style="color:Blue;">private</span> <span style="color:Blue;">void</span> Grow();
+}
+</pre></div>
+</div>
+<p>The second type of data that I especially want to note is the <code>ValueListBuilder</code> type. It is used when you need to create a collection of elements for a short time and pass it to an algorithm for processing.</p>
+<p>Admit,  this task looks pretty similar to the <code>ValueStringBuilder</code> task. And it is solved in a similar way:</p>
+<p>** File [ValueListBuilder.cs (https://github.com/dotnet/coreclr/blob/dbaf2957387c5290a680c8918779683194137b1d/src/System.Private.CoreLib/shared/System/Collections/Generic/ValueListBuilder.cs)**</p>
+<p>To put it clearly, these situations are often. However, previously we solved the issue another way. We used to create a <code>List</code>, fill it with data and lose the reference to it. If the method is called frequently, this will lead to a sad situation: many <code>List</code> instances (and associated arrays) get suspended on the heap. Now this problem is solved: no additional objects will be created. However, as in case of <code>ValueStringBuilder</code> it is solved only for Microsoft programmers:  this class has the <code>internal</code> modifier.</p>
+<h3 id="rules-and-use-practice">Rules and use practice</h3>
+<p>To fully understand the new type of data you need to play with it by writing two or three or better more methods that use it. However, it is possible to learn main rules right now:</p>
+<ul>
+<li>If your method processes some input dataset without changing its size, you may try to stick to the <code>Span</code> type. If you are not going to modify buffer, choose the <code>ReadOnlySpan</code> type;</li>
+<li>If your method handles strings calculating some statistics or parsing these strings, it <em>must</em> accept <code>ReadOnlySpan&lt;char&gt;</code>. Must is a new rule. Because when you accept a string, you make somebody create a substring for you;</li>
+<li>If you need to create a short data array (no more than 10 kB) for a method, you can easily arrange that using <code>Span&lt;TType&gt; buf = stackalloc TType[size]</code>. Note that TType should be a value type as <code>stackalloc</code> works with value types only.</li>
+</ul>
+<p>In other cases, you’d better look closer at <code>Memory</code> or use classic data types.</p>
+<h3 id="how-does-span-work">How does Span work?</h3>
+<p>I would like to say a few additional words on how <code>Span</code> functions and why it is that notable. And there is something to talk about. This type of data has two versions:  one for .NET Core 2.0+ and the other for the rest.</p>
+<p><strong>File [Span.Fast.cs, .NET Core 2.0] (<a href="https://github.com/dotnet/coreclr/blob/38403e661a4202ca4c8a72e4bbd9a263bddeb891/src/System.Private.CoreLib/shared/System/Span.Fast.cs">https://github.com/dotnet/coreclr/blob/38403e661a4202ca4c8a72e4bbd9a263bddeb891/src/System.Private.CoreLib/shared/System/Span.Fast.cs</a>)</strong></p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">public</span> <span style="color:Blue;">readonly</span> <span style="color:Blue;">ref</span> <span style="color:Blue;">partial</span> <span style="color:Blue;">struct</span> Span&lt;T&gt;
+{
+    <span style="color:Gray;">///</span><span style="color:Green;"> A reference to a .NET object or a pure pointer</span>
+    <span style="color:Blue;">internal</span> <span style="color:Blue;">readonly</span> ByReference&lt;T&gt; _pointer;
+    <span style="color:Gray;">///</span><span style="color:Green;"> The length of the buffer based on the pointer</span>
+    <span style="color:Blue;">private</span> <span style="color:Blue;">readonly</span> <span style="color:Blue;">int</span> _length;
+    <span style="color:Green;">// ...</span>
+}
+</pre></div>
+</div>
+<p><strong>File ??? [decompiled]</strong></p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">public</span> <span style="color:Blue;">ref</span> <span style="color:Blue;">readonly</span> <span style="color:Blue;">struct</span> Span&lt;T&gt;
+{
+    <span style="color:Blue;">private</span> <span style="color:Blue;">readonly</span> System.Pinnable&lt;T&gt; _pinnable;
+    <span style="color:Blue;">private</span> <span style="color:Blue;">readonly</span> IntPtr _byteOffset;
+    <span style="color:Blue;">private</span> <span style="color:Blue;">readonly</span> <span style="color:Blue;">int</span> _length;
+    <span style="color:Green;">// ...</span>
+}
+</pre></div>
+</div>
+<p>The thing is that <em>huge</em> .NET Framework and .NET Core 1.* don’t have a garbage collector updated in a special way (unlike .NET Core 2.0+) and they have to use an additional pointer  to the beginning of a buffer in use. That means, that internally <code>Span</code> handles managed .NET objects as though they are unmanaged. Just look into the second variant of the structure: it has three fields. The first one is a reference to a manged object. The second one is the offset in bytes from the beginning of this object, used to define the beginning of the data buffer (in strings this buffer contains <code>char</code> characters while in arrays it contains the data of an array). Finally, the third field contains the quantity of elements in the buffer laid in a row.</p>
+<p>Let’s see how <code>Span</code> handles strings, for example:</p>
+<p><strong>File [coreclr::src/System.Private.CoreLib/shared/System/MemoryExtensions.Fast.cs] (<a href="https://github.com/dotnet/coreclr/blob/2b50bba8131acca2ab535e144796941ad93487b7/src/System.Private.CoreLib/shared/System/MemoryExtensions.Fast.cs#L409-L416">https://github.com/dotnet/coreclr/blob/2b50bba8131acca2ab535e144796941ad93487b7/src/System.Private.CoreLib/shared/System/MemoryExtensions.Fast.cs#L409-L416</a>)</strong></p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">public</span> <span style="color:Blue;">static</span> ReadOnlySpan&lt;<span style="color:Blue;">char</span>&gt; AsSpan(<span style="color:Blue;">this</span> <span style="color:Blue;">string</span> text)
+{
+    <span style="color:Blue;">if</span> (text == <span style="color:Blue;">null</span>)
+        <span style="color:Blue;">return</span> <span style="color:Blue;">default</span>;
+
+    <span style="color:Blue;">return</span> <span style="color:Blue;">new</span> ReadOnlySpan&lt;<span style="color:Blue;">char</span>&gt;(<span style="color:Blue;">ref</span> text.GetRawStringData(), text.Length);
+}
+</pre></div>
+</div>
+<p>Where <code>string.GetRawStringData()</code> looks the following way:</p>
+<p><strong>A file with the definition of fields <a href="https://github.com/dotnet/coreclr/blob/2b50bba8131acca2ab535e144796941ad93487b7/src/System.Private.CoreLib/src/System/String.CoreCLR.cs#L16-L23">coreclr::src/System.Private.CoreLib/src/System/String.CoreCLR.cs</a></strong></p>
+<p><strong>A file with the definition of GetRawStringData <a href="https://github.com/dotnet/coreclr/blob/2b50bba8131acca2ab535e144796941ad93487b7/src/System.Private.CoreLib/shared/System/String.cs#L462">coreclr::src/System.Private.CoreLib/shared/System/String.cs</a></strong></p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">public</span> <span style="color:Blue;">sealed</span> <span style="color:Blue;">partial</span> <span style="color:Blue;">class</span> String :
+    IComparable, IEnumerable, IConvertible, IEnumerable&lt;<span style="color:Blue;">char</span>&gt;,
+    IComparable&lt;<span style="color:Blue;">string</span>&gt;, IEquatable&lt;<span style="color:Blue;">string</span>&gt;, ICloneable
+{
+
+    <span style="color:Green;">//</span>
+    <span style="color:Green;">// These fields map directly onto the fields in an EE StringObject.  See object.h for the layout.</span>
+    <span style="color:Green;">//</span>
+    [NonSerialized] <span style="color:Blue;">private</span> <span style="color:Blue;">int</span> _stringLength;
+
+    <span style="color:Green;">// For empty strings, this will be &#39;\0&#39; since</span>
+    <span style="color:Green;">// strings are both null-terminated and length prefixed</span>
+    [NonSerialized] <span style="color:Blue;">private</span> <span style="color:Blue;">char</span> _firstChar;
+
+
+    <span style="color:Blue;">internal</span> <span style="color:Blue;">ref</span> <span style="color:Blue;">char</span> GetRawStringData() =&gt; <span style="color:Blue;">ref</span> _firstChar;
+}
+</pre></div>
+</div>
+<p>It turns out the method directly accesses the inside of the string, while the <code>ref char</code> specification allows GC to track an unmanaged reference to that inside of the string by moving it together with the string when GC is active.</p>
+<p>The same thing is with arrays:  when <code>Span</code> is created, some internal JIT code calculates the offset for the beginning of the data array and initializes <code>Span</code> with this offset. The way you can calculate the offset for strings and arrays was discussed in the chapter about the structure of objects in memory (.\ObjectsStructure.md).</p>
+<h3 id="spant-as-a-returned-value">Span&lt;T&gt; as a returned value</h3>
+<p>Despite all the harmony, <code>Span</code> has some logical but unexpected constraints on its return from a method. If we look at the following code:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">unsafe</span> <span style="color:Blue;">void</span> Main()
+{
+    <span style="color:Blue;">var</span> x = GetSpan();
+}
+
+<span style="color:Blue;">public</span> Span&lt;<span style="color:Blue;">byte</span>&gt; GetSpan()
+{
+    Span&lt;<span style="color:Blue;">byte</span>&gt; reff = <span style="color:Blue;">new</span> <span style="color:Blue;">byte</span>[100];
+    <span style="color:Blue;">return</span> reff;
+}
+</pre></div>
+</div>
+<p>we can see it is logical and good. However, if we replace one instruction with another:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">unsafe</span> <span style="color:Blue;">void</span> Main()
+{
+    <span style="color:Blue;">var</span> x = GetSpan();
+}
+
+<span style="color:Blue;">public</span> Span&lt;<span style="color:Blue;">byte</span>&gt; GetSpan()
+{
+    Span&lt;<span style="color:Blue;">byte</span>&gt; reff = <span style="color:Blue;">stackalloc</span> <span style="color:Blue;">byte</span>[100];
+    <span style="color:Blue;">return</span> reff;
+}
+</pre></div>
+</div>
+<p>a compiler will prohibit it. Before I say why, I would like you to guess which problems this construct brings.</p>
+<p>Well, I hope you thought, guessed and maybe even understood the reason. If yes, my efforts to writing a detailed chapter about a [thread stack] (./ThreadStack.md) paid off. Because when you return a reference to local variables from a method that finishes its work, you can call another method, wait until it finishes its work too, and then read values of those local variables using x[0.99].</p>
+<p>Fortunately, when we attempt to write such code a compiler slaps on our wrists by warning: <code>CS8352 Cannot use local 'reff' in this context because it may expose referenced variables outside of their declaration scope</code>. The compiler is right because if you bypass this error, there will be a chance, while in a plug-in, to steal the passwords of others or to elevate  privileges for running our plug-in.</p>
+<h2 id="memoryt-and-readonlymemoryt">Memory&lt;T&gt; and ReadOnlyMemory&lt;T&gt;</h2>
+<p>There are two visual differences between <code>Memory&lt;T&gt;</code> and <code>Span&lt;T&gt;</code>. The first one is that <code>Memory&lt;T&gt;</code> type doesn’t contain <code>ref</code> modifier in the header of the type. In other words, the <code>Memory&lt;T&gt;</code> type can be allocated both on the stack while being either a local variable, or a method parameter, or its returned value and on the heap, referencing some data in memory from there. However, this small difference creates a huge distinction in the behavior and capabilities of <code>Memory&lt;T&gt;</code> compared to <code>Span&lt;T&gt;</code>. Unlike <code>Span&lt;T&gt;</code> that is an <em>instrument</em> for some methods to use some data buffer, the <code>Memory&lt;T&gt;</code> type is designed to store information about the buffer, but not to handle it. Thus, there is the difference in API.</p>
+<ul>
+<li><code>Memory&lt;T&gt;</code> doesn’t have methods to access the data that it is responsible for. Instead, it has the <code>Span</code> property and the <code>Slice</code> method that return an instance of the <code>Span</code> type.</li>
+<li>Additionally, <code>Memory&lt;T&gt;</code> contains the <code>Pin()</code> method used for scenarios when a stored buffer data should be passed to <code>unsafe</code> code. If this method is called when memory is allocated in .NET, the buffer will be pinned and will not move when GC is active. This method will return an instance of the <code>MemoryHandle</code> structure, which encapsulates <code>GCHandle</code> to indicate a segment of a lifetime and to pin array buffer in memory.</li>
+</ul>
+<p>However, I suggest we get familiar with the whole set of classes. First, let’s look at the <code>Memory&lt;T&gt;</code> structure itself (here I show only those type members that I found most important):</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+    <span style="color:Blue;">public</span> <span style="color:Blue;">readonly</span> <span style="color:Blue;">struct</span> Memory&lt;T&gt;
+    {
+        <span style="color:Blue;">private</span> <span style="color:Blue;">readonly</span> <span style="color:Blue;">object</span> _object;
+        <span style="color:Blue;">private</span> <span style="color:Blue;">readonly</span> <span style="color:Blue;">int</span> _index, _length;
+
+        <span style="color:Blue;">public</span> Memory(T[] array) { ... }
+        <span style="color:Blue;">public</span> Memory(T[] array, <span style="color:Blue;">int</span> start, <span style="color:Blue;">int</span> length) { ... }
+        <span style="color:Blue;">internal</span> Memory(MemoryManager&lt;T&gt; manager, <span style="color:Blue;">int</span> length) { ... }
+        <span style="color:Blue;">internal</span> Memory(MemoryManager&lt;T&gt; manager, <span style="color:Blue;">int</span> start, <span style="color:Blue;">int</span> length) { ... }
+
+        <span style="color:Blue;">public</span> <span style="color:Blue;">int</span> Length =&gt; _length &amp; RemoveFlagsBitMask;
+        <span style="color:Blue;">public</span> <span style="color:Blue;">bool</span> IsEmpty =&gt; (_length &amp; RemoveFlagsBitMask) == 0;
+
+        <span style="color:Blue;">public</span> Memory&lt;T&gt; Slice(<span style="color:Blue;">int</span> start, <span style="color:Blue;">int</span> length);
+        <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> CopyTo(Memory&lt;T&gt; destination) =&gt; Span.CopyTo(destination.Span);
+        <span style="color:Blue;">public</span> <span style="color:Blue;">bool</span> TryCopyTo(Memory&lt;T&gt; destination) =&gt; Span.TryCopyTo(destination.Span);
+
+        <span style="color:Blue;">public</span> Span&lt;T&gt; Span { <span style="color:Blue;">get</span>; }
+        <span style="color:Blue;">public</span> <span style="color:Blue;">unsafe</span> MemoryHandle Pin();
+    }
+</pre></div>
+</div>
+<p>As we see the structure contains the constructor based on arrays, but stores data in the object. This is to additionally reference  strings that don’t have a constructor designed for them, but can be used with the <code>AsMemory()</code> <code>string</code> method, it returns <code>ReadOnlyMemory</code>. However, as both types should be binary similar, <code>Object</code> is the type of the <code>_object</code> field.</p>
+<p>Next, we see two constructors based on <code>MemoryManager</code>. We will talk about them later. The properties of obtaining <code>Length</code> (size) and <code>IsEmpty</code> check for an empty set. Also, there is the <code>Slice</code> method for getting a subset as well as <code>CopyTo</code> and <code>TryCopyTo</code> methods of copying.</p>
+<p>Talking about <code>Memory</code> I want to describe two methods of this type in detail:  the <code>Span</code> property and the <code>Pin</code> method.</p>
+<h3 id="memoryt.span">Memory&lt;T&gt;.Span</h3>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">public</span> Span&lt;T&gt; Span
+{
+    <span style="color:Blue;">get</span>
+    {
+        <span style="color:Blue;">if</span> (_index &lt; 0)
+        {
+            <span style="color:Blue;">return</span> ((MemoryManager&lt;T&gt;)_object).GetSpan().Slice(_index &amp; RemoveFlagsBitMask, _length);
+        }
+        <span style="color:Blue;">else</span> <span style="color:Blue;">if</span> (<span style="color:Blue;">typeof</span>(T) == <span style="color:Blue;">typeof</span>(<span style="color:Blue;">char</span>) &amp;&amp; _object <span style="color:Blue;">is</span> <span style="color:Blue;">string</span> s)
+        {
+            <span style="color:Green;">// This is dangerous, returning a writable span for a string that should be immutable.</span>
+            <span style="color:Green;">// However, we need to handle the case where a ReadOnlyMemory&lt;char&gt; was created from a string</span>
+            <span style="color:Green;">// and then cast to a Memory&lt;T&gt;. Such a cast can only be done with unsafe or marshaling code,</span>
+            <span style="color:Green;">// in which case that&#39;s the dangerous operation performed by the dev, and we&#39;re just following</span>
+            <span style="color:Green;">// suit here to make it work as best as possible.</span>
+            <span style="color:Blue;">return</span> <span style="color:Blue;">new</span> Span&lt;T&gt;(<span style="color:Blue;">ref</span> Unsafe.As&lt;<span style="color:Blue;">char</span>, T&gt;(<span style="color:Blue;">ref</span> s.GetRawStringData()), s.Length).Slice(_index, _length);
+        }
+        <span style="color:Blue;">else</span> <span style="color:Blue;">if</span> (_object != <span style="color:Blue;">null</span>)
+        {
+            <span style="color:Blue;">return</span> <span style="color:Blue;">new</span> Span&lt;T&gt;((T[])_object, _index, _length &amp; RemoveFlagsBitMask);
+        }
+        <span style="color:Blue;">else</span>
+        {
+            <span style="color:Blue;">return</span> <span style="color:Blue;">default</span>;
+        }
+    }
+}
+</pre></div>
+</div>
+<p>Namely, the lines that handle strings management. They say that if we convert <code>ReadOnlyMemory&lt;T&gt;</code> to <code>Memory&lt;T&gt;</code> (these things are the same in binary representation and there is even a comment these types must coincide in a binary way as one is produced from another by calling <code>Unsafe.As</code>) we will get an <sub>access to a secret chamber</sub> with an opportunity to change strings. This is an extremely dangerous mechanism:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">unsafe</span> <span style="color:Blue;">void</span> Main()
+{
+    <span style="color:Blue;">var</span> str = <span style="color:#A31515;">&quot;Hello!&quot;</span>;
+    ReadOnlyMemory&lt;<span style="color:Blue;">char</span>&gt; ronly = str.AsMemory();
+    Memory&lt;<span style="color:Blue;">char</span>&gt; mem = (Memory&lt;<span style="color:Blue;">char</span>&gt;)Unsafe.As&lt;ReadOnlyMemory&lt;<span style="color:Blue;">char</span>&gt;, Memory&lt;<span style="color:Blue;">char</span>&gt;&gt;(<span style="color:Blue;">ref</span> ronly);
+    mem.Span[5] = <span style="color:#A31515;">&#39;?&#39;</span>;
+
+    Console.WriteLine(str);
+}
+---
+Hello?
+</pre></div>
+</div>
+<p>This mechanism combined with string interning can produce dire consequences.</p>
+<h3 id="memoryt.pin">Memory&lt;T&gt;.Pin</h3>
+<p>The second method that draws strong attention is <code>Pin</code>:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">public</span> <span style="color:Blue;">unsafe</span> MemoryHandle Pin()
+{
+    <span style="color:Blue;">if</span> (_index &lt; 0)
+    {
+        <span style="color:Blue;">return</span> ((MemoryManager&lt;T&gt;)_object).Pin((_index &amp; RemoveFlagsBitMask));
+    }
+    <span style="color:Blue;">else</span> <span style="color:Blue;">if</span> (<span style="color:Blue;">typeof</span>(T) == <span style="color:Blue;">typeof</span>(<span style="color:Blue;">char</span>) &amp;&amp; _object <span style="color:Blue;">is</span> <span style="color:Blue;">string</span> s)
+    {
+        <span style="color:Green;">// This case can only happen if a ReadOnlyMemory&lt;char&gt; was created around a string</span>
+        <span style="color:Green;">// and then that was cast to a Memory&lt;char&gt; using unsafe / marshaling code.  This needs</span>
+        <span style="color:Green;">// to work, however, so that code that uses a single Memory&lt;char&gt; field to store either</span>
+        <span style="color:Green;">// a readable ReadOnlyMemory&lt;char&gt; or a writable Memory&lt;char&gt; can still be pinned and</span>
+        <span style="color:Green;">// used for interop purposes.</span>
+        GCHandle handle = GCHandle.Alloc(s, GCHandleType.Pinned);
+        <span style="color:Blue;">void</span>* pointer = Unsafe.Add&lt;T&gt;(Unsafe.AsPointer(<span style="color:Blue;">ref</span> s.GetRawStringData()), _index);
+        <span style="color:Blue;">return</span> <span style="color:Blue;">new</span> MemoryHandle(pointer, handle);
+    }
+    <span style="color:Blue;">else</span> <span style="color:Blue;">if</span> (_object <span style="color:Blue;">is</span> T[] array)
+    {
+        <span style="color:Green;">// Array is already pre-pinned</span>
+        <span style="color:Blue;">if</span> (_length &lt; 0)
+        {
+            <span style="color:Blue;">void</span>* pointer = Unsafe.Add&lt;T&gt;(Unsafe.AsPointer(<span style="color:Blue;">ref</span> array.GetRawSzArrayData()), _index);
+            <span style="color:Blue;">return</span> <span style="color:Blue;">new</span> MemoryHandle(pointer);
+        }
+        <span style="color:Blue;">else</span>
+        {
+            GCHandle handle = GCHandle.Alloc(array, GCHandleType.Pinned);
+            <span style="color:Blue;">void</span>* pointer = Unsafe.Add&lt;T&gt;(Unsafe.AsPointer(<span style="color:Blue;">ref</span> array.GetRawSzArrayData()), _index);
+            <span style="color:Blue;">return</span> <span style="color:Blue;">new</span> MemoryHandle(pointer, handle);
+        }
+    }
+    <span style="color:Blue;">return</span> <span style="color:Blue;">default</span>;
+}
+</pre></div>
+</div>
+<p>It is also an important instrument for unification  because if we want to pass a buffer to unmanaged code, we just need to call the <code>Pin()</code> method and pass a pointer to this code no matter what type of data <code>Memory&lt;T&gt;</code> refers to. This pointer will be stored in the property of a resulting structure.</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">void</span> PinSample(Memory&lt;<span style="color:Blue;">byte</span>&gt; memory)
+{
+    <span style="color:Blue;">using</span>(<span style="color:Blue;">var</span> handle = memory.Pin())
+    {
+        WinApi.SomeApiMethod(handle.Pointer);
+    }
+}
+</pre></div>
+</div>
+<p>It doesn’t matter what <code>Pin()</code> was called for in this code: it can be <code>Memory</code> that represents either <code>T[]</code>, or a <code>string</code> or a buffer of unmanaged memory. Merely arrays and string will get a real <code>GCHandle.Alloc(array, GCHandleType.Pinned)</code> and in case of unmanaged memory nothing will happen.</p>
+<h2 id="memorymanager-imemoryowner-memorypool">MemoryManager, IMemoryOwner, MemoryPool</h2>
+<p>Besides indicating structure fields, I want to note that there are two other <code>internal</code> type constructors based on an other entity – <code>MemoryManager</code>. This is not a classic memory manager that you might have thought of and we are going to talk about it later. classic memory manager that you might have thought of and we are going to talk about it later. Like <code>Span</code>, <code>Memory</code> has a reference to a navigated object, an offset, and a size of an internal buffer. Note that you can use the <code>new</code> operator to create <code>Memory</code> from an array only. Or, you can use extension methods to create <code>Memory</code> from a string, an array or <code>ArraySegment</code>. I mean it is not designed to be created from unmanaged memory manually. However, we can see that there is an internal method to create this structure using <code>MemoryManager</code>.</p>
+<p><strong>File <a href="https://github.com/dotnet/corefx/blob/master/src/Common/src/CoreLib/System/Buffers/MemoryManager.cs">MemoryManager.cs</a></strong></p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">public</span> <span style="color:Blue;">abstract</span> <span style="color:Blue;">class</span> MemoryManager&lt;T&gt; : IMemoryOwner&lt;T&gt;, IPinnable
+{
+    <span style="color:Blue;">public</span> <span style="color:Blue;">abstract</span> MemoryHandle Pin(<span style="color:Blue;">int</span> elementIndex = 0);
+    <span style="color:Blue;">public</span> <span style="color:Blue;">abstract</span> <span style="color:Blue;">void</span> Unpin();
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">virtual</span> Memory&lt;T&gt; Memory =&gt; <span style="color:Blue;">new</span> Memory&lt;T&gt;(<span style="color:Blue;">this</span>, GetSpan().Length);
+    <span style="color:Blue;">public</span> <span style="color:Blue;">abstract</span> Span&lt;T&gt; GetSpan();
+    <span style="color:Blue;">protected</span> Memory&lt;T&gt; CreateMemory(<span style="color:Blue;">int</span> length) =&gt; <span style="color:Blue;">new</span> Memory&lt;T&gt;(<span style="color:Blue;">this</span>, length);
+    <span style="color:Blue;">protected</span> Memory&lt;T&gt; CreateMemory(<span style="color:Blue;">int</span> start, <span style="color:Blue;">int</span> length) =&gt; <span style="color:Blue;">new</span> Memory&lt;T&gt;(<span style="color:Blue;">this</span>, start, length);
+
+    <span style="color:Blue;">void</span> IDisposable.Dispose()
+    <span style="color:Blue;">protected</span> <span style="color:Blue;">abstract</span> <span style="color:Blue;">void</span> Dispose(<span style="color:Blue;">bool</span> disposing);
+}
+</pre></div>
+</div>
+<p>This structure indicates the owner of a memory range. In other words, <code>Span</code> is an instrument to work with memory, <code>Memory</code> is a tool to store the information about a particular memory range and <code>MemoryManager</code> is a tool to control the lifetime of this range, i.e. its owner. For example, we can look at <code>NativeMemoryManager&lt;T&gt;</code> type. Although it is used for tests, this type clearly represents the concept of “ownership”.</p>
+<p><strong>File <a href="https://github.com/dotnet/corefx/blob/888088448ac5dd1053d88434dfd819dcbc0fd9a1/src/Common/tests/System/Buffers/NativeMemoryManager.cs">NativeMemoryManager.cs</a></strong></p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">internal</span> <span style="color:Blue;">sealed</span> <span style="color:Blue;">class</span> NativeMemoryManager : MemoryManager&lt;<span style="color:Blue;">byte</span>&gt;
+{
+    <span style="color:Blue;">private</span> <span style="color:Blue;">readonly</span> <span style="color:Blue;">int</span> _length;
+    <span style="color:Blue;">private</span> IntPtr _ptr;
+    <span style="color:Blue;">private</span> <span style="color:Blue;">int</span> _retainedCount;
+    <span style="color:Blue;">private</span> <span style="color:Blue;">bool</span> _disposed;
+
+    <span style="color:Blue;">public</span> NativeMemoryManager(<span style="color:Blue;">int</span> length)
+    {
+        _length = length;
+        _ptr = Marshal.AllocHGlobal(length);
+    }
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">override</span> <span style="color:Blue;">void</span> Pin() { ... }
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">override</span> <span style="color:Blue;">void</span> Unpin()
+    {
+        <span style="color:Blue;">lock</span> (<span style="color:Blue;">this</span>)
+        {
+            <span style="color:Blue;">if</span> (_retainedCount &gt; 0)
+            {
+                _retainedCount--;
+                <span style="color:Blue;">if</span> (_retainedCount== 0)
+                {
+                    <span style="color:Blue;">if</span> (_disposed)
+                    {
+                        Marshal.FreeHGlobal(_ptr);
+                        _ptr = IntPtr.Zero;
+                    }
+                }
+            }
+        }
+    }
+
+    <span style="color:Green;">// Other methods</span>
+}
+</pre></div>
+</div>
+<p>That means the class allows for nested calls of the <code>Pin()</code> method, thus counting generated references from the <code>unsafe</code> world.</p>
+<p>Another entity closely tied with <code>Memory</code> is <code>MemoryPool</code> that pools <code>MemoryManager</code> instances (<code>IMemoryOwner</code> in fact):</p>
+<p><strong>File <a href="https://github.com/dotnet/corefx/blob/f592e887e2349ed52af6a83070c42adb9d26408c/src/System.Memory/src/System/Buffers/MemoryPool.cs">MemoryPool.cs</a></strong></p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">public</span> <span style="color:Blue;">abstract</span> <span style="color:Blue;">class</span> MemoryPool&lt;T&gt; : IDisposable
+{
+    <span style="color:Blue;">public</span> <span style="color:Blue;">static</span> MemoryPool&lt;T&gt; Shared =&gt; s_shared;
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">abstract</span> IMemoryOwner&lt;T&gt; Rent(<span style="color:Blue;">int</span> minBufferSize = -1);
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> Dispose() { ... }
+}
+</pre></div>
+</div>
+<p>It is used to lease buffers of a necessary size for temporary use. The leased instances with implemented <code>IMemoryOwner&lt;T&gt;</code> interface have the <code>Dispose()</code> method to return the leased array back to the pool of arrays. By default, you can use the shareable pool of buffers built on <code>ArrayMemoryPool</code>:</p>
+<p><strong>File <a href="https://github.com/dotnet/corefx/blob/56dfb8834fa50f3bc61ea9b4bfdc9dcc759b6ec9/src/System.Memory/src/System/Buffers/ArrayMemoryPool.cs">ArrayMemoryPool.cs</a></strong></p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">internal</span> <span style="color:Blue;">sealed</span> <span style="color:Blue;">partial</span> <span style="color:Blue;">class</span> ArrayMemoryPool&lt;T&gt; : MemoryPool&lt;T&gt;
+{
+    <span style="color:Blue;">private</span> <span style="color:Blue;">const</span> <span style="color:Blue;">int</span> MaximumBufferSize = <span style="color:Blue;">int</span>.MaxValue;
+    <span style="color:Blue;">public</span> <span style="color:Blue;">sealed</span> <span style="color:Blue;">override</span> <span style="color:Blue;">int</span> MaxBufferSize =&gt; MaximumBufferSize;
+    <span style="color:Blue;">public</span> <span style="color:Blue;">sealed</span> <span style="color:Blue;">override</span> IMemoryOwner&lt;T&gt; Rent(<span style="color:Blue;">int</span> minimumBufferSize = -1)
+    {
+        <span style="color:Blue;">if</span> (minimumBufferSize == -1)
+            minimumBufferSize = 1 + (4095 / Unsafe.SizeOf&lt;T&gt;());
+        <span style="color:Blue;">else</span> <span style="color:Blue;">if</span> (((<span style="color:Blue;">uint</span>)minimumBufferSize) &gt; MaximumBufferSize)
+            ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument.minimumBufferSize);
+
+        <span style="color:Blue;">return</span> <span style="color:Blue;">new</span> ArrayMemoryPoolBuffer(minimumBufferSize);
+    }
+    <span style="color:Blue;">protected</span> <span style="color:Blue;">sealed</span> <span style="color:Blue;">override</span> <span style="color:Blue;">void</span> Dispose(<span style="color:Blue;">bool</span> disposing) { }
+}
+</pre></div>
+</div>
+<p>Based on this architecture, we have the following picture:</p>
+<p>– <code>Span</code> data type should be used as a method parameter if you want to read data (<code>ReadOnlySpan</code>) or read and write data (<code>Span</code>). However, it is not supposed to be stored in a field of a class for future use.
+– If you need to store a reference from a field of a class to a data buffer, you need to use <code>Memory&lt;T&gt;</code> or <code>ReadOnlyMemory&lt;T&gt;</code> depending on your goals.
+– <code>MemoryManager&lt;T&gt;</code> is the owner of a data buffer (optional ). It may be necessary if you need to count <code>Pin()</code> calls for example. Or, if you need to know how to release memory.
+– If <code>Memory</code> is built around an unmanaged memory range, <code>Pin()</code> can do nothing. However, this uniforms working with different types of buffers:  for both managed and unmanaged code the interaction interface will be the same.<br />
+– Every type has public constructors. That means you can use <code>Span</code> directly or get its instance from <code>Memory</code>. For <code>Memory</code> as such, you can create it individually or you can create a memory range owned by <code>IMemoryOwner</code> and referenced by <code>Memory</code>. Any type based on <code>MemoryManger</code> can be regarded as a specific case which it owns some local memory range (e.g. accompanied by counting the references from the <code>unsafe</code> world). In addition, if you need to pool such buffers (the frequent traffic of almost equally sized buffers is expected) you can use the <code>MemoryPool</code> type.
+– If you intend to work with <code>unsafe</code> code by passing a data buffer there, you should use the <code>Memory</code> type which has the <code>Pin()</code> method that automatically pins a buffer on the .NET heap if it was created there.
+– If you have some traffic of buffers (for example you parse a text of a program or DSL), it is better to use the <code>MemoryPool</code> type. You can properly implement it to output the buffers of a necessary size from a pool (for example a slightly bigger buffer if there is no suitable one, but using <code>originalMemory.Slice(requiredSize)</code> to avoid pool fragmentation).</p>
+<h2 id="performance">Performance</h2>
+<p>To measure the performance of new data types I decided to use a library that has already become standard <a href="https://github.com/dotnet/BenchmarkDotNet">BenchmarkDotNet</a>:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+[Config(<span style="color:Blue;">typeof</span>(MultipleRuntimesConfig))]
+<span style="color:Blue;">public</span> <span style="color:Blue;">class</span> SpanIndexer
+{
+    <span style="color:Blue;">private</span> <span style="color:Blue;">const</span> <span style="color:Blue;">int</span> Count = 100;
+    <span style="color:Blue;">private</span> <span style="color:Blue;">char</span>[] arrayField;
+    <span style="color:Blue;">private</span> ArraySegment&lt;<span style="color:Blue;">char</span>&gt; segment;
+    <span style="color:Blue;">private</span> <span style="color:Blue;">string</span> str;
+
+    [GlobalSetup]
+    <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> Setup()
+    {
+        str = <span style="color:Blue;">new</span> <span style="color:Blue;">string</span>(Enumerable.Repeat(<span style="color:#A31515;">&#39;a&#39;</span>, Count).ToArray());
+        arrayField = str.ToArray();
+        segment = <span style="color:Blue;">new</span> ArraySegment&lt;<span style="color:Blue;">char</span>&gt;(arrayField);
+    }
+
+    [Benchmark(Baseline = <span style="color:Blue;">true</span>, OperationsPerInvoke = Count)]
+    <span style="color:Blue;">public</span> <span style="color:Blue;">int</span> ArrayIndexer_Get()
+    {
+        <span style="color:Blue;">var</span> tmp = 0;
+        <span style="color:Blue;">for</span> (<span style="color:Blue;">int</span> index = 0, len = arrayField.Length; index &lt; len; index++)
+        {
+            tmp = arrayField[index];
+        }
+        <span style="color:Blue;">return</span> tmp;
+    }
+
+    [Benchmark(OperationsPerInvoke = Count)]
+    <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> ArrayIndexer_Set()
+    {
+        <span style="color:Blue;">for</span> (<span style="color:Blue;">int</span> index = 0, len = arrayField.Length; index &lt; len; index++)
+        {
+            arrayField[index] = <span style="color:#A31515;">&#39;0&#39;</span>;
+        }
+    }
+
+    [Benchmark(OperationsPerInvoke = Count)]
+    <span style="color:Blue;">public</span> <span style="color:Blue;">int</span> ArraySegmentIndexer_Get()
+    {
+        <span style="color:Blue;">var</span> tmp = 0;
+        <span style="color:Blue;">var</span> accessor = (IList&lt;<span style="color:Blue;">char</span>&gt;)segment;
+        <span style="color:Blue;">for</span> (<span style="color:Blue;">int</span> index = 0, len = accessor.Count; index &lt; len; index++)
+        {
+            tmp = accessor[index];
+        }
+        <span style="color:Blue;">return</span> tmp;
+    }
+
+    [Benchmark(OperationsPerInvoke = Count)]
+    <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> ArraySegmentIndexer_Set()
+    {
+        <span style="color:Blue;">var</span> accessor = (IList&lt;<span style="color:Blue;">char</span>&gt;)segment;
+        <span style="color:Blue;">for</span> (<span style="color:Blue;">int</span> index = 0, len = accessor.Count; index &lt; len; index++)
+        {
+            accessor[index] = <span style="color:#A31515;">&#39;0&#39;</span>;
+        }
+    }
+
+    [Benchmark(OperationsPerInvoke = Count)]
+    <span style="color:Blue;">public</span> <span style="color:Blue;">int</span> StringIndexer_Get()
+    {
+        <span style="color:Blue;">var</span> tmp = 0;
+        <span style="color:Blue;">for</span> (<span style="color:Blue;">int</span> index = 0, len = str.Length; index &lt; len; index++)
+        {
+            tmp = str[index];
+        }
+
+        <span style="color:Blue;">return</span> tmp;
+    }
+
+    [Benchmark(OperationsPerInvoke = Count)]
+    <span style="color:Blue;">public</span> <span style="color:Blue;">int</span> SpanArrayIndexer_Get()
+    {
+        <span style="color:Blue;">var</span> span = arrayField.AsSpan();
+        <span style="color:Blue;">var</span> tmp = 0;
+        <span style="color:Blue;">for</span> (<span style="color:Blue;">int</span> index = 0, len = span.Length; index &lt; len; index++)
+        {
+            tmp = span[index];
+        }
+        <span style="color:Blue;">return</span> tmp;
+    }
+
+    [Benchmark(OperationsPerInvoke = Count)]
+    <span style="color:Blue;">public</span> <span style="color:Blue;">int</span> SpanArraySegmentIndexer_Get()
+    {
+        <span style="color:Blue;">var</span> span = segment.AsSpan();
+        <span style="color:Blue;">var</span> tmp = 0;
+        <span style="color:Blue;">for</span> (<span style="color:Blue;">int</span> index = 0, len = span.Length; index &lt; len; index++)
+        {
+            tmp = span[index];
+        }
+        <span style="color:Blue;">return</span> tmp;
+    }
+
+    [Benchmark(OperationsPerInvoke = Count)]
+    <span style="color:Blue;">public</span> <span style="color:Blue;">int</span> SpanStringIndexer_Get()
+    {
+        <span style="color:Blue;">var</span> span = str.AsSpan();
+        <span style="color:Blue;">var</span> tmp = 0;
+        <span style="color:Blue;">for</span> (<span style="color:Blue;">int</span> index = 0, len = span.Length; index &lt; len; index++)
+        {
+            tmp = span[index];
+        }
+        <span style="color:Blue;">return</span> tmp;
+    }
+
+    [Benchmark(OperationsPerInvoke = Count)]
+    <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> SpanArrayIndexer_Set()
+    {
+        <span style="color:Blue;">var</span> span = arrayField.AsSpan();
+        <span style="color:Blue;">for</span> (<span style="color:Blue;">int</span> index = 0, len = span.Length; index &lt; len; index++)
+        {
+            span[index] = <span style="color:#A31515;">&#39;0&#39;</span>;
+        }
+    }
+
+    [Benchmark(OperationsPerInvoke = Count)]
+    <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> SpanArraySegmentIndexer_Set()
+    {
+        <span style="color:Blue;">var</span> span = segment.AsSpan();
+        <span style="color:Blue;">for</span> (<span style="color:Blue;">int</span> index = 0, len = span.Length; index &lt; len; index++)
+        {
+            span[index] = <span style="color:#A31515;">&#39;0&#39;</span>;
+        }
+    }
+}
+
+<span style="color:Blue;">public</span> <span style="color:Blue;">class</span> MultipleRuntimesConfig : ManualConfig
+{
+    <span style="color:Blue;">public</span> MultipleRuntimesConfig()
+    {
+        Add(Job.Default
+            .With(CsProjClassicNetToolchain.Net471) <span style="color:Green;">// Span not supported by CLR</span>
+            .WithId(<span style="color:#A31515;">&quot;.NET 4.7.1&quot;</span>));
+
+        Add(Job.Default
+            .With(CsProjCoreToolchain.NetCoreApp20) <span style="color:Green;">// Span supported by CLR</span>
+            .WithId(<span style="color:#A31515;">&quot;.NET Core 2.0&quot;</span>));
+
+        Add(Job.Default
+            .With(CsProjCoreToolchain.NetCoreApp21) <span style="color:Green;">// Span supported by CLR</span>
+            .WithId(<span style="color:#A31515;">&quot;.NET Core 2.1&quot;</span>));
+
+        Add(Job.Default
+            .With(CsProjCoreToolchain.NetCoreApp22) <span style="color:Green;">// Span supported by CLR</span>
+            .WithId(<span style="color:#A31515;">&quot;.NET Core 2.2&quot;</span>));
+    }
+}
+</pre></div>
+</div>
+<p>Now, let’s see the results.</p>
+<p><img src="./imgs/Span/Performance.png" alt="Performance chart" /></p>
+<p>Looking at them we can get the following information:</p>
+<ul>
+<li><code>ArraySegment</code> is awful. But if you wrap it in <code>Span</code> you can make it less awful. In this case, performance will increase 7 times.</li>
+<li>If we consider .NET Framework 4.7.1 (the same thing is for 4.5), the use of <code>Span</code> will significantly lower the performance when working with data buffers. It will decrease by 30–35 %.</li>
+<li>However, if we look at .NET Core 2.1+ the performance remains similar or even increases given that <code>Span</code> can use a part of a data buffer, creating the context.  The same functionality can be found in <code>ArraySegment</code>, but it works very slowly.</li>
+</ul>
+<p>Thus, we can draw simple conclusions regarding the use of these data types:</p>
+<ul>
+<li>for <code>.NET Framework 4.5+</code> и <code>.NET Core</code> they have the only advantage:  they are faster than <code>ArraySegment</code> when dealing with a subset of an original array;</li>
+<li>in <code>.NET Core 2.1+</code> their use gives an undeniable advantage over both <code>ArraySegment</code> and any manual implementation of <code>Slice</code>;</li>
+<li>all three ways are as productive as possible and that cannot be achieved with any tool to unify arrays.</li>
+</ul>
+
+</div>
+</div>
+</body>
+</html>

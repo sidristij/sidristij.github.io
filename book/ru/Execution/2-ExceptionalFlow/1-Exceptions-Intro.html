@@ -1,0 +1,503 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.NET Platform Architecture</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <style>
+        body {
+    padding: 60px 60px 60px 100px;
+}
+
+p, li {
+    margin: 0 0 14px;
+    font-family: PF Regal,PF Regal Text Pro,Georgia,serif;
+    font-size: 20px;
+    line-height: 32px;
+}
+
+ol, ul {
+    padding-left: 35px;
+    margin-top: 1.1rem;
+    margin-bottom: 1.1rem;
+}
+
+ol li {
+    padding-left: 10px;	
+}
+
+ul li {
+    padding-left: 5px;	
+}
+
+code, .lang-csharp span, .lang-csharp pre {
+    font-family: JB Mono, monospace !important;
+}
+
+.lang-csharp {
+    padding: 4px 0px 14px 0px;
+}
+
+
+.lang-csharp > div {
+    border-left-color: #eee;
+    border-left-style: dotted;
+    border-left-width: 3px;
+    padding-left: 25px;
+}
+
+code {
+    font-size: 14px;
+    border: gainsboro;
+    border-width: 1px;
+    border-style: solid;
+    padding: 2px;
+    color: darkslateblue;
+}
+
+.lang-csharp span, .lang-csharp pre {
+    font-size: 13px;
+    line-height: 20px;
+}
+
+p a {
+    text-decoration: none;
+    color: inherit;
+    box-shadow: inset 0 -1px #b88b59;
+}
+
+p img {
+    width: 95%;
+}
+
+img < p {
+    text-align: center;
+}
+
+blockquote p {
+    margin: 16px 0;
+    padding: 12px 12px 13px;
+    border: 1px solid rgba(0,0,0,.08);
+    border-radius: 8px;
+    background: #fff8c4;
+    font-family: Proxima Nova,Arial,Helvetica Neue,sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+blockquote p code {
+    font-family: consolas, monospace;
+    font-size: 17px;
+    background-color: aliceblue;
+    padding: 4px 6px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+}
+
+h1 {
+    font-size: 38px;
+    font-family: PF Regal,PF Regal Text Pro,Georgia,serif;
+    font-weight: 400;
+    margin: 40px 0 10px 0;
+}
+
+h1 b {
+    font-family: Proxima Nova,Arial,Helvetica Neue,sans-serif;
+    font-weight: 700;
+    font-size: 37px;
+    line-height: 42px;
+}
+
+h2 {
+    margin-top: 35px;
+    margin-bottom: 10px;
+    font-family: Proxima Nova,Arial,Helvetica Neue,sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+    border-bottom-color: aliceblue;
+    border-bottom-style: solid;
+    padding-bottom: 5px;
+}
+
+h3 {
+    margin: 30px 0 10px 0;
+    border-bottom-color: azure;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    font-size: 17pt;
+    font-weight: 300;
+}
+
+
+// Fonts
+@font-face {
+    font-family: 'JB Mono';
+    src: local('JetBrains Mono'),
+    url('../../../res/fonts/woff2/JetBrainsMono-Italic.woff2') format('woff2'),
+    url('../../../res/fonts/woff/JetBrainsMono-Italic.woff') format('woff'),
+    url('../../../res/fonts/ttf/JetBrainsMono-Italic.ttf') format('truetype');
+    font-weight: 400;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'JB Mono';
+    src: local('JetBrains Mono'),
+    url('../../../res/fonts/woff2/JetBrainsMono-Regular.woff2') format('woff2'),
+    url('../../../res/fonts/woff/JetBrainsMono-Regular.woff') format('woff'),
+    url('../../../res/fonts/ttf/JetBrainsMono-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'JB Mono';
+    src: local('JetBrains Mono'),
+    url('../../../res/fonts/woff2/JetBrainsMono-Medium-Italic.woff2') format('woff2'),
+    url('../../../res/fonts/woff/JetBrainsMono-Medium-Italic.woff') format('woff'),
+    url('../../../res/fonts/ttf/JetBrainsMono-Medium-Italic.ttf') format('truetype');
+    font-weight: 600;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'JB Mono';
+    src: local('JetBrains Mono'),
+    url('../../../res/fonts/woff2/JetBrainsMono-Medium.woff2') format('woff2'),
+    url('../../../res/fonts/woff/JetBrainsMono-Medium.woff') format('woff'),
+    url('../../../res/fonts/ttf/JetBrainsMono-Medium.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'PF Regal Text Pro';
+    src: local('PF Regal Text Pro RegularA'), local('PF-Regal-Text-Pro-RegularA'),
+    url('../../../res/fonts/woff2/PFRegalTextPro-RegularA.woff2') format('woff2'),
+    url('../../../res/fonts/woff/PFRegalTextPro-RegularA.woff') format('woff'),
+    url('../../../res/fonts/ttf/PFRegalTextPro-RegularA.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'PF Regal Text Pro';
+    src: local('PF Regal Text Pro RegularB'), local('PF-Regal-Text-Pro-RegularB'),
+    url('../../../res/fonts/woff2/PFRegalTextPro-RegularB.woff2') format('woff2'),
+    url('../../../res/fonts/woff/PFRegalTextPro-RegularB.woff') format('woff'),
+    url('../../../res/fonts/ttf/PFRegalTextPro-RegularB.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'PF Regal Text Pro';
+    src: local('PF Regal Text Pro RegularB Italic'), local('PF-Regal-Text-Pro-RegularB-Italic'),
+    url('../../../res/fonts/woff2/PFRegalTextPro-RegularBItalic.woff2') format('woff2'),
+    url('../../../res/fonts/woff/PFRegalTextPro-RegularBItalic.woff') format('woff'),
+    url('../../../res/fonts/ttf/PFRegalTextPro-RegularBItalic.ttf') format('truetype');
+    font-weight: 600;
+    font-style: italic;
+}
+  
+    </style>
+
+<div style="margin:auto; width:100%;">
+<div style="width:1000px;">
+    <h1 id="section">Исключения</h1>
+<blockquote>
+<p><a href="https://github.com/sidristij/dotnetbook/issues/51">Ссылка на обсуждение</a></p>
+</blockquote>
+<p>В нашем разговоре о потоке исполнения команд различными подсистемами пришло время поговорить про исключения или, скорее, исключительные ситуации. И прежде чем продолжить стоит совсем немного остановиться именно на самом определении. Что такое исключительная ситуация?</p>
+<p>Исключительной называют такую ситуацию, которая делает исполнение дальнейшего или текущего кода абсолютно не корректным. Не таким как задумывалось, проектировалось. Переводит состояние приложения в целом или же его отдельной части (например, объекта) в состояние нарушенной целостности. Т.е. что-то экстраординарное, исключительное.</p>
+<p>Почему же это так важно - определить терминологию? Работа с терминологией очень важна, т.к. она держит нас в рамках. Если не следовать терминологии можно уйти далеко от созданного проектировщиками концепта и получить множество неоднозначных ситуаций. А чтобы закрепить понимание вопроса давайте обратимся к примерам:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+ <span style="color:Blue;">struct</span> Number
+ {
+     <span style="color:Blue;">public</span> <span style="color:Blue;">static</span> Number Parse(<span style="color:Blue;">string</span> source)
+     {
+         <span style="color:Green;">// ...</span>
+         <span style="color:Blue;">if</span>(!parsed)
+         {
+             <span style="color:Blue;">throw</span> <span style="color:Blue;">new</span> ParsingException();
+         }
+         <span style="color:Green;">// ...</span>
+     }
+
+     <span style="color:Blue;">public</span> <span style="color:Blue;">static</span> <span style="color:Blue;">bool</span> TryParse(<span style="color:Blue;">string</span> source, <span style="color:Blue;">out</span> Number result)
+     {
+        <span style="color:Green;">// ..</span>
+        <span style="color:Blue;">return</span> parsed;
+     }
+ }
+</pre></div>
+</div>
+<p>Этот пример кажется немного странным: и это не просто так. Для того чтобы показать исключительность проблем, возникающих в данном коде я сделал его несколько утрированным. Для начала посмотрим на метод <code>Parse</code>. Почему он должен выбрасывать исключение?</p>
+<ul>
+<li>Он принимает в качестве параметра строку, а в качестве результата - некоторое число, которое является значимым типом. По этому числу мы никак не можем определить, является ли оно результатом корректных вычислений или же нет: оно просто есть. Другими словами, в интерфейсе метода отсутствует возможность сообщить о проблеме;</li>
+<li>С другой стороны метод, принимая строку подразумевает что её для него корректно подготовили: там нет лишних символов и строка содержит некоторое число. Если это не так, то возникает проблема предусловий к методу: тот код, который вызвал наш метод отдал не корректные данные.</li>
+</ul>
+<p>Получается, что для данного метода ситуация получения строки с не корректными данными является исключительной: метод не может вернуть корректного значения, но и вернуть абы что он не может. А потому единственный выход - бросить исключение.</p>
+<p>Второй вариант метода обладает каналом сигнализации о наличии проблем с входными данными: возвращаемое значение тут <code>boolean</code> и является признаком успешности выполнения метода. Сигнализировать о каких-либо проблемах при помощи механизма исключений данный метод не имеет ни малейшего повода: все виды проблем легко уместятся в возвращаемое значение <code>false</code>.</p>
+<h2 id="section-1">Общая картина</h2>
+<p>Обработка исключительных ситуаций может показаться вопросом достаточно элементарным: ведь все что нам необходимо сделать - это установить <code>try-catch</code> блоки и ждать соответствующего события. Однако вопрос кажется элементарным только благодаря огромной работе, проделанной командами CLR и CoreCLR чтобы унифицировать все ошибки, которые лезут в CLR со всех щелей - из самых разных источников. Чтобы иметь представление, о чем мы будем далее вести беседу, давайте взглянем на диаграмму:</p>
+<p><img src="./imgs/CommonScheme.png" alt="" /></p>
+<p>На этой схеме мы видим, что в большом .NET Framework существует по сути два мира: все, что относится к CLR и все, что находится за ней: все возможные ошибки, возникающие в Windows и прочем unsafe мире:</p>
+<ul>
+<li>Structured Exception Handling (SEH) - структурированная обработка исключений - стандарт платформы Windows для обработки исключений. Во время вызовов unsafe методов и последующем выбросе исключений происходит конвертация исключений unsafe &lt;-&gt; CLR в обе стороны: из unsafe в CLR и обратно, т.к. CLR может вызвать unsafe метод, а тот в свою очередь - CLR метод.</li>
+<li>Vectored Exception Handling (VEH) - по своей сути является корнем SEH, позволяя вставлять свои обработчики в точку выброса исключения. Используется в частности для установки <code>FirstChanceException</code>.</li>
+<li>COM+ исключения - когда источником проблемы является некоторый COM компонент, то прослойка между COM и .NET методом должна сконвертировать COM ошибку в исключение .NET</li>
+<li>И, наконец, обёртки для HRESULT. Введены для конвертации модели WinAPI (код ошибки - в возвращаемом значении, а возвращаемые значения - через параметры метода) в модель исключений: для .NET стардартом является именно исключительная ситуация</li>
+</ul>
+<p>С другой стороны, поверх CLI располагаются языки программирования, каждый из которых частично или же полностью - предлагает функционал по обработке исключений конечному пользователю языка. Так, например, языки VB.NET и F# до недавнего времени обладали более богатым функционалом по части обработки исключительных ситуаций, предлагая функционал фильтров, которых не существовало в языке C#.</p>
+<h2 id="vs">Коды возврата vs. исключение</h2>
+<p>Стоит отдельно отметить модель работы с ошибками в приложении через коды возврата. Эта идея - просто вернуть ошибку - очень проста и понятна. Мало того, если отталкиваться от отношения к исключениям как к оператору <code>goto</code>, то коды возврата становятся намного более корректной реализацией: ведь в этом случае пользователь метода видит и возможность самой ошибки, а также может сразу понять, какие ошибки возможны. Но давайте не будет гадать на кофейной гуще, что лучше и для чего, а лучше обсудим проблематику выбора академически.</p>
+<p>Представим, что все методы обладают интерфейсом для получения ошибки. Тогда все наши методы выглядели бы как-то так:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">public</span> <span style="color:Blue;">bool</span> TryParseInteger(<span style="color:Blue;">string</span> source, <span style="color:Blue;">out</span> <span style="color:Blue;">int</span> result);
+
+<span style="color:Blue;">public</span> DialogBoxResult OpenDialogBox(...);
+<span style="color:Blue;">public</span> WebServiceResult IWebService.GetClientsList(...);
+
+<span style="color:Blue;">public</span> <span style="color:Blue;">class</span> DialogBoxResult : ResultBase { ... }
+<span style="color:Blue;">public</span> <span style="color:Blue;">class</span> WebServiceResult : ResultBase { ... }
+</pre></div>
+</div>
+<p>А их использование выглядело бы как-то так:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+
+<span style="color:Blue;">public</span> ShowClientsResult ShowClients(<span style="color:Blue;">string</span> <span style="color:Blue;">group</span>)
+{
+    <span style="color:Blue;">if</span>(!TryParseInteger(<span style="color:Blue;">group</span>, <span style="color:Blue;">out</span> <span style="color:Blue;">var</span> clientsGroupId))
+        <span style="color:Blue;">return</span> <span style="color:Blue;">new</span> ShowClientsResult { Reason = ShowClientsResult.Reason.ParsingFailed };
+
+    <span style="color:Blue;">var</span> webResult = _service.GetClientsList(clientsGroupId);
+    <span style="color:Blue;">if</span>(!webResult.Successful)
+    {
+        <span style="color:Blue;">return</span> <span style="color:Blue;">new</span> ShowClientsResult { Reason = ShowClientsResult.Reason.ServiceFailed, WebServiceResult = webResult };
+    }
+
+    <span style="color:Blue;">var</span> dialogResult = _dialogsService.OpenDialogBox(webResult.Result);
+    <span style="color:Blue;">if</span>(!dialogResult.Successful)
+    {
+        <span style="color:Blue;">return</span> <span style="color:Blue;">new</span> ShowClientsResult { Reason = ShowClientsResult.Reason.DialogOpeningFailed, DialogServiceResult = dialogResult };
+    }
+
+    <span style="color:Blue;">return</span> ShowClientsResult.Success();
+}
+</pre></div>
+</div>
+<p>Возможно, вам покажется, что этот код перегружен обработкой ошибок. Однако я попрошу вас не согласиться с такой позицией: все, что здесь происходит - это эмуляция работы механизма выброса и обработки исключений.</p>
+<p>Как любой метод может сообщить о возникшей проблеме? Посредством некоторого интерфейса сообщения об ошибки. Например, в методе <code>TryParseInteger</code> интерфейсом является возвращаемое значение: если все хорошо, метод вернёт <code>true</code>. Если все плохо, вернёт <code>false</code>. Однако данный способ обладает и минусом: реальное значение возвращается через <code>out int result</code> параметр. Минус подхода с одной стороны состоит в том, что возвращаемое значение чисто логически и по восприятию является более &quot;возвращаемым значением&quot; чем <code>out</code> параметр. А с другой - сам факт ошибки нам не всегда интересен. Ведь если строка для парсинга пришла из сервиса, который сгенерировал эту строку, значит проверять на ошибки парсинг нет необходимости: там всегда будет лежать правильная, пригодная для разбора строка. С другой стороны, если взять другую реализацию метода:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">public</span> <span style="color:Blue;">int</span> ParseInt(<span style="color:Blue;">string</span> source);
+</pre></div>
+</div>
+<p>То возникает резонный вопрос: если парсинг всё-таки будет содержать ошибку по неизвестной нам причине, что делать методу тогда? Вернуть ноль? Будет не корректно: нуля в строке не было. Тогда становится ясно что мы имеем конфликт интересов: первый вариант многословен, а второй - не содержит канала сигнализации об ошибках. Однако, можно легко прийти к выводу, когда надо работать с кодами возвратов, а когда - с исключениями:</p>
+<blockquote>
+<p>Код возврата необходимо внедрять тогда, кода факт ошибки является нормой поведения. Например, в алгоритме парсинга текста ошибки в тексте являются нормой поведения, тогда как в алгоритме работы с разобранной строкой получение от парсера ошибки может являться критичным или, другими словами, чем-то исключительным.</p>
+</blockquote>
+<h2 id="try-catch-finally">Блоки Try-Catch-Finally коротко</h2>
+<p>Блок <code>try</code> создаёт секцию, от которой программист ожидает возникновения критических ситуаций, которые с точки зрения внешнего кода являются нормой поведения. Т.е. другими словами, если мы работаем с некоторым кодом, который в рамках своих правил считает внутреннее состояние более не консистентным и в связи с этим выбрасывает исключение, то внешняя система, которая обладает более широким видением той же ситуации возникшее исключение может перехватить блоком <code>catch</code> тем самым нормализовав исполнение кода приложения. А потому, <em>перехватом исключений вы легализуете их наличие на данном участке кода</em>. Это, на мой взгляд, очень важная мысль, которая обосновывает запрет на перехват всех типов исключений <code>try-catch(Exception ex){ ... }</code> <em>на всякий случай</em>.</p>
+<p>Это вовсе не означает, что перехватывать исключения идеологически плохо: я всего лишь хочу сказать о необходимости перехватывать то и только то, что вы ожидаете от конкретного участка кода и ничего больше. Например, вы не можете ожидать все типы исключений, которые наследуется от <code>ArgumentException</code> или же получение <code>NullReferenceException</code> поскольку это означает что проблема чаще всего не в вызываемом коде, а <em>в вашем</em>. Зато вполне корректно ожидать, что желаемый файл открыть вы не сможете. Даже если на 200% уверены, что сможете, не забудьте сделать проверку.</p>
+<p>Третий блок - <code>finally</code> - также не должен нуждаться в представлении. Этот блок срабатывает для всех случаев работы блоков <code>try-catch</code>. Кроме некоторых достаточно редких <em>особых</em> ситуаций, этот блок отрабатывает <em>всегда</em>. Для чего введена такая гарантия исполнения? Для зачистки тех ресурсов и тех групп объектов, которые были выделены или же захвачены в блоке <code>try</code> и при этом являются зоной его ответственности.</p>
+<p>Этот блок очень часто используется без блока <code>catch</code>, когда нам не важно, какая ошибка уронила алгоритм, но важно очистить все выделенные для этого конкретно алгоритма ресурсы. Простой пример: для алгоритма копирования файла необходимо: два открытых файла и участок памяти под кэш-буфер копирования. Память мы выделить смогли, один файл открыть смогли, а вот со вторым возникли какие-то проблемы. Чтобы запечатать все в одну &quot;транзакцию&quot;, мы помещаем все три операции в единый <code>try</code> блок (как вариант реализации), с очисткой ресурсов - в <code>finally</code>. Пример может показаться упрощённым, но тут главное - показать суть.</p>
+<p>Чего не хватает в языке программирования C#, так это блока <code>fault</code>, суть которого - срабатывать всегда, когда произошла любая ошибка. Т.е. тот же <code>finally</code>, только на стероидах. Если бы такое было, мы бы смогли, как классический пример делать единую точку входа в логирование исключительных ситуаций:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">try</span> {
+    <span style="color:Green;">//...</span>
+} fault exception
+{
+    _logger.Warn(exception);
+}
+
+</pre></div>
+</div>
+<p>Также, о чем хотелось бы упомянуть во вводной части - это фильтры исключительных ситуаций. Для платформы .NET это новшеством не является, однако является таковым для разработчиков на языке программирования C#: фильтрация исключительных ситуаций появилась у нас только в шестой версии языка. Фильтры призваны нормализовать ситуацию, когда есть единый тип исключения, который объединяет в себе несколько видов ошибок. И в то время как мы хотим отрабатывать на конкретный сценарий, вынуждены перехватывать всю группу и фильтровать её - уже после перехвата. Я, конечно же, имею в виду код следующего вида:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">try</span> {
+    <span style="color:Green;">//...</span>
+}
+<span style="color:Blue;">catch</span> (ParserException exception)
+{
+    <span style="color:Blue;">switch</span>(exception.ErrorCode)
+    {
+        <span style="color:Blue;">case</span> ErrorCode.MissingModifier:
+            <span style="color:Green;">// ...</span>
+            <span style="color:Blue;">break</span>;
+        <span style="color:Blue;">case</span> ErrorCode.MissingBracket:
+            <span style="color:Green;">// ...</span>
+            <span style="color:Blue;">break</span>;
+        <span style="color:Blue;">default</span>:
+            <span style="color:Blue;">throw</span>;
+    }
+}
+</pre></div>
+</div>
+<p>Так вот теперь мы можем переписать этот код нормально:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">try</span> {
+    <span style="color:Green;">//...</span>
+}
+<span style="color:Blue;">catch</span> (ParserException exception) when (exception.ErrorCode == ErrorCode.MissingModifier)
+{
+    <span style="color:Green;">// ...</span>
+}
+<span style="color:Blue;">catch</span> (ParserException exception) when (exception.ErrorCode == ErrorCode.MissingBracket)
+{
+    <span style="color:Green;">// ...</span>
+}
+</pre></div>
+</div>
+<p>И вопрос улучшения тут вовсе не в отсутствии конструкции <code>switch</code>. Новая конструкция как по мне лучше по нескольким пунктам:</p>
+<ul>
+<li>фильтруя по when мы перехватываем ровно то что хотим поймать и не более того. Это правильно идеологически;</li>
+<li>в новом виде код стал более читаем. Просматривая взглядом, мозг более легко находит определения ошибок, т.к. изначально он их ищет не в <code>switch-case</code>, а в <code>catch</code>;</li>
+<li>и менее явное, но также очень важное: предварительное сравнение идёт ДО входа в catch блок. А это значит, что работа такой конструкции для случая промаха мимо всех условий будет идти намного быстрее чем <code>switch</code> с перевыбросом исключения.</li>
+</ul>
+<p>Особенностью исполнения кода по уверениям многих источников является то, что код фильтрации происходит <em>до</em> того как произойдёт развёртка стека. Это можно наблюдать в ситуациях, когда между местом выброса исключения и местом проверки на фильтрацию нет никаких других вызовов кроме обычных:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">static</span> <span style="color:Blue;">void</span> Main()
+{
+    <span style="color:Blue;">try</span>
+    {
+        Foo();
+    }
+    <span style="color:Blue;">catch</span> (Exception ex) when (Check(ex))
+    {
+        ;
+    }
+}
+
+<span style="color:Blue;">static</span> <span style="color:Blue;">void</span> Foo()
+{
+    Boo();
+}
+
+<span style="color:Blue;">static</span> <span style="color:Blue;">void</span> Boo()
+{
+    <span style="color:Blue;">throw</span> <span style="color:Blue;">new</span> Exception(<span style="color:#A31515;">&quot;1&quot;</span>);
+}
+
+<span style="color:Blue;">static</span> <span style="color:Blue;">bool</span> Check(Exception ex)
+{
+    <span style="color:Blue;">return</span> ex.Message == <span style="color:#A31515;">&quot;1&quot;</span>;
+}
+</pre></div>
+</div>
+<p><img src="./imgs/StackWOutUnrolling.png" alt="Stack without unrolling" /></p>
+<p>Как видно на изображении трассировка стека содержит не только первый вызов <code>Main</code> как место отлова исключительной ситуации, но и весь стек до точки выброса исключения плюс повторный вход в <code>Main</code> через некоторый неуправляемый код. Можно предположить, что этот код и есть код выброса исключений, который просто находится в стадии фильтрации и выбора конечного обработчика. Однако стоит отметить что <em>не все вызовы позволяют работать без раскрутки стека</em>. На мой скромный взгляд, внешняя унифицированность платформы порождает излишнее к ней доверие. Например, вызов методов между доменами с точки зрения кода выглядит абсолютно прозрачно. Тем не менее, работа вызовов методов происходит совсем по другим законам. О них мы и поговорим в следующей части.</p>
+<h3 id="section-2">Сериализация</h3>
+<p>Давайте начнём несколько издалека и посмотрим на результаты работы следующего кода (я добавил проброс вызова через границу между доменами приложения):</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+    <span style="color:Blue;">class</span> Program
+    {
+        <span style="color:Blue;">static</span> <span style="color:Blue;">void</span> Main()
+        {
+            <span style="color:Blue;">try</span>
+            {
+                ProxyRunner.Go();
+            }
+            <span style="color:Blue;">catch</span> (Exception ex) when (Check(ex))
+            {
+                ;
+            }
+        }
+
+        <span style="color:Blue;">static</span> <span style="color:Blue;">bool</span> Check(Exception ex)
+        {
+            <span style="color:Blue;">var</span> domain = AppDomain.CurrentDomain.FriendlyName; <span style="color:Green;">// -&gt; TestApp.exe</span>
+            <span style="color:Blue;">return</span> ex.Message == <span style="color:#A31515;">&quot;1&quot;</span>;
+        }
+
+        <span style="color:Blue;">public</span> <span style="color:Blue;">class</span> ProxyRunner : MarshalByRefObject
+        {
+            <span style="color:Blue;">private</span> <span style="color:Blue;">void</span> MethodInsideAppDomain()
+            {
+                <span style="color:Blue;">throw</span> <span style="color:Blue;">new</span> Exception(<span style="color:#A31515;">&quot;1&quot;</span>);
+            }
+
+            <span style="color:Blue;">public</span> <span style="color:Blue;">static</span> <span style="color:Blue;">void</span> Go()
+            {
+                <span style="color:Blue;">var</span> dom = AppDomain.CreateDomain(<span style="color:#A31515;">&quot;PseudoIsolated&quot;</span>, <span style="color:Blue;">null</span>, <span style="color:Blue;">new</span> AppDomainSetup
+                {
+                    ApplicationBase = AppDomain.CurrentDomain.BaseDirectory
+                });
+                <span style="color:Blue;">var</span> proxy = (ProxyRunner) dom.CreateInstanceAndUnwrap(<span style="color:Blue;">typeof</span>(ProxyRunner).Assembly.FullName, <span style="color:Blue;">typeof</span>(ProxyRunner).FullName);
+                proxy.MethodInsideAppDomain();
+            }
+        }
+    }
+
+</pre></div>
+</div>
+<p>Если обратить внимание на размотку стека, то станет ясно, что в данном случае она происходит ещё до того, как мы попадаем в фильтр. Взглянем на скриншоты. Первый взят до того, как генерируется исключение:</p>
+<p><img src="./imgs/StackUnroll.png" alt="StackUnroll" /></p>
+<p>А второй - после:</p>
+<p><img src="./imgs/StackUnroll2.png" alt="StackUnroll2" /></p>
+<p>Изучим трассировку вызовов до и после попадания в фильтр исключений. Что же здесь происходит? Здесь мы видим, что разработчики платформы сделали некоторую с первого взгляда защиту дочернего домена. Трассировка обрезана по крайний метод в цепочке вызовов, после которого идёт переход в другой домен. Но на самом деле, как по мне так это выглядит несколько странно. Чтобы понять, почему так происходит, вспомним основное правило для типов, организующих взаимодействие между доменами. Эти типы должны наследовать <code>MarshalByRefObject</code> плюс - быть сериализуемыми. Однако, как бы ни был строг C#, типы исключений могут быть какими угодно. А что это значит? Это значит, что могут быть ситуации, когда исключительная ситуация внутри дочернего домена может привести к её перехвату в родительском домене. И если у объекта данных исключительной ситуации есть какие-либо опасные методы с точки зрения безопасности, они могут быть вызваны в родительском домене. Чтобы такого избежать, исключение сериализуется, проходит через границу доменов приложений и возникает вновь - с новым стеком. Давайте проверим эту стройную теорию:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+[StructLayout(LayoutKind.Explicit)]
+<span style="color:Blue;">class</span> Cast
+{
+    [FieldOffset(0)]
+    <span style="color:Blue;">public</span> Exception Exception;
+
+    [FieldOffset(0)]
+    <span style="color:Blue;">public</span> <span style="color:Blue;">object</span> obj;
+}
+
+<span style="color:Blue;">static</span> <span style="color:Blue;">void</span> Main()
+{
+    <span style="color:Blue;">try</span>
+    {
+        ProxyRunner.Go();
+        Console.ReadKey();
+    }
+    <span style="color:Blue;">catch</span> (RuntimeWrappedException ex) when (ex.WrappedException <span style="color:Blue;">is</span> Program)
+    {
+        ;
+    }
+}
+
+<span style="color:Blue;">static</span> <span style="color:Blue;">bool</span> Check(Exception ex)
+{
+    <span style="color:Blue;">var</span> domain = AppDomain.CurrentDomain.FriendlyName; <span style="color:Green;">// -&gt; TestApp.exe</span>
+    <span style="color:Blue;">return</span> ex.Message == <span style="color:#A31515;">&quot;1&quot;</span>;
+}
+
+<span style="color:Blue;">public</span> <span style="color:Blue;">class</span> ProxyRunner : MarshalByRefObject
+{
+    <span style="color:Blue;">private</span> <span style="color:Blue;">void</span> MethodInsideAppDomain()
+    {
+        <span style="color:Blue;">var</span> x = <span style="color:Blue;">new</span> Cast {obj = <span style="color:Blue;">new</span> Program()};
+        <span style="color:Blue;">throw</span> x.Exception;
+    }
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">static</span> <span style="color:Blue;">void</span> Go()
+    {
+        <span style="color:Blue;">var</span> dom = AppDomain.CreateDomain(<span style="color:#A31515;">&quot;PseudoIsolated&quot;</span>, <span style="color:Blue;">null</span>, <span style="color:Blue;">new</span> AppDomainSetup
+        {
+            ApplicationBase = AppDomain.CurrentDomain.BaseDirectory
+        });
+        <span style="color:Blue;">var</span> proxy = (ProxyRunner)dom.CreateInstanceAndUnwrap(<span style="color:Blue;">typeof</span>(ProxyRunner).Assembly.FullName, <span style="color:Blue;">typeof</span>(ProxyRunner).FullName);
+        proxy.MethodInsideAppDomain();
+    }
+}
+</pre></div>
+</div>
+<p>В данном примере, для того чтобы выбросить исключение любого типа из C# кода (я не хочу никого мучить вставками на MSIL) был проделан трюк с приведением типа к не сопоставимому: чтобы мы бросили исключение любого типа, а транслятор C# думал бы, что мы используем тип <code>Exception</code>. Мы создаём экземпляр типа <code>Program</code> - гарантированно не сериализуемого и бросаем исключение с ним в виде полезной нагрузки. Хорошие новости заключаются в том, что вы получите обёртку над не-Exception исключениями <code>RuntimeWrappedException</code>, который внутри себя сохранит экземпляр нашего объекта типа <code>Program</code> и в C# перехватить такое исключение мы сможем. Однако есть и плохая новость, которая подтверждает наше предположение: вызов <code>proxy.MethodInsideAppDomain();</code> приведёт к исключению <code>SerializationException</code>:</p>
+<p><img src="./imgs/SerializationError.png" alt="" /></p>
+<p>Т.е. проброс между доменами такого исключения не возможен, т.к. его нет возможности сериализовать. А это в свою очередь значит, что оборачивание вызовов методов, находящихся в других доменах фильтрами исключений все равно приведёт к развёртке стека несмотря на то что при <code>FullTrust</code> настройках дочернего домена сериализация казалось бы не нужна.</p>
+<blockquote>
+<p>Стоит дополнительно обратить внимание на причину, по которой сериализация между доменами так необходима. В нашем синтетическом примере мы создаём дочерний домен, который не имеет никаких настроек. А это значит, что он работает в FullTrust. Т.е. CLR полностью доверяет его содержимому как себе и никаких дополнительных проверок делать не будет. Но как только вы выставите хоть одну настройку безопасности, полная доверенность пропадёт и CLR начнёт контролировать все что происходит внутри этого дочернего домена. Так вот когда домен полностью доверенный, сериализация по идее не нужна. Нам нет необходимости как-то защищаться, согласитесь. Но сериализация создана не только для защиты. Каждый домен грузит в себя все необходимые сборки по второму разу, создавая их копии. Тем самым создавая копии всех типов и всех таблиц виртуальных методов. Передавая объект по ссылке из домена в домен, вы получите, конечно, тот же объект. Но у него будут чужие таблицы виртуальных методов и как результат - этот объект не сможет быть приведён к другому типу. Другими словами, если вы создали экземпляр типа <code>Boo</code>, то получив его в другом домене приведение типа <code>(Boo)boo</code> не сработает. А сериализация и десериализация решает проблему: объект будет существовать одновременно в двух доменах. Там где он был создан - со всеми своими данными и в доменах использования - в виде прокси-объекта, обеспечивающего вызов методов оригинального объекта.</p>
+</blockquote>
+<p>Передавая сериализуемый объект между доменами, вы получите в другом домене полную копию объекта из первого сохранив некоторую разграниченность по памяти. Разграниченность тоже мнимая. Она - только для тех типов, которые не находятся в <code>Shared AppDomain</code>. Т.е., например, если в качестве исключения бросить что-нибудь несериализуемое, но из <code>Shared AppDomain</code>, то ошибки сериализации не будет (можно попробовать вместо <code>Program</code> бросить <code>Action</code>). Однако раскрутка стека при этом все равно произойдёт: оба случая должны работать стандартно. Чтобы никого не путать.</p>
+
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,299 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.NET Platform Architecture</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <style>
+        body {
+    padding: 60px 60px 60px 100px;
+}
+
+p, li {
+    margin: 0 0 14px;
+    font-family: PF Regal,PF Regal Text Pro,Georgia,serif;
+    font-size: 20px;
+    line-height: 32px;
+}
+
+ol, ul {
+    padding-left: 35px;
+    margin-top: 1.1rem;
+    margin-bottom: 1.1rem;
+}
+
+ol li {
+    padding-left: 10px;	
+}
+
+ul li {
+    padding-left: 5px;	
+}
+
+code, .lang-csharp span, .lang-csharp pre {
+    font-family: JB Mono, monospace !important;
+}
+
+.lang-csharp {
+    padding: 4px 0px 14px 0px;
+}
+
+
+.lang-csharp > div {
+    border-left-color: #eee;
+    border-left-style: dotted;
+    border-left-width: 3px;
+    padding-left: 25px;
+}
+
+code {
+    font-size: 14px;
+    border: gainsboro;
+    border-width: 1px;
+    border-style: solid;
+    padding: 2px;
+    color: darkslateblue;
+}
+
+.lang-csharp span, .lang-csharp pre {
+    font-size: 13px;
+    line-height: 20px;
+}
+
+p a {
+    text-decoration: none;
+    color: inherit;
+    box-shadow: inset 0 -1px #b88b59;
+}
+
+p img {
+    width: 95%;
+}
+
+img < p {
+    text-align: center;
+}
+
+blockquote p {
+    margin: 16px 0;
+    padding: 12px 12px 13px;
+    border: 1px solid rgba(0,0,0,.08);
+    border-radius: 8px;
+    background: #fff8c4;
+    font-family: Proxima Nova,Arial,Helvetica Neue,sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+blockquote p code {
+    font-family: consolas, monospace;
+    font-size: 17px;
+    background-color: aliceblue;
+    padding: 4px 6px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+}
+
+h1 {
+    font-size: 38px;
+    font-family: PF Regal,PF Regal Text Pro,Georgia,serif;
+    font-weight: 400;
+    margin: 40px 0 10px 0;
+}
+
+h1 b {
+    font-family: Proxima Nova,Arial,Helvetica Neue,sans-serif;
+    font-weight: 700;
+    font-size: 37px;
+    line-height: 42px;
+}
+
+h2 {
+    margin-top: 35px;
+    margin-bottom: 10px;
+    font-family: Proxima Nova,Arial,Helvetica Neue,sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+    border-bottom-color: aliceblue;
+    border-bottom-style: solid;
+    padding-bottom: 5px;
+}
+
+h3 {
+    margin: 30px 0 10px 0;
+    border-bottom-color: azure;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    font-size: 17pt;
+    font-weight: 300;
+}
+
+
+// Fonts
+@font-face {
+    font-family: 'JB Mono';
+    src: local('JetBrains Mono'),
+    url('../../../res/fonts/woff2/JetBrainsMono-Italic.woff2') format('woff2'),
+    url('../../../res/fonts/woff/JetBrainsMono-Italic.woff') format('woff'),
+    url('../../../res/fonts/ttf/JetBrainsMono-Italic.ttf') format('truetype');
+    font-weight: 400;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'JB Mono';
+    src: local('JetBrains Mono'),
+    url('../../../res/fonts/woff2/JetBrainsMono-Regular.woff2') format('woff2'),
+    url('../../../res/fonts/woff/JetBrainsMono-Regular.woff') format('woff'),
+    url('../../../res/fonts/ttf/JetBrainsMono-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'JB Mono';
+    src: local('JetBrains Mono'),
+    url('../../../res/fonts/woff2/JetBrainsMono-Medium-Italic.woff2') format('woff2'),
+    url('../../../res/fonts/woff/JetBrainsMono-Medium-Italic.woff') format('woff'),
+    url('../../../res/fonts/ttf/JetBrainsMono-Medium-Italic.ttf') format('truetype');
+    font-weight: 600;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'JB Mono';
+    src: local('JetBrains Mono'),
+    url('../../../res/fonts/woff2/JetBrainsMono-Medium.woff2') format('woff2'),
+    url('../../../res/fonts/woff/JetBrainsMono-Medium.woff') format('woff'),
+    url('../../../res/fonts/ttf/JetBrainsMono-Medium.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'PF Regal Text Pro';
+    src: local('PF Regal Text Pro RegularA'), local('PF-Regal-Text-Pro-RegularA'),
+    url('../../../res/fonts/woff2/PFRegalTextPro-RegularA.woff2') format('woff2'),
+    url('../../../res/fonts/woff/PFRegalTextPro-RegularA.woff') format('woff'),
+    url('../../../res/fonts/ttf/PFRegalTextPro-RegularA.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'PF Regal Text Pro';
+    src: local('PF Regal Text Pro RegularB'), local('PF-Regal-Text-Pro-RegularB'),
+    url('../../../res/fonts/woff2/PFRegalTextPro-RegularB.woff2') format('woff2'),
+    url('../../../res/fonts/woff/PFRegalTextPro-RegularB.woff') format('woff'),
+    url('../../../res/fonts/ttf/PFRegalTextPro-RegularB.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'PF Regal Text Pro';
+    src: local('PF Regal Text Pro RegularB Italic'), local('PF-Regal-Text-Pro-RegularB-Italic'),
+    url('../../../res/fonts/woff2/PFRegalTextPro-RegularBItalic.woff2') format('woff2'),
+    url('../../../res/fonts/woff/PFRegalTextPro-RegularBItalic.woff') format('woff'),
+    url('../../../res/fonts/ttf/PFRegalTextPro-RegularBItalic.ttf') format('truetype');
+    font-weight: 600;
+    font-style: italic;
+}
+  
+    </style>
+
+<div style="margin:auto; width:100%;">
+<div style="width:1000px;">
+    <h2 id="section">Архитектура изоляции</h2>
+<p>Как я уже говорил, нам нет никакой необходимости делать изоляцию по памяти: т.к. контроль над исполнением кода (путём его самостоятельной компиляции) даёт домену все возможности для контроля всего приложения. Но как это достигается? Домен - это некий изолирующий контейнер. Потому, если мы имеем дело с загружаемыми библиотеками, было бы логично если бы эти библиотеки загружались бы не в общее для всех место, а в эту песочницу.</p>
+<p>Давайте рассмотрим пример с загрузкой экземпляра типа в два домена. Тогда при таком раскладе мы имеем один и тот же тип:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">class</span> SomeType
+{
+    <span style="color:Blue;">public</span> <span style="color:Blue;">int</span> X { <span style="color:Blue;">get</span>; <span style="color:Blue;">set</span>; }
+}
+</pre></div>
+</div>
+<p>Который мы загрузим в оба домена, при этом мы получим дважды скомпилированный код. Что это будет означать? Что у экземпляров этих типов адрес таблицы виртуальных методов совпадать не будет:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Green;">// В первом домене:</span>
+<span style="color:Blue;">var</span> x = <span style="color:Blue;">new</span> SomeType();
+<span style="color:Blue;">var</span> handle1 = x.GetType().TypeHandle;
+
+<span style="color:Green;">// Во втором домене:</span>
+<span style="color:Blue;">var</span> x = <span style="color:Blue;">new</span> SomeType();
+<span style="color:Blue;">var</span> handle2 = x.GetType().TypeHandle;
+
+<span style="color:Green;">// где-то в общем коде</span>
+Console.WriteLine(handle1 == handle2);
+<span style="color:Green;">// --&gt; false</span>
+</pre></div>
+</div>
+<p>Это значит что если мы получим каким-либо образом из второго домена ссылку на объект и в первом домене попробуем привести к типу <code>SomeHandle</code>, то ничего не получится: типы не совпадут. Ведь из-за того что таблицы виртуальных методов разные, то и типы будут считаться разными и не совместимыми. Получается, что загрузив код в разные домены вместо загрузки в некое междоменное пространство <code>CLR</code> строит первый барьер защиты. Второй барьер защиты: нам необходимо организовать взаимодействие между доменами: быть полностью изолированными - так себе возможности и хочется иметь не полную изоляцию, а контролируемое взаимодействие. Интереснее получать данные из плагина для неких расчётов или действий и получать результаты работы - назад. Это можно организовать при помощи системных (организованных JITом)прокси-методов, которые будут переносить данные между двумя несовместимыми типами (а по сут - одним и тем же типом, загруженным в разные домены). Посмотрим на пример такого вызова с использованием псевдокода:</p>
+<pre><code>TODO: изображение, поясняющее процесс взаимодействия между доменами
+</code></pre>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Green;">// Мы получаем ссылку на объект из второго домена в первом</span>
+<span style="color:Blue;">var</span> objectFromSecondDomain = GetObjectFromSecondDomain();
+
+<span style="color:Green;">// И пробуем вызвать метод (как мы это обычно делаем)</span>
+<span style="color:Blue;">var</span> data = objectFromSecondDomain.Method();
+
+<span style="color:Green;">// Что происходит на самом деле:</span>
+<span style="color:Green;">// Вместо метода вызывается невидимый для нас прокси метод,</span>
+<span style="color:Green;">// объявленный где-то в CLR, а не в самом типе:</span>
+<span style="color:Blue;">var</span> data = _SomeType_MethodToDomainProxy_(objectFromSecondDomain);
+<span style="color:Blue;">private</span> SomeType _SomeType_MethodToDomainProxy_()
+{
+    <span style="color:Blue;">if</span>(CurrentDomain == Domain2){
+        <span style="color:Blue;">return</span> objectFromSecondDomain.Method();
+    }
+
+    <span style="color:Green;">// Который приводит ссылку к необходимому типу из второго домена</span>
+    <span style="color:Blue;">var</span> castedType = (SomeType_FromDomain2)(objectFromSecondDomain);
+
+    <span style="color:Green;">// сохраняем ссылку на наш домен и выставляем Domain 2 как активный</span>
+    <span style="color:Blue;">var</span> priorDomain = CurrentDomain;
+    CurrentDomain = Domain2;
+
+    <span style="color:Green;">// вызывает метод</span>
+    <span style="color:Blue;">var</span> result = castedType.Method();
+
+    <span style="color:Green;">// восстанавливаем ссылку на текущий домен</span>
+    CurrentDomain = priorDomain;
+
+    <span style="color:Green;">// и проверяет объект, который возвращён из метода на безопасность</span>
+    <span style="color:Blue;">if</span>(!CLR.VerifyResultForSafety(result))
+    {
+        <span style="color:Blue;">throw</span> CLR.GetExceptionForUnsafeCall();
+    }
+
+    <span style="color:Green;">// если все хорошо, возвращает результат</span>
+    <span style="color:Blue;">return</span> result;
+}
+</pre></div>
+</div>
+<p>Хорошо: теперь мы знаем обо всех вызовах, которые происходят в системе. Однако, это накладывает огромные расходы: нам ведь каждый раз необходимо понимать, что мы вызываем метод именно в другом домене, а не в текущем. А таких вызовов будет большинство: междоменного взаимодействия очень мало. Значит, чтобы такие расходы ложились бы только на необходимо ввести некий специальный тип, при наследовании от которого CLR поймёт, что он будет участвовать в междоменном взаимодействии и создаст прокси-методы только для него. Тип этот - <code>MarshalByRefObject</code> и это решение также создаст ещё один барьер безопастности: вы не можете вызывать методы, скомпилированные для других доменов напрямую: только для <code>MarshalByRefObject</code> типов.</p>
+<p>Что мы имеем на данный момент? Во-первых, если наш код загружен в два и более доменов, то скомпилирован он будет соответствующее число раз, а значит с точки зрения типов один и тот же тип, скомпилированных для нескольких доменов - это несколько разных типов. Далее, вводятся проверки для вызовов методов из одного домена в другой. Можно назвать это словом &quot;таможня&quot;. При пересечении границы всё, что проходит через такую вот таможню должно досматриваться: этим действием контролируется, что все ограничения соблюдены. Ну и чтобы CLR понимала, какие типы могут участвовать во взаимодействии между доменами проходить границу могут не все типы, а только те, которые унаследовали <code>MarshalByRefObject</code>. Достаточно ли этого? Наверное, нет: мы отдаём в метод, скомпилированный для другого домена некую ссылку на свой объект, тот его принимает, но в другом домене работать с таким доменом нет никакой возможности: его система типов отлична и приведение типов работать не будет. Как тогда организовать взаимодействие?</p>
+<p>Решения для такой проблематики два. Перовое решение - необходимо сделать так, чтобы передаваемые данные полностью бы отражали содержание объекта, но при этом не были бы самим объектом - раз. И при этом были бы достаточно простыми чтобы не представлять опасности - два. Такими данными яввяются сериализованные данные:</p>
+<ul>
+<li>При сериализации CLR превращает данные в некий формат. Т.е. мы не можем передать ссылку на объект, обладающий <em>повышенными</em> привилегиями в код, обладающий более низкими привилегиями;</li>
+<li>При десериализации мы можем сформировать объекты только из того что было передано через сериализованный объект. Ничего опасного мы оттуда получить не сможем именно благодаря процессу сериализации.</li>
+</ul>
+<p>Второе решение - организовать средство повышенного доверия к передаваемым между доменами данным. Такого доверия, что можно не волнуясь отдавать без всякой сериализации и десериализации ссылки на объекты в соседний домен и не волноваться, что это как-то повлияет на безопасность. Чтобы решить эту задачу, был разработан FullTrust, который может быть применён к отдельным сборкам домена.</p>
+<p>Касательно Shared AppDomains мы поговорим немного позже: слово за слово мне придётся написать о многих вопросах. А потому эта тема поставлена на временную паузу. Сейчас же попробуем обосновать, создали ли мы идеальную песочницу:</p>
+<ul>
+<li>Итак, для начала мы рассмотрели понятие домена как места, создающего изоляцию в вопросах исполнения кода. Внешние библиотеки загружаются отдельно в каждый их доменов и нет возможности кода одного домена работать с кодом другого нарямую, т.к. указатели на таблицы виртуальных методов (VMT) будут разными;</li>
+<li>Из-за этого возникает в некоторой степени изоляция по памяти: код <code>домена 1</code> не сможет работать с объектами, созданными в рамках <code>домена 2</code> по ранее указанной причине;</li>
+<li>Чтобы это обеспечить, между точкой вызова метода и его реальным вызовом встаёт прокси функция, которая проверяет параметры метода и возвращаемое значение на корректность, осуществляет маршиллинг и передачу данных через Remoting;</li>
+<li>Домены могут быть отгружены: вместе со всеми сборками, динамически скомпилированным кодом, а также всеми объектами, которые были созданы в рамках этого домена. Эта возможность - следствие изолированности домена друг от друга;</li>
+<li>Каждая подсистема домена может быть индивидуально разрешена или запрещена для исполнения кода в зависимости от настроек домена, выданных ему при старте приложения. Этот функционал расширяем и может быть дополнен настройками безопасности для ваших библиотек, которые будут использованы в этих доменах;</li>
+</ul>
+
+</div>
+</div>
+</body>
+</html>

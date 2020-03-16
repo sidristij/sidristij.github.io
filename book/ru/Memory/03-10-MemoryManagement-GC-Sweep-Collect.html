@@ -1,0 +1,231 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.NET Platform Architecture</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <style>
+        body {
+    padding: 60px 60px 60px 100px;
+}
+
+p, li {
+    margin: 0 0 14px;
+    font-family: PF Regal,PF Regal Text Pro,Georgia,serif;
+    font-size: 20px;
+    line-height: 32px;
+}
+
+ol, ul {
+    padding-left: 35px;
+    margin-top: 1.1rem;
+    margin-bottom: 1.1rem;
+}
+
+ol li {
+    padding-left: 10px;	
+}
+
+ul li {
+    padding-left: 5px;	
+}
+
+code, .lang-csharp span, .lang-csharp pre {
+    font-family: JB Mono, monospace !important;
+}
+
+.lang-csharp {
+    padding: 4px 0px 14px 0px;
+}
+
+
+.lang-csharp > div {
+    border-left-color: #eee;
+    border-left-style: dotted;
+    border-left-width: 3px;
+    padding-left: 25px;
+}
+
+code {
+    font-size: 14px;
+    border: gainsboro;
+    border-width: 1px;
+    border-style: solid;
+    padding: 2px;
+    color: darkslateblue;
+}
+
+.lang-csharp span, .lang-csharp pre {
+    font-size: 13px;
+    line-height: 20px;
+}
+
+p a {
+    text-decoration: none;
+    color: inherit;
+    box-shadow: inset 0 -1px #b88b59;
+}
+
+p img {
+    width: 95%;
+}
+
+img < p {
+    text-align: center;
+}
+
+blockquote p {
+    margin: 16px 0;
+    padding: 12px 12px 13px;
+    border: 1px solid rgba(0,0,0,.08);
+    border-radius: 8px;
+    background: #fff8c4;
+    font-family: Proxima Nova,Arial,Helvetica Neue,sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+blockquote p code {
+    font-family: consolas, monospace;
+    font-size: 17px;
+    background-color: aliceblue;
+    padding: 4px 6px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+}
+
+h1 {
+    font-size: 38px;
+    font-family: PF Regal,PF Regal Text Pro,Georgia,serif;
+    font-weight: 400;
+    margin: 40px 0 10px 0;
+}
+
+h1 b {
+    font-family: Proxima Nova,Arial,Helvetica Neue,sans-serif;
+    font-weight: 700;
+    font-size: 37px;
+    line-height: 42px;
+}
+
+h2 {
+    margin-top: 35px;
+    margin-bottom: 10px;
+    font-family: Proxima Nova,Arial,Helvetica Neue,sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+    border-bottom-color: aliceblue;
+    border-bottom-style: solid;
+    padding-bottom: 5px;
+}
+
+h3 {
+    margin: 30px 0 10px 0;
+    border-bottom-color: azure;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    font-size: 17pt;
+    font-weight: 300;
+}
+
+
+// Fonts
+@font-face {
+    font-family: 'JB Mono';
+    src: local('JetBrains Mono'),
+    url('../../res/fonts/woff2/JetBrainsMono-Italic.woff2') format('woff2'),
+    url('../../res/fonts/woff/JetBrainsMono-Italic.woff') format('woff'),
+    url('../../res/fonts/ttf/JetBrainsMono-Italic.ttf') format('truetype');
+    font-weight: 400;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'JB Mono';
+    src: local('JetBrains Mono'),
+    url('../../res/fonts/woff2/JetBrainsMono-Regular.woff2') format('woff2'),
+    url('../../res/fonts/woff/JetBrainsMono-Regular.woff') format('woff'),
+    url('../../res/fonts/ttf/JetBrainsMono-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'JB Mono';
+    src: local('JetBrains Mono'),
+    url('../../res/fonts/woff2/JetBrainsMono-Medium-Italic.woff2') format('woff2'),
+    url('../../res/fonts/woff/JetBrainsMono-Medium-Italic.woff') format('woff'),
+    url('../../res/fonts/ttf/JetBrainsMono-Medium-Italic.ttf') format('truetype');
+    font-weight: 600;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'JB Mono';
+    src: local('JetBrains Mono'),
+    url('../../res/fonts/woff2/JetBrainsMono-Medium.woff2') format('woff2'),
+    url('../../res/fonts/woff/JetBrainsMono-Medium.woff') format('woff'),
+    url('../../res/fonts/ttf/JetBrainsMono-Medium.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'PF Regal Text Pro';
+    src: local('PF Regal Text Pro RegularA'), local('PF-Regal-Text-Pro-RegularA'),
+    url('../../res/fonts/woff2/PFRegalTextPro-RegularA.woff2') format('woff2'),
+    url('../../res/fonts/woff/PFRegalTextPro-RegularA.woff') format('woff'),
+    url('../../res/fonts/ttf/PFRegalTextPro-RegularA.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'PF Regal Text Pro';
+    src: local('PF Regal Text Pro RegularB'), local('PF-Regal-Text-Pro-RegularB'),
+    url('../../res/fonts/woff2/PFRegalTextPro-RegularB.woff2') format('woff2'),
+    url('../../res/fonts/woff/PFRegalTextPro-RegularB.woff') format('woff'),
+    url('../../res/fonts/ttf/PFRegalTextPro-RegularB.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'PF Regal Text Pro';
+    src: local('PF Regal Text Pro RegularB Italic'), local('PF-Regal-Text-Pro-RegularB-Italic'),
+    url('../../res/fonts/woff2/PFRegalTextPro-RegularBItalic.woff2') format('woff2'),
+    url('../../res/fonts/woff/PFRegalTextPro-RegularBItalic.woff') format('woff'),
+    url('../../res/fonts/ttf/PFRegalTextPro-RegularBItalic.ttf') format('truetype');
+    font-weight: 600;
+    font-style: italic;
+}
+  
+    </style>
+
+<div style="margin:auto; width:100%;">
+<div style="width:1000px;">
+    <h2 id="sweep-collect">Sweep &amp; Collect</h2>
+<p>Мы рассмотрели практически все стадии, кроме последней. Эта фаза зачистки и сжатия.</p>
+<p>Если на фазе планирования было решено использовать sweep, мы должны осуществить GC путем отдачи всех неиспользуемых участков на переиспользование. Когда наши allocation context, которые существуют от разных потоков, начнут заканчиваться, они будут занимать эти свободные участки между другими объектами, таким образом исключая фазу сжатия. Фаза сжатия работает дольше. После этого этапа мы имеем такую таблицу 01:27. У нас есть поколения с бакетами, которые указывают на односвязаный список свободных участков. Бакеты сгруппированы по размерам. Внутри одного бакета идет список участков примерно одного размера. Мы можем попросить у бакетов участок нужного размера, и он по принципу first fit найдет нужный бакет и через best fit найдет подходящий участок внутри бакета.</p>
+<p>Gaps, которые меньше размера объекта игнорируются.</p>
+<p>После этого saved_pre_plug и saved_post_plugs расставляются по местам. Потом выполняется работа по обновлению очереди на финализацию. И затем - перестроение сегментов памяти.</p>
+<p>Например, может так случится, что после GC у нас часть страниц или сегментов больше не нужны. Зачем их держать, если можно отдать кому-то еще? Операционная система большая. Если не отдать, то все соседние приложения будут ругаться, что работают медленно. Так и есть: потому что наше приложение не освободило оперативную память под соседей.</p>
+<p>Sweep на LOH работает по-другому. Он не использует планирование, он обходит кучу. Свободные участки объединяет с состыкованными в один. Освободившиеся участки между занятыми добавляются в список свободных участков.</p>
+<p>Для меня было откровением, что в обоих хипах механизмы одни и те же. Просто в одном хипе у них разные приоритеты. В LOH compacting в настолько низком приоритете, что часть алгоритма просто отключена. Но в целом SOH и LOH использует одни и те же алгоритмы.</p>
+<p>Compacting.</p>
+<p>Если необходимо создается новый эфемерный сегмент. Если фаза планирования решила, что после сжатия места под gen_0 будет мало - создаем новый сегмент. Заменяем все ссылки на корректные. Для этого у нас есть информация по gaps&amp;plugs, по которым легко посчитать все смещения. Перед тем, как сжимать, мы должны все ссылки поменять. Собирая gen_0 мы просматриваем его и карточный стол старшего поколения. Когда это сделано - начинаем менять ссылки в фазе сжатия до самого сжатия, чтобы не потерять информация по gaps и офсетам. Сканируем все места, производя замену. Сначала ссылки со стека, которые включают в себя все локальные переменные и параметры методов, переданные через стек, а так же eager roots collection. Потом ссылки с полей объектов, полученные через карточный стол. Затем ссылки с полей объектов SOH и LOH с этапа обхода графа. Также ссылки с pre и post plugs, потому что при сохранении туда могли попасть и ссылки. Pinned plugs queue. Ссылки с полей объектов, находящихся в finalization queue. Ссылки с handle tables.</p>
+<p>Мы должны выполнить все эти шесть шагов. Вывод - чем сильнее связанность графа, тем дольше работает этот шаг. Нужно обойти все это очень аккуратно, чтобы не промахиваться по кешу в рамках одного участка памяти.</p>
+<p>Далее выполняется копирование объектов на их новые места. После того, как мы поменяли все адреса, происходит сама фаза сжатия. Из последних байт gaps берется значение офсета, и на него смещаются все выжившие объекты, чтобы сжать кучу. Естественно, кроме запиненых объектов и тех, которые размещены после них.</p>
+<p>После этого восстанавливаются все pre и post plugs участки и исправляем положение поколений (после GC нулевое поколение становится первым, первое - вторым и нулевое сдвигается так, чтобы можно было выделять память дальше).</p>
+<p>После этого удаляется и разкоммичеивается память из-под полностью освободившихся сегментов.</p>
+<p>Перед каждым запиненым объектом образуется свободный участок. Его надо сохранить для дальнейшего выделения памяти. То есть объект запинен. Слева от него занятое место. И между занятым местом и запиненым объектом  - свободные участки. Чтобы их потом переиспользовать, они сохраняются в список свободных участков. Чтобы это сделать нужно убедиться, что есть нужный бакет, либо создать новый, и уже оттуда спустить ссылку на односвязаный список занятых участков определенного размера.</p>
+<p>Получается, что задача sweep - создать односвязаный список на свободных участках. Сжатие - это дольше. Чтобы сработал sweep, надо группировать объекты, срок жизни которых совпадает.  Это максимум, что мы можем сделать.</p>
+<p>Чтобы не мешать GC, мы не используем GCHandle bind. По возможности, мы используем только fixed. В этом случае мы можем избежать пининга, потому что fixed - это просто напоминание GC, что если он здесь очутился, то пинить надо.</p>
+
+</div>
+</div>
+</body>
+</html>

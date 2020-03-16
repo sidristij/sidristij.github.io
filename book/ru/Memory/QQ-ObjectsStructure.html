@@ -1,0 +1,1047 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.NET Platform Architecture</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <style>
+        body {
+    padding: 60px 60px 60px 100px;
+}
+
+p, li {
+    margin: 0 0 14px;
+    font-family: PF Regal,PF Regal Text Pro,Georgia,serif;
+    font-size: 20px;
+    line-height: 32px;
+}
+
+ol, ul {
+    padding-left: 35px;
+    margin-top: 1.1rem;
+    margin-bottom: 1.1rem;
+}
+
+ol li {
+    padding-left: 10px;	
+}
+
+ul li {
+    padding-left: 5px;	
+}
+
+code, .lang-csharp span, .lang-csharp pre {
+    font-family: JB Mono, monospace !important;
+}
+
+.lang-csharp {
+    padding: 4px 0px 14px 0px;
+}
+
+
+.lang-csharp > div {
+    border-left-color: #eee;
+    border-left-style: dotted;
+    border-left-width: 3px;
+    padding-left: 25px;
+}
+
+code {
+    font-size: 14px;
+    border: gainsboro;
+    border-width: 1px;
+    border-style: solid;
+    padding: 2px;
+    color: darkslateblue;
+}
+
+.lang-csharp span, .lang-csharp pre {
+    font-size: 13px;
+    line-height: 20px;
+}
+
+p a {
+    text-decoration: none;
+    color: inherit;
+    box-shadow: inset 0 -1px #b88b59;
+}
+
+p img {
+    width: 95%;
+}
+
+img < p {
+    text-align: center;
+}
+
+blockquote p {
+    margin: 16px 0;
+    padding: 12px 12px 13px;
+    border: 1px solid rgba(0,0,0,.08);
+    border-radius: 8px;
+    background: #fff8c4;
+    font-family: Proxima Nova,Arial,Helvetica Neue,sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+blockquote p code {
+    font-family: consolas, monospace;
+    font-size: 17px;
+    background-color: aliceblue;
+    padding: 4px 6px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+}
+
+h1 {
+    font-size: 38px;
+    font-family: PF Regal,PF Regal Text Pro,Georgia,serif;
+    font-weight: 400;
+    margin: 40px 0 10px 0;
+}
+
+h1 b {
+    font-family: Proxima Nova,Arial,Helvetica Neue,sans-serif;
+    font-weight: 700;
+    font-size: 37px;
+    line-height: 42px;
+}
+
+h2 {
+    margin-top: 35px;
+    margin-bottom: 10px;
+    font-family: Proxima Nova,Arial,Helvetica Neue,sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+    border-bottom-color: aliceblue;
+    border-bottom-style: solid;
+    padding-bottom: 5px;
+}
+
+h3 {
+    margin: 30px 0 10px 0;
+    border-bottom-color: azure;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    font-size: 17pt;
+    font-weight: 300;
+}
+
+
+// Fonts
+@font-face {
+    font-family: 'JB Mono';
+    src: local('JetBrains Mono'),
+    url('../../res/fonts/woff2/JetBrainsMono-Italic.woff2') format('woff2'),
+    url('../../res/fonts/woff/JetBrainsMono-Italic.woff') format('woff'),
+    url('../../res/fonts/ttf/JetBrainsMono-Italic.ttf') format('truetype');
+    font-weight: 400;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'JB Mono';
+    src: local('JetBrains Mono'),
+    url('../../res/fonts/woff2/JetBrainsMono-Regular.woff2') format('woff2'),
+    url('../../res/fonts/woff/JetBrainsMono-Regular.woff') format('woff'),
+    url('../../res/fonts/ttf/JetBrainsMono-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'JB Mono';
+    src: local('JetBrains Mono'),
+    url('../../res/fonts/woff2/JetBrainsMono-Medium-Italic.woff2') format('woff2'),
+    url('../../res/fonts/woff/JetBrainsMono-Medium-Italic.woff') format('woff'),
+    url('../../res/fonts/ttf/JetBrainsMono-Medium-Italic.ttf') format('truetype');
+    font-weight: 600;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'JB Mono';
+    src: local('JetBrains Mono'),
+    url('../../res/fonts/woff2/JetBrainsMono-Medium.woff2') format('woff2'),
+    url('../../res/fonts/woff/JetBrainsMono-Medium.woff') format('woff'),
+    url('../../res/fonts/ttf/JetBrainsMono-Medium.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'PF Regal Text Pro';
+    src: local('PF Regal Text Pro RegularA'), local('PF-Regal-Text-Pro-RegularA'),
+    url('../../res/fonts/woff2/PFRegalTextPro-RegularA.woff2') format('woff2'),
+    url('../../res/fonts/woff/PFRegalTextPro-RegularA.woff') format('woff'),
+    url('../../res/fonts/ttf/PFRegalTextPro-RegularA.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'PF Regal Text Pro';
+    src: local('PF Regal Text Pro RegularB'), local('PF-Regal-Text-Pro-RegularB'),
+    url('../../res/fonts/woff2/PFRegalTextPro-RegularB.woff2') format('woff2'),
+    url('../../res/fonts/woff/PFRegalTextPro-RegularB.woff') format('woff'),
+    url('../../res/fonts/ttf/PFRegalTextPro-RegularB.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'PF Regal Text Pro';
+    src: local('PF Regal Text Pro RegularB Italic'), local('PF-Regal-Text-Pro-RegularB-Italic'),
+    url('../../res/fonts/woff2/PFRegalTextPro-RegularBItalic.woff2') format('woff2'),
+    url('../../res/fonts/woff/PFRegalTextPro-RegularBItalic.woff') format('woff'),
+    url('../../res/fonts/ttf/PFRegalTextPro-RegularBItalic.ttf') format('truetype');
+    font-weight: 600;
+    font-style: italic;
+}
+  
+    </style>
+
+<div style="margin:auto; width:100%;">
+<div style="width:1000px;">
+    <h1 id="section">Структура объектов в памяти</h1>
+<blockquote>
+<p><a href="https://github.com/sidristij/dotnetbook/issues/56">Ссылка на обсуждение</a></p>
+</blockquote>
+<p>До сего момента, говоря про разницу между значимыми и ссылочными типами, мы затрагивали эту тему с высоты конечного разработчика. Т.е. мы никогда не смотрели на то, как они в реальности устроены и какие приемы реализованы в них на уровне CLR. Мы смотрели, фактически, на конечный результат и рассуждали с точки зрения изучения черного ящика. Однако, чтобы понимать суть вещей глубже и чтобы отбросить в сторону последние оставшиеся мысли о какой-либо магии, происходящей внутри CLR, стоит заглянуть в самые ее потроха и изучить те алгоритмы, которые систему типов регулируют.</p>
+<h2 id="section-1">Внутренняя структура экземпляров типов</h2>
+<p>Перед тем как начинать рассуждение о строении управляющих блоков системы типов давайте посмотрим на сам объект, на экземпляр любого класса. Если мы создадим в памяти экземпляр любого ссылочного типа, будь то класс или же упакованная структура, то состоять он будет всего из трёх полей: SyncBlockIndex (который на самом деле не только он), указатель на описатель типа и данные. Область данных может содержать очень много полей, но, не умаляя общности, ниже в примере полагаем, что в данных содержится одно поле. Так, если представить эту структуру графически, то мы получим следующее:</p>
+<p><strong>System.Object</strong></p>
+<pre><code>
+  ----------------------------------------------
+  |  SyncBlkIndx |   VMT_Ptr    |     Data     |
+  ----------------------------------------------
+  |  4 / 8 байт  |  4 / 8 байт  |  4 / 8 байт  |
+  ----------------------------------------------
+  |  0xFFF..FFF  |  0xXXX..XXX  |      0       |
+  ----------------------------------------------
+                 ^
+                 | Сюда ведут ссылки на объект. Т.е. не в начало, а на VMT
+
+  Sum size = 12 (x86) | 24 (x64)
+</code></pre>
+<p>Т.е. фактически размер экземпляра типа зависит от конечной платформы, на которой будет работать приложение.</p>
+<p>Далее давайте проследуем по указателю <code>VMT_Ptr</code> и посмотрим, какая структура данных лежит по этому адресу. Для всей системы типов этот указатель является самым главным: именно через него работает и наследование, и реализация интерфейсов, и приведение типов, и много чего ещё. Этот указатель - отсылка в систему типов .NET CLR, паспорт объекта, по которому CLR осуществляет приведение типов, понимает объем памяти, занимаемый объектом, именно при помощи него GC так лихо обходит объект, определяя, по каким адресам лежат указатели на объекты, а по каким - просто числа. Именно через него можно узнать вообще все об объекте и заставить CLR отрабатывать его по-другому. А потому именно им и займёмся.</p>
+<h3 id="virtual-methods-table">Структура Virtual Methods Table</h3>
+<p>Описание самой таблицы доступно по адресу в <a href="https://github.com/dotnet/coreclr/blob/master/src/vm/methodtable.h">GitHub CoreCLR</a>, и если отбросить все лишнее (а там 4381 строка), <a href="https://github.com/dotnet/coreclr/blob/master/src/vm/methodtable.h#L4099-L4114">выглядит она следующим образом</a>:</p>
+<blockquote>
+<p>Это версия из CoreCLR. Если смотреть на структуру полей в .NET Framework, то она будет отличаться расположением полей и расположением отдельных битов системной информации из двух битовых полей <code>m_wFlags</code> и <code>m_wFlags2</code>.</p>
+</blockquote>
+<div class="lang-cpp editor-colors"><div style="color:Black;background-color:White;"><pre>
+   <span style="color:Green;">// Low WORD is component size for array and string types (HasComponentSize() returns true).</span>
+   <span style="color:Green;">// Used for flags otherwise.</span>
+   DWORD m_dwFlags;
+
+   <span style="color:Green;">// Base size of instance of this class when allocated on the heap</span>
+   DWORD m_BaseSize;
+
+   WORD  m_wFlags2;
+
+   <span style="color:Green;">// Class token if it fits into 16-bits. If this is (WORD)-1, the class token is stored in the TokenOverflow optional member.</span>
+   WORD  m_wToken;
+
+   <span style="color:Green;">// &lt;NICE&gt; In the normal cases we shouldn&#39;t need a full word for each of these &lt;/NICE&gt;</span>
+   WORD  m_wNumVirtuals;
+   WORD  m_wNumInterfaces;
+</pre></div>
+</div>
+<p>Согласитесь, выглядит несколько пугающе. Причём пугающе выглядит не то, что тут всего 6 полей (а где все остальные?), а то, что для достижения этих полей, необходимо пропустить 4,100 строк логики. Я лично ожидал тут увидеть что-то готовое, чего не надо дополнительно вычислять. Однако, тут все совсем не так просто: поскольку методов и интерфейсов в любом типе может быть различное количество, то и сама таблица VMT получается переменного размера. А это в свою очередь означает, что для достижения её наполнения надо вычислять, где находятся все её оставшиеся поля. Но давайте не будем унывать и попытаемся сразу получить выгоду из того, что мы уже имеем: мы, пока что, понятия не имеем, что имеется ввиду под другими полями (разве что два последних), зато поле <code>m_BaseSize</code> выглядит заманчиво. Как подсказывает нам комментарий, это - фактический размер для экземпляра типа. Мы только что нашли <code>sizeof</code> для классов! Попробуем в бою?</p>
+<p>Итак, чтобы получить адрес VMT мы можем пойти двумя путями: либо сложным, получив адрес объекта, а значит и VMT:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">class</span> Program
+{
+   <span style="color:Blue;">public</span> <span style="color:Blue;">static</span> <span style="color:Blue;">unsafe</span> <span style="color:Blue;">void</span> Main()
+   {
+       Union x = <span style="color:Blue;">new</span> Union();
+       x.Reference.Value = <span style="color:#A31515;">&quot;Hello!&quot;</span>;
+
+       <span style="color:Green;">// Первым полем лежит указатель на место, где лежит указатель на VMT</span>
+       <span style="color:Green;">// - (IntPtr*)x.Value.Value - преобразовали число в указатель (сменили тип для компилятора)</span>
+       <span style="color:Green;">// - *(IntPtr*)x.Value.Value - взяли по адресу объекта адрес VMT</span>
+       <span style="color:Green;">// - (void *)*(IntPtr*)x.Value.Value - преобразовали в указатель</span>
+       <span style="color:Blue;">void</span> *vmt = (<span style="color:Blue;">void</span> *)*(IntPtr*)x.Value.Value;
+
+       <span style="color:Green;">// вывели в консоль адрес VMT;</span>
+       Console.WriteLine((<span style="color:Blue;">ulong</span>)vmt);
+   }
+
+   [StructLayout(LayoutKind.Explicit)]
+   <span style="color:Blue;">public</span> <span style="color:Blue;">class</span> Union
+   {
+       <span style="color:Blue;">public</span> Union()
+       {
+           Value = <span style="color:Blue;">new</span> Holder&lt;IntPtr&gt;();
+           Reference = <span style="color:Blue;">new</span> Holder&lt;<span style="color:Blue;">object</span>&gt;();
+       }
+
+       [FieldOffset(0)]
+       <span style="color:Blue;">public</span> Holder&lt;IntPtr&gt; Value;
+
+       [FieldOffset(0)]
+       <span style="color:Blue;">public</span> Holder&lt;<span style="color:Blue;">object</span>&gt; Reference;
+   }
+
+   <span style="color:Blue;">public</span> <span style="color:Blue;">class</span> Holder&lt;T&gt;
+   {
+       <span style="color:Blue;">public</span> T Value;
+   }
+}
+</pre></div>
+</div>
+<p>Либо простым, используя .NET FCL API:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+    <span style="color:Blue;">var</span> vmt = <span style="color:Blue;">typeof</span>(<span style="color:Blue;">string</span>).TypeHandle.Value;
+</pre></div>
+</div>
+<p>Второй путь, конечно же, проще (хоть и дольше работает). Однако знание первого очень важно с точки зрения понимания структуры экземпляра типа. Использование второго способа добавляет чувство уверенности: если мы вызываем метод API, то вроде как пользуемся задокументированным способом работы с VMT, а если достаём через указатели, то нет. Однако не стоит забывать, что хранение <code>VMT *</code> - стандартно для практически любого ООП языка и для .NET платформы в целом: эта ссылка всегда находится на одном и том же месте, как самое часто используемое поле класса. А самое часто используемое поле класса должно идти первым, чтобы адресация была без смещения и, как результат, была быстрей. Отсюда делаем вывод, что в случае классов положение полей на скорость влиять не будет, а вот у структур - самое часто используемое поле можно поставить первым. Хотя, конечно же, для абсолютного большинства .NET приложений это не даст вообще никакого эффекта: не для таких задач создавалась эта платформа.</p>
+<p>Давайте изучим вопрос структуры типов с точки зрения размера их экземпляра. Нам же надо не просто абстрактно изучать их (это просто-напросто скучно), но дополнительно попробуем извлечь из этого такую выгоду, какую не извлечь обычным способом.</p>
+<blockquote>
+<p><strong>Почему sizeof есть для Value Type, но нет для Reference Type?</strong> На самом деле вопрос, открытый т.к. никто не мешает рассчитать размер ссылочного типа. Единственное обо что можно споткнуться - это не фиксированный размер двух ссылочных типов: <code>Array</code> и <code>String</code>. А также <code>Generic</code> группы, которая зависит целиком и полностью от конкретных вариантов. Т.е. оператором <code>sizeof(..)</code> мы обойтись не смогли бы: необходимо работать с конкретными экземплярами. Однако никто не мешает команде CLR сделать метод вида <code>static int System.Object.SizeOf(object obj)</code>, который бы легко и просто возвращал бы нам то, что надо. Так почему же Microsoft не реализовала этот метод? Есть мысль, что платформа .NET в их понимании опять же - не та платформа, где разработчик будет сильно переживать за конкретные байты. В случае чего можно просто доставить планок в материнскую плату. Тем более что большинство типов данных, которые мы реализуем, не занимают такие большие объёмы.</p>
+</blockquote>
+<p>Но не будем отвлекаться. Итак, чтобы получить размер экземпляра класса, чей размер фиксирован, достаточно написать следующий код:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">unsafe</span> <span style="color:Blue;">int</span> SizeOf(Type type)
+{
+    MethodTable *pvmt = (MethodTable *)type.TypeHandle.Value.ToPointer();
+    <span style="color:Blue;">return</span> pvmt-&gt;Size;
+}
+
+[StructLayout(LayoutKind.Explicit)]
+<span style="color:Blue;">public</span> <span style="color:Blue;">struct</span> MethodTable
+{
+    [FieldOffset(4)]
+    <span style="color:Blue;">public</span> <span style="color:Blue;">int</span> Size;
+}
+
+<span style="color:Blue;">class</span> Sample
+{
+    <span style="color:Blue;">int</span> x;
+}
+
+<span style="color:Green;">// ...</span>
+
+Console.WriteLine(SizeOf(<span style="color:Blue;">typeof</span>(Sample)));
+</pre></div>
+</div>
+<p>Итак, что мы только что сделали? Первым шагом мы получили указатель на таблицу виртуальных методов. После чего мы считываем размер и получаем <code>12</code> - это сумма размеров полей <code>SyncBlockIndex + VMT_Ptr + поле x</code> для 32-разрядной платформы. Если мы поиграемся с разными типами, то получим примерно следующую таблицу для x86:</p>
+<table>
+<thead>
+<tr>
+<th>Тип или его определение</th>
+<th>Размер</th>
+<th>Комментарий</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td>12</td>
+<td>SyncBlk + VMT + пустое поле</td>
+</tr>
+<tr>
+<td>Int16</td>
+<td>12</td>
+<td>Boxed Int16: SyncBlk + VMT + данные (выровнено по 4 байта)</td>
+</tr>
+<tr>
+<td>Int32</td>
+<td>12</td>
+<td>Boxed Int32: SyncBlk + VMT + данные</td>
+</tr>
+<tr>
+<td>Int64</td>
+<td>16</td>
+<td>Boxed Int64: SyncBlk + VMT + данные</td>
+</tr>
+<tr>
+<td>Char</td>
+<td>12</td>
+<td>Boxed Char: SyncBlk + VMT + данные (выровнено по 4 байта)</td>
+</tr>
+<tr>
+<td>Double</td>
+<td>16</td>
+<td>Boxed Double: SyncBlk + VMT + данные</td>
+</tr>
+<tr>
+<td>IEnumerable</td>
+<td>0</td>
+<td>Интерфейс не имеет размера: надо брать obj.GetType()</td>
+</tr>
+<tr>
+<td>List&lt;T&gt;</td>
+<td>24</td>
+<td>Не важно сколько элементов в List<T>, занимать он будет одинаково т.к. хранит данные он в array, который не учитывается</td>
+</tr>
+<tr>
+<td>GenericSample&lt;int&gt;</td>
+<td>12</td>
+<td>Как видите, generics прекрасно считаются. Размер не поменялся, т.к. данные находятся на том же месте, что и у boxed int. Итог: SyncBlk + VMT + данные</td>
+</tr>
+<tr>
+<td>GenericSample&lt;Int64&gt;</td>
+<td>16</td>
+<td>Аналогично</td>
+</tr>
+<tr>
+<td>GenericSample&lt;IEnumerable&gt;</td>
+<td>12</td>
+<td>Аналогично</td>
+</tr>
+<tr>
+<td>GenericSample&lt;DateTime&gt;</td>
+<td>16</td>
+<td>Аналогично</td>
+</tr>
+<tr>
+<td>string</td>
+<td>14</td>
+<td>Это значение будет возвращено для любой строки, т.к. реальный размер должен считаться динамически. Однако он подходит для размера под пустую строку. Прошу заметить, что размер не выровнен по разрядности: по сути, это поле использоваться не должно</td>
+</tr>
+<tr>
+<td>int[]{1}</td>
+<td>24554</td>
+<td>Для массивов в данном месте лежат совсем другие данные, также их размер не является фиксированным, потому его необходимо считать отдельно</td>
+</tr>
+</tbody>
+</table>
+<p>Как видите, когда система хранит данные о размере экземпляра типа, то она фактически хранит данные для ссылочного вида этого типа (т.е. в том числе для ссылочного варианта значимого). Давайте сделаем некоторые выводы:</p>
+<ol>
+<li>Если вы хотите знать, сколько займёт значимый тип как значение, используйте <code>sizeof(TType)</code></li>
+<li>Если вы хотите рассчитать, чего вам будет стоить боксинг, то вы можете округлить <code>sizeof(TType)</code> в большую сторону до размера слова процессора (4 или 8 байт) и прибавить ещё 2 слова (<code>2 * sizeof(IntPtr)</code>). Или же взять это значение из <code>VMT</code> типа.</li>
+<li>Расчёт выделенного объем памяти в куче представлен для следующих типов:
+<ol>
+<li>Обычный ссылочный тип фиксированного размера: мы можем забрать размер экземпляра из <code>VMT</code>;</li>
+<li>Cтрока, необходимо вручную считать её размер (это вообще редко когда может понадобиться, но, согласитесь, интересно)</li>
+<li>Массив, то его размер также рассчитывается отдельно: на основании размера его элементов и их количества. Эта задачка может оказаться куда более полезной: ведь именно массивы первые в очереди на попадание в <code>LOH</code></li>
+</ol>
+</li>
+</ol>
+<h3 id="system.string">System.String</h3>
+<p>Про строки в вопросах практики мы поговорим отдельно: этому, относительно небольшому, классу можно выделить целую главу. А в рамках главы про строение VMT мы поговорим про строение строк на низком уровне. Для хранения строк применяется стандарт UTF16. Это значит, что каждый символ занимает 2 байта. Дополнительно в конце каждой строки хранится null-терминатор – значение, которое идентифицирует окончание строки. Также в экземпляре хранится длина строки в виде <code>Int32</code> числа - чтобы не считать длину каждый раз, когда она понадобится (про кодировки мы поговорим отдельно). На схеме ниже представлена информация о занимаемой памяти строкой:</p>
+<pre><code>  // Для .NET Framework 3.5 и младше
+  ----------------------------------------------------------------------------------------------------
+  |  SyncBlkIndx |    VMTPtr     |  ArrayLength   |     Length     |   char   |   char   |   Term    |
+  ----------------------------------------------------------------------------------------------------
+  |  4 / 8 байт  |  4 / 8 байт   |    4 байта     |    4 байта     |  2 байта |  2 байта |  2 байта  |
+  ----------------------------------------------------------------------------------------------------
+  |      -1      |  0xXXXXXXXX   |        3       |        2       |     a    |     b    |   &lt;nil&gt;   |
+  ----------------------------------------------------------------------------------------------------
+
+  Term – null terminator
+  Sum size = (8|16) + 2 * 4 + Count * 2 + 2 -&gt; округлить в большую сторону по разрядности. (24 байта в примере)
+  Count – количество символов в строке, не считая терминальный
+  
+  // Для .NET Framework 4 и старше
+  -----------------------------------------------------------------------------------
+  |  SyncBlkIndx |    VMTPtr     |     Length     |   char   |   char   |   Term    |
+  -----------------------------------------------------------------------------------
+  |  4 / 8 байт  |  4 / 8 байт   |    4 байта     |  2 байта |  2 байта |  2 байта  |
+  -----------------------------------------------------------------------------------
+  |      -1      |  0xXXXXXXXX   |        2       |     a    |     b    |   &lt;nil&gt;   |
+  -----------------------------------------------------------------------------------
+  Term - null terminator
+  Sum size = (8|16) + 4 + Count * 2 + 2) -&gt; округлить в большую сторону по разрядности. (20 байт в примере)
+  Count – количество символов в строке, не считая терминальный
+</code></pre>
+<p>Перепишем наш метод, чтобы научить его считать размер строк:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">unsafe</span> <span style="color:Blue;">int</span> SizeOf(<span style="color:Blue;">object</span> obj)
+{
+   <span style="color:Blue;">var</span> majorNetVersion = Environment.Version.Major;
+   <span style="color:Blue;">var</span> type = obj.GetType();
+   <span style="color:Blue;">var</span> href = Union.GetRef(obj).ToInt64();
+   <span style="color:Blue;">var</span> DWORD = <span style="color:Blue;">sizeof</span>(IntPtr);
+   <span style="color:Blue;">var</span> baseSize = 3 * DWORD;
+
+   <span style="color:Blue;">if</span> (type == <span style="color:Blue;">typeof</span>(<span style="color:Blue;">string</span>))
+   {
+       <span style="color:Blue;">if</span> (majorNetVersion &gt;= 4)
+       {
+           <span style="color:Blue;">var</span> length = (<span style="color:Blue;">int</span>)*(<span style="color:Blue;">int</span>*)(href + DWORD <span style="color:Green;">/* skip vmt */</span>);
+           <span style="color:Blue;">return</span> DWORD * ((baseSize + 2 + 2 * length + (DWORD-1)) / DWORD);
+       }
+       <span style="color:Blue;">else</span>
+       {
+           <span style="color:Green;">// on 1.0 -&gt; 3.5 string have additional RealLength field</span>
+           <span style="color:Blue;">var</span> arrlength = *(<span style="color:Blue;">int</span>*)(href + DWORD <span style="color:Green;">/* skip vmt */</span>);
+           <span style="color:Blue;">var</span> length = *(<span style="color:Blue;">int</span>*)(href + DWORD <span style="color:Green;">/* skip vmt */</span> + 4 <span style="color:Green;">/* skip length */</span>);
+           <span style="color:Blue;">return</span> DWORD * ((baseSize + 4 + 2 * length + (DWORD-1)) / DWORD);
+       }
+   }
+   <span style="color:Blue;">else</span>
+   <span style="color:Blue;">if</span> (type.BaseType == <span style="color:Blue;">typeof</span>(Array) || type == <span style="color:Blue;">typeof</span>(Array))
+   {
+       <span style="color:Blue;">return</span> ((ArrayInfo*)href)-&gt;SizeOf();
+   }
+   <span style="color:Blue;">return</span> SizeOf(type);
+}
+</pre></div>
+</div>
+<p>Где <code>SizeOf(type)</code> будет вызывать старую реализацию - для фиксированных по длине ссылочных типов.</p>
+<p>Давайте проверим код на практике:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+    Action&lt;<span style="color:Blue;">string</span>&gt; stringWriter = (arg) =&gt;
+    {
+        Console.WriteLine($<span style="color:#A31515;">&quot;Length of `{arg}` string: {SizeOf(arg)}&quot;</span>);
+    };
+
+    stringWriter(<span style="color:#A31515;">&quot;a&quot;</span>);
+    stringWriter(<span style="color:#A31515;">&quot;ab&quot;</span>);
+    stringWriter(<span style="color:#A31515;">&quot;abc&quot;</span>);
+    stringWriter(<span style="color:#A31515;">&quot;abcd&quot;</span>);
+    stringWriter(<span style="color:#A31515;">&quot;abcde&quot;</span>);
+    stringWriter(<span style="color:#A31515;">&quot;abcdef&quot;</span>);
+}
+
+-----
+
+Length of `a` <span style="color:Blue;">string</span>: 16
+Length of `ab` <span style="color:Blue;">string</span>: 20
+Length of `abc` <span style="color:Blue;">string</span>: 20
+Length of `abcd` <span style="color:Blue;">string</span>: 24
+Length of `abcde` <span style="color:Blue;">string</span>: 24
+Length of `abcdef` <span style="color:Blue;">string</span>: 28
+</pre></div>
+</div>
+<p>Расчёты показывают, что размер строки увеличивается не линейно, а ступенчато на каждые два символа. Это происходит потому, что размер каждого символа - 2 байта, а конечный размер должен без остатка делиться на разрядность процессора (в примере x86), почему происходит соответствующее выравнивание размера строки на 2 байта. Результат нашей работы прекрасен: мы можем посчитать, во что нам обошлась та или иная строка. Последним этапом нам осталось узнать, как рассчитать размер массивов в памяти.</p>
+<h3 id="section-2">Массивы</h3>
+<p>Строение массивов несколько сложнее: ведь у массивов могут быть варианты их строения:</p>
+<ol>
+<li>Они могут хранить значимые типы, а могут хранить ссылочные</li>
+<li>Массивы могут быть как одномерными, так и многомерными</li>
+<li>Каждое измерение (мера) может начинаться как с <code>0</code>, так и с любого другого числа (это, на мой взгляд, очень спорная возможность, избавляющая программиста от необходимости в написании <code>arr[i - startIndex]</code> на уровне FCL). Сделано это, вроде как, для совместимости с другими языками, к примеру, в Pascal индексация массива может начинаться не с <code>0</code>, а с любого числа, однако мне кажется, что это лишнее.</li>
+</ol>
+<p>Отсюда возникает некоторая путаность в реализации массивов и невозможность точно предсказать размер конечного массива: мало перемножить количество элементов на их размер. Хотя, конечно, для большинства случаев этого будет достаточно. Важным размер становится, когда мы боимся попасть в LOH. Однако у нас и тут возникают варианты: мы можем просто накинуть к размеру, подсчитанному &quot;на коленке&quot;, какую-то константу сверху (например, 100), чтобы понять, перешагнули мы границу в 85000 или нет. Однако, в рамках данного раздела задача несколько другая: понять структуру типов. На неё и посмотрим:</p>
+<pre><code>  // Заголовок
+  ----------------------------------------------------------------------------------------
+  |   SBI   |  VMT_Ptr |  Total  |  Len_1  |  Len_2  | .. |  Len_N  |  Term   | VMT_Child |
+  ----------------------------------opt-------opt------------opt-------opt--------opt-----
+  |  4 / 8  |  4 / 8   |    4    |    4    |    4    |    |    4    |    4    |    4/8    |
+  ----------------------------------------------------------------------------------------
+  | 0xFF.FF | 0xXX.XX  |    ?    |    ?    |    ?    |    |    ?    | 0x00.00 | 0xXX.XX  |
+  ----------------------------------------------------------------------------------------
+
+  - opt: опционально
+  - SBI: Sync Block Index
+  - VMT_Child: присутствует, только если массив хранит данные ссылочного типа
+  - Total: присутствует для оптимизации. Общее количество элементов массива с учётом всех размерностей
+  - Len_2..Len_N, Term: присутствуют, только если размерность массива более 1 (регулируется битами в VMT-&gt;Flags)
+</code></pre>
+<p>Как мы видим, заголовок типа хранит данные об измерениях массива: их число может быть как 1, так и достаточно большим: фактически их размер ограничивается только null-терминатором, означающим, что перечисление закончено. Данный пример доступен полностью в файле <a href="./samples/GettingInstanceSize.linq">GettingInstanceSize</a>, а ниже я приведу только его самую важную часть:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">public</span> <span style="color:Blue;">int</span> SizeOf()
+{
+    <span style="color:Blue;">var</span> total = 0;
+    <span style="color:Blue;">int</span> elementsize;
+
+    <span style="color:Blue;">fixed</span> (<span style="color:Blue;">void</span>* entity = &amp;MethodTable)
+    {
+        <span style="color:Blue;">var</span> arr = Union.GetObj&lt;Array&gt;((IntPtr)entity);
+        <span style="color:Blue;">var</span> elementType = arr.GetType().GetElementType();
+
+        <span style="color:Blue;">if</span> (elementType.IsValueType)
+        {
+            <span style="color:Blue;">var</span> typecode = Type.GetTypeCode(elementType);
+
+            <span style="color:Blue;">switch</span> (typecode)
+            {
+                <span style="color:Blue;">case</span> TypeCode.Byte:
+                <span style="color:Blue;">case</span> TypeCode.SByte:
+                <span style="color:Blue;">case</span> TypeCode.Boolean:
+                    elementsize = 1;
+                    <span style="color:Blue;">break</span>;
+                <span style="color:Blue;">case</span> TypeCode.Int16:
+                <span style="color:Blue;">case</span> TypeCode.UInt16:
+                <span style="color:Blue;">case</span> TypeCode.Char:
+                    elementsize = 2;
+                    <span style="color:Blue;">break</span>;
+                <span style="color:Blue;">case</span> TypeCode.Int32:
+                <span style="color:Blue;">case</span> TypeCode.UInt32:
+                <span style="color:Blue;">case</span> TypeCode.Single:
+                    elementsize = 4;
+                    <span style="color:Blue;">break</span>;
+                <span style="color:Blue;">case</span> TypeCode.Int64:
+                <span style="color:Blue;">case</span> TypeCode.UInt64:
+                <span style="color:Blue;">case</span> TypeCode.Double:
+                    elementsize = 8;
+                    <span style="color:Blue;">break</span>;
+                <span style="color:Blue;">case</span> TypeCode.Decimal:
+                    elementsize = 12;
+                    <span style="color:Blue;">break</span>;
+                <span style="color:Blue;">default</span>:
+                    <span style="color:Blue;">var</span> info = (MethodTable*)elementType.TypeHandle.Value;
+                    elementsize = info-&gt;Size - 2 * <span style="color:Blue;">sizeof</span>(IntPtr); <span style="color:Green;">// sync blk + vmt ptr</span>
+                    <span style="color:Blue;">break</span>;
+            }
+        }
+        <span style="color:Blue;">else</span>
+        {
+            elementsize = IntPtr.Size;
+        }
+
+        <span style="color:Green;">// Header</span>
+        total += 3 * <span style="color:Blue;">sizeof</span>(IntPtr); <span style="color:Green;">// sync blk + vmt ptr + total length</span>
+        total += elementType.IsValueType ? 0 : <span style="color:Blue;">sizeof</span>(IntPtr); <span style="color:Green;">// MethodsTable for refTypes</span>
+        total += IsMultidimensional ? Dimensions * <span style="color:Blue;">sizeof</span>(<span style="color:Blue;">int</span>) : 0;
+    }
+
+    <span style="color:Green;">// Contents</span>
+    total += (<span style="color:Blue;">int</span>)TotalLength * elementsize;
+
+    <span style="color:Green;">// align size to IntPtr</span>
+    <span style="color:Blue;">if</span> ((total % <span style="color:Blue;">sizeof</span>(IntPtr)) != 0)
+    {
+        total += <span style="color:Blue;">sizeof</span>(IntPtr) - total % (<span style="color:Blue;">sizeof</span>(IntPtr));
+    }
+    <span style="color:Blue;">return</span> total;
+}
+</pre></div>
+</div>
+<p>Этот код учитывает все вариации типов массивов, и может быть использован для расчёта его размера:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+Console.WriteLine($<span style="color:#A31515;">&quot;size of int[]{{1,2}}: {SizeOf(new int[2])}&quot;</span>);
+Console.WriteLine($<span style="color:#A31515;">&quot;size of int[2,1]{{1,2}}: {SizeOf(new int[1,2])}&quot;</span>);
+Console.WriteLine($<span style="color:#A31515;">&quot;size of int[2,3,4,5]{{...}}: {SizeOf(new int[2, 3, 4, 5])}&quot;</span>);
+
+---
+size of <span style="color:Blue;">int</span>[]{1,2}: 20
+size of <span style="color:Blue;">int</span>[2,1]{1,2}: 32
+size of <span style="color:Blue;">int</span>[2,3,4,5]{...}: 512
+</pre></div>
+</div>
+<h3 id="section-3">Выводы к разделу</h3>
+<p>На данном этапе мы научились нескольким достаточно важным вещам. Первое - мы разделили для себя ссылочные типы на три группы: ссылочные типы фиксированного размера, generic типы и ссылочные типы переменного размера. Также мы научились понимать структуру конечного экземпляра любого типа (про структуру VMT я пока молчу. Мы там поняли целиком пока что только одно поле: а это тоже большое достижение). Будь то ссылочный тип фиксированного размера (там все предельно просто) или неопределённого размера: массив или строка. Неопределённого потому, что его размер будет определён при создании. С generic типами на самом деле все просто: для каждого конкретного generic типа создаётся своя VMT, в которой будет проставлен конкретный размер.</p>
+<h2 id="virtual-methods-table-vmt">Таблица методов в Virtual Methods Table (VMT)</h2>
+<p>Объяснение работы Methods Table, по большей части носит академический характер: ведь в такие дебри лезть - это как самому себе могилу рыть. С одной стороны, такие закрома таят что-то будоражащее и интересное, хранят некие данные, которые ещё больше раскрывают понимание о происходящем. Однако, с другой стороны, все мы понимаем, что Microsoft не будет нам давать никаких гарантий, что они оставят свой рантайм без изменений и, например, вдруг не передвинут таблицу методов на одно поле вперёд. Поэтому, оговорюсь сразу:</p>
+<blockquote>
+<p>Информация, представленная в данном разделе, дана вам исключительно для того, чтобы вы понимали, как работает приложение, основанное на CLR, и ручное вмешательство в её работу не даёт никаких гарантий. Однако, это настолько интересно, что я не могу вас отговорить. Наоборот, мой совет - поиграйтесь с этими структурами данных и, возможно, вы получите один из самых запоминающихся опытов в разработке ПО.</p>
+</blockquote>
+<p>Ну, все: предупредил. Теперь давайте окунёмся в мир как говорится зазеркалья. Ведь до сих пор всё зазеркалье сводилось к знаниям структуры объектов: а её по идее мы и так должны знать хотя бы примерно. И по своей сути эти знания зазеркальем не являются, а являются скорее входом в зазеркалье. А потому вернёмся к структуре <code>MethodTable</code>, <a href="https://github.com/dotnet/coreclr/blob/master/src/vm/methodtable.h#L4099-L4114">описанной в CoreCLR</a>:</p>
+<div class="lang-cpp editor-colors"><div style="color:Black;background-color:White;"><pre>
+   <span style="color:Green;">// Low WORD is component size for array and string types (HasComponentSize() returns true).</span>
+   <span style="color:Green;">// Used for flags otherwise.</span>
+   DWORD m_dwFlags;
+
+   <span style="color:Green;">// Base size of instance of this class when allocated on the heap</span>
+   DWORD m_BaseSize;
+
+   WORD  m_wFlags2;
+
+   <span style="color:Green;">// Class token if it fits into 16-bits. If this is (WORD)-1, the class token is stored in the TokenOverflow optional member.</span>
+   WORD  m_wToken;
+
+   <span style="color:Green;">// &lt;NICE&gt; In the normal cases we shouldn&#39;t need a full word for each of these &lt;/NICE&gt;</span>
+   WORD  m_wNumVirtuals;
+   WORD  m_wNumInterfaces;
+</pre></div>
+</div>
+<p>А именно к полям <code>m_wNumVirtuals</code> и <code>m_wNumInterfaces</code>. Эти два поля определяют ответ на вопрос &quot;сколько виртуальных методов и интерфейсов существует у типа?&quot;. В этой структуре нет никакой информации об обычных методах, полях, свойствах (которые объединяют методы). Т.е. эта структура <strong>никак не связана с рефлексией</strong>. По своей сути и назначению эта структура создана для работы вызова методов в CLR (и на самом деле в любом ООП: будь то Java, C++, Ruby или же что-то ещё. Просто расположение полей будет несколько другим). Давайте рассмотрим код:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">public</span> <span style="color:Blue;">class</span> Sample
+{
+    <span style="color:Blue;">public</span> <span style="color:Blue;">int</span> _x;
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> ChangeTo(<span style="color:Blue;">int</span> newValue)
+    {
+        _x = newValue;
+    }
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">virtual</span> <span style="color:Blue;">int</span> GetValue()
+    {
+        <span style="color:Blue;">return</span> _x;
+    }
+}
+
+<span style="color:Blue;">public</span> <span style="color:Blue;">class</span> OverridedSample : Sample
+{
+    <span style="color:Blue;">public</span> <span style="color:Blue;">override</span> GetValue()
+    {
+        <span style="color:Blue;">return</span> 666;
+    }
+}
+
+</pre></div>
+</div>
+<p>Какими бы бессмысленными не казались эти классы, они нам вполне сгодятся для описания их VMT. А для этого мы должны понять, чем отличаются базовый тип и унаследованный в вопросе методов <code>ChangeTo</code> и <code>GetValue</code>.</p>
+<p>Метод <code>ChangeTo</code> присутствует в обоих типах: при этом его нельзя переопределять. Это значит, что он может быть переписан так, и ничего не поменяется:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+ <span style="color:Blue;">public</span> <span style="color:Blue;">class</span> Sample
+ {
+     <span style="color:Blue;">public</span> <span style="color:Blue;">int</span> _x;
+
+     <span style="color:Blue;">public</span> <span style="color:Blue;">static</span> <span style="color:Blue;">void</span> ChangeTo(Sample self, <span style="color:Blue;">int</span> newValue)
+     {
+         self._x = newValue;
+     }
+
+     <span style="color:Green;">// ...</span>
+ }
+
+<span style="color:Green;">// Либо в случае если бы он был struc</span>
+ <span style="color:Blue;">public</span> <span style="color:Blue;">struct</span> Sample
+ {
+     <span style="color:Blue;">public</span> <span style="color:Blue;">int</span> _x;
+
+     <span style="color:Blue;">public</span> <span style="color:Blue;">static</span> <span style="color:Blue;">void</span> ChangeTo(<span style="color:Blue;">ref</span> Sample self, <span style="color:Blue;">int</span> newValue)
+     {
+         self._x = newValue;
+     }
+
+     <span style="color:Green;">// ...</span>
+ }
+</pre></div>
+</div>
+<p>И при этом кроме архитектурного смысла ничего не изменится: поверьте, при компиляции оба варианта будут работать одинаково, т.к. у экземплярных методов <code>this</code> - это всего лишь первый параметр метода, который передаётся нам неявно.</p>
+<blockquote>
+<p>Заранее поясню, почему все объяснения вокруг наследования строятся вокруг примеров на статических методах: по сути, все методы - статические. И экземплярные и нет. В памяти нет поэкземплярно скомпилированных методов для каждого экземпляра класса. Это занимало бы огромное количество памяти: проще одному и тому же методу каждый раз передавать ссылку на экземпляр той структуры или класса, с которыми он работает.</p>
+</blockquote>
+<p>Для метода <code>GetValue</code> все обстоит совершенно по-другому. Мы не можем просто взять и переопределить метод переопределением <em>статического</em> <code>GetValue</code> в унаследованном типе: новый метод получит только те участки кода, которые работают с переменной как с <code>OverridedSample</code>, а если с переменной работать как с переменной базового типа <code>Sample</code>, вызвать сможете только <code>GetValue</code> базового типа, поскольку вы понятия не имеете, какого типа на самом деле объект. Для того чтобы понимать, какого типа является переменная и, как результат, какой конкретно метод вызывается, мы можем поступить следующим образом:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">void</span> Main()
+{
+    <span style="color:Blue;">var</span> sample = <span style="color:Blue;">new</span> Sample();
+    <span style="color:Blue;">var</span> overrided = <span style="color:Blue;">new</span> OverridedSample();
+
+    Console.WriteLine(sample.Virtuals[Sample.GetValuePosition].DynamicInvoke(sample));
+    Console.WriteLine(overrided.Virtuals[Sample.GetValuePosition].DynamicInvoke(sample));
+}
+
+<span style="color:Blue;">public</span> <span style="color:Blue;">class</span> Sample
+{
+    <span style="color:Blue;">public</span> <span style="color:Blue;">const</span> <span style="color:Blue;">int</span> GetValuePosition = 0;
+
+    <span style="color:Blue;">public</span> Delegate[] Virtuals;
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">int</span> _x;
+
+    <span style="color:Blue;">public</span> Sample()
+    {
+        Virtuals = <span style="color:Blue;">new</span> Delegate[1] { 
+            <span style="color:Blue;">new</span> Func&lt;Sample, <span style="color:Blue;">int</span>&gt;(GetValue) 
+        };
+    }
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">static</span> <span style="color:Blue;">void</span> ChangeTo(Sample self, <span style="color:Blue;">int</span> newValue)
+    {
+        self._x = newValue;
+    }
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">static</span> <span style="color:Blue;">int</span> GetValue(Sample self)
+    {
+        <span style="color:Blue;">return</span> self._x;
+    }
+}
+
+<span style="color:Blue;">public</span> <span style="color:Blue;">class</span> OverridedSample : Sample
+{
+    <span style="color:Blue;">public</span> OverridedSample() : <span style="color:Blue;">base</span>()
+    {
+        Virtuals[0] = <span style="color:Blue;">new</span> Func&lt;Sample, <span style="color:Blue;">int</span>&gt;(GetValue);
+    }
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">static</span> <span style="color:Blue;">new</span> <span style="color:Blue;">int</span> GetValue(Sample self)
+    {
+        <span style="color:Blue;">return</span> 666;
+    }
+}
+</pre></div>
+</div>
+<p>В этом примере мы фактически строим таблицу виртуальных методов вручную, а вызовы делаем по позиции метода в этой таблице. Если вы поняли суть примера, то вы фактически поняли, как строится наследование на уровне скомпилированного кода: методы вызываются по своему индексу в таблице виртуальных методов. Просто когда вы создаёте экземпляр некоторого унаследованного типа, то в его VMT по местам, где у базового типа находятся виртуальные методы, компилятор расположит указатели на переопределённые методы, скопировав из базового типа указатели на методы, которые не переопределялись. Таким образом, отличие нашего примера от реальной VMT заключается только в том, что когда компилятор строит эту таблицу, он заранее знает, с чем имеет дело и создаёт таблицу правильного размера и наполнения сразу же: в нашем примере чтобы построить таблицу для типов, которые будут делать таблицу более крупной за счёт добавления новых методов, придётся изрядно попотеть. Но наша задача заключается в другом, а потому такими извращениями мы заниматься не станем.</p>
+<p>Второй вопрос, который возникает сразу после ответа на первый: если с методами теперь все ясно, то зачем тогда в <code>VMT</code> находятся интерфейсы? Интерфейсы, если размышлять логически, не входят в структуру прямого наследования. Они находятся как бы сбоку, указывая, что те или иные типы обязаны реализовывать некоторый набор методов. Иметь, по сути, некоторый протокол взаимодействия. Однако, хоть интерфейсы и находятся <em>сбоку</em> от прямого наследования, вызывать методы все равно можно. Причём, заметьте: если вы используете переменную интерфейсного типа, то за ней могут скрываться какие угодно классы, базовый тип у которых может быть разве что <code>System.Object</code>. Т.е. методы в таблице виртуальных методов, которые реализуют интерфейс, могут находиться совершенно по разным местам. Как же вызов методов работает в этом случае?</p>
+<h2 id="virtual-stub-dispatch-vsd-in-progress">Virtual Stub Dispatch (VSD) [In Progress]</h2>
+<p>Чтобы разобраться в этом вопросе, необходимо дополнительно вспомнить, что реализовать интерфейс можно двумя путями: сделать можно либо <code>implicit</code> реализацию, либо <code>explicit</code>. Причём сделать это можно частично: часть методов сделать <code>implicit</code>, а часть - <code>explicit</code>. Эта возможность на самом деле - следствие реализации и возможно даже не является заранее продуманной: реализуя интерфейс, вы показываете явно или неявно, что в него входит. Часть методов класса может не входить в интерфейс, а методы, существующие в интерфейсе, могут не существовать в классе (они, конечно, существуют в классе, но синтаксис показывает, что архитектурно частью класса они не являются): класс и интерфейс - это в некотором, смысле - параллельные иерархии типов. Также, в плюс к этому, интерфейс - это отдельный тип, а значит, у каждого интерфейса есть собственная таблица виртуальных методов: чтобы каждый смог вызывать методы интерфейса.</p>
+<p>Давайте взглянем на таблицу: как бы могли выглядеть VMT различных типов:</p>
+<table>
+<thead>
+<tr>
+<th>interface IFoo</th>
+<th>class A : IFoo</th>
+<th>class B : IFoo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-&gt; GetValue()</td>
+<td>SampleMethod()</td>
+<td>RunProcess()</td>
+</tr>
+<tr>
+<td>-&gt; SetValue()</td>
+<td>Go()</td>
+<td>-&gt; GetValue()</td>
+</tr>
+<tr>
+<td></td>
+<td>-&gt; GetValue()</td>
+<td>-&gt; SetValue()</td>
+</tr>
+<tr>
+<td></td>
+<td>-&gt; SetValue()</td>
+<td>LookToMoon()</td>
+</tr>
+</tbody>
+</table>
+<p>VMT всех трёх типов содержат необходимые методы <code>GetValue</code> и <code>SetValue</code>, однако они находятся по разным индексам: они не могут везде быть по одним и тем же индексам, поскольку была бы конкуренция за индексы с другими интерфейсами класса. На самом деле для каждого интерфейса создаётся интерфейс - дубль - для каждой его реализации в каждом классе. Имеем 633 реализации <code>IDisposable</code> в классах FCL/BCL? Значит имеем 633 дополнительных <code>IDisposable</code> интерфейса чтобы поддержать VMT to VMT трансляцию для каждого из классов + запись в каждом классе с ссылкой на его реализацию интерфейсом. Назовём такие интерфейсы <strong>частными интерфейсами</strong>. Т.е. каждый класс имеет свои собственные, <strong>частные интерфейсы</strong>, которые являются &quot;системными&quot; и являются прокси типами до реального интерфейса.</p>
+<p>Таким образом, получается следующее: у интерфейсов также как и у классов есть наследование виртуальных <em>интерфейсных</em> методов, однако наследование это работает не только при наследовании одного интерфейса от другого, но и при реализации интерфейса классом. Когда класс реализует некий интерфейс, то создаётся дополнительный интерфейс, уточняющий какие методы интерфейса-родителя на какие методы конечного класса должны отображаться. Вызывая метод по интерфейсной переменной, вы точно также вызываете метод по индексу из массива VMT, как это делалось в случае с классами, однако для данной реализации интерфейса вы по индексу выберите слот из <em>унаследованного</em>, невидимого интерфейса, связывающего оригинальный интерфейс <code>IDisposable</code> с нашим классом, интерфейс реализующим.</p>
+<p>Диспетчеризация виртуальных методов через заглушки или <strong>Virtual Stub Dispatch (VSD)</strong> была разработана ещё в 2006 году как замена таблицам виртуальных методов в интерфейсах. Основная идея этого подхода состоит в упрощении кодогенерации и последующего упрощения вызова методов, т.к. первичная реализация интерфейсов на VMT была бы очень громоздкой и требовала бы большого количества работы и времени для построения всех структур всех интерфейсов. Сам код диспетчеризации находится, по сути, в четырёх файлах общим весом примерно в 6400 строк, и мы не строим целей понять его весь. Мы попытаемся в общих словах понять суть происходящих процессов в этом коде.</p>
+<p>Всю логику VSD диспетчеризации можно разбить на два больших раздела: диспетчеризация и механизм заглушек (stubs), обеспечивающих кэширование адресов вызываемых методов по паре значений [тип; номер слота], которые их идентифицируют.</p>
+<p>Для полного понимания протекающих при построении VSD процессов, давайте рассмотрим для начала их на очень высоком уровне, а затем - спустимся в самую глубь. Если говорить про механику диспетчеризации, то та откладывает их создание на потом, в силу логической параллельности иерархии интерфейсных типов, в силу того, что их в конечном счёте станет очень много, и в силу того, что большую часть из них JIT никогда создавать не будет, т.к. наличие типов во Framework ещё не означает, что их экземпляры будут созданы. Использование же традиционной VMT для <em>частных интерфейсов</em> создало бы ситуацию, при которой JIT пришлось бы создавать VMT для каждого <em>частного интерфейса</em> с самого начала. Т.е. создание каждого типа замедлилось бы как минимум в два раза. Основным классом, обеспечивающим диспетчеризацию, является класс <code>DispatchMap</code>, который внутри себя инкапсулирует таблицу типов интерфейсов, каждая из которых состоит из таблицы методов, входящих в эти интерфейсы. Каждый метод может быть, в зависимости от стадии своего жизненного цикла, в четырёх состояниях: состояние заглушки типа &quot;метод ещё не был ни разу вызван, его надо скомпилировать и подложить новую заглушку на место старой&quot;, состояние заглушки типа &quot;метод должен быть каждый раз найден динамически, т.к. не может быть определён однозначно&quot;, состояние заглушки типа &quot;метод доступен по однозначному адресу, а потому вызывается без какого либо поиска&quot;, или же полноценное тело метода.</p>
+<p>Рассмотрим строение этих структур с точки зрения их генерирования и структур данных, необходимых для этого.</p>
+<h3 id="dispatchmap">DispatchMap</h3>
+<p>DispatchMap – это динамически строящаяся структура данных, являющаяся по своей сути основной структурой данных, на которую опирается работа интерфейсов в CLR. Структура её выглядит следующим образом:</p>
+<pre><code>    DWORD: Количество типов =
+    DWORD: Тип №1
+    DWORD: Количество слотов для типа №1 = M1
+    DWORD: bool: смещения могут быть отрицательными
+    DWORD: Слот №1
+    DWORD: Целевой слот №1
+    ...
+    DWORD: Слот №M1
+    DWORD: Целевой слот №M1
+    ...
+    DWORD: Тип №
+    DWORD: Количество слотов для типа №1 = M
+    DWORD: bool: смещения могут быть отрицательными
+    DWORD: Слот №1
+    DWORD: Целевой слот №1
+    ...
+    DWORD: Слот №M
+    DWORD: Целевой слот №M
+</code></pre>
+<p>Т.е. сначала записывается общее количество интерфейсов, реализуемых некоторыми типами. После чего для каждого интерфейса записывается его тип, количество реализуемых этим типом слотов (для навигации по таблице), а также для каждого слота - информация по этому слоту, а также целевой слот в <em>частном интерфейсе</em>, который содержит реализации методов для текущего типа.</p>
+<p>Для навигации по этой структуре данных предусмотрен класс <code>EncodedMapIterator</code>, который является итератором. Т.е. никакой другой доступ, кроме как <code>foreach</code>, к <code>DispatchMap</code> не предусмотрен. Мало того номера слотов получены как разница реального номера слота и ранее закодированного номера слота. Т.е. получить номер слота в середине таблицы можно, только просмотрев всю структуру с самого начала. Это вызывает множество вопросов касательно производительности работы вызова методов через интерфейсы: ведь если у нас массив объектов, реализующих некий интерфейс, то чтобы понять, какой метод необходимо вызвать, надо просмотреть всю таблицу реализаций. Т.е. по своей сути - найти нужный. Результатом на каждом шаге итерирования будет структура <code>DispatchMapEntry</code>, которая покажет, где находится целевой метод: в текущем типе или нет, и какой слот необходимо взять у типа, чтобы получить нужный метод.</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Green;">// DispatchMapTypeID позволяет делать относительную адресацию методов. Т.е. отвечает на вопрос: относительно текущего типа где </span>
+<span style="color:Green;">// находится необходимый метод? В текущем типе или же в другом?</span>
+<span style="color:Green;">//</span>
+<span style="color:Green;">// Идентификатор типа (Type ID) используется в карте диспетчеризации и хранит внутри себя один из следующих типов данных:</span>
+<span style="color:Green;">//   - специальное значение, говорящее, что это - &quot;this&quot; clas</span>
+<span style="color:Green;">//   - специальное значение, показывающее, что это - тип интерфейса, не реализованный классом</span>
+<span style="color:Green;">//   - индекс в InterfaceMap</span>
+<span style="color:Blue;">class</span> DispatchMapTypeID
+{
+<span style="color:Blue;">private</span>:
+    <span style="color:Blue;">static</span> <span style="color:Blue;">const</span> UINT32 const_nFirstInterfaceIndex = 1;
+
+    UINT32 m_typeIDVal;
+
+    <span style="color:Green;">// ...</span>
+}
+
+<span style="color:Blue;">struct</span> DispatchMapEntry
+{
+<span style="color:Blue;">private</span>:
+    DispatchMapTypeID m_typeID;
+    UINT16            m_slotNumber;
+    UINT16            m_targetSlotNumber;
+
+    <span style="color:Blue;">enum</span>
+    {
+        e_IS_VALID = 0x1
+    };
+
+    UINT16 m_flags;
+
+    <span style="color:Green;">// ...</span>
+}
+</pre></div>
+</div>
+<h4 id="typeid-map">TypeID Map</h4>
+<p>Любой метод в адресации по интерфейсам кодируется парой &lt;TypeId;SlotNumber&gt;. TypeId - это, как следует из названия, идентификатор типа. Данное поле отвечает на вопросы: откуда берётся этот идентификатор, и каким образом его отразить на реальный тип.
+Класс <code>TypeIDMap</code> хранит карту типов как отражение некоторого TypeId на <code>MethodTable</code> конкретного типа, а также - дополнительно - в обратную сторону. Сделано это исключительно из соображений производительности. Построение этих хэш таблиц происходит динамически: по запросу TypeId относительно PTR_MethodTable возвращается либо FatId, либо просто Id. Это надо в некотором смысле просто помнить: FatId и Id - это просто два вида TypeId. И в некотором смысле это &quot;указатель&quot; на MethodTable, т.к. однозначно его идентифицирует.</p>
+<blockquote>
+<p><strong>TypeId - это идентификатор MethodTable</strong>. Он может быть двух видов: Id и FatId и по своей сути является обычным числом.</p>
+</blockquote>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">class</span> TypeIDMap
+{
+<span style="color:Blue;">protected</span>:
+    HashMap             m_idMap;  <span style="color:Green;">// Хранит map TypeID -&gt; PTR_MethodTable</span>
+    HashMap             m_mtMap;  <span style="color:Green;">// Хранит map PTR_MethodTable -&gt; TypeID1</span>
+    Crst                m_lock;
+    TypeIDProvider      m_idProvider;
+    BOOL                m_fUseFatIdsForUniqueness;
+    UINT32              m_entryCount;
+
+    <span style="color:Green;">// ...</span>
+}
+</pre></div>
+</div>
+<p>Однако со всеми этими трудностями JIT справляется достаточно легко, вписывая вызовы конкретных методов в места их вызова по интерфейсу, когда это возможно. Если JIT понял, что ничего другого вызвано быть не может, он просто поставит вызов конкретного метода. Это - очень и очень сильная особенность JIT компилятора, который делает для нас эту прекрасную оптимизацию.</p>
+<h3 id="section-4">Выводы</h3>
+<p>То, что для нас, как для программистов, на языке C# стало обыденностью и вросло корнями в наше сознание настолько, что мы даже не задумываясь понимаем, как делить приложение на классы и интерфейсы, порой реализовано так сложно для понимания, что требуются недели анализа исходных текстов для определения всех зависимостей и логики происходящего. То, что для нас настолько обыденно в использовании, что не вызывает тени сомнения в простоте реализации, на самом деле может скрывать эти сложности реализации. Это говорит нам о том, что инженеры, воплотившие данные идеи, подходили к решению проблем с большим умом, тщательно анализируя каждый шаг.</p>
+<p>То описание, которое здесь дано, на самом деле очень поверхностное и короткое: оно очень высокоуровневое. Даже не смотря на то, что относительно любой книги по .NET мы погрузились очень глубоко, данное описание построения VSD и VMT является очень и очень высокоуровневым. Ведь код файлов, описывающих эти две структуры данных, занимает в сумме около 20,000 строк кода. Это ещё не учитывая некоторые части, отвечающие за Generics.</p>
+<p>Однако, это позволяет нам сделать несколько выводов:</p>
+<ul>
+<li>Вызов статичных методов и экземплярных практически ничем не отличаются. А это значит, что нам не надо беспокоиться о том, что работа с экземплярными методами как-то повлияет на производительность. Производительность обоих методов абсолютно идентична при одинаковых условиях</li>
+<li>Вызов виртуальных методов хоть и идёт через таблицу VMT, но из-за того, что индексы заранее известны, на каждый вызов дополнительно приходится лишь единственное разыменование указателя. Почти во всех случаях это ни на что не повлияет: проседание производительности (если вообще можно так выразиться) будет настолько маленьким, что им в принципе можно пренебречь</li>
+<li>Если говорить об интерфейсах, то тут стоит помнить о диспетчеризации и понимать, что работа через интерфейсы сильно усложняет реализацию подсистемы типов на низком уровне, приводя к <em><strong>возможным</strong></em> проседаниям в производительности, когда слишком часто, при вызове методов, отсутствует определённость в том, какой метод и какого класса вызывать у интерфейсной переменной. Однако, &quot;интеллект&quot; JIT компилятора позволяет в очень многих случаях не проводить вызовы через диспетчеризацию, а напрямую вызывать метод, интерфейс реализующего</li>
+<li>Если вспомнить об обобщениях, то тут возникает ещё один слой абстракции, который вносит сложность в поиск необходимых для вызова методов у типов, реализующих generic интерфейсы.</li>
+</ul>
+<h2 id="section-5">Раздел вопросов по теме</h2>
+<blockquote>
+<p>Вопрос: почему если каждый класс может реализовать интерфейс, то нельзя вытащить конкретную реализацию интерфейса у объекта?</p>
+</blockquote>
+<p>Ответ прост: это непокрытая возможность CLR при проектировании языка, CLR этот вопрос никак не ограничивает. Мало того, это с высокой долей вероятности будет добавлено в ближайших версиях C#, благо они выходят достаточно быстро. Рассмотрим пример:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">void</span> Main()
+{
+    <span style="color:Blue;">var</span> foo = <span style="color:Blue;">new</span> Foo();
+    <span style="color:Blue;">var</span> boo = <span style="color:Blue;">new</span> Boo();
+
+    ((IDisposable)foo).Dispose();
+    foo.Dispose();
+    ((IDisposable)boo).Dispose();
+    boo.Dispose();
+}
+
+<span style="color:Blue;">class</span> Foo : IDisposable
+{
+    <span style="color:Blue;">void</span> IDisposable.Dispose()
+    {
+        Console.WriteLine(<span style="color:#A31515;">&quot;Foo.IDisposable::Dispose&quot;</span>);
+    }
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> Dispose()
+    {
+        Console.WriteLine(<span style="color:#A31515;">&quot;Foo::Dispose()&quot;</span>);
+    }
+}
+
+<span style="color:Blue;">class</span> Boo : Foo, IDisposable
+{
+    <span style="color:Blue;">void</span> IDisposable.Dispose()
+    {
+        Console.WriteLine(<span style="color:#A31515;">&quot;Boo.IDisposable::Dispose&quot;</span>);
+    }
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">new</span> <span style="color:Blue;">void</span> Dispose()
+    {
+        Console.WriteLine(<span style="color:#A31515;">&quot;Boo::Dispose()&quot;</span>);
+    }
+}
+</pre></div>
+</div>
+<p>Здесь мы вызываем четыре различных метода и результат их вызова будет таким:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+Foo.IDisposable::Dispose
+Foo::Dispose()
+Boo.IDisposable::Dispose
+Boo::Dispose()
+</pre></div>
+</div>
+<p>Причём, несмотря на то, что мы имеем <em>explicit</em> реализацию интерфейса в обоих классах, в классе <code>Boo</code> <em>explicit</em> реализацию интерфейса <code>IDisposable</code> для <code>Foo</code> получить не получится. Даже если мы напишем так:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+((IDisposable)(Foo)boo).Dispose();
+</pre></div>
+</div>
+<p>Все равно мы получим на экране все то же результат:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+Boo.IDisposable::Dispose
+</pre></div>
+</div>
+<h2 id="section-6">Что плохого в неявных и множественных реализациях интерфейсов?</h2>
+<p>В качестве примера &quot;наследования интерфейсов&quot;, что аналогично наследованию классов, можно привести следующий код:</p>
+<div class="lang-vb editor-colors"><div style="color:Black;background-color:White;"><pre>
+    <span style="color:Blue;">Class</span> Foo
+        <span style="color:Blue;">Implements</span> IDisposable
+
+        <span style="color:Blue;">Public</span> <span style="color:Blue;">Overridable</span> <span style="color:Blue;">Sub</span> DisposeImp() <span style="color:Blue;">Implements</span> IDisposable.Dispose
+            Console.WriteLine(<span style="color:#A31515;">&quot;Foo.IDisposable::Dispose&quot;</span>)
+        <span style="color:Blue;">End</span> <span style="color:Blue;">Sub</span>
+
+        <span style="color:Blue;">Public</span> <span style="color:Blue;">Sub</span> Dispose()
+            Console.WriteLine(<span style="color:#A31515;">&quot;Foo::Dispose()&quot;</span>)
+        <span style="color:Blue;">End</span> <span style="color:Blue;">Sub</span>
+
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Class</span>
+
+    <span style="color:Blue;">Class</span> Boo
+        <span style="color:Blue;">Inherits</span> Foo
+        <span style="color:Blue;">Implements</span> IDisposable
+
+        <span style="color:Blue;">Public</span> <span style="color:Blue;">Sub</span> DisposeImp() <span style="color:Blue;">Implements</span> IDisposable.Dispose
+            Console.WriteLine(<span style="color:#A31515;">&quot;Boo.IDisposable::Dispose&quot;</span>)
+        <span style="color:Blue;">End</span> <span style="color:Blue;">Sub</span>
+
+        <span style="color:Blue;">Public</span> <span style="color:Blue;">Shadows</span> <span style="color:Blue;">Sub</span> Dispose()
+            Console.WriteLine(<span style="color:#A31515;">&quot;Boo::Dispose()&quot;</span>)
+        <span style="color:Blue;">End</span> <span style="color:Blue;">Sub</span>
+
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Class</span>
+
+    <span style="color:Green;">&#39;&#39;&#39; &lt;summary&gt;</span>
+    <span style="color:Green;">&#39;&#39;&#39; Неявно реализует интерфейс</span>
+    <span style="color:Green;">&#39;&#39;&#39; &lt;/summary&gt;</span>
+    <span style="color:Blue;">Class</span> Doo
+        <span style="color:Blue;">Inherits</span> Foo
+
+        <span style="color:Green;">&#39;&#39;&#39; &lt;summary&gt;</span>
+        <span style="color:Green;">&#39;&#39;&#39; Переопределение явной реализации</span>
+        <span style="color:Green;">&#39;&#39;&#39; &lt;/summary&gt;</span>
+        <span style="color:Blue;">Public</span> <span style="color:Blue;">Overrides</span> <span style="color:Blue;">Sub</span> DisposeImp()
+            Console.WriteLine(<span style="color:#A31515;">&quot;Doo.IDisposable::Dispose&quot;</span>)
+        <span style="color:Blue;">End</span> <span style="color:Blue;">Sub</span>
+
+        <span style="color:Green;">&#39;&#39;&#39; &lt;summary&gt;</span>
+        <span style="color:Green;">&#39;&#39;&#39; Неявное перекрытие</span>
+        <span style="color:Green;">&#39;&#39;&#39; &lt;/summary&gt;</span>
+        <span style="color:Blue;">Public</span> <span style="color:Blue;">Sub</span> Dispose()
+            Console.WriteLine(<span style="color:#A31515;">&quot;Doo::Dispose()&quot;</span>)
+        <span style="color:Blue;">End</span> <span style="color:Blue;">Sub</span>
+
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Class</span>
+
+    <span style="color:Blue;">Sub</span> Main()
+        <span style="color:Blue;">Dim</span> foo <span style="color:Blue;">As</span> <span style="color:Blue;">New</span> Foo
+        <span style="color:Blue;">Dim</span> boo <span style="color:Blue;">As</span> <span style="color:Blue;">New</span> Boo
+        <span style="color:Blue;">Dim</span> doo <span style="color:Blue;">As</span> <span style="color:Blue;">New</span> Doo
+
+        <span style="color:Blue;">CType</span>(foo, IDisposable).Dispose()
+        foo.Dispose()
+        <span style="color:Blue;">CType</span>(boo, IDisposable).Dispose()
+        boo.Dispose()
+        <span style="color:Blue;">CType</span>(doo, IDisposable).Dispose()
+        doo.Dispose()
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Sub</span>
+</pre></div>
+</div>
+<p>В нем видно, что <code>Doo</code>, наследуясь от <code>Foo</code>, неявно реализует <code>IDisposable</code>, но при этом переопределяет явную реализацию <code>IDisposable.Dispose</code>, что приведёт к вызову переопределения при вызове по интерфейсу, тем самым показывая &quot;наследование интерфейсов&quot; классов <code>Foo</code> и <code>Doo</code>.</p>
+<p>С одной стороны, это вообще не проблема: если бы C# + CLR позволяли такие шалости, мы бы, в некотором, смысле получили нарушение консистентности в строении типов. Сами подумайте: вы сделали крутую архитектуру, все хорошо. Но кто-то почему-то вызывает методы не так, как вы задумали. Это было бы ужасно. С другой стороны, в C++ похожая возможность существует, и там не сильно жалуются на это. Почему я говорю, что это может быть добавлено в C#? Потому что не менее ужасный функционал <a href="https://github.com/dotnet/csharplang/issues/52">уже обсуждается</a> и выглядеть он должен примерно так:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">interface</span> IA
+{
+    <span style="color:Blue;">void</span> M() { WriteLine(<span style="color:#A31515;">&quot;IA.M&quot;</span>); }
+}
+
+<span style="color:Blue;">interface</span> IB : IA
+{
+    <span style="color:Blue;">override</span> <span style="color:Blue;">void</span> IA.M() { WriteLine(<span style="color:#A31515;">&quot;IB.M&quot;</span>); } <span style="color:Green;">// explicitly named</span>
+}
+
+<span style="color:Blue;">interface</span> IC : IA
+{
+    <span style="color:Blue;">override</span> <span style="color:Blue;">void</span> M() { WriteLine(<span style="color:#A31515;">&quot;IC.M&quot;</span>); } <span style="color:Green;">// implicitly named</span>
+}
+</pre></div>
+</div>
+<p>Почему это ужасно? Ведь на самом деле это порождает целый класс возможностей. Теперь нам не нужно будет каждый раз реализовывать какие-то методы интерфейсов, которые везде реализовывались одинаково. Звучит прекрасно. Но только звучит. Ведь интерфейс - это протокол взаимодействия. Протокол - это набор правил, рамки. В нем нельзя допускать существование реализаций. Здесь же идёт прямое нарушение этого принципа и введение ещё одного: множественного наследования. Я, честно, сильно против таких доработок, но... Я что-то ушёл в сторону.</p>
+<p><a href="https://github.com/dotnet/coreclr/blob/master/src/vm/contractimpl.cpp#L295-L460">DispatchMap::CreateEncodedMapping</a></p>
+<blockquote>
+<p>Далее: <a href="./3-MemorySpan.html">Memory&lt;T&gt; и Span&lt;T&gt;</a></p>
+</blockquote>
+
+</div>
+</div>
+</body>
+</html>

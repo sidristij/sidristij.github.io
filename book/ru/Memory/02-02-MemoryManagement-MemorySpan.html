@@ -1,0 +1,1085 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.NET Platform Architecture</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <style>
+        body {
+    padding: 60px 60px 60px 100px;
+}
+
+p, li {
+    margin: 0 0 14px;
+    font-family: PF Regal,PF Regal Text Pro,Georgia,serif;
+    font-size: 20px;
+    line-height: 32px;
+}
+
+ol, ul {
+    padding-left: 35px;
+    margin-top: 1.1rem;
+    margin-bottom: 1.1rem;
+}
+
+ol li {
+    padding-left: 10px;	
+}
+
+ul li {
+    padding-left: 5px;	
+}
+
+code, .lang-csharp span, .lang-csharp pre {
+    font-family: JB Mono, monospace !important;
+}
+
+.lang-csharp {
+    padding: 4px 0px 14px 0px;
+}
+
+
+.lang-csharp > div {
+    border-left-color: #eee;
+    border-left-style: dotted;
+    border-left-width: 3px;
+    padding-left: 25px;
+}
+
+code {
+    font-size: 14px;
+    border: gainsboro;
+    border-width: 1px;
+    border-style: solid;
+    padding: 2px;
+    color: darkslateblue;
+}
+
+.lang-csharp span, .lang-csharp pre {
+    font-size: 13px;
+    line-height: 20px;
+}
+
+p a {
+    text-decoration: none;
+    color: inherit;
+    box-shadow: inset 0 -1px #b88b59;
+}
+
+p img {
+    width: 95%;
+}
+
+img < p {
+    text-align: center;
+}
+
+blockquote p {
+    margin: 16px 0;
+    padding: 12px 12px 13px;
+    border: 1px solid rgba(0,0,0,.08);
+    border-radius: 8px;
+    background: #fff8c4;
+    font-family: Proxima Nova,Arial,Helvetica Neue,sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+blockquote p code {
+    font-family: consolas, monospace;
+    font-size: 17px;
+    background-color: aliceblue;
+    padding: 4px 6px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+}
+
+h1 {
+    font-size: 38px;
+    font-family: PF Regal,PF Regal Text Pro,Georgia,serif;
+    font-weight: 400;
+    margin: 40px 0 10px 0;
+}
+
+h1 b {
+    font-family: Proxima Nova,Arial,Helvetica Neue,sans-serif;
+    font-weight: 700;
+    font-size: 37px;
+    line-height: 42px;
+}
+
+h2 {
+    margin-top: 35px;
+    margin-bottom: 10px;
+    font-family: Proxima Nova,Arial,Helvetica Neue,sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+    border-bottom-color: aliceblue;
+    border-bottom-style: solid;
+    padding-bottom: 5px;
+}
+
+h3 {
+    margin: 30px 0 10px 0;
+    border-bottom-color: azure;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    font-size: 17pt;
+    font-weight: 300;
+}
+
+
+// Fonts
+@font-face {
+    font-family: 'JB Mono';
+    src: local('JetBrains Mono'),
+    url('../../res/fonts/woff2/JetBrainsMono-Italic.woff2') format('woff2'),
+    url('../../res/fonts/woff/JetBrainsMono-Italic.woff') format('woff'),
+    url('../../res/fonts/ttf/JetBrainsMono-Italic.ttf') format('truetype');
+    font-weight: 400;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'JB Mono';
+    src: local('JetBrains Mono'),
+    url('../../res/fonts/woff2/JetBrainsMono-Regular.woff2') format('woff2'),
+    url('../../res/fonts/woff/JetBrainsMono-Regular.woff') format('woff'),
+    url('../../res/fonts/ttf/JetBrainsMono-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'JB Mono';
+    src: local('JetBrains Mono'),
+    url('../../res/fonts/woff2/JetBrainsMono-Medium-Italic.woff2') format('woff2'),
+    url('../../res/fonts/woff/JetBrainsMono-Medium-Italic.woff') format('woff'),
+    url('../../res/fonts/ttf/JetBrainsMono-Medium-Italic.ttf') format('truetype');
+    font-weight: 600;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'JB Mono';
+    src: local('JetBrains Mono'),
+    url('../../res/fonts/woff2/JetBrainsMono-Medium.woff2') format('woff2'),
+    url('../../res/fonts/woff/JetBrainsMono-Medium.woff') format('woff'),
+    url('../../res/fonts/ttf/JetBrainsMono-Medium.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'PF Regal Text Pro';
+    src: local('PF Regal Text Pro RegularA'), local('PF-Regal-Text-Pro-RegularA'),
+    url('../../res/fonts/woff2/PFRegalTextPro-RegularA.woff2') format('woff2'),
+    url('../../res/fonts/woff/PFRegalTextPro-RegularA.woff') format('woff'),
+    url('../../res/fonts/ttf/PFRegalTextPro-RegularA.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'PF Regal Text Pro';
+    src: local('PF Regal Text Pro RegularB'), local('PF-Regal-Text-Pro-RegularB'),
+    url('../../res/fonts/woff2/PFRegalTextPro-RegularB.woff2') format('woff2'),
+    url('../../res/fonts/woff/PFRegalTextPro-RegularB.woff') format('woff'),
+    url('../../res/fonts/ttf/PFRegalTextPro-RegularB.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'PF Regal Text Pro';
+    src: local('PF Regal Text Pro RegularB Italic'), local('PF-Regal-Text-Pro-RegularB-Italic'),
+    url('../../res/fonts/woff2/PFRegalTextPro-RegularBItalic.woff2') format('woff2'),
+    url('../../res/fonts/woff/PFRegalTextPro-RegularBItalic.woff') format('woff'),
+    url('../../res/fonts/ttf/PFRegalTextPro-RegularBItalic.ttf') format('truetype');
+    font-weight: 600;
+    font-style: italic;
+}
+  
+    </style>
+
+<div style="margin:auto; width:100%;">
+<div style="width:1000px;">
+    <h1 id="memoryt-spant">Memory&lt;T&gt; и Span&lt;T&gt;</h1>
+<blockquote>
+<p><a href="https://github.com/sidristij/dotnetbook/issues/55">Ссылка на обсуждение</a></p>
+</blockquote>
+<p>Начиная с версий .NET Core 2.0 и .NET Framework 4.5 нам стали доступны новые типы данных: это <code>Span</code> и <code>Memory</code>. Чтобы ими воспользоваться, достаточно установить nuget пакет <code>System.Memory</code>:</p>
+<ul>
+<li><code>PM&gt; Install-Package System.Memory</code></li>
+</ul>
+<p>И примечательны эти типы данных тем, что специально для них была проделана огромная работа командой <code>CLR</code> чтобы реализовать их специальную поддержку в коде JIT компилятора .NET Core 2.1+, вживив их прямо в ядро. Что это за типы данных и почему на них стоит выделить целую часть книги?</p>
+<p>Если говорить о проблематике, приведшей к появлению данного функционала, я бы выбрал три основные. И первая из них - это неуправляемый код.</p>
+<p>Как язык, так и платформа существуют уже много лет: и все это время существовало множество средств для работы с неуправляемым кодом. Так почему же сейчас выходит очередной API для работы с неуправляемым кодом, если, по сути, он существовал уже много-много лет? Для того чтобы ответить на этот вопрос, достаточно понять, чего не хватало нам раньше.</p>
+<p>Разработчики платформы и раньше пытались нам помочь скрасить будни разработки с использованием неуправляемых ресурсов: это и автоматические врапперы для импортируемых методов, и маршаллинг, который в большинстве случаев работает автоматически. Это также инструкция <code>stackalloc</code>, о которой говорится в главе про стек потока. Однако, как по мне если ранние разработчики с использованием языка C# приходили из мира C++ (как сделал это и я), то сейчас они приходят из более высокоуровневых языков (я, например, знаю разработчика, который пришел из JavaScript). Это означает, что люди со все большим подозрением начинают относиться к неуправляемым ресурсам и конструкциям, близким по духу к C/C++, и уж тем более - к языку Ассемблера.</p>
+<p>Как результат такого отношения - все меньшее и меньшее содержание unsafe кода в проектах и все большее доверие к API самой платформы. Это легко проверяется, если поискать использование конструкции <code>stackalloc</code> по открытым репозиториям: оно ничтожно мало. Но если взять любой код, который его использует:</p>
+<p><strong>Класс Interop.ReadDir</strong>
+<a href="https://github.com/dotnet/coreclr/blob/b29f6328510207970763580d6f4db864e4b198af/src/mscorlib/shared/Interop/Unix/System.Native/Interop.ReadDir.cs#L71-L83">/src/mscorlib/shared/Interop/Unix/System.Native/Interop.ReadDir.cs</a></p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">unsafe</span>
+{
+    <span style="color:Green;">// s_readBufferSize is zero when the native implementation does not support reading into a buffer.</span>
+    <span style="color:Blue;">byte</span>* buffer = <span style="color:Blue;">stackalloc</span> <span style="color:Blue;">byte</span>[s_readBufferSize];
+    InternalDirectoryEntry temp;
+    <span style="color:Blue;">int</span> ret = ReadDirR(dir.DangerousGetHandle(), buffer, s_readBufferSize, <span style="color:Blue;">out</span> temp);
+    <span style="color:Green;">// We copy data into DirectoryEntry to ensure there are no dangling references.</span>
+    outputEntry = ret == 0 ?
+                <span style="color:Blue;">new</span> DirectoryEntry() { InodeName = GetDirectoryEntryName(temp), InodeType = temp.InodeType } :
+                <span style="color:Blue;">default</span>(DirectoryEntry);
+
+    <span style="color:Blue;">return</span> ret;
+}
+</pre></div>
+</div>
+<p>Становится понятна причина непопулярности. Посмотрите, не вчитываясь в код, и ответьте для себя на один вопрос: доверяете ли вы ему? Могу предположить, что ответом будет &quot;нет&quot;. Тогда ответьте на другой: почему? Ответ будет очевиден: помимо того что мы видим слово <code>Dangerous</code>, которое как бы намекает, что что-то может пойти не так, второй фактор, влияющий на наше отношение, - это запись <code>unsafe</code> и строчка <code>byte* buffer = stackalloc byte[s_readBufferSize];</code>, а если еще конкретнее - <code>byte*</code>. Эта запись - триггер для любого, чтобы в голове появилась мысль: &quot;а что, по-другому сделать нельзя было что ли?&quot;. Тогда давайте еще чуть-чуть разберемся с психоанализом: отчего может возникнуть подобная мысль? С одной стороны мы пользуемся конструкциями языка и предложенный здесь синтаксис далек от, например, C++/CLI, который позволяет делать вообще все что угодно (в том числе делать вставки на чистом Assembler), а с другой он выглядит непривычно.</p>
+<p>Второй вопрос, который явно или неявно возникал в головах у многих разработчиков - это несовместимость типов: строки <code>string</code> и массива символов <code>char[]</code>, хотя чисто логически строка - это и есть массив символов, привести string к char[] возможности нет никакой: только создание нового объекта и копирование содержимого строки в массив. Причем несовместимость такая введена для оптимизации строк с точки зрения хранения (readonly массивов не существует), но проблемы возникают, когда вы начинаете работать с файлами. Как прочитать? Строкой или массивом? Ведь если массивом, станет невозможным пользоваться некоторыми методами, рассчитанными на работу со строками. А если строкой? Может оказаться слишком длинной. Если речь идет о последующем парсинге, возникает вопрос выбора парсеров примитивов: далеко не всегда хочется парсить их все вручную (целые числа, числа с плавающей точкой, в разных форматах записанных). Есть же множество алгоритмов, проверенных годами, которые делают это быстро и эффективно. Но такие алгоритмы часто работают на строках, в которых кроме самого примитива ничего другого нет. Другими словами, дилемма.</p>
+<p>Третья проблематика заключается в том, что необходимые для некоторого алгоритма данные редко лежат от начала и до самого конца считанного с некоторого источника массива. Например, если речь опять же идет о файлах или о данных, считанных с сокета, то есть некоторая уже обработанная неким алгоритмом часть, дальше идет то, что должен обработать некий наш метод, после чего идут данные, которые нам обработать, еще предстоит. И этот самый метод в идеале хочет, чтобы ему отдали только то, что он ожидает. Например, метод парсинга целых чисел вряд ли будет сильно благодарен, если вы отдадите ему строку с разговором о чём-либо, где в некоторой позиции будет находиться нужное число. Такой метод ожидает, что вы отдадите ему число и ничего больше. Если же мы отдадим массив целиком, то возникает требование указать, например, смещение числа относительно начала массива:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">int</span> ParseInt(<span style="color:Blue;">char</span>[] input, <span style="color:Blue;">int</span> index)
+{
+    <span style="color:Blue;">while</span>(<span style="color:Blue;">char</span>.IsDigit(input[index]))
+    {
+        <span style="color:Green;">// ...</span>
+        index++;
+    }
+}
+</pre></div>
+</div>
+<p>Однако данный способ плох тем, что метод получает данные, которые ему не нужны. Другими словами, <em>метод не введен в контекст своей задачи</em>. Ведь помимо своей задачи метод решает еще и некоторую внешнюю. А это - признак плохого проектирования. Как избежать данной проблемы? Как вариант, можно воспользоваться типом <code>ArraySegment&lt;T&gt;</code>, суть которого - предоставить &quot;окно&quot; в некий массив:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">int</span> ParseInt(IList&lt;<span style="color:Blue;">char</span>&gt;[] input)
+{
+    <span style="color:Blue;">while</span>(<span style="color:Blue;">char</span>.IsDigit(input.Array[index]))
+    {
+        <span style="color:Green;">// ...</span>
+        index++;
+    }
+}
+
+<span style="color:Blue;">var</span> arraySegment = <span style="color:Blue;">new</span> ArraySegment(array, <span style="color:Blue;">from</span>, length);
+<span style="color:Blue;">var</span> res = ParseInt((IList&lt;<span style="color:Blue;">char</span>&gt;)arraySegment);
+</pre></div>
+</div>
+<p>Но как по мне, так это - перебор, как с точки зрения логики, так и с точки зрения просадки по производительности. <code>ArraySegment</code> - ужасно сделан и обеспечивает замедление доступа к элементам в 7 раз относительно тех же самых операций, но с массивом.</p>
+<p>Так как же решить все эти проблемы? Как вернуть разработчиков обратно в лоно неуправляемого кода, при этом дав им механизм унифицированной и быстрой работы с разнородными источниками данных: массивами, строками и неуправляемой памятью? Необходимо дать им чувство спокойствия, что они не могут сделать ошибку случайно, по незнанию. Необходимо дать им инструмент, не уступающий в производительности нативным типам данных, но решающих перечисленные проблемы. Этим инструментом являются типы  <code>Span&lt;T&gt;</code> и <code>Memory&lt;T&gt;</code>.</p>
+<h2 id="spant-readonlyspant">Span&lt;T&gt;, ReadOnlySpan&lt;T&gt;</h2>
+<p>Тип <code>Span</code> олицетворяет собой инструмент для работы с данными части некоторого массива данных либо поддиапазона его значений. При этом позволяя, как и в случае массива работать с элементами этого диапазона, как на запись, так и на чтение, но с одним важным ограничением: <code>Span&lt;T&gt;</code> вы получаете или создаете только для того, чтобы <em>временно</em> поработать с массивом. В рамках вызова группы методов, но не более того. Однако давайте для разгона и общего понимания сравним типы данных, для которых сделана реализация типа <code>Span</code>, и посмотрим на возможные сценарии для работы с ним.</p>
+<p>Первый тип данных, о котором хочется завести речь, - это обычный массив. Для массивов работа со <code>Span</code> будет выглядеть следующим образом:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+    <span style="color:Blue;">var</span> array = <span style="color:Blue;">new</span> [] {1,2,3,4,5,6};
+    <span style="color:Blue;">var</span> span = <span style="color:Blue;">new</span> Span&lt;<span style="color:Blue;">int</span>&gt;(array, 1, 3);
+    <span style="color:Blue;">var</span> position = span.BinarySearch(3);
+    Console.WriteLine(span[position]);  <span style="color:Green;">// -&gt; 3</span>
+</pre></div>
+</div>
+<p>Как мы видим в данном примере, для начала мы создаем некий массив данных. После этого мы создаем <code>Span</code> (или подмножество), который, ссылаясь на сам массив, разрешает доступ использующему его коду только в тот диапазон значений, который был указан при инициализации.</p>
+<p>Тут мы видим первое свойство этого типа данных: это создание некоторого контекста. Давайте разовьем нашу идею с контекстами:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">void</span> Main()
+{
+    <span style="color:Blue;">var</span> array = <span style="color:Blue;">new</span> [] {<span style="color:#A31515;">&#39;1&#39;</span>,<span style="color:#A31515;">&#39;2&#39;</span>,<span style="color:#A31515;">&#39;3&#39;</span>,<span style="color:#A31515;">&#39;4&#39;</span>,<span style="color:#A31515;">&#39;5&#39;</span>,<span style="color:#A31515;">&#39;6&#39;</span>};
+    <span style="color:Blue;">var</span> span = <span style="color:Blue;">new</span> Span&lt;<span style="color:Blue;">char</span>&gt;(array, 1, 3);
+    <span style="color:Blue;">if</span>(TryParseInt32(span, <span style="color:Blue;">out</span> <span style="color:Blue;">var</span> res))
+    {
+        Console.WriteLine(res);
+    }
+    <span style="color:Blue;">else</span>
+    {
+        Console.WriteLine(<span style="color:#A31515;">&quot;Failed to parse&quot;</span>);
+    }
+}
+
+<span style="color:Blue;">public</span> <span style="color:Blue;">bool</span> TryParseInt32(Span&lt;<span style="color:Blue;">char</span>&gt; input, <span style="color:Blue;">out</span> <span style="color:Blue;">int</span> result)
+{
+    result = 0;
+    <span style="color:Blue;">for</span> (<span style="color:Blue;">int</span> i = 0; i &lt; input.Length; i++)
+    {
+        <span style="color:Blue;">if</span>(input[i] &lt; <span style="color:#A31515;">&#39;0&#39;</span> || input[i] &gt; <span style="color:#A31515;">&#39;9&#39;</span>)
+            <span style="color:Blue;">return</span> <span style="color:Blue;">false</span>;
+    result = result * 10 + ((<span style="color:Blue;">int</span>)input[i] - <span style="color:#A31515;">&#39;0&#39;</span>);
+    }
+    <span style="color:Blue;">return</span> <span style="color:Blue;">true</span>;
+}
+
+-----
+234
+</pre></div>
+</div>
+<p>Как мы видим, <code>Span&lt;T&gt;</code> вводит абстракцию доступа к некоторому участку памяти, как на чтение, так и на запись. Что нам это дает? Если вспомнить, на основе чего еще может быть сделан <code>Span</code>, то мы вспомним как про неуправляемые ресурсы, так и про строки:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Green;">// Managed array</span>
+<span style="color:Blue;">var</span> array = <span style="color:Blue;">new</span>[] { <span style="color:#A31515;">&#39;1&#39;</span>, <span style="color:#A31515;">&#39;2&#39;</span>, <span style="color:#A31515;">&#39;3&#39;</span>, <span style="color:#A31515;">&#39;4&#39;</span>, <span style="color:#A31515;">&#39;5&#39;</span>, <span style="color:#A31515;">&#39;6&#39;</span> };
+<span style="color:Blue;">var</span> arrSpan = <span style="color:Blue;">new</span> Span&lt;<span style="color:Blue;">char</span>&gt;(array, 1, 3);
+<span style="color:Blue;">if</span> (TryParseInt32(arrSpan, <span style="color:Blue;">out</span> <span style="color:Blue;">var</span> res1))
+{
+    Console.WriteLine(res1);
+}
+
+<span style="color:Green;">// String</span>
+<span style="color:Blue;">var</span> srcString = <span style="color:#A31515;">&quot;123456&quot;</span>;
+<span style="color:Blue;">var</span> strSpan = srcString.AsSpan();
+<span style="color:Blue;">if</span> (TryParseInt32(arrSpan, <span style="color:Blue;">out</span> <span style="color:Blue;">var</span> res2))
+{
+    Console.WriteLine(res2);
+}
+
+<span style="color:Green;">// void *</span>
+Span&lt;<span style="color:Blue;">char</span>&gt; buf = <span style="color:Blue;">stackalloc</span> <span style="color:Blue;">char</span>[6];
+buf[0] = <span style="color:#A31515;">&#39;1&#39;</span>; buf[1] = <span style="color:#A31515;">&#39;2&#39;</span>; buf[2] = <span style="color:#A31515;">&#39;3&#39;</span>;
+buf[3] = <span style="color:#A31515;">&#39;4&#39;</span>; buf[4] = <span style="color:#A31515;">&#39;5&#39;</span>; buf[5] = <span style="color:#A31515;">&#39;6&#39;</span>;
+
+<span style="color:Blue;">if</span> (TryParseInt32(arrSpan, <span style="color:Blue;">out</span> <span style="color:Blue;">var</span> res3))
+{
+    Console.WriteLine(res3);
+}
+
+-----
+234
+234
+234
+</pre></div>
+</div>
+<p>Т.е., получается, что <code>Span&lt;T&gt;</code> - это средство унификации по работе с памятью: управляемой и неуправляемой, которое гарантирует безопасность в работе с такого рода данными во время Garbage Collection: если участки памяти с управляемыми массивами начнут двигаться, то для нас это будет безопасно.</p>
+<p>Однако, стоит ли так сильно радоваться? Можно ли было всего этого добиться и раньше? Например, если говорить об управляемых массивах, то тут даже сомневаться не приходится: достаточно просто обернуть массив в еще один класс (например давно существующий <a href="https://referencesource.microsoft.com/#mscorlib/system/arraysegment.cs,31">ArraySegment</a>), предоставив аналогичный интерфейс, и все готово. Мало того, аналогичную операцию можно проделать и со строками: они обладают необходимыми методами. Опять же, достаточно строку завернуть в точно такой же тип и предоставить методы по работе с ней. Другое дело, что для того чтобы хранить в одном типе строку, буфер или массив, придется сильно повозиться, храня в едином экземпляре ссылки на каждый из возможных вариантов (активным, понятное дело, будет только один):</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">public</span> <span style="color:Blue;">readonly</span> <span style="color:Blue;">ref</span> <span style="color:Blue;">struct</span> OurSpan&lt;T&gt;
+{
+    <span style="color:Blue;">private</span> T[] _array;
+    <span style="color:Blue;">private</span> <span style="color:Blue;">string</span> _str;
+    <span style="color:Blue;">private</span> T * _buffer;
+
+    <span style="color:Green;">// ...</span>
+}
+</pre></div>
+</div>
+<p>Или же если отталкиваться от архитектуры, то делать три типа, которые наследуют единый интерфейс. Получается, что невозможно сделать средство единого интерфейса, отличное от <code>Span&lt;T&gt;</code>, между этими типами данных, сохранив при этом максимальную производительность.</p>
+<p>Далее, если продолжить рассуждения, то, что такое <code>ref struct</code> в понятиях <code>Span</code>? Это именно те самые &quot;структуры, они только на стеке&quot;, о которых мы так часто слышим на собеседованиях. А это значит, что этот тип данных может идти только через стек и не имеет права уходить в кучу. А потому <code>Span</code>, будучи ref структурой, является контекстным типом данных, обеспечивающим работу методов, но не объектов в памяти. От этого для его понимания и надо отталкиваться.</p>
+<p>Отсюда мы можем сформулировать определение типа Span и связанного с ним readonly типа ReadOnlySpan:</p>
+<blockquote>
+<p>Span - это тип данных, обеспечивающий единый интерфейс работы с разнородными типами массивов данных, а также возможность передать в другой метод подмножество этого массива таким образом, чтобы вне зависимости от глубины взятия контекста скорость доступа к исходному массиву была константной и максимально высокой.</p>
+</blockquote>
+<p>И действительно: если мы имеем примерно такой код:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">public</span> <span style="color:Blue;">void</span> Method1(Span&lt;<span style="color:Blue;">byte</span>&gt; buffer)
+{
+    buffer[0] = 0;
+    Method2(buffer.Slice(1,2));
+}
+Method2(Span&lt;<span style="color:Blue;">byte</span>&gt; buffer)
+{
+    buffer[0] = 0;
+    Method3(buffer.Slice(1,1));
+}
+Method3(Span&lt;<span style="color:Blue;">byte</span>&gt; buffer)
+{
+    buffer[0] = 0;
+}
+</pre></div>
+</div>
+<p>то скорость доступа к исходному буферу будет максимально высокой: вы работаете не с managed объектом, а с managed указателем. Т.е. не с .NET managed типом, а с unsafe типом, заключенным в managed оболочку.</p>
+<h3 id="spant">Span&lt;T&gt; на примерах</h3>
+<p>Человек так устроен, что зачастую пока он не получит определенного опыта, то конечного понимания, для чего необходим инструмент, часто не приходит. А потому, поскольку нам нужен некий опыт, давайте обратимся к примерам.</p>
+<h4 id="valuestringbuilder">ValueStringBuilder</h4>
+<p>Одним из самых алгоритмически интересных примеров является тип <code>ValueStringBuilder</code>, который прикопан где-то в недрах <code>mscorlib</code> и почему-то, как и многие другие интереснейшие типы данных помечен модификатором <code>internal</code>, что означает, что, если бы не исследование исходного кода mscorlib, о таком замечательном способе оптимизации мы бы никогда не узнали.</p>
+<p>Каков основной минус системного типа <code>StringBuilder</code>? Это, конечно же, его суть: как он сам, так и то, на чем он основан (а это - массив символов <code>char[]</code>) - являются типами ссылочными. А это значит как минимум две вещи: мы все равно (хоть и немного) нагружаем кучу и второе - увеличиваем шансы промаха по кэшам процессора.</p>
+<p>Еще один вопрос, который у меня возникал к <code>StringBuilder</code> - это формирование маленьких строк. Т.е. когда результирующая строка &quot;зуб даю&quot; будет короткой: например, менее 100 символов. Когда мы имеем достаточно короткие форматирования, к производительности возникают вопросы:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+    $<span style="color:#A31515;">&quot;{x} is in range [{min};{max}]&quot;</span>
+</pre></div>
+</div>
+<p>Насколько эта запись хуже, чем ручное формирование через <code>StringBuilder</code>? Ответ далеко не всегда очевиден: все сильно зависит от места формирования: как часто будет вызван данный метод. Ведь сначала <code>string.Format</code> выделяет память под внутренний <code>StringBuilder</code>, который создаст массив символов (SourceString.Length + args.Length * 8) и если в процессе формирования массива выяснится, что длина не была угадана, то для формирования продолжения будет создан еще один <code>StringBuilder</code>, формируя тем самым односвязный список. А в результате - необходимо будет вернуть сформированную строку: а это еще одно копирование. Транжирство и расточительство. Вот если бы избавиться от размещения в куче первого массива формируемой строки, было бы замечательно: от одной проблемы мы бы точно избавились.</p>
+<p>Взглянем на тип из недр <code>mscorlib</code>:</p>
+<p><strong>Класс ValueStringBuilder</strong>
+<a href="https://github.com/dotnet/coreclr/blob/efebb38f3c18425c57f94ff910a50e038d13c848/src/mscorlib/shared/System/Text/ValueStringBuilder.cs">/src/mscorlib/shared/System/Text/ValueStringBuilder</a></p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+    <span style="color:Blue;">internal</span> <span style="color:Blue;">ref</span> <span style="color:Blue;">struct</span> ValueStringBuilder
+    {
+        <span style="color:Green;">// это поле будет активно если у нас слишком много символов</span>
+        <span style="color:Blue;">private</span> <span style="color:Blue;">char</span>[] _arrayToReturnToPool;
+        <span style="color:Green;">// это поле будет основным</span>
+        <span style="color:Blue;">private</span> Span&lt;<span style="color:Blue;">char</span>&gt; _chars;
+        <span style="color:Blue;">private</span> <span style="color:Blue;">int</span> _pos;
+        <span style="color:Green;">// тип принимает буфер извне, делигируя выбор его размера вызывающей стороне</span>
+        <span style="color:Blue;">public</span> ValueStringBuilder(Span&lt;<span style="color:Blue;">char</span>&gt; initialBuffer)
+        {
+            _arrayToReturnToPool = <span style="color:Blue;">null</span>;
+            _chars = initialBuffer;
+            _pos = 0;
+        }
+
+        <span style="color:Blue;">public</span> <span style="color:Blue;">int</span> Length
+        {
+            <span style="color:Blue;">get</span> =&gt; _pos;
+            <span style="color:Blue;">set</span>
+            {
+                <span style="color:Blue;">int</span> delta = value - _pos;
+                <span style="color:Blue;">if</span> (delta &gt; 0)
+                {
+                    Append(<span style="color:#A31515;">&#39;\0&#39;</span>, delta);
+                }
+                <span style="color:Blue;">else</span>
+                {
+                    _pos = value;
+                }
+            }
+        }
+
+        <span style="color:Green;">// Получение строки - копирование символов из массива в массив</span>
+        <span style="color:Blue;">public</span> <span style="color:Blue;">override</span> <span style="color:Blue;">string</span> ToString()
+        {
+            <span style="color:Blue;">var</span> s = <span style="color:Blue;">new</span> <span style="color:Blue;">string</span>(_chars.Slice(0, _pos));
+            Clear();
+            <span style="color:Blue;">return</span> s;
+        }
+
+        <span style="color:Green;">// Вставка в середину сопровождается раздвиганием символов</span>
+        <span style="color:Green;">// исходной строки чтобы вставить необходимый: путем копирования</span>
+        <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> Insert(<span style="color:Blue;">int</span> index, <span style="color:Blue;">char</span> value, <span style="color:Blue;">int</span> count)
+        {
+            <span style="color:Blue;">if</span> (_pos &gt; _chars.Length - count)
+            {
+                Grow(count);
+            }
+
+            <span style="color:Blue;">int</span> remaining = _pos - index;
+            _chars.Slice(index, remaining).CopyTo(_chars.Slice(index + count));
+            _chars.Slice(index, count).Fill(value);
+            _pos += count;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> Append(<span style="color:Blue;">char</span> c)
+        {
+            <span style="color:Blue;">int</span> pos = _pos;
+            <span style="color:Blue;">if</span> (pos &lt; _chars.Length)
+            {
+                _chars[pos] = c;
+                _pos = pos + 1;
+            }
+            <span style="color:Blue;">else</span>
+            {
+                GrowAndAppend(c);
+            }
+        }
+
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        <span style="color:Blue;">private</span> <span style="color:Blue;">void</span> GrowAndAppend(<span style="color:Blue;">char</span> c)
+        {
+            Grow(1);
+            Append(c);
+        }
+
+        <span style="color:Green;">// Если исходного массива, переданного конструктором, не хватило</span>
+        <span style="color:Green;">// мы выделяем массив из пула свободных необходимого размера</span>
+        <span style="color:Green;">// На самом деле идеально было бы, если бы алгоритм дополнительно создавал</span>
+        <span style="color:Green;">// дискретность в размерах массивов чтобы пул не был бы фрагментированным</span>
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        <span style="color:Blue;">private</span> <span style="color:Blue;">void</span> Grow(<span style="color:Blue;">int</span> requiredAdditionalCapacity)
+        {
+            Debug.Assert(requiredAdditionalCapacity &gt; _chars.Length - _pos);
+
+            <span style="color:Blue;">char</span>[] poolArray = ArrayPool&lt;<span style="color:Blue;">char</span>&gt;.Shared.Rent(Math.Max(_pos + requiredAdditionalCapacity, _chars.Length * 2));
+
+            _chars.CopyTo(poolArray);
+
+            <span style="color:Blue;">char</span>[] toReturn = _arrayToReturnToPool;
+            _chars = _arrayToReturnToPool = poolArray;
+            <span style="color:Blue;">if</span> (toReturn != <span style="color:Blue;">null</span>)
+            {
+                ArrayPool&lt;<span style="color:Blue;">char</span>&gt;.Shared.Return(toReturn);
+            }
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        <span style="color:Blue;">private</span> <span style="color:Blue;">void</span> Clear()
+        {
+            <span style="color:Blue;">char</span>[] toReturn = _arrayToReturnToPool;
+            <span style="color:Blue;">this</span> = <span style="color:Blue;">default</span>; <span style="color:Green;">// for safety, to avoid using pooled array if this instance is erroneously appended to again</span>
+            <span style="color:Blue;">if</span> (toReturn != <span style="color:Blue;">null</span>)
+            {
+                ArrayPool&lt;<span style="color:Blue;">char</span>&gt;.Shared.Return(toReturn);
+            }
+        }
+
+        <span style="color:Green;">// Пропущенные методы: с ними и так все ясно</span>
+        <span style="color:Blue;">private</span> <span style="color:Blue;">void</span> AppendSlow(<span style="color:Blue;">string</span> s);
+        <span style="color:Blue;">public</span> <span style="color:Blue;">bool</span> TryCopyTo(Span&lt;<span style="color:Blue;">char</span>&gt; destination, <span style="color:Blue;">out</span> <span style="color:Blue;">int</span> charsWritten);
+        <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> Append(<span style="color:Blue;">string</span> s);
+        <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> Append(<span style="color:Blue;">char</span> c, <span style="color:Blue;">int</span> count);
+        <span style="color:Blue;">public</span> <span style="color:Blue;">unsafe</span> <span style="color:Blue;">void</span> Append(<span style="color:Blue;">char</span>* value, <span style="color:Blue;">int</span> length);
+        <span style="color:Blue;">public</span> Span&lt;<span style="color:Blue;">char</span>&gt; AppendSpan(<span style="color:Blue;">int</span> length);
+    }
+</pre></div>
+</div>
+<p>Этот класс по своему функционалу сходен со своим старшим собратом <code>StringBuilder</code>, обладая при этом одной интересной и очень важной особенностью: он является значимым типом. Т.е. хранится и передается целиком по значению. А новейший модификатор типа <code>ref</code>, который приписан к сигнатуре объявления типа, говорит нам о том, что данный тип обладает дополнительным ограничением: он имеет право находиться только на стеке. Т.е. вывод его экземпляров в поля классов приведет к ошибке. К чему все эти приседания? Для ответа на этот вопрос достаточно посмотреть на класс <code>StringBuilder</code>, суть которого мы только что описали:</p>
+<p><strong>Класс StringBuilder</strong> <a href="https://github.com/dotnet/coreclr/blob/68f72dd2587c3365a9fe74d1991f93612c3bc62a/src/mscorlib/src/System/Text/StringBuilder.cs#L47-L62">/src/mscorlib/src/System/Text/StringBuilder.cs</a></p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">public</span> <span style="color:Blue;">sealed</span> <span style="color:Blue;">class</span> StringBuilder : ISerializable
+{
+    <span style="color:Green;">// A StringBuilder is internally represented as a linked list of blocks each of which holds</span>
+    <span style="color:Green;">// a chunk of the string.  It turns out string as a whole can also be represented as just a chunk,</span>
+    <span style="color:Green;">// so that is what we do.</span>
+    <span style="color:Blue;">internal</span> <span style="color:Blue;">char</span>[] m_ChunkChars;                <span style="color:Green;">// The characters in this block</span>
+    <span style="color:Blue;">internal</span> StringBuilder m_ChunkPrevious;      <span style="color:Green;">// Link to the block logically before this block</span>
+    <span style="color:Blue;">internal</span> <span style="color:Blue;">int</span> m_ChunkLength;                  <span style="color:Green;">// The index in m_ChunkChars that represent the end of the block</span>
+    <span style="color:Blue;">internal</span> <span style="color:Blue;">int</span> m_ChunkOffset;                  <span style="color:Green;">// The logical offset (sum of all characters in previous blocks)</span>
+    <span style="color:Blue;">internal</span> <span style="color:Blue;">int</span> m_MaxCapacity = 0;
+
+    <span style="color:Green;">// ...</span>
+
+    <span style="color:Blue;">internal</span> <span style="color:Blue;">const</span> <span style="color:Blue;">int</span> DefaultCapacity = 16;
+</pre></div>
+</div>
+<p><code>StringBuilder</code> - это класс, внутри которого находится ссылка на массив символов. Т.е. когда вы создаете его, то по сути создается как минимум два объекта: сам <code>StringBuilder</code> и массив символов в как минимум 16 символов (кстати именно поэтому так важно задавать предполагаемую длину строки: ее построение будет идти через генерацию односвязного списка 16-символьных массивов. Согласитесь, расточительство). Что это значит в контексте нашего разговора о типе <code>ValueStringBuilder</code>: capacity по умолчанию отсутствует, т.к. он заимствует память извне, плюс он сам является значимым типом и заставляет пользователя расположить буфер для символов на стеке. Как итог весь экземпляр типа помещается на стек вместе с его содержимым и вопрос оптимизации здесь становится решенным. Нет выделения памяти в куче? Нет проблем с проседанием производительности по куче. Но вы мне скажите: почему тогда не пользоваться ValueStringBuilder (или его самописной версией: сам он internal и нам не доступен) всегда? Ответ такой: надо смотреть на задачу, которая вами решается. Будет ли результирующая строка известного размера? Будет ли она иметь некий известный максимум по длине? Если ответ &quot;да&quot; и если при этом размер строки не выходит за некоторые разумные границы, то можно использовать значимую версию <code>StringBuilder</code>. Иначе, если мы ожидаем длинные строки, переходим на использование обычной версии.</p>
+<h4 id="valuelistbuilder">ValueListBuilder</h4>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">internal</span> <span style="color:Blue;">ref</span> <span style="color:Blue;">partial</span> <span style="color:Blue;">struct</span> ValueListBuilder&lt;T&gt;
+{
+    <span style="color:Blue;">private</span> Span&lt;T&gt; _span;
+    <span style="color:Blue;">private</span> T[] _arrayFromPool;
+    <span style="color:Blue;">private</span> <span style="color:Blue;">int</span> _pos;
+
+    <span style="color:Blue;">public</span> ValueListBuilder(Span&lt;T&gt; initialSpan)
+    {
+        _span = initialSpan;
+        _arrayFromPool = <span style="color:Blue;">null</span>;
+        _pos = 0;
+    }
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">int</span> Length { <span style="color:Blue;">get</span>; <span style="color:Blue;">set</span>; }
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">ref</span> T <span style="color:Blue;">this</span>[<span style="color:Blue;">int</span> index] { <span style="color:Blue;">get</span>; }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> Append(T item);
+
+    <span style="color:Blue;">public</span> ReadOnlySpan&lt;T&gt; AsSpan();
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> Dispose();
+
+    <span style="color:Blue;">private</span> <span style="color:Blue;">void</span> Grow();
+}
+</pre></div>
+</div>
+<p>Второй тип данных, который хочется особенно - отметить - это тип <code>ValueListBuilder</code>. Создан он для ситуаций, когда необходимо на короткое время создать некоторую коллекцию элементов и тут же отдать ее в обработку некоторому алгоритму.</p>
+<p>Согласитесь: задача очень похожа на задачу <code>ValueStringBuilder</code>. Да и решена она очень похожим образом:</p>
+<p><strong>Файл <a href="https://github.com/dotnet/coreclr/blob/dbaf2957387c5290a680c8918779683194137b1d/src/System.Private.CoreLib/shared/System/Collections/Generic/ValueListBuilder.cs">ValueListBuilder.cs</a></strong></p>
+<p>Если говорить прямо, то такие ситуации достаточно частые. Однако раньше мы решали этот вопрос другим способом: создавали <code>List</code>, заполняли его данными и теряли ссылку. Если при этом метод вызывается достаточно часто, возникает печальная ситуация: множество экземпляров класса <code>List</code> повисает в куче, а вместе с ними повисают в куче и массивы, с ними ассоциированные. Теперь эта проблема решена: дополнительных объектов создано не будет. Однако, как и в случае с <code>ValueStringBuilder</code>, решена она только для программистов Microsoft: класс имеет модификатор <code>internal</code>.</p>
+<h3 id="section">Правила и практика использования</h3>
+<p>Для того чтобы окончательно понять суть нового типа данных, необходимо &quot;поиграться&quot; с ним, написав пару-тройку, а лучше - больше методов, его использующих. Однако, основные правила можно почерпнуть уже сейчас:</p>
+<ul>
+<li>Если ваш метод будет обрабатывать некоторый входящий набор данных, не меняя его размер, можно попробовать остановиться на типе <code>Span</code>. Если при этом не будет модификации этого буфера, то на типе <code>ReadOnlySpan</code>;</li>
+<li>Если ваш метод будет работать со строками, вычисляя какую-то статистику либо производя синтаксический разбор строки, то ваш метод <em>обязан</em> принимать <code>ReadOnlySpan&lt;char&gt;</code>. Именно обязан: это новое правило. Ведь если вы принимаете строку, тем самым вы заставляете кого-то сделать для вас подстроку</li>
+<li>Если необходимо в рамках работы метода сделать достаточно короткий массив с данными (скажем, 10Кб максимум), то вы с легкостью можете организовать такой массив при помощи <code>Span&lt;TType&gt; buf = stackalloc TType[size]</code>. Однако, конечно, TType должен быть только значимым типом, т.к. <code>stackalloc</code> работает только со значимыми типами.</li>
+</ul>
+<p>В остальных случаях стоит присмотреться либо к <code>Memory</code> либо использовать классические типы данных.</p>
+<h3 id="span">Как работает Span</h3>
+<p>Дополнительно хотелось бы поговорить о том, как работает <code>Span</code> и что в нем такого примечательного. А поговорить есть о чем: сам тип данных делится на две версии: для .NET Core 2.0+ и для всех остальных.</p>
+<p><strong>Файл <a href="https://github.com/dotnet/coreclr/blob/38403e661a4202ca4c8a72e4bbd9a263bddeb891/src/System.Private.CoreLib/shared/System/Span.Fast.cs">Span.Fast.cs, .NET Core 2.0</a></strong></p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">public</span> <span style="color:Blue;">readonly</span> <span style="color:Blue;">ref</span> <span style="color:Blue;">partial</span> <span style="color:Blue;">struct</span> Span&lt;T&gt;
+{
+    <span style="color:Gray;">///</span><span style="color:Green;"> Ссылка на объект .NET или чистый указатель</span>
+    <span style="color:Blue;">internal</span> <span style="color:Blue;">readonly</span> ByReference&lt;T&gt; _pointer;
+    <span style="color:Gray;">///</span><span style="color:Green;"> Длина буфера данных по указателю</span>
+    <span style="color:Blue;">private</span> <span style="color:Blue;">readonly</span> <span style="color:Blue;">int</span> _length;
+    <span style="color:Green;">// ...</span>
+}
+</pre></div>
+</div>
+<p><strong>Файл ??? [decompiled]</strong></p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">public</span> <span style="color:Blue;">ref</span> <span style="color:Blue;">readonly</span> <span style="color:Blue;">struct</span> Span&lt;T&gt;
+{
+    <span style="color:Blue;">private</span> <span style="color:Blue;">readonly</span> System.Pinnable&lt;T&gt; _pinnable;
+    <span style="color:Blue;">private</span> <span style="color:Blue;">readonly</span> IntPtr _byteOffset;
+    <span style="color:Blue;">private</span> <span style="color:Blue;">readonly</span> <span style="color:Blue;">int</span> _length;
+    <span style="color:Green;">// ...</span>
+}
+</pre></div>
+</div>
+<p>Все дело в том что <em>большой</em> .NET Framework и .NET Core 1.* не имеют специальным образом измененного сборщика мусора (в отличии от версии .NET Core 2.0+) и потому вынуждены тащить за собой дополнительный указатель: на начало буфера, с которым идет работа. Т.е. получается, что <code>Span</code> внутри себя работает с управляемыми объектами платформы .NET как с неуправляемыми. Взгляните на внутренности второго варианта структуры: там присутствует три поля. Первое поле - это ссылка на managed объект. Второе - смещение относительно начала этого объекта в байтах, чтобы получить начало буфера данных (в строках это буфер с символами <code>char</code>, в массивах - буфер с данными массива). И, наконец, третье поле - количество уложенных друг за другом элементов этого буфера.</p>
+<p>Для примера возьмем работу <code>Span</code> для строк:</p>
+<p><strong>Файл <a href="https://github.com/dotnet/coreclr/blob/2b50bba8131acca2ab535e144796941ad93487b7/src/System.Private.CoreLib/shared/System/MemoryExtensions.Fast.cs#L409-L416">coreclr::src/System.Private.CoreLib/shared/System/MemoryExtensions.Fast.cs</a></strong></p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">public</span> <span style="color:Blue;">static</span> ReadOnlySpan&lt;<span style="color:Blue;">char</span>&gt; AsSpan(<span style="color:Blue;">this</span> <span style="color:Blue;">string</span> text)
+{
+    <span style="color:Blue;">if</span> (text == <span style="color:Blue;">null</span>)
+        <span style="color:Blue;">return</span> <span style="color:Blue;">default</span>;
+
+    <span style="color:Blue;">return</span> <span style="color:Blue;">new</span> ReadOnlySpan&lt;<span style="color:Blue;">char</span>&gt;(<span style="color:Blue;">ref</span> text.GetRawStringData(), text.Length);
+}
+</pre></div>
+</div>
+<p>Где <code>string.GetRawStringData()</code> выглядит следующим образом:</p>
+<p><strong>Файл с определением полей <a href="https://github.com/dotnet/coreclr/blob/2b50bba8131acca2ab535e144796941ad93487b7/src/System.Private.CoreLib/src/System/String.CoreCLR.cs#L16-L23">coreclr::src/System.Private.CoreLib/src/System/String.CoreCLR.cs</a></strong></p>
+<p><strong>Файл с определением GetRawStringData <a href="https://github.com/dotnet/coreclr/blob/2b50bba8131acca2ab535e144796941ad93487b7/src/System.Private.CoreLib/shared/System/String.cs#L462">coreclr::src/System.Private.CoreLib/shared/System/String.cs</a></strong></p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">public</span> <span style="color:Blue;">sealed</span> <span style="color:Blue;">partial</span> <span style="color:Blue;">class</span> String :
+    IComparable, IEnumerable, IConvertible, IEnumerable&lt;<span style="color:Blue;">char</span>&gt;,
+    IComparable&lt;<span style="color:Blue;">string</span>&gt;, IEquatable&lt;<span style="color:Blue;">string</span>&gt;, ICloneable
+{
+
+    <span style="color:Green;">//</span>
+    <span style="color:Green;">// These fields map directly onto the fields in an EE StringObject.  See object.h for the layout.</span>
+    <span style="color:Green;">//</span>
+    [NonSerialized] <span style="color:Blue;">private</span> <span style="color:Blue;">int</span> _stringLength;
+
+    <span style="color:Green;">// For empty strings, this will be &#39;\0&#39; since</span>
+    <span style="color:Green;">// strings are both null-terminated and length prefixed</span>
+    [NonSerialized] <span style="color:Blue;">private</span> <span style="color:Blue;">char</span> _firstChar;
+
+
+    <span style="color:Blue;">internal</span> <span style="color:Blue;">ref</span> <span style="color:Blue;">char</span> GetRawStringData() =&gt; <span style="color:Blue;">ref</span> _firstChar;
+}
+</pre></div>
+</div>
+<p>Т.е. получается, что метод лезет напрямую вовнутрь строки, а спецификация <code>ref char</code> позволяет отслеживать GC неуправляемую ссылку во внутрь строки, перемещая его вместе со строкой во время срабатывания GC.</p>
+<p>Та же самая история происходит и с массивами: когда создается <code>Span</code>, то некий код внутри JIT рассчитывает смещение начала данных массива и этим смещением инициализирует <code>Span</code>. А как подсчитать смещения для строк и массивов, мы научились в главе <a href=".%5CObjectsStructure.md">про структуру объектов в памяти</a>.</p>
+<h3 id="spant-1">Span&lt;T&gt; как возвращаемое значение</h3>
+<p>Несмотря на всю идиллию, связанную со <code>Span</code>, существуют хоть и логичные, но неожиданные ограничения на его возврат из метода. Если взглянуть на следующий код:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">unsafe</span> <span style="color:Blue;">void</span> Main()
+{
+    <span style="color:Blue;">var</span> x = GetSpan();
+}
+
+<span style="color:Blue;">public</span> Span&lt;<span style="color:Blue;">byte</span>&gt; GetSpan()
+{
+    Span&lt;<span style="color:Blue;">byte</span>&gt; reff = <span style="color:Blue;">new</span> <span style="color:Blue;">byte</span>[100];
+    <span style="color:Blue;">return</span> reff;
+}
+</pre></div>
+</div>
+<p>то все выглядит крайне логично и хорошо. Однако, стоит заменить одну инструкцию другой:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">unsafe</span> <span style="color:Blue;">void</span> Main()
+{
+    <span style="color:Blue;">var</span> x = GetSpan();
+}
+
+<span style="color:Blue;">public</span> Span&lt;<span style="color:Blue;">byte</span>&gt; GetSpan()
+{
+    Span&lt;<span style="color:Blue;">byte</span>&gt; reff = <span style="color:Blue;">stackalloc</span> <span style="color:Blue;">byte</span>[100];
+    <span style="color:Blue;">return</span> reff;
+}
+</pre></div>
+</div>
+<p>как компилятор запретит инструкцию такого вида. Но прежде чем написать, почему, я прошу вас самим догадаться, какие проблемы понесет за собой такая конструкция.</p>
+<p>Итак, я надеюсь, что вы подумали, построили догадки и предположения, а может даже и поняли причину. Если так, главу про <a href="./ThreadStack.html">стек потока</a> я по винтикам расписывал не зря. Ведь дав таким образом ссылку на локальные переменные метода, который закончил работу, вы можете вызвать другой метод, дождаться окончания его работы и через x[0.99] прочитать его локальные переменные.</p>
+<p>Однако, к счастью, когда мы делаем попытку написать такого рода код, компилятор дает нам по рукам, выдав предупреждение: <code>CS8352 Cannot use local 'reff' in this context because it may expose referenced variables outside of their declaration scope</code> и будет прав: ведь если обойти эту ошибку, то возникает возможность, например, находясь в плагине подстроить такую ситуацию, что станет возможным украсть чужие пароли или повысить привилегии выполнения нашего плагина.</p>
+<h2 id="memoryt-readonlymemoryt">Memory&lt;T&gt; и ReadOnlyMemory&lt;T&gt;</h2>
+<p>Визуальных отличий <code>Memory&lt;T&gt;</code> от <code>Span&lt;T&gt;</code> два. Первое - тип <code>Memory&lt;T&gt;</code> не содержит ограничения <code>ref</code> в заголовке типа. Т.е., другими словами, тип <code>Memory&lt;T&gt;</code> имеет право находиться не только на стеке, являясь либо локальной переменной, либо параметром метода, либо его возвращаемым значением, но и находиться в куче, ссылаясь оттуда на некоторые данные в памяти. Однако, эта маленькая разница создает огромную разницу в поведении и возможностях <code>Memory&lt;T&gt;</code> в сравнении с <code>Span&lt;T&gt;</code>. В отличии от <code>Span&lt;T&gt;</code>, который представляет собой <em>средство пользования</em> неким буфером данных для некоторых методов, тип <code>Memory&lt;T&gt;</code> предназначен для <em>хранения</em> информации о буфере, а не для работы с ним. Отсюда возникает разница в API:</p>
+<ul>
+<li><code>Memory&lt;T&gt;</code> не содержит методов доступа к данным, которыми он заведует. Вместо этого он имеет свойство <code>Span</code> и метод <code>Slice</code>, которые возвращают рабочую лошадку - экземпляр типа <code>Span</code>.</li>
+<li><code>Memory&lt;T&gt;</code> дополнительно содержит метод <code>Pin()</code>, предназначенный для сценариев, когда хранящийся буфер необходимо передать в <code>unsafe</code> код. При его вызове для случаев, когда память была выделена в .NET, буфер будет закреплен (pinned) и не будет перемещаться при срабатывании GC, возвращая пользователю экземпляр структуры <code>MemoryHandle</code>, инкапсулирующей в себе понятие отрезка жизни <code>GCHandle</code>, закрепившего буфер в памяти.</li>
+</ul>
+<p>Однако, для начала предлагаю познакомиться со всем набором классов. И в качестве первого из них, взглянем на саму структуру <code>Memory&lt;T&gt;</code> (показаны не все члены типа, а показавшиеся наиболее важными):</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+    <span style="color:Blue;">public</span> <span style="color:Blue;">readonly</span> <span style="color:Blue;">struct</span> Memory&lt;T&gt;
+    {
+        <span style="color:Blue;">private</span> <span style="color:Blue;">readonly</span> <span style="color:Blue;">object</span> _object;
+        <span style="color:Blue;">private</span> <span style="color:Blue;">readonly</span> <span style="color:Blue;">int</span> _index, _length;
+
+        <span style="color:Blue;">public</span> Memory(T[] array) { ... }
+        <span style="color:Blue;">public</span> Memory(T[] array, <span style="color:Blue;">int</span> start, <span style="color:Blue;">int</span> length) { ... }
+        <span style="color:Blue;">internal</span> Memory(MemoryManager&lt;T&gt; manager, <span style="color:Blue;">int</span> length) { ... }
+        <span style="color:Blue;">internal</span> Memory(MemoryManager&lt;T&gt; manager, <span style="color:Blue;">int</span> start, <span style="color:Blue;">int</span> length) { ... }
+
+        <span style="color:Blue;">public</span> <span style="color:Blue;">int</span> Length =&gt; _length &amp; RemoveFlagsBitMask;
+        <span style="color:Blue;">public</span> <span style="color:Blue;">bool</span> IsEmpty =&gt; (_length &amp; RemoveFlagsBitMask) == 0;
+
+        <span style="color:Blue;">public</span> Memory&lt;T&gt; Slice(<span style="color:Blue;">int</span> start, <span style="color:Blue;">int</span> length);
+        <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> CopyTo(Memory&lt;T&gt; destination) =&gt; Span.CopyTo(destination.Span);
+        <span style="color:Blue;">public</span> <span style="color:Blue;">bool</span> TryCopyTo(Memory&lt;T&gt; destination) =&gt; Span.TryCopyTo(destination.Span);
+
+        <span style="color:Blue;">public</span> Span&lt;T&gt; Span { <span style="color:Blue;">get</span>; }
+        <span style="color:Blue;">public</span> <span style="color:Blue;">unsafe</span> MemoryHandle Pin();
+    }
+</pre></div>
+</div>
+<p>Как мы видим, структура содержит конструктор на основе массивов, но хранит данные в object. Сделано это для того чтобы дополнительно ссылаться на строки, для которых конструктор не предусмотрен, зато предусмотрен метод расширения для типа <code>string</code> <code>AsMemory()</code>, возвращающий <code>ReadOnlyMemory</code>. Однако, поскольку бинарно оба типа должны быть одинаковыми, типом поля <code>_object</code> является <code>Object</code>.</p>
+<p>Далее мы видим два конструктора, работающих на основе <code>MemoryManager</code>. О них мы поговорим попозже. Свойства получения размера <code>Length</code> и проверки на пустое множество <code>IsEmpty</code>. Также имеется метод получения подмножества <code>Slice</code> и методы копирования <code>CopyTo</code> и <code>TryCopyTo</code>.</p>
+<p>Подробнее же в разговоре о <code>Memory</code> хочется остановиться на двух методах этого типа: на свойстве <code>Span</code> и методе <code>Pin</code>.</p>
+<h3 id="memoryt.span">Memory&lt;T&gt;.Span</h3>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">public</span> Span&lt;T&gt; Span
+{
+    <span style="color:Blue;">get</span>
+    {
+        <span style="color:Blue;">if</span> (_index &lt; 0)
+        {
+            <span style="color:Blue;">return</span> ((MemoryManager&lt;T&gt;)_object).GetSpan().Slice(_index &amp; RemoveFlagsBitMask, _length);
+        }
+        <span style="color:Blue;">else</span> <span style="color:Blue;">if</span> (<span style="color:Blue;">typeof</span>(T) == <span style="color:Blue;">typeof</span>(<span style="color:Blue;">char</span>) &amp;&amp; _object <span style="color:Blue;">is</span> <span style="color:Blue;">string</span> s)
+        {
+            <span style="color:Green;">// This is dangerous, returning a writable span for a string that should be immutable.</span>
+            <span style="color:Green;">// However, we need to handle the case where a ReadOnlyMemory&lt;char&gt; was created from a string</span>
+            <span style="color:Green;">// and then cast to a Memory&lt;T&gt;. Such a cast can only be done with unsafe or marshaling code,</span>
+            <span style="color:Green;">// in which case that&#39;s the dangerous operation performed by the dev, and we&#39;re just following</span>
+            <span style="color:Green;">// suit here to make it work as best as possible.</span>
+            <span style="color:Blue;">return</span> <span style="color:Blue;">new</span> Span&lt;T&gt;(<span style="color:Blue;">ref</span> Unsafe.As&lt;<span style="color:Blue;">char</span>, T&gt;(<span style="color:Blue;">ref</span> s.GetRawStringData()), s.Length).Slice(_index, _length);
+        }
+        <span style="color:Blue;">else</span> <span style="color:Blue;">if</span> (_object != <span style="color:Blue;">null</span>)
+        {
+            <span style="color:Blue;">return</span> <span style="color:Blue;">new</span> Span&lt;T&gt;((T[])_object, _index, _length &amp; RemoveFlagsBitMask);
+        }
+        <span style="color:Blue;">else</span>
+        {
+            <span style="color:Blue;">return</span> <span style="color:Blue;">default</span>;
+        }
+    }
+}
+</pre></div>
+</div>
+<p>А точнее, на строчки, обрабатывающие работу со строками. Ведь в них говорится о том, что если мы каким-либо образом сконвертировали <code>ReadOnlyMemory&lt;T&gt;</code> в <code>Memory&lt;T&gt;</code> (а в двоичном представлении это одно и тоже. Мало того, существует комментарий, предупреждающий, что бинарно эти два типа обязаны совпадать, т.к. один из другого получается путем вызова <code>Unsafe.As</code>), то мы получаем <sub>доступ в тайную комнату</sub> возможность менять строки. А это крайне опасный механизм:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">unsafe</span> <span style="color:Blue;">void</span> Main()
+{
+    <span style="color:Blue;">var</span> str = <span style="color:#A31515;">&quot;Hello!&quot;</span>;
+    ReadOnlyMemory&lt;<span style="color:Blue;">char</span>&gt; ronly = str.AsMemory();
+    Memory&lt;<span style="color:Blue;">char</span>&gt; mem = (Memory&lt;<span style="color:Blue;">char</span>&gt;)Unsafe.As&lt;ReadOnlyMemory&lt;<span style="color:Blue;">char</span>&gt;, Memory&lt;<span style="color:Blue;">char</span>&gt;&gt;(<span style="color:Blue;">ref</span> ronly);
+    mem.Span[5] = <span style="color:#A31515;">&#39;?&#39;</span>;
+
+    Console.WriteLine(str);
+}
+---
+Hello?
+</pre></div>
+</div>
+<p>Который в купе с интернированием строк может дать весьма плачевные последствия.</p>
+<h3 id="memoryt.pin">Memory&lt;T&gt;.Pin</h3>
+<p>Второй метод, который вызывает не поддельный интерес - это метод <code>Pin</code>:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">public</span> <span style="color:Blue;">unsafe</span> MemoryHandle Pin()
+{
+    <span style="color:Blue;">if</span> (_index &lt; 0)
+    {
+        <span style="color:Blue;">return</span> ((MemoryManager&lt;T&gt;)_object).Pin((_index &amp; RemoveFlagsBitMask));
+    }
+    <span style="color:Blue;">else</span> <span style="color:Blue;">if</span> (<span style="color:Blue;">typeof</span>(T) == <span style="color:Blue;">typeof</span>(<span style="color:Blue;">char</span>) &amp;&amp; _object <span style="color:Blue;">is</span> <span style="color:Blue;">string</span> s)
+    {
+        <span style="color:Green;">// This case can only happen if a ReadOnlyMemory&lt;char&gt; was created around a string</span>
+        <span style="color:Green;">// and then that was cast to a Memory&lt;char&gt; using unsafe / marshaling code.  This needs</span>
+        <span style="color:Green;">// to work, however, so that code that uses a single Memory&lt;char&gt; field to store either</span>
+        <span style="color:Green;">// a readable ReadOnlyMemory&lt;char&gt; or a writable Memory&lt;char&gt; can still be pinned and</span>
+        <span style="color:Green;">// used for interop purposes.</span>
+        GCHandle handle = GCHandle.Alloc(s, GCHandleType.Pinned);
+        <span style="color:Blue;">void</span>* pointer = Unsafe.Add&lt;T&gt;(Unsafe.AsPointer(<span style="color:Blue;">ref</span> s.GetRawStringData()), _index);
+        <span style="color:Blue;">return</span> <span style="color:Blue;">new</span> MemoryHandle(pointer, handle);
+    }
+    <span style="color:Blue;">else</span> <span style="color:Blue;">if</span> (_object <span style="color:Blue;">is</span> T[] array)
+    {
+        <span style="color:Green;">// Array is already pre-pinned</span>
+        <span style="color:Blue;">if</span> (_length &lt; 0)
+        {
+            <span style="color:Blue;">void</span>* pointer = Unsafe.Add&lt;T&gt;(Unsafe.AsPointer(<span style="color:Blue;">ref</span> array.GetRawSzArrayData()), _index);
+            <span style="color:Blue;">return</span> <span style="color:Blue;">new</span> MemoryHandle(pointer);
+        }
+        <span style="color:Blue;">else</span>
+        {
+            GCHandle handle = GCHandle.Alloc(array, GCHandleType.Pinned);
+            <span style="color:Blue;">void</span>* pointer = Unsafe.Add&lt;T&gt;(Unsafe.AsPointer(<span style="color:Blue;">ref</span> array.GetRawSzArrayData()), _index);
+            <span style="color:Blue;">return</span> <span style="color:Blue;">new</span> MemoryHandle(pointer, handle);
+        }
+    }
+    <span style="color:Blue;">return</span> <span style="color:Blue;">default</span>;
+}
+</pre></div>
+</div>
+<p>Который также является очень важным инструментом унификации: ведь вне зависимости от типа данных, на которые ссылается <code>Memory&lt;T&gt;</code>, если мы захотим отдать буфер в неуправляемый код, то единственное, что нам надо сделать - вызвать метод <code>Pin()</code> и передать указатель, который будет храниться в свойстве полученной структуры в неуправляемый код:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">void</span> PinSample(Memory&lt;<span style="color:Blue;">byte</span>&gt; memory)
+{
+    <span style="color:Blue;">using</span>(<span style="color:Blue;">var</span> handle = memory.Pin())
+    {
+        WinApi.SomeApiMethod(handle.Pointer);
+    }
+}
+</pre></div>
+</div>
+<p>И в данном коде нет никакой разницы, для чего вызван <code>Pin()</code>: для <code>Memory</code> над <code>T[]</code>, над <code>string</code> или же над буфером неуправляемой памяти. Просто для массивов и строк будет создан реальный <code>GCHandle.Alloc(array, GCHandleType.Pinned)</code>, а для неуправляемой памяти - просто ничего не произойдет.</p>
+<h2 id="memorymanager-imemoryowner-memorypool">MemoryManager, IMemoryOwner, MemoryPool</h2>
+<p>Помимо указания полей структуры я хочу дополнительно указать на то, что существует еще два <code>internal</code> конструктора типа, работающих на основании еще одной сущности - <code>MemoryManager</code>, речь о котором зайдет несколько дальше и что не является чем-то, о чем вы, возможно, только что подумали: менеджером памяти в классическом понимании. Однако, как и <code>Span</code>, <code>Memory</code> точно также содержит в себе ссылку на объект, по которому будет производиться навигация, а также смещение и размер внутреннего буфера. Также дополнительно стоит отметить, что <code>Memory</code> может быть создан оператором <code>new</code> только на основании массива плюс методами расширения - на основании строки, массива и <code>ArraySegment</code>. Т.е. его создание на основании unmanaged памяти вручную не подразумевается. Однако, как мы видим, существует некий внутренний метод создания этой структуры на основании <code>MemoryManager</code>:</p>
+<p><strong>Файл <a href="https://github.com/dotnet/corefx/blob/master/src/Common/src/CoreLib/System/Buffers/MemoryManager.cs">MemoryManager.cs</a></strong></p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">public</span> <span style="color:Blue;">abstract</span> <span style="color:Blue;">class</span> MemoryManager&lt;T&gt; : IMemoryOwner&lt;T&gt;, IPinnable
+{
+    <span style="color:Blue;">public</span> <span style="color:Blue;">abstract</span> MemoryHandle Pin(<span style="color:Blue;">int</span> elementIndex = 0);
+    <span style="color:Blue;">public</span> <span style="color:Blue;">abstract</span> <span style="color:Blue;">void</span> Unpin();
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">virtual</span> Memory&lt;T&gt; Memory =&gt; <span style="color:Blue;">new</span> Memory&lt;T&gt;(<span style="color:Blue;">this</span>, GetSpan().Length);
+    <span style="color:Blue;">public</span> <span style="color:Blue;">abstract</span> Span&lt;T&gt; GetSpan();
+    <span style="color:Blue;">protected</span> Memory&lt;T&gt; CreateMemory(<span style="color:Blue;">int</span> length) =&gt; <span style="color:Blue;">new</span> Memory&lt;T&gt;(<span style="color:Blue;">this</span>, length);
+    <span style="color:Blue;">protected</span> Memory&lt;T&gt; CreateMemory(<span style="color:Blue;">int</span> start, <span style="color:Blue;">int</span> length) =&gt; <span style="color:Blue;">new</span> Memory&lt;T&gt;(<span style="color:Blue;">this</span>, start, length);
+
+    <span style="color:Blue;">void</span> IDisposable.Dispose()
+    <span style="color:Blue;">protected</span> <span style="color:Blue;">abstract</span> <span style="color:Blue;">void</span> Dispose(<span style="color:Blue;">bool</span> disposing);
+}
+</pre></div>
+</div>
+<p>Которая инкапсулирует в себе понятие владельца участка памяти. Другими словами, если <code>Span</code> - средство работы с памятью, а <code>Memory</code> - средство хранения информации о конкретном участке, то <code>MemoryManager</code> - средство контроля его жизни, его владелец. Для примера можно взять тип <code>NativeMemoryManager&lt;T&gt;</code>, который хоть и написан для тестов, однако неплохо отражает суть понятия &quot;владение&quot;:</p>
+<p><strong>Файл <a href="https://github.com/dotnet/corefx/blob/888088448ac5dd1053d88434dfd819dcbc0fd9a1/src/Common/tests/System/Buffers/NativeMemoryManager.cs">NativeMemoryManager.cs</a></strong></p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">internal</span> <span style="color:Blue;">sealed</span> <span style="color:Blue;">class</span> NativeMemoryManager : MemoryManager&lt;<span style="color:Blue;">byte</span>&gt;
+{
+    <span style="color:Blue;">private</span> <span style="color:Blue;">readonly</span> <span style="color:Blue;">int</span> _length;
+    <span style="color:Blue;">private</span> IntPtr _ptr;
+    <span style="color:Blue;">private</span> <span style="color:Blue;">int</span> _retainedCount;
+    <span style="color:Blue;">private</span> <span style="color:Blue;">bool</span> _disposed;
+
+    <span style="color:Blue;">public</span> NativeMemoryManager(<span style="color:Blue;">int</span> length)
+    {
+        _length = length;
+        _ptr = Marshal.AllocHGlobal(length);
+    }
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">override</span> <span style="color:Blue;">void</span> Pin() { ... }
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">override</span> <span style="color:Blue;">void</span> Unpin()
+    {
+        <span style="color:Blue;">lock</span> (<span style="color:Blue;">this</span>)
+        {
+            <span style="color:Blue;">if</span> (_retainedCount &gt; 0)
+            {
+                _retainedCount--;
+                <span style="color:Blue;">if</span> (_retainedCount == 0)
+                {
+                    <span style="color:Blue;">if</span> (_disposed)
+                    {
+                        Marshal.FreeHGlobal(_ptr);
+                        _ptr = IntPtr.Zero;
+                    }
+                }
+            }
+        }
+    }
+
+    <span style="color:Green;">// Другие методы</span>
+}
+</pre></div>
+</div>
+<p>Т.е., другими словами, класс обеспечивает возможность вложенных вызовов метода <code>Pin()</code> подсчитывая тем самым образующиеся ссылки из <code>unsafe</code> мира.</p>
+<p>Еще одной сущностью, тесно связанной с <code>Memory</code>, является <code>MemoryPool</code>, который обеспечивает пулинг экземпляров <code>MemoryManager</code> (а по факту - <code>IMemoryOwner</code>):</p>
+<p><strong>Файл <a href="https://github.com/dotnet/corefx/blob/f592e887e2349ed52af6a83070c42adb9d26408c/src/System.Memory/src/System/Buffers/MemoryPool.cs">MemoryPool.cs</a></strong></p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">public</span> <span style="color:Blue;">abstract</span> <span style="color:Blue;">class</span> MemoryPool&lt;T&gt; : IDisposable
+{
+    <span style="color:Blue;">public</span> <span style="color:Blue;">static</span> MemoryPool&lt;T&gt; Shared =&gt; s_shared;
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">abstract</span> IMemoryOwner&lt;T&gt; Rent(<span style="color:Blue;">int</span> minBufferSize = -1);
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> Dispose() { ... }
+}
+</pre></div>
+</div>
+<p>Который предназначен для выдачи буферов необходимого размера во временное пользование. Арендуемые экземпляры, реализующие интерфейс <code>IMemoryOwner&lt;T&gt;</code>, имеют метод <code>Dispose()</code>, который возвращает арендованный массив обратно в пул массивов. Причем, по умолчанию вы можете пользоваться общим пулом буферов, который построен на основе <code>ArrayMemoryPool</code>:</p>
+<p><strong>Файл <a href="https://github.com/dotnet/corefx/blob/56dfb8834fa50f3bc61ea9b4bfdc9dcc759b6ec9/src/System.Memory/src/System/Buffers/ArrayMemoryPool.cs">ArrayMemoryPool.cs</a></strong></p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">internal</span> <span style="color:Blue;">sealed</span> <span style="color:Blue;">partial</span> <span style="color:Blue;">class</span> ArrayMemoryPool&lt;T&gt; : MemoryPool&lt;T&gt;
+{
+    <span style="color:Blue;">private</span> <span style="color:Blue;">const</span> <span style="color:Blue;">int</span> MaximumBufferSize = <span style="color:Blue;">int</span>.MaxValue;
+    <span style="color:Blue;">public</span> <span style="color:Blue;">sealed</span> <span style="color:Blue;">override</span> <span style="color:Blue;">int</span> MaxBufferSize =&gt; MaximumBufferSize;
+    <span style="color:Blue;">public</span> <span style="color:Blue;">sealed</span> <span style="color:Blue;">override</span> IMemoryOwner&lt;T&gt; Rent(<span style="color:Blue;">int</span> minimumBufferSize = -1)
+    {
+        <span style="color:Blue;">if</span> (minimumBufferSize == -1)
+            minimumBufferSize = 1 + (4095 / Unsafe.SizeOf&lt;T&gt;());
+        <span style="color:Blue;">else</span> <span style="color:Blue;">if</span> (((<span style="color:Blue;">uint</span>)minimumBufferSize) &gt; MaximumBufferSize)
+            ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument.minimumBufferSize);
+
+        <span style="color:Blue;">return</span> <span style="color:Blue;">new</span> ArrayMemoryPoolBuffer(minimumBufferSize);
+    }
+    <span style="color:Blue;">protected</span> <span style="color:Blue;">sealed</span> <span style="color:Blue;">override</span> <span style="color:Blue;">void</span> Dispose(<span style="color:Blue;">bool</span> disposing) { }
+}
+</pre></div>
+</div>
+<p>И на основании данной архитектуры вырисовывается следующая картина мира:</p>
+<ul>
+<li>Тип данных <code>Span</code> необходимо использовать в параметрах методов, если вы подразумеваете либо считывание данных (<code>ReadOnlySpan</code>), либо считывание или запись (<code>Span</code>). Но не задачу его сохранения в поле класса для использования в будущем</li>
+<li>Если вам необходимо хранить ссылку на буфер данных из поля класса, необходимо использовать <code>Memory&lt;T&gt;</code> или <code>ReadOnlyMemory&lt;T&gt;</code> - в зависимости от целей</li>
+<li><code>MemoryManager&lt;T&gt;</code> - это владелец буфера данных (можно не использовать: по необходимости). Необходим, когда, например, встает необходимость подсчитывать вызовы <code>Pin()</code>. Или когда необходимо обладать знаниями о том, как освобождать память</li>
+<li>Если <code>Memory</code> построен вокруг неуправляемого участка памяти, <code>Pin()</code> ничего не сделает. Однако это унифицирует работу с разными типами буферов: как в случае управляемого, так и в случае неуправляемого кода интерфейс взаимодействия будет одинаковым</li>
+<li>Каждый из типов имеет публичные конструкторы. А это значит, что вы можете пользоваться как <code>Span</code> напрямую, так и получать его экземпляр из <code>Memory</code>. Сам <code>Memory</code> вы можете создать как отдельно, так и организовать для него <code>IMemoryOwner</code> тип, который будет владеть участком памяти, на который будет ссылаться <code>Memory</code>. Частным случаем может являться любой тип, основанный на <code>MemoryManager</code>: некоторое локальное владение участком памяти (например, с подсчетом ссылок из <code>unsafe</code> мира). Если при этом необходим пулинг таких буферов (ожидается частый трафик буферов примерно равного размера), можно воспользоваться типом <code>MemoryPool</code>.</li>
+<li>Если подразумевается, что вам необходимо работать с <code>unsafe</code> кодом, передавая туда некий буфер данных, стоит использовать тип <code>Memory</code>: он имеет метод <code>Pin()</code>, автоматизирующий фиксацию буфера в куче .NET, если тот был там создан.</li>
+<li>Если же вы имеете некий трафик буферов (например, вы решаете задачу парсинга текста программы или какого-то DSL), стоит воспользоваться типом <code>MemoryPool</code>, который можно организовать очень правильным образом, выдавая из пула буферы подходящего размера (например, немного большего, если не нашлось подходящего, но с обрезкой <code>originalMemory.Slice(requiredSize)</code> чтобы не фрагментировать пул)</li>
+</ul>
+<h2 id="section-1">Производительность</h2>
+<p>Для того чтобы понять производительность новых типов данных, я решил воспользоваться уже ставшей стандартной библиотекой <a href="https://github.com/dotnet/BenchmarkDotNet">BenchmarkDotNet</a>:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+[Config(<span style="color:Blue;">typeof</span>(MultipleRuntimesConfig))]
+<span style="color:Blue;">public</span> <span style="color:Blue;">class</span> SpanIndexer
+{
+    <span style="color:Blue;">private</span> <span style="color:Blue;">const</span> <span style="color:Blue;">int</span> Count = 100;
+    <span style="color:Blue;">private</span> <span style="color:Blue;">char</span>[] arrayField;
+    <span style="color:Blue;">private</span> ArraySegment&lt;<span style="color:Blue;">char</span>&gt; segment;
+    <span style="color:Blue;">private</span> <span style="color:Blue;">string</span> str;
+
+    [GlobalSetup]
+    <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> Setup()
+    {
+        str = <span style="color:Blue;">new</span> <span style="color:Blue;">string</span>(Enumerable.Repeat(<span style="color:#A31515;">&#39;a&#39;</span>, Count).ToArray());
+        arrayField = str.ToArray();
+        segment = <span style="color:Blue;">new</span> ArraySegment&lt;<span style="color:Blue;">char</span>&gt;(arrayField);
+    }
+
+    [Benchmark(Baseline = <span style="color:Blue;">true</span>, OperationsPerInvoke = Count)]
+    <span style="color:Blue;">public</span> <span style="color:Blue;">int</span> ArrayIndexer_Get()
+    {
+        <span style="color:Blue;">var</span> tmp = 0;
+        <span style="color:Blue;">for</span> (<span style="color:Blue;">int</span> index = 0, len = arrayField.Length; index &lt; len; index++)
+        {
+            tmp = arrayField[index];
+        }
+        <span style="color:Blue;">return</span> tmp;
+    }
+
+    [Benchmark(OperationsPerInvoke = Count)]
+    <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> ArrayIndexer_Set()
+    {
+        <span style="color:Blue;">for</span> (<span style="color:Blue;">int</span> index = 0, len = arrayField.Length; index &lt; len; index++)
+        {
+            arrayField[index] = <span style="color:#A31515;">&#39;0&#39;</span>;
+        }
+    }
+
+    [Benchmark(OperationsPerInvoke = Count)]
+    <span style="color:Blue;">public</span> <span style="color:Blue;">int</span> ArraySegmentIndexer_Get()
+    {
+        <span style="color:Blue;">var</span> tmp = 0;
+        <span style="color:Blue;">var</span> accessor = (IList&lt;<span style="color:Blue;">char</span>&gt;)segment;
+        <span style="color:Blue;">for</span> (<span style="color:Blue;">int</span> index = 0, len = accessor.Count; index &lt; len; index++)
+        {
+            tmp = accessor[index];
+        }
+        <span style="color:Blue;">return</span> tmp;
+    }
+
+    [Benchmark(OperationsPerInvoke = Count)]
+    <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> ArraySegmentIndexer_Set()
+    {
+        <span style="color:Blue;">var</span> accessor = (IList&lt;<span style="color:Blue;">char</span>&gt;)segment;
+        <span style="color:Blue;">for</span> (<span style="color:Blue;">int</span> index = 0, len = accessor.Count; index &lt; len; index++)
+        {
+            accessor[index] = <span style="color:#A31515;">&#39;0&#39;</span>;
+        }
+    }
+
+    [Benchmark(OperationsPerInvoke = Count)]
+    <span style="color:Blue;">public</span> <span style="color:Blue;">int</span> StringIndexer_Get()
+    {
+        <span style="color:Blue;">var</span> tmp = 0;
+        <span style="color:Blue;">for</span> (<span style="color:Blue;">int</span> index = 0, len = str.Length; index &lt; len; index++)
+        {
+            tmp = str[index];
+        }
+
+        <span style="color:Blue;">return</span> tmp;
+    }
+
+    [Benchmark(OperationsPerInvoke = Count)]
+    <span style="color:Blue;">public</span> <span style="color:Blue;">int</span> SpanArrayIndexer_Get()
+    {
+        <span style="color:Blue;">var</span> span = arrayField.AsSpan();
+        <span style="color:Blue;">var</span> tmp = 0;
+        <span style="color:Blue;">for</span> (<span style="color:Blue;">int</span> index = 0, len = span.Length; index &lt; len; index++)
+        {
+            tmp = span[index];
+        }
+        <span style="color:Blue;">return</span> tmp;
+    }
+
+    [Benchmark(OperationsPerInvoke = Count)]
+    <span style="color:Blue;">public</span> <span style="color:Blue;">int</span> SpanArraySegmentIndexer_Get()
+    {
+        <span style="color:Blue;">var</span> span = segment.AsSpan();
+        <span style="color:Blue;">var</span> tmp = 0;
+        <span style="color:Blue;">for</span> (<span style="color:Blue;">int</span> index = 0, len = span.Length; index &lt; len; index++)
+        {
+            tmp = span[index];
+        }
+        <span style="color:Blue;">return</span> tmp;
+    }
+
+    [Benchmark(OperationsPerInvoke = Count)]
+    <span style="color:Blue;">public</span> <span style="color:Blue;">int</span> SpanStringIndexer_Get()
+    {
+        <span style="color:Blue;">var</span> span = str.AsSpan();
+        <span style="color:Blue;">var</span> tmp = 0;
+        <span style="color:Blue;">for</span> (<span style="color:Blue;">int</span> index = 0, len = span.Length; index &lt; len; index++)
+        {
+            tmp = span[index];
+        }
+        <span style="color:Blue;">return</span> tmp;
+    }
+
+    [Benchmark(OperationsPerInvoke = Count)]
+    <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> SpanArrayIndexer_Set()
+    {
+        <span style="color:Blue;">var</span> span = arrayField.AsSpan();
+        <span style="color:Blue;">for</span> (<span style="color:Blue;">int</span> index = 0, len = span.Length; index &lt; len; index++)
+        {
+            span[index] = <span style="color:#A31515;">&#39;0&#39;</span>;
+        }
+    }
+
+    [Benchmark(OperationsPerInvoke = Count)]
+    <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> SpanArraySegmentIndexer_Set()
+    {
+        <span style="color:Blue;">var</span> span = segment.AsSpan();
+        <span style="color:Blue;">for</span> (<span style="color:Blue;">int</span> index = 0, len = span.Length; index &lt; len; index++)
+        {
+            span[index] = <span style="color:#A31515;">&#39;0&#39;</span>;
+        }
+    }
+}
+
+<span style="color:Blue;">public</span> <span style="color:Blue;">class</span> MultipleRuntimesConfig : ManualConfig
+{
+    <span style="color:Blue;">public</span> MultipleRuntimesConfig()
+    {
+        Add(Job.Default
+            .With(CsProjClassicNetToolchain.Net471) <span style="color:Green;">// Span не поддерживается CLR</span>
+            .WithId(<span style="color:#A31515;">&quot;.NET 4.7.1&quot;</span>));
+
+        Add(Job.Default
+            .With(CsProjCoreToolchain.NetCoreApp20) <span style="color:Green;">// Span поддерживается CLR</span>
+            .WithId(<span style="color:#A31515;">&quot;.NET Core 2.0&quot;</span>));
+
+        Add(Job.Default
+            .With(CsProjCoreToolchain.NetCoreApp21) <span style="color:Green;">// Span поддерживается CLR</span>
+            .WithId(<span style="color:#A31515;">&quot;.NET Core 2.1&quot;</span>));
+
+        Add(Job.Default
+            .With(CsProjCoreToolchain.NetCoreApp22) <span style="color:Green;">// Span поддерживается CLR</span>
+            .WithId(<span style="color:#A31515;">&quot;.NET Core 2.2&quot;</span>));
+    }
+}
+</pre></div>
+</div>
+<p>После чего изучим результаты:</p>
+<p><img src="./imgs/Span/Performance.png" alt="Performance chart" /></p>
+<p>Смотря на них можно почерпнуть следующую информацию:</p>
+<ul>
+<li>ArraySegment ужасен. Но его можно сделать не таким ужасным, обернув в <code>Span</code>. Производительность вырастет при этом в 7 раз;</li>
+<li>Если рассматривать <code>.NET Framework 4.7.1</code> (а для 4.5 это будет аналогичным), то переход на Span заметно просадит работу с буферами данных. Примерно на 30-35%;</li>
+<li>Однако если посмотреть в сторону .NET Core 2.1+, то здесь производительность станет сопоставимой, а с учетом того что Span может работать на части буфера данных, создавая контекст, то вообще быстрее: ведь аналогичным функционалом обладает ArraySegment, который работает крайне медленно.</li>
+</ul>
+<p>Отсюда можно сделать простые выводы по использованию этих типов данных:</p>
+<ul>
+<li>Для <code>.NET Framework 4.5+</code> и <code>.NET Core</code> их использование даст только один плюс: они быстрее их альтернативы в виде ArraySegment - на подмножестве исходного массива;</li>
+<li>Для <code>.NET Core 2.1+</code> их использование даст неоспоримое преимущество как перед использованием ArraySegment, так и перед любыми видами ручной реализации <code>Slice</code></li>
+<li>Также, что не даст ни один способ унификации массивов - все три способа максимально производительны.</li>
+</ul>
+
+</div>
+</div>
+</body>
+</html>

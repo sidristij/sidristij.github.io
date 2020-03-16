@@ -1,0 +1,503 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.NET Platform Architecture</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <style>
+        body {
+    padding: 60px 60px 60px 100px;
+}
+
+p, li {
+    margin: 0 0 14px;
+    font-family: PF Regal,PF Regal Text Pro,Georgia,serif;
+    font-size: 20px;
+    line-height: 32px;
+}
+
+ol, ul {
+    padding-left: 35px;
+    margin-top: 1.1rem;
+    margin-bottom: 1.1rem;
+}
+
+ol li {
+    padding-left: 10px;	
+}
+
+ul li {
+    padding-left: 5px;	
+}
+
+code, .lang-csharp span, .lang-csharp pre {
+    font-family: JB Mono, monospace !important;
+}
+
+.lang-csharp {
+    padding: 4px 0px 14px 0px;
+}
+
+
+.lang-csharp > div {
+    border-left-color: #eee;
+    border-left-style: dotted;
+    border-left-width: 3px;
+    padding-left: 25px;
+}
+
+code {
+    font-size: 14px;
+    border: gainsboro;
+    border-width: 1px;
+    border-style: solid;
+    padding: 2px;
+    color: darkslateblue;
+}
+
+.lang-csharp span, .lang-csharp pre {
+    font-size: 13px;
+    line-height: 20px;
+}
+
+p a {
+    text-decoration: none;
+    color: inherit;
+    box-shadow: inset 0 -1px #b88b59;
+}
+
+p img {
+    width: 95%;
+}
+
+img < p {
+    text-align: center;
+}
+
+blockquote p {
+    margin: 16px 0;
+    padding: 12px 12px 13px;
+    border: 1px solid rgba(0,0,0,.08);
+    border-radius: 8px;
+    background: #fff8c4;
+    font-family: Proxima Nova,Arial,Helvetica Neue,sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+blockquote p code {
+    font-family: consolas, monospace;
+    font-size: 17px;
+    background-color: aliceblue;
+    padding: 4px 6px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+}
+
+h1 {
+    font-size: 38px;
+    font-family: PF Regal,PF Regal Text Pro,Georgia,serif;
+    font-weight: 400;
+    margin: 40px 0 10px 0;
+}
+
+h1 b {
+    font-family: Proxima Nova,Arial,Helvetica Neue,sans-serif;
+    font-weight: 700;
+    font-size: 37px;
+    line-height: 42px;
+}
+
+h2 {
+    margin-top: 35px;
+    margin-bottom: 10px;
+    font-family: Proxima Nova,Arial,Helvetica Neue,sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+    border-bottom-color: aliceblue;
+    border-bottom-style: solid;
+    padding-bottom: 5px;
+}
+
+h3 {
+    margin: 30px 0 10px 0;
+    border-bottom-color: azure;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    font-size: 17pt;
+    font-weight: 300;
+}
+
+
+// Fonts
+@font-face {
+    font-family: 'JB Mono';
+    src: local('JetBrains Mono'),
+    url('../../res/fonts/woff2/JetBrainsMono-Italic.woff2') format('woff2'),
+    url('../../res/fonts/woff/JetBrainsMono-Italic.woff') format('woff'),
+    url('../../res/fonts/ttf/JetBrainsMono-Italic.ttf') format('truetype');
+    font-weight: 400;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'JB Mono';
+    src: local('JetBrains Mono'),
+    url('../../res/fonts/woff2/JetBrainsMono-Regular.woff2') format('woff2'),
+    url('../../res/fonts/woff/JetBrainsMono-Regular.woff') format('woff'),
+    url('../../res/fonts/ttf/JetBrainsMono-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'JB Mono';
+    src: local('JetBrains Mono'),
+    url('../../res/fonts/woff2/JetBrainsMono-Medium-Italic.woff2') format('woff2'),
+    url('../../res/fonts/woff/JetBrainsMono-Medium-Italic.woff') format('woff'),
+    url('../../res/fonts/ttf/JetBrainsMono-Medium-Italic.ttf') format('truetype');
+    font-weight: 600;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'JB Mono';
+    src: local('JetBrains Mono'),
+    url('../../res/fonts/woff2/JetBrainsMono-Medium.woff2') format('woff2'),
+    url('../../res/fonts/woff/JetBrainsMono-Medium.woff') format('woff'),
+    url('../../res/fonts/ttf/JetBrainsMono-Medium.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'PF Regal Text Pro';
+    src: local('PF Regal Text Pro RegularA'), local('PF-Regal-Text-Pro-RegularA'),
+    url('../../res/fonts/woff2/PFRegalTextPro-RegularA.woff2') format('woff2'),
+    url('../../res/fonts/woff/PFRegalTextPro-RegularA.woff') format('woff'),
+    url('../../res/fonts/ttf/PFRegalTextPro-RegularA.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'PF Regal Text Pro';
+    src: local('PF Regal Text Pro RegularB'), local('PF-Regal-Text-Pro-RegularB'),
+    url('../../res/fonts/woff2/PFRegalTextPro-RegularB.woff2') format('woff2'),
+    url('../../res/fonts/woff/PFRegalTextPro-RegularB.woff') format('woff'),
+    url('../../res/fonts/ttf/PFRegalTextPro-RegularB.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'PF Regal Text Pro';
+    src: local('PF Regal Text Pro RegularB Italic'), local('PF-Regal-Text-Pro-RegularB-Italic'),
+    url('../../res/fonts/woff2/PFRegalTextPro-RegularBItalic.woff2') format('woff2'),
+    url('../../res/fonts/woff/PFRegalTextPro-RegularBItalic.woff') format('woff'),
+    url('../../res/fonts/ttf/PFRegalTextPro-RegularBItalic.ttf') format('truetype');
+    font-weight: 600;
+    font-style: italic;
+}
+  
+    </style>
+
+<div style="margin:auto; width:100%;">
+<div style="width:1000px;">
+    <h1 id="exceptions">Exceptions</h1>
+<blockquote>
+<p><a href="https://github.com/sidristij/dotnetbook/issues/51">A link to the discussion</a></p>
+</blockquote>
+<p>It’s time to talk about exceptions or, rather, exceptional situations. Before we start, let’s look at the definition. What is an exceptional situation?</p>
+<p>This is a situation that makes the execution of current or subsequent code incorrect. I mean different from how it was designed or intended. Such a situation compromises the integrity of an application or its part, e.g. an object. It brings the application into an extraordinary or exceptional state.</p>
+<p>But why do we need to define this terminology? Because it will keep us in some boundaries. If we don’t follow the terminology, we can get too far from a designed concept which may result in many ambiguous situations. Let’s see some practical examples:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+ <span style="color:Blue;">struct</span> Number
+ {
+     <span style="color:Blue;">public</span> <span style="color:Blue;">static</span> Number Parse(<span style="color:Blue;">string</span> source)
+     {
+         <span style="color:Green;">// ...</span>
+         <span style="color:Blue;">if</span>(!parsed)
+         {
+             <span style="color:Blue;">throw</span> <span style="color:Blue;">new</span> ParsingException();
+         }
+         <span style="color:Green;">// ...</span>
+     }
+
+     <span style="color:Blue;">public</span> <span style="color:Blue;">static</span> <span style="color:Blue;">bool</span> TryParse(<span style="color:Blue;">string</span> source, <span style="color:Blue;">out</span> Number result)
+     {
+        <span style="color:Green;">// ..</span>
+        <span style="color:Blue;">return</span> parsed;
+     }
+ }
+</pre></div>
+</div>
+<p>This example seems a little strange, and it is for a reason. I made this code slightly artificial to show the importance of problems appearing in it. First, let’s look at the <code>Parse</code> method. Why should it throw an exception?</p>
+<ul>
+<li>Because the parameter it accepts is a string, but its output is a number, which is a value type. This number can’t indicate validity of calculations: it just exists. In other words, the method has no means in its interface to communicate a potential problem.</li>
+<li>On the other hand, the method expects a correct string that contains some number and no redundant characters. If it doesn’t contain, there is a problem in prerequisites to the method: the code which calls our method has passed wrong data.</li>
+</ul>
+<p>Thus, the situation when this method gets a string with incorrect data is exceptional because the method can return neither a correct value nor anything.  Thus, the only way is to throw an exception.</p>
+<p>The second variant of the method can signal some problems with input data: the return value here is <code>boolean</code> which indicates successful execution of the method. This method doesn’t need to use exceptions to signal any problems: they are all covered by the <code>false</code> return value.</p>
+<h2 id="overview">Overview</h2>
+<p>Exceptions handling might look as easy as ABC: we just need to place <code>try-catch</code> blocks and wait for corresponding events. However, this simplicity became possible due to the tremendous work of CLR and CoreCLR teams that unified all the errors that come from all directions and sources into the CLR. To understand what we are going to talk about next, let’s look at a diagram:</p>
+<p><img src="./imgs/CommonScheme.png" alt="" /></p>
+<p>We can see that inside big .NET Framework there are two worlds: everything that belongs to CLR and everything that doesn’t, including all possible errors appearing in Windows and other parts of the unsafe world.</p>
+<ul>
+<li>Structured Exception Handling (SEH) is a standard way Windows handles exceptions. When <code>unsafe</code> methods are called and exceptions are thrown, there is the unsafe &lt;-&gt; CLR conversion of exceptions in both directions: from unsafe to CLR and backward. This is because CLR can call an unsafe method which can call a CLR method in turn.</li>
+<li>Vectored Exception Handling (VEH) is a root of SEH and allows you to put your handlers in places where exceptions might be thrown. In particular, it used for placing <code>FirstChanceException</code>.</li>
+<li>COM+ exceptions appear when the source of a problem is a COM component. In this case, a layer between COM and a .NET method must convert a COM error into a .NET exception.</li>
+<li>And, of course, wrappers for HRESULT. They are introduced to convert a WinAPI model (an error code is contained in a return value, while return values are obtained using method parameters) into a model of exceptions because it is an exception that is standard for .NET.</li>
+</ul>
+<p>On the other hand, there are languages above CLI each of which more or less have functions for handling exceptions. For example, recently VB.NET or F# had a richer exception handling functionality expressed in a number of filters that didn’t exist in C#.</p>
+<h2 id="return-codes-vs.exception">Return codes vs. exception</h2>
+<p>Separately, I should mention a model of handling application errors using return codes. The idea of simply returning an error is plain and clear. Moreover, if we treat exceptions as a <code>goto</code> operator, the use of return codes becomes more reasonable: in this case, the user of a method sees the possibility of errors and can understand which errors may occur. However, let’s not guess what is better and for what, but discuss the problem of choice using a well reasoned theory.</p>
+<p>Let’s suppose that all methods have interfaces to deal with errors. Then all methods would look like:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">public</span> <span style="color:Blue;">bool</span> TryParseInteger(<span style="color:Blue;">string</span> source, <span style="color:Blue;">out</span> <span style="color:Blue;">int</span> result);
+
+<span style="color:Blue;">public</span> DialogBoxResult OpenDialogBox(...);
+<span style="color:Blue;">public</span> WebServiceResult IWebService.GetClientsList(...);
+
+<span style="color:Blue;">public</span> <span style="color:Blue;">class</span> DialogBoxResult : ResultBase { ... }
+<span style="color:Blue;">public</span> <span style="color:Blue;">class</span> WebServiceResult : ResultBase { ... }
+</pre></div>
+</div>
+<p>And their use would look like:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+
+<span style="color:Blue;">public</span> ShowClientsResult ShowClients(<span style="color:Blue;">string</span> <span style="color:Blue;">group</span>)
+{
+    <span style="color:Blue;">if</span>(!TryParseInteger(<span style="color:Blue;">group</span>, <span style="color:Blue;">out</span> <span style="color:Blue;">var</span> clientsGroupId))
+        <span style="color:Blue;">return</span> <span style="color:Blue;">new</span> ShowClientsResult { Reason = ShowClientsResult.Reason.ParsingFailed };
+
+    <span style="color:Blue;">var</span> webResult = _service.GetClientsList(clientsGroupId);
+    <span style="color:Blue;">if</span>(!webResult.Successful)
+    {
+        <span style="color:Blue;">return</span> <span style="color:Blue;">new</span> ShowClientsResult { Reason = ShowClientsResult.Reason.ServiceFailed, WebServiceResult = webResult };
+    }
+
+    <span style="color:Blue;">var</span> dialogResult = _dialogsService.OpenDialogBox(webResult.Result);
+    <span style="color:Blue;">if</span>(!dialogResult.Successful)
+    {
+        <span style="color:Blue;">return</span> <span style="color:Blue;">new</span> ShowClientsResult { Reason = ShowClientsResult.Reason.DialogOpeningFailed, DialogServiceResult = dialogResult };
+    }
+
+    <span style="color:Blue;">return</span> ShowClientsResult.Success();
+}
+</pre></div>
+</div>
+<p>You may think this code is overloaded with error handling. However, I would like you to reconsider your position: everything here is an emulation of a mechanism that throws and handles exceptions.</p>
+<p>How can a method report a problem? It can do it by using an interface for reporting errors. For example, in <code>TryParseInteger</code> method such interface is represented by a return value: if everything is OK, the method will return <code>true</code>. If it’s not OK, it will return <code>false</code>. However, there is a disadvantage here: the real value is returned via <code>out int result</code> parameter. The disadvantage is that on the one hand the return value is logically and by perception has more &quot;return value” essence than that of <code>out</code> parameter. On the other hand, we don’t always care about errors. Indeed, if a string intended for parsing comes from a service that generated this string, we don’t need to check it for errors: the string will always be correct and good for parsing. However, suppose we take another implementation of the method:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">public</span> <span style="color:Blue;">int</span> ParseInt(<span style="color:Blue;">string</span> source);
+</pre></div>
+</div>
+<p>Then, there is a question: if a string does have errors, what should the method do? Should it return zero? This won’t be correct: there is no zero in the string. In this case, we have a conflict of interests: the first variant has too much code, while the second variant has no means to report errors. However, it’s actually easy to decide when to use return codes and when to use exceptions.</p>
+<blockquote>
+<p>If getting an error is a norm, choose a return code. For example, it is normal when a text parsing algorithm encounters errors in a text, but if another algorithm that works with a parsed string gets an error from a parser, it can be critical or, in other words, exceptional.</p>
+</blockquote>
+<h2 id="try-catch-finally-in-brief">Try-Catch-Finally in brief</h2>
+<p>A <code>try</code> block covers a section where a programmer expects to get a critical situation which is treated as a norm by external code. In other words, if some code considers its internal state inconsistent based on some rules and throws an exception, an external system, which has a broader view of the same situation, can catch this exception using a <code>catch</code> block and normalize the execution of application code. Thus, <em>you legalize exceptions in this section of code by catching them</em>. I think it is an important idea that justifies the ban on catching all <code>try-catch(Exception ex){ ...}</code> exceptions <em>just in case</em>.</p>
+<p>It doesn’t mean that catching exceptions contradicts some ideology. I say that you should catch only the errors that you expect from a particular section of code. For example, you can’t expect all types of exceptions inherited from <code>ArgumentException</code> or you can’t get <code>NullReferenceException</code>, because often it means that a problem is rather in <em>your</em> code than in a called one. But it’s appropriate to expect that you won’t be able to open an intended file. Even if you 200% sure you will be able, don’t forget to check.</p>
+<p>The <code>finally</code> block is also well known. It is suitable for all cases covered by <code>try-catch</code> blocks. Except for several rare <em>special</em> situations, this block will <em>always</em> work. Why was such a guarantee of performance introduced? To clean up those resources and groups of objects which were allocated or captured in <code>try</code> block and which this block has responsibility for.</p>
+<p>This block is often used without <code>catch</code> block when we don’t care which error broke an algorithm, but we need to clean up all resources allocated for this algorithm. Let’s look at a simple example: a file copying algorithm needs two open files and a memory range for a cash buffer. Imagine that we allocated memory and opened one file, but couldn’t open another one. To wrap everything in one &quot;transaction” atomically we put all three operations in a single <code>try</code> block (as a variant of implementation) with resources cleaned in <code>finally</code>. It may seem like a simplified example but the most important is to show the essence.</p>
+<p>What C# actually lacks is a <code>fault</code> block which is activated whenever an error occurs. It’s like <code>finally</code> on steroids. If we had this, we could, for example, create a single entry point to log exceptional situations:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">try</span> {
+    <span style="color:Green;">//...</span>
+} fault exception
+{
+    _logger.Warn(exception);
+}
+
+</pre></div>
+</div>
+<p>Another thing I should touch in this introduction is exception filters. It is not a new feature on the .NET platform but C# developers may be new to it: exception filtering appeared only in v. 6.0. Filters should normalize a situation when there is a single type of exception that combines several types of errors. It should help us when we want to deal with a particular scenario but have to catch the whole group of errors first and filter them later. Of course, I mean the code of the following type:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">try</span> {
+    <span style="color:Green;">//...</span>
+}
+<span style="color:Blue;">catch</span> (ParserException exception)
+{
+    <span style="color:Blue;">switch</span>(exception.ErrorCode)
+    {
+        <span style="color:Blue;">case</span> ErrorCode.MissingModifier:
+            <span style="color:Green;">// ...</span>
+            <span style="color:Blue;">break</span>;
+        <span style="color:Blue;">case</span> ErrorCode.MissingBracket:
+            <span style="color:Green;">// ...</span>
+            <span style="color:Blue;">break</span>;
+        <span style="color:Blue;">default</span>:
+            <span style="color:Blue;">throw</span>;
+    }
+}
+</pre></div>
+</div>
+<p>Well, we can now rewrite this code properly:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">try</span> {
+    <span style="color:Green;">//...</span>
+}
+<span style="color:Blue;">catch</span> (ParserException exception) when (exception.ErrorCode == ErrorCode.MissingModifier)
+{
+    <span style="color:Green;">// ...</span>
+}
+<span style="color:Blue;">catch</span> (ParserException exception) when (exception.ErrorCode == ErrorCode.MissingBracket)
+{
+    <span style="color:Green;">// ...</span>
+}
+</pre></div>
+</div>
+<p>The improvement here is not in the lack of <code>switch</code> construct. I believe this new construct is better in several things:</p>
+<ul>
+<li>using <code>when</code> for filtering we catch exactly what we want and it’s right in terms of ideology;</li>
+<li>the code becomes more readable in this new form. Looking through code our brain can identify blocks for handling errors more easily as it initially searches for <code>catch</code> and not <code>switch-case</code>;</li>
+<li>the last but not least: a preliminary comparison is BEFORE entering the catch block. It means that if we make wrong guesses about potential situations, this construct will work faster than <code>switch</code> in the case of throwing an exception again.</li>
+</ul>
+<p>Many sources say that the peculiar feature of this code is that filtering happens <em>before</em> stack unrolling. You can see this in situations when there are no other calls except usual between the place where an exception is thrown and the place where filtering check occurs.</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+<span style="color:Blue;">static</span> <span style="color:Blue;">void</span> Main()
+{
+    <span style="color:Blue;">try</span>
+    {
+        Foo();
+    }
+    <span style="color:Blue;">catch</span> (Exception ex) when (Check(ex))
+    {
+        ;
+    }
+}
+
+<span style="color:Blue;">static</span> <span style="color:Blue;">void</span> Foo()
+{
+    Boo();
+}
+
+<span style="color:Blue;">static</span> <span style="color:Blue;">void</span> Boo()
+{
+    <span style="color:Blue;">throw</span> <span style="color:Blue;">new</span> Exception(<span style="color:#A31515;">&quot;1&quot;</span>);
+}
+
+<span style="color:Blue;">static</span> <span style="color:Blue;">bool</span> Check(Exception ex)
+{
+    <span style="color:Blue;">return</span> ex.Message == <span style="color:#A31515;">&quot;1&quot;</span>;
+}
+</pre></div>
+</div>
+<p><img src="./imgs/StackWOutUnrolling.png" alt="Stack without unrolling" /></p>
+<p>You can see from the image that the stack trace contains not only the first call of <code>Main</code> as the point to catch an exception, but the whole stack before the point of throwing an exception plus the second entering into <code>Main</code> via unmanaged code. We can suppose that this code is exactly the code for throwing exceptions that is in the stage of filtering and choosing a final handler. However, <em>not all calls can be handled without stack unrolling</em>. I believe that excessive uniformity of the platform generates too much confidence in it. For example, when one domain calls a method from another domain it is absolutely transparent in terms of code. However, the way methods calls work is an absolutely different story. We are going to talk about them in the next part.</p>
+<h3 id="serialization">Serialization</h3>
+<p>Let’s start by looking at the results of running the following code (I added the transfer of a call across the boundary between two application domains).</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+    <span style="color:Blue;">class</span> Program
+    {
+        <span style="color:Blue;">static</span> <span style="color:Blue;">void</span> Main()
+        {
+            <span style="color:Blue;">try</span>
+            {
+                ProxyRunner.Go();
+            }
+            <span style="color:Blue;">catch</span> (Exception ex) when (Check(ex))
+            {
+                ;
+            }
+        }
+
+        <span style="color:Blue;">static</span> <span style="color:Blue;">bool</span> Check(Exception ex)
+        {
+            <span style="color:Blue;">var</span> domain = AppDomain.CurrentDomain.FriendlyName; <span style="color:Green;">// -&gt; TestApp.exe</span>
+            <span style="color:Blue;">return</span> ex.Message == <span style="color:#A31515;">&quot;1&quot;</span>;
+        }
+
+        <span style="color:Blue;">public</span> <span style="color:Blue;">class</span> ProxyRunner : MarshalByRefObject
+        {
+            <span style="color:Blue;">private</span> <span style="color:Blue;">void</span> MethodInsideAppDomain()
+            {
+                <span style="color:Blue;">throw</span> <span style="color:Blue;">new</span> Exception(<span style="color:#A31515;">&quot;1&quot;</span>);
+            }
+
+            <span style="color:Blue;">public</span> <span style="color:Blue;">static</span> <span style="color:Blue;">void</span> Go()
+            {
+                <span style="color:Blue;">var</span> dom = AppDomain.CreateDomain(<span style="color:#A31515;">&quot;PseudoIsolated&quot;</span>, <span style="color:Blue;">null</span>, <span style="color:Blue;">new</span> AppDomainSetup
+                {
+                    ApplicationBase = AppDomain.CurrentDomain.BaseDirectory
+                });
+                <span style="color:Blue;">var</span> proxy = (ProxyRunner) dom.CreateInstanceAndUnwrap(<span style="color:Blue;">typeof</span>(ProxyRunner).Assembly.FullName, <span style="color:Blue;">typeof</span>(ProxyRunner).FullName);
+                proxy.MethodInsideAppDomain();
+            }
+        }
+    }
+
+</pre></div>
+</div>
+<p>We can see that stack unrolling happens before we get to filtering. Let’s look at screenshots. The first is taken before the generation of an exception:</p>
+<p><img src="./imgs/StackUnroll.png" alt="StackUnroll" /></p>
+<p>The second one is after it:</p>
+<p><img src="./imgs/StackUnroll2.png" alt="StackUnroll2" /></p>
+<p>Let’s study call tracing before and after exceptions are filtered. What happens here? We can see that platform developers made something that at first glance looks like the protection of a subdomain. The tracing is cut after the last method in the call chain and then there is the transfer to another domain. But I think this looks strange. To understand why this happens let’s remember the main rule for types that organize the interaction between domains. These types should inherit <code>MarshalByRefObject</code> and be serializable. However, despite the strictness of C# exception types can be of any nature. What does it mean? This means that situations may occur when an exception inside a subdomain can be caught in a parent domain. Also, if a data object that can get into an exceptional situation has some methods that are dangerous in terms of security they can be called in a parent domain. To avoid this, the exception is first serialized and then it crosses the boundary between application domains and appears again with a new stack. Let’s check this theory:</p>
+<div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
+[StructLayout(LayoutKind.Explicit)]
+<span style="color:Blue;">class</span> Cast
+{
+    [FieldOffset(0)]
+    <span style="color:Blue;">public</span> Exception Exception;
+
+    [FieldOffset(0)]
+    <span style="color:Blue;">public</span> <span style="color:Blue;">object</span> obj;
+}
+
+<span style="color:Blue;">static</span> <span style="color:Blue;">void</span> Main()
+{
+    <span style="color:Blue;">try</span>
+    {
+        ProxyRunner.Go();
+        Console.ReadKey();
+    }
+    <span style="color:Blue;">catch</span> (RuntimeWrappedException ex) when (ex.WrappedException <span style="color:Blue;">is</span> Program)
+    {
+        ;
+    }
+}
+
+<span style="color:Blue;">static</span> <span style="color:Blue;">bool</span> Check(Exception ex)
+{
+    <span style="color:Blue;">var</span> domain = AppDomain.CurrentDomain.FriendlyName; <span style="color:Green;">// -&gt; TestApp.exe</span>
+    <span style="color:Blue;">return</span> ex.Message == <span style="color:#A31515;">&quot;1&quot;</span>;
+}
+
+<span style="color:Blue;">public</span> <span style="color:Blue;">class</span> ProxyRunner : MarshalByRefObject
+{
+    <span style="color:Blue;">private</span> <span style="color:Blue;">void</span> MethodInsideAppDomain()
+    {
+        <span style="color:Blue;">var</span> x = <span style="color:Blue;">new</span> Cast {obj = <span style="color:Blue;">new</span> Program()};
+        <span style="color:Blue;">throw</span> x.Exception;
+    }
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">static</span> <span style="color:Blue;">void</span> Go()
+    {
+        <span style="color:Blue;">var</span> dom = AppDomain.CreateDomain(<span style="color:#A31515;">&quot;PseudoIsolated&quot;</span>, <span style="color:Blue;">null</span>, <span style="color:Blue;">new</span> AppDomainSetup
+        {
+            ApplicationBase = AppDomain.CurrentDomain.BaseDirectory
+        });
+        <span style="color:Blue;">var</span> proxy = (ProxyRunner)dom.CreateInstanceAndUnwrap(<span style="color:Blue;">typeof</span>(ProxyRunner).Assembly.FullName, <span style="color:Blue;">typeof</span>(ProxyRunner).FullName);
+        proxy.MethodInsideAppDomain();
+    }
+}
+</pre></div>
+</div>
+<p>For C# code could throw an exception of any type (I don’t want to torture you with MSIL) I performed a trick in this example casting a type to a noncomparable one, so we could throw an exception of any type, but the translator would think that we use <code>Exception</code> type. We create an instance of the <code>Program</code> type, which is not serializable for sure, and throw an exception using this type as workload. The good news is that you get a wrapper for non-Exception exceptions of <code>RuntimeWrappedException</code> which will store an instance of our <code>Program</code> type object inside and we will be able to catch this exception. However, there is bad news that supports our idea: calling <code>proxy.MethodInsideAppDomain();</code> will generate <code>SerializationException</code>:</p>
+<p><img src="./imgs/SerializationError.png" alt="" /></p>
+<p>Thus, you can’t transfer such an exception between domains as it is not possible to serialize it. This, in turn, means that using exception filters for wrapping methods calls in other domains will anyway lead to stack unrolling despite that the serialization seems to be unnecessary with <code>FullTrust</code> settings of a subdomain.</p>
+<blockquote>
+<p>We should pay additional attention to the reason why serialization between domains is so necessary. In our artificial example, we create a subdomain which doesn’t have any settings. It means it works in FullTrust way. CLR fully trusts its content and doesn’t run any additional checks. However, when you insert at least one security setting, the full trust will disappear and CLR will start controlling everything that happens inside a subdomain. So, when you have a fully trusted domain you don’t need a serialization. Admit, we don’t need to protect ourselves. But serialization exists not only for protection. Each domain loads all necessary assemblies a second time and creates their copies. Thus, it creates copies of all types and all VMTs. Of course, when passing an object from domain to domain you will get the same object. But its VMTs won’t be its own and this object can’t be cast to another type. In other words, if we create an instance of a <code>Boo</code> type and get it in another domain the casting of <code>(Boo)boo</code> won’t work. In this case, serialization and deserialization will solve the problem as the object will exist in two domains simultaneously. It will exist with all its data where it was created and it will exist in the domain of usage as a proxy object, ensuring that methods of an original object are called.</p>
+</blockquote>
+<p>By transferring a serialized object between domains you get a full copy of the object from one domain in another one while keeping some delimitation in memory. However, this delimitation is fictional. It is used only for those types that are not in <code>Shared AppDomain</code>. Thus, if you throw something non-serializable as an exception, but from <code>Shared AppDomain</code>, you won’t get an error of serialization (we can try throwing <code>Action</code> instead of <code>Program</code>). However, stack unrolling will anyway occur in this case: as both variants should work in a standard way. So that nobody will be confused.</p>
+
+</div>
+</div>
+</body>
+</html>
