@@ -10,13 +10,19 @@
     <style>
         body {
     padding: 60px 60px 60px 100px;
+    font-family: PF Regal,Georgia,serif;
+    font-size: 16pt;
+    font-weight: 300;
+}
+
+strong {
+    font-weight: 500;
 }
 
 p, li {
     margin: 0 0 14px;
-    font-family: PF Regal,PF Regal Text Pro,Georgia,serif;
-    font-size: 20px;
     line-height: 32px;
+    font-family: inherit;
 }
 
 ol, ul {
@@ -27,10 +33,12 @@ ol, ul {
 
 ol li {
     padding-left: 10px;	
+    font-family: inherit;
 }
 
 ul li {
     padding-left: 5px;	
+    font-family: inherit;
 }
 
 code, .lang-csharp span, .lang-csharp pre {
@@ -46,7 +54,8 @@ code, .lang-csharp span, .lang-csharp pre {
     border-left-color: #eee;
     border-left-style: dotted;
     border-left-width: 3px;
-    padding-left: 25px;
+    background-color: #f5faff !important;
+    padding: 10px 10px 10px 25px;
 }
 
 code {
@@ -63,7 +72,7 @@ code {
     line-height: 20px;
 }
 
-p a {
+p a, li a {
     text-decoration: none;
     color: inherit;
     box-shadow: inset 0 -1px #b88b59;
@@ -73,20 +82,20 @@ p img {
     width: 95%;
 }
 
-img < p {
+p (:has img) {
     text-align: center;
+}
+
+blockquote {
+    background-color: lavenderblush;
+    padding-left: 20px;
+    border-left: 1px solid rgba(0,0,0,.08);
 }
 
 blockquote p {
     margin: 16px 0;
     padding: 12px 12px 13px;
-    border: 1px solid rgba(0,0,0,.08);
-    border-radius: 8px;
-    background: #fff8c4;
-    font-family: Proxima Nova,Arial,Helvetica Neue,sans-serif;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 24px;
+    font-family: inherit;
 }
 
 blockquote p code {
@@ -100,13 +109,16 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0;
     padding: 0;
     font-weight: 400;
+    font-family: inherit;
 }
 
 h1 {
-    font-size: 38px;
-    font-family: PF Regal,PF Regal Text Pro,Georgia,serif;
-    font-weight: 400;
-    margin: 40px 0 10px 0;
+    font-size: 40px;
+    font-family: PF Regal,Georgia,serif;
+    font-weight: 300;
+    margin: 40px 0 20px 0;
+    border-bottom-style: ridge;
+    padding-bottom: 10px;
 }
 
 h1 b {
@@ -123,86 +135,158 @@ h2 {
     font-size: 20px;
     font-weight: 700;
     line-height: 24px;
-    border-bottom-color: aliceblue;
+    border-bottom-color: grey;
     border-bottom-style: solid;
     padding-bottom: 5px;
 }
 
 h3 {
     margin: 30px 0 10px 0;
-    border-bottom-color: azure;
-    border-bottom-style: solid;
-    border-bottom-width: 2px;
     font-size: 17pt;
+    font-weight: 500;
+}
+
+h4 {
+    margin: 20px 0 10px 0;
+    font-size: 16pt;
+    font-weight: 500;
+    font-style: italic;
+}
+
+/* Fonts 
+
+@font-face {
+    font-family: 'PF Regal';
+    src: url('../../../res/fonts/PFRegalTextPro-RegularA.eot');
+    src: local('../../../res/fonts/PFRegalTextPro-RegularA'),
+        url('../../../res/fonts/PFRegalTextPro-RegularA.woff2') format('woff2'),
+        url('../../../res/fonts/PFRegalTextPro-RegularA.woff') format('woff'),
+        url('../../../res/fonts/PFRegalTextPro-RegularA.ttf') format('truetype');
     font-weight: 300;
+    font-style: normal;
 }
 
+@font-face {
+    font-family: 'PF Regal';
+    src: url('../../../res/fonts/PFRegalTextPro-Bold.eot');
+    src: local('../../../res/fonts/PFRegalTextPro-Bold'),
+        url('../../../res/fonts/PFRegalTextPro-Bold.woff2') format('woff2'),
+        url('../../../res/fonts/PFRegalTextPro-Bold.woff') format('woff'),
+        url('../../../res/fonts/PFRegalTextPro-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+*/
+@font-face {
+    font-family: 'PF Regal';
+    src: url('../../../res/fonts/PFRegalTextPro-Medium.eot');
+    src: local('../../../res/fonts/PFRegalTextPro-Medium'),
+        url('../../../res/fonts/PFRegalTextPro-Medium.woff2') format('woff2'),
+        url('../../../res/fonts/PFRegalTextPro-Medium.woff') format('woff'),
+        url('../../../res/fonts/PFRegalTextPro-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
 
-// Fonts
 @font-face {
-    font-family: 'JB Mono';
-    src: local('JetBrains Mono'),
-    url('../../../res/fonts/woff2/JetBrainsMono-Italic.woff2') format('woff2'),
-    url('../../../res/fonts/woff/JetBrainsMono-Italic.woff') format('woff'),
-    url('../../../res/fonts/ttf/JetBrainsMono-Italic.ttf') format('truetype');
-    font-weight: 400;
+    font-family: 'PF Regal';
+    src: url('../../../res/fonts/PFRegalTextPro-BlackItalic.eot');
+    src: local('../../../res/fonts/PFRegalTextPro-BlackItalic'),
+        url('../../../res/fonts/PFRegalTextPro-BlackItalic.woff2') format('woff2'),
+        url('../../../res/fonts/PFRegalTextPro-BlackItalic.woff') format('woff'),
+        url('../../../res/fonts/PFRegalTextPro-BlackItalic.ttf') format('truetype');
+    font-weight: 900;
     font-style: italic;
 }
+
 @font-face {
-    font-family: 'JB Mono';
-    src: local('JetBrains Mono'),
-    url('../../../res/fonts/woff2/JetBrainsMono-Regular.woff2') format('woff2'),
-    url('../../../res/fonts/woff/JetBrainsMono-Regular.woff') format('woff'),
-    url('../../../res/fonts/ttf/JetBrainsMono-Regular.ttf') format('truetype');
-    font-weight: 400;
+    font-family: 'PF Regal';
+    src: url('../../../res/fonts/PFRegalTextPro-Black.eot');
+    src: local('../../../res/fonts/PFRegalTextPro-Black'),
+        url('../../../res/fonts/PFRegalTextPro-Black.woff2') format('woff2'),
+        url('../../../res/fonts/PFRegalTextPro-Black.woff') format('woff'),
+        url('../../../res/fonts/PFRegalTextPro-Black.ttf') format('truetype');
+    font-weight: 900;
     font-style: normal;
 }
+
 @font-face {
-    font-family: 'JB Mono';
-    src: local('JetBrains Mono'),
-    url('../../../res/fonts/woff2/JetBrainsMono-Medium-Italic.woff2') format('woff2'),
-    url('../../../res/fonts/woff/JetBrainsMono-Medium-Italic.woff') format('woff'),
-    url('../../../res/fonts/ttf/JetBrainsMono-Medium-Italic.ttf') format('truetype');
-    font-weight: 600;
+    font-family: 'PF Regal UBlack';
+    src: url('../../../res/fonts/PFRegalTextPro-UBlack.eot');
+    src: local('../../../res/fonts/PFRegalTextPro-UBlack'),
+        url('../../../res/fonts/PFRegalTextPro-UBlack.woff2') format('woff2'),
+        url('../../../res/fonts/PFRegalTextPro-UBlack.woff') format('woff'),
+        url('../../../res/fonts/PFRegalTextPro-UBlack.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PF Regal';
+    src: url('../../../res/fonts/PFRegalTextPro-MediumItalic.eot');
+    src: local('../../../res/fonts/PFRegalTextPro-MediumItalic'),
+        url('../../../res/fonts/PFRegalTextPro-MediumItalic.woff2') format('woff2'),
+        url('../../../res/fonts/PFRegalTextPro-MediumItalic.woff') format('woff'),
+        url('../../../res/fonts/PFRegalTextPro-MediumItalic.ttf') format('truetype');
+    font-weight: 500;
     font-style: italic;
 }
+
 @font-face {
-    font-family: 'JB Mono';
-    src: local('JetBrains Mono'),
-    url('../../../res/fonts/woff2/JetBrainsMono-Medium.woff2') format('woff2'),
-    url('../../../res/fonts/woff/JetBrainsMono-Medium.woff') format('woff'),
-    url('../../../res/fonts/ttf/JetBrainsMono-Medium.ttf') format('truetype');
-    font-weight: 600;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'PF Regal Text Pro';
-    src: local('PF Regal Text Pro RegularA'), local('PF-Regal-Text-Pro-RegularA'),
-    url('../../../res/fonts/woff2/PFRegalTextPro-RegularA.woff2') format('woff2'),
-    url('../../../res/fonts/woff/PFRegalTextPro-RegularA.woff') format('woff'),
-    url('../../../res/fonts/ttf/PFRegalTextPro-RegularA.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'PF Regal Text Pro';
-    src: local('PF Regal Text Pro RegularB'), local('PF-Regal-Text-Pro-RegularB'),
-    url('../../../res/fonts/woff2/PFRegalTextPro-RegularB.woff2') format('woff2'),
-    url('../../../res/fonts/woff/PFRegalTextPro-RegularB.woff') format('woff'),
-    url('../../../res/fonts/ttf/PFRegalTextPro-RegularB.ttf') format('truetype');
-    font-weight: 600;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'PF Regal Text Pro';
-    src: local('PF Regal Text Pro RegularB Italic'), local('PF-Regal-Text-Pro-RegularB-Italic'),
-    url('../../../res/fonts/woff2/PFRegalTextPro-RegularBItalic.woff2') format('woff2'),
-    url('../../../res/fonts/woff/PFRegalTextPro-RegularBItalic.woff') format('woff'),
-    url('../../../res/fonts/ttf/PFRegalTextPro-RegularBItalic.ttf') format('truetype');
-    font-weight: 600;
+    font-family: 'PF Regal';
+    src: url('../../../res/fonts/PFRegalTextPro-UBlackItalic.eot');
+    src: local('../../../res/fonts/PFRegalTextPro-UBlackItalic'),
+        url('../../../res/fonts/PFRegalTextPro-UBlackItalic.woff2') format('woff2'),
+        url('../../../res/fonts/PFRegalTextPro-UBlackItalic.woff') format('woff'),
+        url('../../../res/fonts/PFRegalTextPro-UBlackItalic.ttf') format('truetype');
+    font-weight: 900;
     font-style: italic;
 }
-  
+
+@font-face {
+    font-family: 'PF Regal';
+    src: url('../../../res/fonts/PFRegalTextPro-RegularAItalic.eot');
+    src: local('../../../res/fonts/PFRegalTextPro-RegularAItalic'),
+        url('../../../res/fonts/PFRegalTextPro-RegularAItalic.woff2') format('woff2'),
+        url('../../../res/fonts/PFRegalTextPro-RegularAItalic.woff') format('woff'),
+        url('../../../res/fonts/PFRegalTextPro-RegularAItalic.ttf') format('truetype');
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'PF Regal';
+    src: url('../../../res/fonts/PFRegalTextPro-BoldItalic.eot');
+    src: local('../../../res/fonts/PFRegalTextPro-BoldItalic'),
+        url('../../../res/fonts/PFRegalTextPro-BoldItalic.woff2') format('woff2'),
+        url('../../../res/fonts/PFRegalTextPro-BoldItalic.woff') format('woff'),
+        url('../../../res/fonts/PFRegalTextPro-BoldItalic.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+
+/*  Regular B */
+@font-face {
+    font-family: 'PF Regal';
+    src: url('../../../res/fonts/PFRegalTextPro-RegularBItalic.eot');
+    src: local('../../../res/fonts/PFRegalTextPro-RegularBItalic'),
+        url('../../../res/fonts/PFRegalTextPro-RegularBItalic.woff2') format('woff2'),
+        url('../../../res/fonts/PFRegalTextPro-RegularBItalic.woff') format('woff'),
+        url('../../../res/fonts/PFRegalTextPro-RegularBItalic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'PF Regal';
+    src: url('../../../res/fonts/PFRegalTextPro-RegularB.eot');
+    src: local('../../../res/fonts/PFRegalTextPro-RegularB'),
+        url('../../../res/fonts/PFRegalTextPro-RegularB.woff2') format('woff2'),
+        url('../../../res/fonts/PFRegalTextPro-RegularB.woff') format('woff'),
+        url('../../../res/fonts/PFRegalTextPro-RegularB.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}                
     </style>
 
 <div style="margin:auto; width:100%;">
@@ -256,7 +340,6 @@ T GetFromCacheOrCalculate()
 <h3 id="section-2">По фактическому перехвату исключительной ситуации</h3>
 <p>Ещё один вопрос, который останавливает наш полет мысли в программировании алгоритмов - это понимание: стоит ли перехватывать те или иные исключения или же стоит пропустить их сквозь себя кому-то более понимающему. Переводя на язык терминов вопрос, который нам надо решить - разграничить зоны ответственности. Давайте рассмотрим следующий код:</p>
 <div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
-
 <span style="color:Blue;">namespace</span> JetFinance.Strategies
 {
     <span style="color:Blue;">public</span> <span style="color:Blue;">class</span> WildStrategy : StrategyBase
@@ -315,7 +398,6 @@ T GetFromCacheOrCalculate()
     {
     }
 }
-
 </pre></div>
 </div>
 <p>Какая из двух предложенных стратегий является более корректной? Зона ответственности - это очень важно. Изначально может показаться, что поскольку работа <code>WildInvestment</code> и его консистентность целиком и полностью зависит от <code>WildStrategy</code>, то если <code>WildInvestment</code> просто проигнорирует данное исключение, оно уйдёт в уровень повыше и делать ничего более не надо. Однако, прошу заметить что существует чисто архитектурная проблема: метод <code>Main</code> ловит исключение из архитектурно одного слоя, вызывая метод архитектурно - другого. Как это выглядит с точки зрения использования? Да, в общем, так и выглядит:</p>
@@ -326,7 +408,6 @@ T GetFromCacheOrCalculate()
 </ul>
 <p>Однако, из данного вывода следует другой: <code>catch</code> мы должны ставить в методе <code>DoSomethingWild</code>. И это для нас несколько странно: <code>WildInvestment</code> вроде как жёстко зависим от кого-то. Т.е. если <code>PlayRussianRoulette</code> отработать не смог, то и <code>DoSomethingWild</code> тоже: кодов возврата тот не имеет, а сыграть в рулетку он обязан. Что же делать в такой, казалось бы, безвыходной ситуации? Ответ на самом деле прост: находясь в другом слое, <code>DoSomethingWild</code> должен выбросить собственное исключение, которое относится к этому слою и обернуть исходное как оригинальный источник проблемы - в <code>InnerException</code>:</p>
 <div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
-
 <span style="color:Blue;">namespace</span> JetFinance.Strategies
 {
     pubilc <span style="color:Blue;">class</span> WildStrategy
@@ -479,7 +560,6 @@ T GetFromCacheOrCalculate()
 <p>Получается, что если рассуждать таким образом, то можно построить некоторую иерархию типов исключительных ситуаций, основываясь на принадлежности типа той или иной группе или слою создавая тем самым возможность перехватывающему исключения коду лёгкую смысловую навигацию в этой иерархии типов.</p>
 <p>Давайте рассмотрим код:</p>
 <div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
-
 <span style="color:Blue;">namespace</span> JetFinance
 {
     <span style="color:Blue;">namespace</span> FinancialPipe
@@ -505,13 +585,11 @@ T GetFromCacheOrCalculate()
         <span style="color:Green;">/* ... */</span>
     }
 }
-
 </pre></div>
 </div>
 <p>На что это похоже? Как по мне, пространства имён - прекрасная возможность естественной группировки типов исключений по их поведенческим ситуациям: все, что принадлежит определённым группам там и должно находиться, включая исключения. Мало того, когда вы получите определённое исключение, то помимо названия его типа вы увидите и его пространство имён, что чётко определит его принадлежность. Помните пример плохого переиспользования типа <code>InvalidDataException</code>, который на самом деле определён в пространстве имён <code>System.IO</code>? Его принадлежность данному пространству имён означает что по сути исключение этого типа может быть выброшено из классов, находящихся в пространстве имён <code>System.IO</code> либо в более вложенном. Но само исключение при этом было выброшено совершенно из другого места, запутывая исследователя возникшей проблемы. Сосредотачивая типы исключений по тем же пространствам имён, что и типы, эти исключения выбрасывающие, вы с одной стороны сохраняете архитектуру типов консистентной, а с другой - облегчаете понимание причин произошедшего конечным разработчиком.</p>
 <p>Каков второй путь группировки на уровне кода? Наследование:</p>
 <div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
-
 <span style="color:Blue;">public</span> <span style="color:Blue;">abstract</span> <span style="color:Blue;">class</span> LoggerExceptionBase : Exception
 {
     <span style="color:Blue;">protected</span> LoggerException(..);
@@ -577,7 +655,6 @@ T GetFromCacheOrCalculate()
 {
     <span style="color:Green;">// Something else wrong. Looks critical because we don&#39;t know real reason</span>
 }
-
 </pre></div>
 </div>
 <p>Заметьте, что тут происходит: мы как пользовательский код вызываем некий библиотечный метод, который, насколько мы знаем, может при некоторых обстоятельствах выбросить исключение <code>XmlParserServiceException</code>. И, насколько мы знаем, это исключение находится в пространстве имён, наследуя <code>JetFinance.FinancialPipe.FinancialPipeExceptionBase</code>, что говорит о возможном упущении других исключений: это сейчас микросервис <code>XmlParserService</code> создаёт только одно исключение, но в будущем могут появиться и другие. И поскольку у нас есть конвенция в создании типов исключений, мы точно знаем от кого это новое исключение будет наследоваться и заранее ставим обобщающий <code>catch</code> не затрагивая при этом ничего лишнего: то, что не попало в зону нашей ответственности пролетит мимо.</p>
