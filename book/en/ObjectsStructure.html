@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+    <link rel="stylesheet" href="../../out/res/bootstrap.css">
     <style>
         body {
     padding: 60px 60px 60px 100px;
@@ -41,24 +42,46 @@ ul li {
     font-family: inherit;
 }
 
-code, .lang-csharp span, .lang-csharp pre {
+table {
+    margin: 30px 0;
+    width: 100%;
+}
+
+thead {                         
+    background-color: aliceblue;
+}
+
+table th {
+    font-weight: 400;
+}
+
+table td, table th {
+    padding: 7px;
+    border-top: solid darkgrey 1px;
+    border-bottom: solid darkgrey 1px;
+    border-right: dotted darkgray 1px;
+    border-left: dotted darkgray 1px;
+    font-size: smaller;
+}
+
+code, *[class^='lang-'] span, *[class^='lang-'] pre {
     font-family: JB Mono, monospace !important;
 }
 
-.lang-csharp {
+*[class^='lang-'] {
     padding: 4px 0px 14px 0px;
 }
 
 
-.lang-csharp > div {
+*[class^='lang-'] > div, pre > code {
     border-left-color: #eee;
     border-left-style: dotted;
     border-left-width: 3px;
-    background-color: #f5faff !important;
-    padding: 10px 10px 10px 25px;
+    padding-left: 25px;
+    display: block;
 }
 
-code {
+p code {
     font-size: 14px;
     border: gainsboro;
     border-width: 1px;
@@ -67,7 +90,7 @@ code {
     color: darkslateblue;
 }
 
-.lang-csharp span, .lang-csharp pre {
+*[class^='lang-'] span, *[class^='lang-'] pre, pre > code {
     font-size: 13px;
     line-height: 20px;
 }
@@ -76,6 +99,12 @@ p a, li a {
     text-decoration: none;
     color: inherit;
     box-shadow: inset 0 -1px #b88b59;
+}
+
+blockquote h5 {
+    background-color: aquamarine;
+    margin: 16px 0 16px -20px;
+    padding: 15px 30px 15px;
 }
 
 p img {
@@ -143,150 +172,149 @@ h2 {
 h3 {
     margin: 30px 0 10px 0;
     font-size: 17pt;
-    font-weight: 500;
+    font-weight: 400;
 }
 
 h4 {
     margin: 20px 0 10px 0;
     font-size: 16pt;
-    font-weight: 500;
-    font-style: italic;
+    font-weight: 400;
 }
 
-/* Fonts 
+/* Fonts */
 
 @font-face {
     font-family: 'PF Regal';
-    src: url('../res/fonts/PFRegalTextPro-RegularA.eot');
-    src: local('../res/fonts/PFRegalTextPro-RegularA'),
-        url('../res/fonts/PFRegalTextPro-RegularA.woff2') format('woff2'),
-        url('../res/fonts/PFRegalTextPro-RegularA.woff') format('woff'),
-        url('../res/fonts/PFRegalTextPro-RegularA.ttf') format('truetype');
+    src: url('../../out/res/fonts/PFRegalTextPro-RegularA.eot');
+    src: local('../../out/res/fonts/PFRegalTextPro-RegularA'),
+        url('../../out/res/fonts/PFRegalTextPro-RegularA.woff2') format('woff2'),
+        url('../../out/res/fonts/PFRegalTextPro-RegularA.woff') format('woff'),
+        url('../../out/res/fonts/PFRegalTextPro-RegularA.ttf') format('truetype');
     font-weight: 300;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'PF Regal';
-    src: url('../res/fonts/PFRegalTextPro-Bold.eot');
-    src: local('../res/fonts/PFRegalTextPro-Bold'),
-        url('../res/fonts/PFRegalTextPro-Bold.woff2') format('woff2'),
-        url('../res/fonts/PFRegalTextPro-Bold.woff') format('woff'),
-        url('../res/fonts/PFRegalTextPro-Bold.ttf') format('truetype');
+    src: url('../../out/res/fonts/PFRegalTextPro-Bold.eot');
+    src: local('../../out/res/fonts/PFRegalTextPro-Bold'),
+        url('../../out/res/fonts/PFRegalTextPro-Bold.woff2') format('woff2'),
+        url('../../out/res/fonts/PFRegalTextPro-Bold.woff') format('woff'),
+        url('../../out/res/fonts/PFRegalTextPro-Bold.ttf') format('truetype');
     font-weight: bold;
     font-style: normal;
 }
-*/
+
 @font-face {
     font-family: 'PF Regal';
-    src: url('../res/fonts/PFRegalTextPro-Medium.eot');
-    src: local('../res/fonts/PFRegalTextPro-Medium'),
-        url('../res/fonts/PFRegalTextPro-Medium.woff2') format('woff2'),
-        url('../res/fonts/PFRegalTextPro-Medium.woff') format('woff'),
-        url('../res/fonts/PFRegalTextPro-Medium.ttf') format('truetype');
+    src: url('../../out/res/fonts/PFRegalTextPro-Medium.eot');
+    src: local('../../out/res/fonts/PFRegalTextPro-Medium'),
+        url('../../out/res/fonts/PFRegalTextPro-Medium.woff2') format('woff2'),
+        url('../../out/res/fonts/PFRegalTextPro-Medium.woff') format('woff'),
+        url('../../out/res/fonts/PFRegalTextPro-Medium.ttf') format('truetype');
     font-weight: 500;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'PF Regal';
-    src: url('../res/fonts/PFRegalTextPro-BlackItalic.eot');
-    src: local('../res/fonts/PFRegalTextPro-BlackItalic'),
-        url('../res/fonts/PFRegalTextPro-BlackItalic.woff2') format('woff2'),
-        url('../res/fonts/PFRegalTextPro-BlackItalic.woff') format('woff'),
-        url('../res/fonts/PFRegalTextPro-BlackItalic.ttf') format('truetype');
+    src: url('../../out/res/fonts/PFRegalTextPro-BlackItalic.eot');
+    src: local('../../out/res/fonts/PFRegalTextPro-BlackItalic'),
+        url('../../out/res/fonts/PFRegalTextPro-BlackItalic.woff2') format('woff2'),
+        url('../../out/res/fonts/PFRegalTextPro-BlackItalic.woff') format('woff'),
+        url('../../out/res/fonts/PFRegalTextPro-BlackItalic.ttf') format('truetype');
     font-weight: 900;
     font-style: italic;
 }
 
 @font-face {
     font-family: 'PF Regal';
-    src: url('../res/fonts/PFRegalTextPro-Black.eot');
-    src: local('../res/fonts/PFRegalTextPro-Black'),
-        url('../res/fonts/PFRegalTextPro-Black.woff2') format('woff2'),
-        url('../res/fonts/PFRegalTextPro-Black.woff') format('woff'),
-        url('../res/fonts/PFRegalTextPro-Black.ttf') format('truetype');
+    src: url('../../out/res/fonts/PFRegalTextPro-Black.eot');
+    src: local('../../out/res/fonts/PFRegalTextPro-Black'),
+        url('../../out/res/fonts/PFRegalTextPro-Black.woff2') format('woff2'),
+        url('../../out/res/fonts/PFRegalTextPro-Black.woff') format('woff'),
+        url('../../out/res/fonts/PFRegalTextPro-Black.ttf') format('truetype');
     font-weight: 900;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'PF Regal UBlack';
-    src: url('../res/fonts/PFRegalTextPro-UBlack.eot');
-    src: local('../res/fonts/PFRegalTextPro-UBlack'),
-        url('../res/fonts/PFRegalTextPro-UBlack.woff2') format('woff2'),
-        url('../res/fonts/PFRegalTextPro-UBlack.woff') format('woff'),
-        url('../res/fonts/PFRegalTextPro-UBlack.ttf') format('truetype');
+    src: url('../../out/res/fonts/PFRegalTextPro-UBlack.eot');
+    src: local('../../out/res/fonts/PFRegalTextPro-UBlack'),
+        url('../../out/res/fonts/PFRegalTextPro-UBlack.woff2') format('woff2'),
+        url('../../out/res/fonts/PFRegalTextPro-UBlack.woff') format('woff'),
+        url('../../out/res/fonts/PFRegalTextPro-UBlack.ttf') format('truetype');
     font-weight: 900;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'PF Regal';
-    src: url('../res/fonts/PFRegalTextPro-MediumItalic.eot');
-    src: local('../res/fonts/PFRegalTextPro-MediumItalic'),
-        url('../res/fonts/PFRegalTextPro-MediumItalic.woff2') format('woff2'),
-        url('../res/fonts/PFRegalTextPro-MediumItalic.woff') format('woff'),
-        url('../res/fonts/PFRegalTextPro-MediumItalic.ttf') format('truetype');
+    src: url('../../out/res/fonts/PFRegalTextPro-MediumItalic.eot');
+    src: local('../../out/res/fonts/PFRegalTextPro-MediumItalic'),
+        url('../../out/res/fonts/PFRegalTextPro-MediumItalic.woff2') format('woff2'),
+        url('../../out/res/fonts/PFRegalTextPro-MediumItalic.woff') format('woff'),
+        url('../../out/res/fonts/PFRegalTextPro-MediumItalic.ttf') format('truetype');
     font-weight: 500;
     font-style: italic;
 }
 
 @font-face {
     font-family: 'PF Regal';
-    src: url('../res/fonts/PFRegalTextPro-UBlackItalic.eot');
-    src: local('../res/fonts/PFRegalTextPro-UBlackItalic'),
-        url('../res/fonts/PFRegalTextPro-UBlackItalic.woff2') format('woff2'),
-        url('../res/fonts/PFRegalTextPro-UBlackItalic.woff') format('woff'),
-        url('../res/fonts/PFRegalTextPro-UBlackItalic.ttf') format('truetype');
+    src: url('../../out/res/fonts/PFRegalTextPro-UBlackItalic.eot');
+    src: local('../../out/res/fonts/PFRegalTextPro-UBlackItalic'),
+        url('../../out/res/fonts/PFRegalTextPro-UBlackItalic.woff2') format('woff2'),
+        url('../../out/res/fonts/PFRegalTextPro-UBlackItalic.woff') format('woff'),
+        url('../../out/res/fonts/PFRegalTextPro-UBlackItalic.ttf') format('truetype');
     font-weight: 900;
     font-style: italic;
 }
 
 @font-face {
     font-family: 'PF Regal';
-    src: url('../res/fonts/PFRegalTextPro-RegularAItalic.eot');
-    src: local('../res/fonts/PFRegalTextPro-RegularAItalic'),
-        url('../res/fonts/PFRegalTextPro-RegularAItalic.woff2') format('woff2'),
-        url('../res/fonts/PFRegalTextPro-RegularAItalic.woff') format('woff'),
-        url('../res/fonts/PFRegalTextPro-RegularAItalic.ttf') format('truetype');
+    src: url('../../out/res/fonts/PFRegalTextPro-RegularAItalic.eot');
+    src: local('../../out/res/fonts/PFRegalTextPro-RegularAItalic'),
+        url('../../out/res/fonts/PFRegalTextPro-RegularAItalic.woff2') format('woff2'),
+        url('../../out/res/fonts/PFRegalTextPro-RegularAItalic.woff') format('woff'),
+        url('../../out/res/fonts/PFRegalTextPro-RegularAItalic.ttf') format('truetype');
     font-weight: 300;
     font-style: italic;
 }
 
 @font-face {
     font-family: 'PF Regal';
-    src: url('../res/fonts/PFRegalTextPro-BoldItalic.eot');
-    src: local('../res/fonts/PFRegalTextPro-BoldItalic'),
-        url('../res/fonts/PFRegalTextPro-BoldItalic.woff2') format('woff2'),
-        url('../res/fonts/PFRegalTextPro-BoldItalic.woff') format('woff'),
-        url('../res/fonts/PFRegalTextPro-BoldItalic.ttf') format('truetype');
+    src: url('../../out/res/fonts/PFRegalTextPro-BoldItalic.eot');
+    src: local('../../out/res/fonts/PFRegalTextPro-BoldItalic'),
+        url('../../out/res/fonts/PFRegalTextPro-BoldItalic.woff2') format('woff2'),
+        url('../../out/res/fonts/PFRegalTextPro-BoldItalic.woff') format('woff'),
+        url('../../out/res/fonts/PFRegalTextPro-BoldItalic.ttf') format('truetype');
     font-weight: bold;
     font-style: italic;
 }
 
-/*  Regular B */
+/*  Regular B *
 @font-face {
     font-family: 'PF Regal';
-    src: url('../res/fonts/PFRegalTextPro-RegularBItalic.eot');
-    src: local('../res/fonts/PFRegalTextPro-RegularBItalic'),
-        url('../res/fonts/PFRegalTextPro-RegularBItalic.woff2') format('woff2'),
-        url('../res/fonts/PFRegalTextPro-RegularBItalic.woff') format('woff'),
-        url('../res/fonts/PFRegalTextPro-RegularBItalic.ttf') format('truetype');
+    src: url('../../out/res/fonts/PFRegalTextPro-RegularBItalic.eot');
+    src: local('../../out/res/fonts/PFRegalTextPro-RegularBItalic'),
+        url('../../out/res/fonts/PFRegalTextPro-RegularBItalic.woff2') format('woff2'),
+        url('../../out/res/fonts/PFRegalTextPro-RegularBItalic.woff') format('woff'),
+        url('../../out/res/fonts/PFRegalTextPro-RegularBItalic.ttf') format('truetype');
     font-weight: normal;
     font-style: italic;
 }
 
 @font-face {
     font-family: 'PF Regal';
-    src: url('../res/fonts/PFRegalTextPro-RegularB.eot');
-    src: local('../res/fonts/PFRegalTextPro-RegularB'),
-        url('../res/fonts/PFRegalTextPro-RegularB.woff2') format('woff2'),
-        url('../res/fonts/PFRegalTextPro-RegularB.woff') format('woff'),
-        url('../res/fonts/PFRegalTextPro-RegularB.ttf') format('truetype');
+    src: url('../../out/res/fonts/PFRegalTextPro-RegularB.eot');
+    src: local('../../out/res/fonts/PFRegalTextPro-RegularB'),
+        url('../../out/res/fonts/PFRegalTextPro-RegularB.woff2') format('woff2'),
+        url('../../out/res/fonts/PFRegalTextPro-RegularB.woff') format('woff'),
+        url('../../out/res/fonts/PFRegalTextPro-RegularB.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
-}                
+}              */  
     </style>
 
 <div style="margin:auto; width:100%;">
@@ -416,6 +444,8 @@ Console.WriteLine(SizeOf(<span style="color:Blue;">typeof</span>(Sample)));
 </pre></div>
 </div>
 <p>So, what have we done? Initially, we got the pointer to the VMT. Next, we read the size and get <code>12</code> that is the aggregate size of <code>SyncBlockIndex + VMT_Ptr + x</code> fields for a 32-bit platform. If we play with different types, we will get something like the following table for x86:</p>
+<div class="row">
+<div class="offset-1 col-10">
 <table>
 <thead>
 <tr>
@@ -497,6 +527,8 @@ Console.WriteLine(SizeOf(<span style="color:Blue;">typeof</span>(Sample)));
 </tr>
 </tbody>
 </table>
+</div>
+</div>
 <p>As you see, when the system stores data about the size of an instance, in fact it stores data for a reference version of this type (i.e. including the reference version of a value type). Let’s make some conclusions:</p>
 <ol>
 <li>If you want to know how much memory a value type will take as a value, use <code>sizeof(TType)</code>.</li>
@@ -844,6 +876,8 @@ size of <span style="color:Blue;">int</span>[2,3,4,5]{...}: 512
 <h2 id="virtual-stub-dispatch-vsd-in-progress">Virtual Stub Dispatch (VSD) [In Progress]</h2>
 <p>To address this issue, it is necessary to remember that we can implement an interface in two ways: we can choose either <code>implicit</code> or <code>explicit</code> implementation. Moreover, you can do it partially: some methods will be <code>implicit</code>, the other – <code>explicit</code>. In fact, this opportunity is the consequence of implementation and probably wasn’t initially planned: by implementing an interface you explicitly or implicitly show what’s inside that interface. Some class methods may not be included into an interface, some methods within an interface may not exist in a class (of course they exist in a class, but syntax shows that they don’t belong to that class architecturally): a class and an interface are parallel hierarchies of types in some sense. Also, an interface is a separate type. It means that every interface has its own VMT so that anybody could call the methods of an interface.</p>
 <p>Let’s look at the table to see how VMTs of different types could be like:</p>
+<div class="row">
+<div class="offset-3 col-6">
 <table>
 <thead>
 <tr>
@@ -875,6 +909,8 @@ size of <span style="color:Blue;">int</span>[2,3,4,5]{...}: 512
 </tr>
 </tbody>
 </table>
+</div>
+</div>
 <p>The VMTs of all three types contain the necessary <code>GetValue</code> and <code>SetValue</code> methods. However, they are located at different indexes: their index cannot be the same globally as it would cause a collision between indexes of other interfaces of a class. Actually, every interface duplicated each time it’s implemented by a class. So, if we have 633 implementations of <code>IDisposable</code> in FCL/BCL classes,  we also have 633 duplicates of <code>IDisposable</code> interfaces to support the VMT to VMT translation across every class + a entry in each class with a reference to its interface implementation. We will call such interfaces <strong>private interfaces</strong>. That is each class has its own <strong>private interfaces</strong> that are &quot;system” and act as proxy types to non-virtual interfaces.</p>
 <p>Thus, interfaces, just like classes, inherit virtual <em>interface</em> methods. However, this inheritance works not only when we inherit one interface from an other but also when a class implements an interface. When a class implements an interface, an additional interface is created that specifies which methods of a parent interface should be inherited from and referenced to in the target class. By calling a method through an interface identifier, you similarly call a method through the index from a VMT as it was in case of classes. However, for this interface implementation you use a slot ID to choose a slot from an <em>inherited</em> private interface, through which the original <code>IDisposable</code> interface is connected with our class that implements the interface.</p>
 <p>The dispatch of virtual methods by stubs or <strong>Virtual Stub Dispatch (VSD)</strong> was developed in 2006 as a replacement for VMTs, specifically in interfaces. This approach simplifies generation of code and method calls as the initial implementation of interfaces with VMT would be very cumbersome and need a huge amount of time and working set to build all structures of all interfaces. The code of dispatching is in four files containing 6,400 lines, and we don’t intend to understand the whole thing. We will try to understand the process in this code in general terms.</p>

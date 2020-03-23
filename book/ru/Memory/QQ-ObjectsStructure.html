@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+    <link rel="stylesheet" href="../../../out/res/bootstrap.css">
     <style>
         body {
     padding: 60px 60px 60px 100px;
@@ -41,24 +42,46 @@ ul li {
     font-family: inherit;
 }
 
-code, .lang-csharp span, .lang-csharp pre {
+table {
+    margin: 30px 0;
+    width: 100%;
+}
+
+thead {                         
+    background-color: aliceblue;
+}
+
+table th {
+    font-weight: 400;
+}
+
+table td, table th {
+    padding: 7px;
+    border-top: solid darkgrey 1px;
+    border-bottom: solid darkgrey 1px;
+    border-right: dotted darkgray 1px;
+    border-left: dotted darkgray 1px;
+    font-size: smaller;
+}
+
+code, *[class^='lang-'] span, *[class^='lang-'] pre {
     font-family: JB Mono, monospace !important;
 }
 
-.lang-csharp {
+*[class^='lang-'] {
     padding: 4px 0px 14px 0px;
 }
 
 
-.lang-csharp > div {
+*[class^='lang-'] > div, pre > code {
     border-left-color: #eee;
     border-left-style: dotted;
     border-left-width: 3px;
-    background-color: #f5faff !important;
-    padding: 10px 10px 10px 25px;
+    padding-left: 25px;
+    display: block;
 }
 
-code {
+p code {
     font-size: 14px;
     border: gainsboro;
     border-width: 1px;
@@ -67,7 +90,7 @@ code {
     color: darkslateblue;
 }
 
-.lang-csharp span, .lang-csharp pre {
+*[class^='lang-'] span, *[class^='lang-'] pre, pre > code {
     font-size: 13px;
     line-height: 20px;
 }
@@ -76,6 +99,12 @@ p a, li a {
     text-decoration: none;
     color: inherit;
     box-shadow: inset 0 -1px #b88b59;
+}
+
+blockquote h5 {
+    background-color: aquamarine;
+    margin: 16px 0 16px -20px;
+    padding: 15px 30px 15px;
 }
 
 p img {
@@ -143,150 +172,149 @@ h2 {
 h3 {
     margin: 30px 0 10px 0;
     font-size: 17pt;
-    font-weight: 500;
+    font-weight: 400;
 }
 
 h4 {
     margin: 20px 0 10px 0;
     font-size: 16pt;
-    font-weight: 500;
-    font-style: italic;
+    font-weight: 400;
 }
 
-/* Fonts 
+/* Fonts */
 
 @font-face {
     font-family: 'PF Regal';
-    src: url('../../res/fonts/PFRegalTextPro-RegularA.eot');
-    src: local('../../res/fonts/PFRegalTextPro-RegularA'),
-        url('../../res/fonts/PFRegalTextPro-RegularA.woff2') format('woff2'),
-        url('../../res/fonts/PFRegalTextPro-RegularA.woff') format('woff'),
-        url('../../res/fonts/PFRegalTextPro-RegularA.ttf') format('truetype');
+    src: url('../../../out/res/fonts/PFRegalTextPro-RegularA.eot');
+    src: local('../../../out/res/fonts/PFRegalTextPro-RegularA'),
+        url('../../../out/res/fonts/PFRegalTextPro-RegularA.woff2') format('woff2'),
+        url('../../../out/res/fonts/PFRegalTextPro-RegularA.woff') format('woff'),
+        url('../../../out/res/fonts/PFRegalTextPro-RegularA.ttf') format('truetype');
     font-weight: 300;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'PF Regal';
-    src: url('../../res/fonts/PFRegalTextPro-Bold.eot');
-    src: local('../../res/fonts/PFRegalTextPro-Bold'),
-        url('../../res/fonts/PFRegalTextPro-Bold.woff2') format('woff2'),
-        url('../../res/fonts/PFRegalTextPro-Bold.woff') format('woff'),
-        url('../../res/fonts/PFRegalTextPro-Bold.ttf') format('truetype');
+    src: url('../../../out/res/fonts/PFRegalTextPro-Bold.eot');
+    src: local('../../../out/res/fonts/PFRegalTextPro-Bold'),
+        url('../../../out/res/fonts/PFRegalTextPro-Bold.woff2') format('woff2'),
+        url('../../../out/res/fonts/PFRegalTextPro-Bold.woff') format('woff'),
+        url('../../../out/res/fonts/PFRegalTextPro-Bold.ttf') format('truetype');
     font-weight: bold;
     font-style: normal;
 }
-*/
+
 @font-face {
     font-family: 'PF Regal';
-    src: url('../../res/fonts/PFRegalTextPro-Medium.eot');
-    src: local('../../res/fonts/PFRegalTextPro-Medium'),
-        url('../../res/fonts/PFRegalTextPro-Medium.woff2') format('woff2'),
-        url('../../res/fonts/PFRegalTextPro-Medium.woff') format('woff'),
-        url('../../res/fonts/PFRegalTextPro-Medium.ttf') format('truetype');
+    src: url('../../../out/res/fonts/PFRegalTextPro-Medium.eot');
+    src: local('../../../out/res/fonts/PFRegalTextPro-Medium'),
+        url('../../../out/res/fonts/PFRegalTextPro-Medium.woff2') format('woff2'),
+        url('../../../out/res/fonts/PFRegalTextPro-Medium.woff') format('woff'),
+        url('../../../out/res/fonts/PFRegalTextPro-Medium.ttf') format('truetype');
     font-weight: 500;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'PF Regal';
-    src: url('../../res/fonts/PFRegalTextPro-BlackItalic.eot');
-    src: local('../../res/fonts/PFRegalTextPro-BlackItalic'),
-        url('../../res/fonts/PFRegalTextPro-BlackItalic.woff2') format('woff2'),
-        url('../../res/fonts/PFRegalTextPro-BlackItalic.woff') format('woff'),
-        url('../../res/fonts/PFRegalTextPro-BlackItalic.ttf') format('truetype');
+    src: url('../../../out/res/fonts/PFRegalTextPro-BlackItalic.eot');
+    src: local('../../../out/res/fonts/PFRegalTextPro-BlackItalic'),
+        url('../../../out/res/fonts/PFRegalTextPro-BlackItalic.woff2') format('woff2'),
+        url('../../../out/res/fonts/PFRegalTextPro-BlackItalic.woff') format('woff'),
+        url('../../../out/res/fonts/PFRegalTextPro-BlackItalic.ttf') format('truetype');
     font-weight: 900;
     font-style: italic;
 }
 
 @font-face {
     font-family: 'PF Regal';
-    src: url('../../res/fonts/PFRegalTextPro-Black.eot');
-    src: local('../../res/fonts/PFRegalTextPro-Black'),
-        url('../../res/fonts/PFRegalTextPro-Black.woff2') format('woff2'),
-        url('../../res/fonts/PFRegalTextPro-Black.woff') format('woff'),
-        url('../../res/fonts/PFRegalTextPro-Black.ttf') format('truetype');
+    src: url('../../../out/res/fonts/PFRegalTextPro-Black.eot');
+    src: local('../../../out/res/fonts/PFRegalTextPro-Black'),
+        url('../../../out/res/fonts/PFRegalTextPro-Black.woff2') format('woff2'),
+        url('../../../out/res/fonts/PFRegalTextPro-Black.woff') format('woff'),
+        url('../../../out/res/fonts/PFRegalTextPro-Black.ttf') format('truetype');
     font-weight: 900;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'PF Regal UBlack';
-    src: url('../../res/fonts/PFRegalTextPro-UBlack.eot');
-    src: local('../../res/fonts/PFRegalTextPro-UBlack'),
-        url('../../res/fonts/PFRegalTextPro-UBlack.woff2') format('woff2'),
-        url('../../res/fonts/PFRegalTextPro-UBlack.woff') format('woff'),
-        url('../../res/fonts/PFRegalTextPro-UBlack.ttf') format('truetype');
+    src: url('../../../out/res/fonts/PFRegalTextPro-UBlack.eot');
+    src: local('../../../out/res/fonts/PFRegalTextPro-UBlack'),
+        url('../../../out/res/fonts/PFRegalTextPro-UBlack.woff2') format('woff2'),
+        url('../../../out/res/fonts/PFRegalTextPro-UBlack.woff') format('woff'),
+        url('../../../out/res/fonts/PFRegalTextPro-UBlack.ttf') format('truetype');
     font-weight: 900;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'PF Regal';
-    src: url('../../res/fonts/PFRegalTextPro-MediumItalic.eot');
-    src: local('../../res/fonts/PFRegalTextPro-MediumItalic'),
-        url('../../res/fonts/PFRegalTextPro-MediumItalic.woff2') format('woff2'),
-        url('../../res/fonts/PFRegalTextPro-MediumItalic.woff') format('woff'),
-        url('../../res/fonts/PFRegalTextPro-MediumItalic.ttf') format('truetype');
+    src: url('../../../out/res/fonts/PFRegalTextPro-MediumItalic.eot');
+    src: local('../../../out/res/fonts/PFRegalTextPro-MediumItalic'),
+        url('../../../out/res/fonts/PFRegalTextPro-MediumItalic.woff2') format('woff2'),
+        url('../../../out/res/fonts/PFRegalTextPro-MediumItalic.woff') format('woff'),
+        url('../../../out/res/fonts/PFRegalTextPro-MediumItalic.ttf') format('truetype');
     font-weight: 500;
     font-style: italic;
 }
 
 @font-face {
     font-family: 'PF Regal';
-    src: url('../../res/fonts/PFRegalTextPro-UBlackItalic.eot');
-    src: local('../../res/fonts/PFRegalTextPro-UBlackItalic'),
-        url('../../res/fonts/PFRegalTextPro-UBlackItalic.woff2') format('woff2'),
-        url('../../res/fonts/PFRegalTextPro-UBlackItalic.woff') format('woff'),
-        url('../../res/fonts/PFRegalTextPro-UBlackItalic.ttf') format('truetype');
+    src: url('../../../out/res/fonts/PFRegalTextPro-UBlackItalic.eot');
+    src: local('../../../out/res/fonts/PFRegalTextPro-UBlackItalic'),
+        url('../../../out/res/fonts/PFRegalTextPro-UBlackItalic.woff2') format('woff2'),
+        url('../../../out/res/fonts/PFRegalTextPro-UBlackItalic.woff') format('woff'),
+        url('../../../out/res/fonts/PFRegalTextPro-UBlackItalic.ttf') format('truetype');
     font-weight: 900;
     font-style: italic;
 }
 
 @font-face {
     font-family: 'PF Regal';
-    src: url('../../res/fonts/PFRegalTextPro-RegularAItalic.eot');
-    src: local('../../res/fonts/PFRegalTextPro-RegularAItalic'),
-        url('../../res/fonts/PFRegalTextPro-RegularAItalic.woff2') format('woff2'),
-        url('../../res/fonts/PFRegalTextPro-RegularAItalic.woff') format('woff'),
-        url('../../res/fonts/PFRegalTextPro-RegularAItalic.ttf') format('truetype');
+    src: url('../../../out/res/fonts/PFRegalTextPro-RegularAItalic.eot');
+    src: local('../../../out/res/fonts/PFRegalTextPro-RegularAItalic'),
+        url('../../../out/res/fonts/PFRegalTextPro-RegularAItalic.woff2') format('woff2'),
+        url('../../../out/res/fonts/PFRegalTextPro-RegularAItalic.woff') format('woff'),
+        url('../../../out/res/fonts/PFRegalTextPro-RegularAItalic.ttf') format('truetype');
     font-weight: 300;
     font-style: italic;
 }
 
 @font-face {
     font-family: 'PF Regal';
-    src: url('../../res/fonts/PFRegalTextPro-BoldItalic.eot');
-    src: local('../../res/fonts/PFRegalTextPro-BoldItalic'),
-        url('../../res/fonts/PFRegalTextPro-BoldItalic.woff2') format('woff2'),
-        url('../../res/fonts/PFRegalTextPro-BoldItalic.woff') format('woff'),
-        url('../../res/fonts/PFRegalTextPro-BoldItalic.ttf') format('truetype');
+    src: url('../../../out/res/fonts/PFRegalTextPro-BoldItalic.eot');
+    src: local('../../../out/res/fonts/PFRegalTextPro-BoldItalic'),
+        url('../../../out/res/fonts/PFRegalTextPro-BoldItalic.woff2') format('woff2'),
+        url('../../../out/res/fonts/PFRegalTextPro-BoldItalic.woff') format('woff'),
+        url('../../../out/res/fonts/PFRegalTextPro-BoldItalic.ttf') format('truetype');
     font-weight: bold;
     font-style: italic;
 }
 
-/*  Regular B */
+/*  Regular B *
 @font-face {
     font-family: 'PF Regal';
-    src: url('../../res/fonts/PFRegalTextPro-RegularBItalic.eot');
-    src: local('../../res/fonts/PFRegalTextPro-RegularBItalic'),
-        url('../../res/fonts/PFRegalTextPro-RegularBItalic.woff2') format('woff2'),
-        url('../../res/fonts/PFRegalTextPro-RegularBItalic.woff') format('woff'),
-        url('../../res/fonts/PFRegalTextPro-RegularBItalic.ttf') format('truetype');
+    src: url('../../../out/res/fonts/PFRegalTextPro-RegularBItalic.eot');
+    src: local('../../../out/res/fonts/PFRegalTextPro-RegularBItalic'),
+        url('../../../out/res/fonts/PFRegalTextPro-RegularBItalic.woff2') format('woff2'),
+        url('../../../out/res/fonts/PFRegalTextPro-RegularBItalic.woff') format('woff'),
+        url('../../../out/res/fonts/PFRegalTextPro-RegularBItalic.ttf') format('truetype');
     font-weight: normal;
     font-style: italic;
 }
 
 @font-face {
     font-family: 'PF Regal';
-    src: url('../../res/fonts/PFRegalTextPro-RegularB.eot');
-    src: local('../../res/fonts/PFRegalTextPro-RegularB'),
-        url('../../res/fonts/PFRegalTextPro-RegularB.woff2') format('woff2'),
-        url('../../res/fonts/PFRegalTextPro-RegularB.woff') format('woff'),
-        url('../../res/fonts/PFRegalTextPro-RegularB.ttf') format('truetype');
+    src: url('../../../out/res/fonts/PFRegalTextPro-RegularB.eot');
+    src: local('../../../out/res/fonts/PFRegalTextPro-RegularB'),
+        url('../../../out/res/fonts/PFRegalTextPro-RegularB.woff2') format('woff2'),
+        url('../../../out/res/fonts/PFRegalTextPro-RegularB.woff') format('woff'),
+        url('../../../out/res/fonts/PFRegalTextPro-RegularB.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
-}                
+}              */  
     </style>
 
 <div style="margin:auto; width:100%;">
@@ -299,8 +327,7 @@ h4 {
 <h2 id="section-1">Внутренняя структура экземпляров типов</h2>
 <p>Перед тем как начинать рассуждение о строении управляющих блоков системы типов давайте посмотрим на сам объект, на экземпляр любого класса. Если мы создадим в памяти экземпляр любого ссылочного типа, будь то класс или же упакованная структура, то состоять он будет всего из трёх полей: SyncBlockIndex (который на самом деле не только он), указатель на описатель типа и данные. Область данных может содержать очень много полей, но, не умаляя общности, ниже в примере полагаем, что в данных содержится одно поле. Так, если представить эту структуру графически, то мы получим следующее:</p>
 <p><strong>System.Object</strong></p>
-<pre><code>
-  ----------------------------------------------
+<pre><code>  ----------------------------------------------
   |  SyncBlkIndx |   VMT_Ptr    |     Data     |
   ----------------------------------------------
   |  4 / 8 байт  |  4 / 8 байт  |  4 / 8 байт  |
@@ -320,21 +347,21 @@ h4 {
 <p>Это версия из CoreCLR. Если смотреть на структуру полей в .NET Framework, то она будет отличаться расположением полей и расположением отдельных битов системной информации из двух битовых полей <code>m_wFlags</code> и <code>m_wFlags2</code>.</p>
 </blockquote>
 <div class="lang-cpp editor-colors"><div style="color:Black;background-color:White;"><pre>
-   <span style="color:Green;">// Low WORD is component size for array and string types (HasComponentSize() returns true).</span>
-   <span style="color:Green;">// Used for flags otherwise.</span>
-   DWORD m_dwFlags;
+    <span style="color:Green;">// Low WORD is component size for array and string types (HasComponentSize() returns true).</span>
+    <span style="color:Green;">// Used for flags otherwise.</span>
+    DWORD m_dwFlags;
 
-   <span style="color:Green;">// Base size of instance of this class when allocated on the heap</span>
-   DWORD m_BaseSize;
+    <span style="color:Green;">// Base size of instance of this class when allocated on the heap</span>
+    DWORD m_BaseSize;
 
-   WORD  m_wFlags2;
+    WORD  m_wFlags2;
 
-   <span style="color:Green;">// Class token if it fits into 16-bits. If this is (WORD)-1, the class token is stored in the TokenOverflow optional member.</span>
-   WORD  m_wToken;
+    <span style="color:Green;">// Class token if it fits into 16-bits. If this is (WORD)-1, the class token is stored in the TokenOverflow optional member.</span>
+    WORD  m_wToken;
 
-   <span style="color:Green;">// &lt;NICE&gt; In the normal cases we shouldn&#39;t need a full word for each of these &lt;/NICE&gt;</span>
-   WORD  m_wNumVirtuals;
-   WORD  m_wNumInterfaces;
+    <span style="color:Green;">// &lt;NICE&gt; In the normal cases we shouldn&#39;t need a full word for each of these &lt;/NICE&gt;</span>
+    WORD  m_wNumVirtuals;
+    WORD  m_wNumInterfaces;
 </pre></div>
 </div>
 <p>Согласитесь, выглядит несколько пугающе. Причём пугающе выглядит не то, что тут всего 6 полей (а где все остальные?), а то, что для достижения этих полей, необходимо пропустить 4,100 строк логики. Я лично ожидал тут увидеть что-то готовое, чего не надо дополнительно вычислять. Однако, тут все совсем не так просто: поскольку методов и интерфейсов в любом типе может быть различное количество, то и сама таблица VMT получается переменного размера. А это в свою очередь означает, что для достижения её наполнения надо вычислять, где находятся все её оставшиеся поля. Но давайте не будем унывать и попытаемся сразу получить выгоду из того, что мы уже имеем: мы, пока что, понятия не имеем, что имеется ввиду под другими полями (разве что два последних), зато поле <code>m_BaseSize</code> выглядит заманчиво. Как подсказывает нам комментарий, это - фактический размер для экземпляра типа. Мы только что нашли <code>sizeof</code> для классов! Попробуем в бою?</p>
@@ -342,41 +369,41 @@ h4 {
 <div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
 <span style="color:Blue;">class</span> Program
 {
-   <span style="color:Blue;">public</span> <span style="color:Blue;">static</span> <span style="color:Blue;">unsafe</span> <span style="color:Blue;">void</span> Main()
-   {
-       Union x = <span style="color:Blue;">new</span> Union();
-       x.Reference.Value = <span style="color:#A31515;">&quot;Hello!&quot;</span>;
+    <span style="color:Blue;">public</span> <span style="color:Blue;">static</span> <span style="color:Blue;">unsafe</span> <span style="color:Blue;">void</span> Main()
+    {
+        Union x = <span style="color:Blue;">new</span> Union();
+        x.Reference.Value = <span style="color:#A31515;">&quot;Hello!&quot;</span>;
 
-       <span style="color:Green;">// Первым полем лежит указатель на место, где лежит указатель на VMT</span>
-       <span style="color:Green;">// - (IntPtr*)x.Value.Value - преобразовали число в указатель (сменили тип для компилятора)</span>
-       <span style="color:Green;">// - *(IntPtr*)x.Value.Value - взяли по адресу объекта адрес VMT</span>
-       <span style="color:Green;">// - (void *)*(IntPtr*)x.Value.Value - преобразовали в указатель</span>
-       <span style="color:Blue;">void</span> *vmt = (<span style="color:Blue;">void</span> *)*(IntPtr*)x.Value.Value;
+        <span style="color:Green;">// Первым полем лежит указатель на место, где лежит указатель на VMT</span>
+        <span style="color:Green;">// - (IntPtr*)x.Value.Value - преобразовали число в указатель (сменили тип для компилятора)</span>
+        <span style="color:Green;">// - *(IntPtr*)x.Value.Value - взяли по адресу объекта адрес VMT</span>
+        <span style="color:Green;">// - (void *)*(IntPtr*)x.Value.Value - преобразовали в указатель</span>
+        <span style="color:Blue;">void</span> *vmt = (<span style="color:Blue;">void</span> *)*(IntPtr*)x.Value.Value;
 
-       <span style="color:Green;">// вывели в консоль адрес VMT;</span>
-       Console.WriteLine((<span style="color:Blue;">ulong</span>)vmt);
-   }
+        <span style="color:Green;">// вывели в консоль адрес VMT;</span>
+        Console.WriteLine((<span style="color:Blue;">ulong</span>)vmt);
+    }
 
-   [StructLayout(LayoutKind.Explicit)]
-   <span style="color:Blue;">public</span> <span style="color:Blue;">class</span> Union
-   {
-       <span style="color:Blue;">public</span> Union()
-       {
-           Value = <span style="color:Blue;">new</span> Holder&lt;IntPtr&gt;();
-           Reference = <span style="color:Blue;">new</span> Holder&lt;<span style="color:Blue;">object</span>&gt;();
-       }
+    [StructLayout(LayoutKind.Explicit)]
+    <span style="color:Blue;">public</span> <span style="color:Blue;">class</span> Union
+    {
+        <span style="color:Blue;">public</span> Union()
+        {
+            Value = <span style="color:Blue;">new</span> Holder&lt;IntPtr&gt;();
+            Reference = <span style="color:Blue;">new</span> Holder&lt;<span style="color:Blue;">object</span>&gt;();
+        }
 
-       [FieldOffset(0)]
-       <span style="color:Blue;">public</span> Holder&lt;IntPtr&gt; Value;
+        [FieldOffset(0)]
+        <span style="color:Blue;">public</span> Holder&lt;IntPtr&gt; Value;
 
-       [FieldOffset(0)]
-       <span style="color:Blue;">public</span> Holder&lt;<span style="color:Blue;">object</span>&gt; Reference;
-   }
+        [FieldOffset(0)]
+        <span style="color:Blue;">public</span> Holder&lt;<span style="color:Blue;">object</span>&gt; Reference;
+    }
 
-   <span style="color:Blue;">public</span> <span style="color:Blue;">class</span> Holder&lt;T&gt;
-   {
-       <span style="color:Blue;">public</span> T Value;
-   }
+    <span style="color:Blue;">public</span> <span style="color:Blue;">class</span> Holder&lt;T&gt;
+    {
+        <span style="color:Blue;">public</span> T Value;
+    }
 }
 </pre></div>
 </div>
@@ -388,7 +415,8 @@ h4 {
 <p>Второй путь, конечно же, проще (хоть и дольше работает). Однако знание первого очень важно с точки зрения понимания структуры экземпляра типа. Использование второго способа добавляет чувство уверенности: если мы вызываем метод API, то вроде как пользуемся задокументированным способом работы с VMT, а если достаём через указатели, то нет. Однако не стоит забывать, что хранение <code>VMT *</code> - стандартно для практически любого ООП языка и для .NET платформы в целом: эта ссылка всегда находится на одном и том же месте, как самое часто используемое поле класса. А самое часто используемое поле класса должно идти первым, чтобы адресация была без смещения и, как результат, была быстрей. Отсюда делаем вывод, что в случае классов положение полей на скорость влиять не будет, а вот у структур - самое часто используемое поле можно поставить первым. Хотя, конечно же, для абсолютного большинства .NET приложений это не даст вообще никакого эффекта: не для таких задач создавалась эта платформа.</p>
 <p>Давайте изучим вопрос структуры типов с точки зрения размера их экземпляра. Нам же надо не просто абстрактно изучать их (это просто-напросто скучно), но дополнительно попробуем извлечь из этого такую выгоду, какую не извлечь обычным способом.</p>
 <blockquote>
-<p><strong>Почему sizeof есть для Value Type, но нет для Reference Type?</strong> На самом деле вопрос, открытый т.к. никто не мешает рассчитать размер ссылочного типа. Единственное обо что можно споткнуться - это не фиксированный размер двух ссылочных типов: <code>Array</code> и <code>String</code>. А также <code>Generic</code> группы, которая зависит целиком и полностью от конкретных вариантов. Т.е. оператором <code>sizeof(..)</code> мы обойтись не смогли бы: необходимо работать с конкретными экземплярами. Однако никто не мешает команде CLR сделать метод вида <code>static int System.Object.SizeOf(object obj)</code>, который бы легко и просто возвращал бы нам то, что надо. Так почему же Microsoft не реализовала этот метод? Есть мысль, что платформа .NET в их понимании опять же - не та платформа, где разработчик будет сильно переживать за конкретные байты. В случае чего можно просто доставить планок в материнскую плату. Тем более что большинство типов данных, которые мы реализуем, не занимают такие большие объёмы.</p>
+<h5 id="sizeof-value-type-reference-type">Почему sizeof есть для Value Type, но нет для Reference Type?</h5>
+<p>На самом деле вопрос, открытый т.к. никто не мешает рассчитать размер ссылочного типа. Единственное обо что можно споткнуться - это не фиксированный размер двух ссылочных типов: <code>Array</code> и <code>String</code>. А также <code>Generic</code> группы, которая зависит целиком и полностью от конкретных вариантов. Т.е. оператором <code>sizeof(..)</code> мы обойтись не смогли бы: необходимо работать с конкретными экземплярами. Однако никто не мешает команде CLR сделать метод вида <code>static int System.Object.SizeOf(object obj)</code>, который бы легко и просто возвращал бы нам то, что надо. Так почему же Microsoft не реализовала этот метод? Есть мысль, что платформа .NET в их понимании опять же - не та платформа, где разработчик будет сильно переживать за конкретные байты. В случае чего можно просто доставить планок в материнскую плату. Тем более что большинство типов данных, которые мы реализуем, не занимают такие большие объёмы.</p>
 </blockquote>
 <p>Но не будем отвлекаться. Итак, чтобы получить размер экземпляра класса, чей размер фиксирован, достаточно написать следующий код:</p>
 <div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
@@ -416,6 +444,8 @@ Console.WriteLine(SizeOf(<span style="color:Blue;">typeof</span>(Sample)));
 </pre></div>
 </div>
 <p>Итак, что мы только что сделали? Первым шагом мы получили указатель на таблицу виртуальных методов. После чего мы считываем размер и получаем <code>12</code> - это сумма размеров полей <code>SyncBlockIndex + VMT_Ptr + поле x</code> для 32-разрядной платформы. Если мы поиграемся с разными типами, то получим примерно следующую таблицу для x86:</p>
+<div class="row">
+<div class="offset-1 col-10">
 <table>
 <thead>
 <tr>
@@ -497,6 +527,8 @@ Console.WriteLine(SizeOf(<span style="color:Blue;">typeof</span>(Sample)));
 </tr>
 </tbody>
 </table>
+</div>
+</div>
 <p>Как видите, когда система хранит данные о размере экземпляра типа, то она фактически хранит данные для ссылочного вида этого типа (т.е. в том числе для ссылочного варианта значимого). Давайте сделаем некоторые выводы:</p>
 <ol>
 <li>Если вы хотите знать, сколько займёт значимый тип как значение, используйте <code>sizeof(TType)</code></li>
@@ -844,6 +876,8 @@ size of <span style="color:Blue;">int</span>[2,3,4,5]{...}: 512
 <h2 id="virtual-stub-dispatch-vsd-in-progress">Virtual Stub Dispatch (VSD) [In Progress]</h2>
 <p>Чтобы разобраться в этом вопросе, необходимо дополнительно вспомнить, что реализовать интерфейс можно двумя путями: сделать можно либо <code>implicit</code> реализацию, либо <code>explicit</code>. Причём сделать это можно частично: часть методов сделать <code>implicit</code>, а часть - <code>explicit</code>. Эта возможность на самом деле - следствие реализации и возможно даже не является заранее продуманной: реализуя интерфейс, вы показываете явно или неявно, что в него входит. Часть методов класса может не входить в интерфейс, а методы, существующие в интерфейсе, могут не существовать в классе (они, конечно, существуют в классе, но синтаксис показывает, что архитектурно частью класса они не являются): класс и интерфейс - это в некотором, смысле - параллельные иерархии типов. Также, в плюс к этому, интерфейс - это отдельный тип, а значит, у каждого интерфейса есть собственная таблица виртуальных методов: чтобы каждый смог вызывать методы интерфейса.</p>
 <p>Давайте взглянем на таблицу: как бы могли выглядеть VMT различных типов:</p>
+<div class="row">
+<div class="offset-3 col-6">
 <table>
 <thead>
 <tr>
@@ -875,6 +909,8 @@ size of <span style="color:Blue;">int</span>[2,3,4,5]{...}: 512
 </tr>
 </tbody>
 </table>
+</div>
+</div>
 <p>VMT всех трёх типов содержат необходимые методы <code>GetValue</code> и <code>SetValue</code>, однако они находятся по разным индексам: они не могут везде быть по одним и тем же индексам, поскольку была бы конкуренция за индексы с другими интерфейсами класса. На самом деле для каждого интерфейса создаётся интерфейс - дубль - для каждой его реализации в каждом классе. Имеем 633 реализации <code>IDisposable</code> в классах FCL/BCL? Значит имеем 633 дополнительных <code>IDisposable</code> интерфейса чтобы поддержать VMT to VMT трансляцию для каждого из классов + запись в каждом классе с ссылкой на его реализацию интерфейсом. Назовём такие интерфейсы <strong>частными интерфейсами</strong>. Т.е. каждый класс имеет свои собственные, <strong>частные интерфейсы</strong>, которые являются &quot;системными&quot; и являются прокси типами до реального интерфейса.</p>
 <p>Таким образом, получается следующее: у интерфейсов также как и у классов есть наследование виртуальных <em>интерфейсных</em> методов, однако наследование это работает не только при наследовании одного интерфейса от другого, но и при реализации интерфейса классом. Когда класс реализует некий интерфейс, то создаётся дополнительный интерфейс, уточняющий какие методы интерфейса-родителя на какие методы конечного класса должны отображаться. Вызывая метод по интерфейсной переменной, вы точно также вызываете метод по индексу из массива VMT, как это делалось в случае с классами, однако для данной реализации интерфейса вы по индексу выберите слот из <em>унаследованного</em>, невидимого интерфейса, связывающего оригинальный интерфейс <code>IDisposable</code> с нашим классом, интерфейс реализующим.</p>
 <p>Диспетчеризация виртуальных методов через заглушки или <strong>Virtual Stub Dispatch (VSD)</strong> была разработана ещё в 2006 году как замена таблицам виртуальных методов в интерфейсах. Основная идея этого подхода состоит в упрощении кодогенерации и последующего упрощения вызова методов, т.к. первичная реализация интерфейсов на VMT была бы очень громоздкой и требовала бы большого количества работы и времени для построения всех структур всех интерфейсов. Сам код диспетчеризации находится, по сути, в четырёх файлах общим весом примерно в 6400 строк, и мы не строим целей понять его весь. Мы попытаемся в общих словах понять суть происходящих процессов в этом коде.</p>

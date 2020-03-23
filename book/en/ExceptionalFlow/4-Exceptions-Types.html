@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+    <link rel="stylesheet" href="../../../out/res/bootstrap.css">
     <style>
         body {
     padding: 60px 60px 60px 100px;
@@ -41,24 +42,46 @@ ul li {
     font-family: inherit;
 }
 
-code, .lang-csharp span, .lang-csharp pre {
+table {
+    margin: 30px 0;
+    width: 100%;
+}
+
+thead {                         
+    background-color: aliceblue;
+}
+
+table th {
+    font-weight: 400;
+}
+
+table td, table th {
+    padding: 7px;
+    border-top: solid darkgrey 1px;
+    border-bottom: solid darkgrey 1px;
+    border-right: dotted darkgray 1px;
+    border-left: dotted darkgray 1px;
+    font-size: smaller;
+}
+
+code, *[class^='lang-'] span, *[class^='lang-'] pre {
     font-family: JB Mono, monospace !important;
 }
 
-.lang-csharp {
+*[class^='lang-'] {
     padding: 4px 0px 14px 0px;
 }
 
 
-.lang-csharp > div {
+*[class^='lang-'] > div, pre > code {
     border-left-color: #eee;
     border-left-style: dotted;
     border-left-width: 3px;
-    background-color: #f5faff !important;
-    padding: 10px 10px 10px 25px;
+    padding-left: 25px;
+    display: block;
 }
 
-code {
+p code {
     font-size: 14px;
     border: gainsboro;
     border-width: 1px;
@@ -67,7 +90,7 @@ code {
     color: darkslateblue;
 }
 
-.lang-csharp span, .lang-csharp pre {
+*[class^='lang-'] span, *[class^='lang-'] pre, pre > code {
     font-size: 13px;
     line-height: 20px;
 }
@@ -76,6 +99,12 @@ p a, li a {
     text-decoration: none;
     color: inherit;
     box-shadow: inset 0 -1px #b88b59;
+}
+
+blockquote h5 {
+    background-color: aquamarine;
+    margin: 16px 0 16px -20px;
+    padding: 15px 30px 15px;
 }
 
 p img {
@@ -143,150 +172,149 @@ h2 {
 h3 {
     margin: 30px 0 10px 0;
     font-size: 17pt;
-    font-weight: 500;
+    font-weight: 400;
 }
 
 h4 {
     margin: 20px 0 10px 0;
     font-size: 16pt;
-    font-weight: 500;
-    font-style: italic;
+    font-weight: 400;
 }
 
-/* Fonts 
+/* Fonts */
 
 @font-face {
     font-family: 'PF Regal';
-    src: url('../../res/fonts/PFRegalTextPro-RegularA.eot');
-    src: local('../../res/fonts/PFRegalTextPro-RegularA'),
-        url('../../res/fonts/PFRegalTextPro-RegularA.woff2') format('woff2'),
-        url('../../res/fonts/PFRegalTextPro-RegularA.woff') format('woff'),
-        url('../../res/fonts/PFRegalTextPro-RegularA.ttf') format('truetype');
+    src: url('../../../out/res/fonts/PFRegalTextPro-RegularA.eot');
+    src: local('../../../out/res/fonts/PFRegalTextPro-RegularA'),
+        url('../../../out/res/fonts/PFRegalTextPro-RegularA.woff2') format('woff2'),
+        url('../../../out/res/fonts/PFRegalTextPro-RegularA.woff') format('woff'),
+        url('../../../out/res/fonts/PFRegalTextPro-RegularA.ttf') format('truetype');
     font-weight: 300;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'PF Regal';
-    src: url('../../res/fonts/PFRegalTextPro-Bold.eot');
-    src: local('../../res/fonts/PFRegalTextPro-Bold'),
-        url('../../res/fonts/PFRegalTextPro-Bold.woff2') format('woff2'),
-        url('../../res/fonts/PFRegalTextPro-Bold.woff') format('woff'),
-        url('../../res/fonts/PFRegalTextPro-Bold.ttf') format('truetype');
+    src: url('../../../out/res/fonts/PFRegalTextPro-Bold.eot');
+    src: local('../../../out/res/fonts/PFRegalTextPro-Bold'),
+        url('../../../out/res/fonts/PFRegalTextPro-Bold.woff2') format('woff2'),
+        url('../../../out/res/fonts/PFRegalTextPro-Bold.woff') format('woff'),
+        url('../../../out/res/fonts/PFRegalTextPro-Bold.ttf') format('truetype');
     font-weight: bold;
     font-style: normal;
 }
-*/
+
 @font-face {
     font-family: 'PF Regal';
-    src: url('../../res/fonts/PFRegalTextPro-Medium.eot');
-    src: local('../../res/fonts/PFRegalTextPro-Medium'),
-        url('../../res/fonts/PFRegalTextPro-Medium.woff2') format('woff2'),
-        url('../../res/fonts/PFRegalTextPro-Medium.woff') format('woff'),
-        url('../../res/fonts/PFRegalTextPro-Medium.ttf') format('truetype');
+    src: url('../../../out/res/fonts/PFRegalTextPro-Medium.eot');
+    src: local('../../../out/res/fonts/PFRegalTextPro-Medium'),
+        url('../../../out/res/fonts/PFRegalTextPro-Medium.woff2') format('woff2'),
+        url('../../../out/res/fonts/PFRegalTextPro-Medium.woff') format('woff'),
+        url('../../../out/res/fonts/PFRegalTextPro-Medium.ttf') format('truetype');
     font-weight: 500;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'PF Regal';
-    src: url('../../res/fonts/PFRegalTextPro-BlackItalic.eot');
-    src: local('../../res/fonts/PFRegalTextPro-BlackItalic'),
-        url('../../res/fonts/PFRegalTextPro-BlackItalic.woff2') format('woff2'),
-        url('../../res/fonts/PFRegalTextPro-BlackItalic.woff') format('woff'),
-        url('../../res/fonts/PFRegalTextPro-BlackItalic.ttf') format('truetype');
+    src: url('../../../out/res/fonts/PFRegalTextPro-BlackItalic.eot');
+    src: local('../../../out/res/fonts/PFRegalTextPro-BlackItalic'),
+        url('../../../out/res/fonts/PFRegalTextPro-BlackItalic.woff2') format('woff2'),
+        url('../../../out/res/fonts/PFRegalTextPro-BlackItalic.woff') format('woff'),
+        url('../../../out/res/fonts/PFRegalTextPro-BlackItalic.ttf') format('truetype');
     font-weight: 900;
     font-style: italic;
 }
 
 @font-face {
     font-family: 'PF Regal';
-    src: url('../../res/fonts/PFRegalTextPro-Black.eot');
-    src: local('../../res/fonts/PFRegalTextPro-Black'),
-        url('../../res/fonts/PFRegalTextPro-Black.woff2') format('woff2'),
-        url('../../res/fonts/PFRegalTextPro-Black.woff') format('woff'),
-        url('../../res/fonts/PFRegalTextPro-Black.ttf') format('truetype');
+    src: url('../../../out/res/fonts/PFRegalTextPro-Black.eot');
+    src: local('../../../out/res/fonts/PFRegalTextPro-Black'),
+        url('../../../out/res/fonts/PFRegalTextPro-Black.woff2') format('woff2'),
+        url('../../../out/res/fonts/PFRegalTextPro-Black.woff') format('woff'),
+        url('../../../out/res/fonts/PFRegalTextPro-Black.ttf') format('truetype');
     font-weight: 900;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'PF Regal UBlack';
-    src: url('../../res/fonts/PFRegalTextPro-UBlack.eot');
-    src: local('../../res/fonts/PFRegalTextPro-UBlack'),
-        url('../../res/fonts/PFRegalTextPro-UBlack.woff2') format('woff2'),
-        url('../../res/fonts/PFRegalTextPro-UBlack.woff') format('woff'),
-        url('../../res/fonts/PFRegalTextPro-UBlack.ttf') format('truetype');
+    src: url('../../../out/res/fonts/PFRegalTextPro-UBlack.eot');
+    src: local('../../../out/res/fonts/PFRegalTextPro-UBlack'),
+        url('../../../out/res/fonts/PFRegalTextPro-UBlack.woff2') format('woff2'),
+        url('../../../out/res/fonts/PFRegalTextPro-UBlack.woff') format('woff'),
+        url('../../../out/res/fonts/PFRegalTextPro-UBlack.ttf') format('truetype');
     font-weight: 900;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'PF Regal';
-    src: url('../../res/fonts/PFRegalTextPro-MediumItalic.eot');
-    src: local('../../res/fonts/PFRegalTextPro-MediumItalic'),
-        url('../../res/fonts/PFRegalTextPro-MediumItalic.woff2') format('woff2'),
-        url('../../res/fonts/PFRegalTextPro-MediumItalic.woff') format('woff'),
-        url('../../res/fonts/PFRegalTextPro-MediumItalic.ttf') format('truetype');
+    src: url('../../../out/res/fonts/PFRegalTextPro-MediumItalic.eot');
+    src: local('../../../out/res/fonts/PFRegalTextPro-MediumItalic'),
+        url('../../../out/res/fonts/PFRegalTextPro-MediumItalic.woff2') format('woff2'),
+        url('../../../out/res/fonts/PFRegalTextPro-MediumItalic.woff') format('woff'),
+        url('../../../out/res/fonts/PFRegalTextPro-MediumItalic.ttf') format('truetype');
     font-weight: 500;
     font-style: italic;
 }
 
 @font-face {
     font-family: 'PF Regal';
-    src: url('../../res/fonts/PFRegalTextPro-UBlackItalic.eot');
-    src: local('../../res/fonts/PFRegalTextPro-UBlackItalic'),
-        url('../../res/fonts/PFRegalTextPro-UBlackItalic.woff2') format('woff2'),
-        url('../../res/fonts/PFRegalTextPro-UBlackItalic.woff') format('woff'),
-        url('../../res/fonts/PFRegalTextPro-UBlackItalic.ttf') format('truetype');
+    src: url('../../../out/res/fonts/PFRegalTextPro-UBlackItalic.eot');
+    src: local('../../../out/res/fonts/PFRegalTextPro-UBlackItalic'),
+        url('../../../out/res/fonts/PFRegalTextPro-UBlackItalic.woff2') format('woff2'),
+        url('../../../out/res/fonts/PFRegalTextPro-UBlackItalic.woff') format('woff'),
+        url('../../../out/res/fonts/PFRegalTextPro-UBlackItalic.ttf') format('truetype');
     font-weight: 900;
     font-style: italic;
 }
 
 @font-face {
     font-family: 'PF Regal';
-    src: url('../../res/fonts/PFRegalTextPro-RegularAItalic.eot');
-    src: local('../../res/fonts/PFRegalTextPro-RegularAItalic'),
-        url('../../res/fonts/PFRegalTextPro-RegularAItalic.woff2') format('woff2'),
-        url('../../res/fonts/PFRegalTextPro-RegularAItalic.woff') format('woff'),
-        url('../../res/fonts/PFRegalTextPro-RegularAItalic.ttf') format('truetype');
+    src: url('../../../out/res/fonts/PFRegalTextPro-RegularAItalic.eot');
+    src: local('../../../out/res/fonts/PFRegalTextPro-RegularAItalic'),
+        url('../../../out/res/fonts/PFRegalTextPro-RegularAItalic.woff2') format('woff2'),
+        url('../../../out/res/fonts/PFRegalTextPro-RegularAItalic.woff') format('woff'),
+        url('../../../out/res/fonts/PFRegalTextPro-RegularAItalic.ttf') format('truetype');
     font-weight: 300;
     font-style: italic;
 }
 
 @font-face {
     font-family: 'PF Regal';
-    src: url('../../res/fonts/PFRegalTextPro-BoldItalic.eot');
-    src: local('../../res/fonts/PFRegalTextPro-BoldItalic'),
-        url('../../res/fonts/PFRegalTextPro-BoldItalic.woff2') format('woff2'),
-        url('../../res/fonts/PFRegalTextPro-BoldItalic.woff') format('woff'),
-        url('../../res/fonts/PFRegalTextPro-BoldItalic.ttf') format('truetype');
+    src: url('../../../out/res/fonts/PFRegalTextPro-BoldItalic.eot');
+    src: local('../../../out/res/fonts/PFRegalTextPro-BoldItalic'),
+        url('../../../out/res/fonts/PFRegalTextPro-BoldItalic.woff2') format('woff2'),
+        url('../../../out/res/fonts/PFRegalTextPro-BoldItalic.woff') format('woff'),
+        url('../../../out/res/fonts/PFRegalTextPro-BoldItalic.ttf') format('truetype');
     font-weight: bold;
     font-style: italic;
 }
 
-/*  Regular B */
+/*  Regular B *
 @font-face {
     font-family: 'PF Regal';
-    src: url('../../res/fonts/PFRegalTextPro-RegularBItalic.eot');
-    src: local('../../res/fonts/PFRegalTextPro-RegularBItalic'),
-        url('../../res/fonts/PFRegalTextPro-RegularBItalic.woff2') format('woff2'),
-        url('../../res/fonts/PFRegalTextPro-RegularBItalic.woff') format('woff'),
-        url('../../res/fonts/PFRegalTextPro-RegularBItalic.ttf') format('truetype');
+    src: url('../../../out/res/fonts/PFRegalTextPro-RegularBItalic.eot');
+    src: local('../../../out/res/fonts/PFRegalTextPro-RegularBItalic'),
+        url('../../../out/res/fonts/PFRegalTextPro-RegularBItalic.woff2') format('woff2'),
+        url('../../../out/res/fonts/PFRegalTextPro-RegularBItalic.woff') format('woff'),
+        url('../../../out/res/fonts/PFRegalTextPro-RegularBItalic.ttf') format('truetype');
     font-weight: normal;
     font-style: italic;
 }
 
 @font-face {
     font-family: 'PF Regal';
-    src: url('../../res/fonts/PFRegalTextPro-RegularB.eot');
-    src: local('../../res/fonts/PFRegalTextPro-RegularB'),
-        url('../../res/fonts/PFRegalTextPro-RegularB.woff2') format('woff2'),
-        url('../../res/fonts/PFRegalTextPro-RegularB.woff') format('woff'),
-        url('../../res/fonts/PFRegalTextPro-RegularB.ttf') format('truetype');
+    src: url('../../../out/res/fonts/PFRegalTextPro-RegularB.eot');
+    src: local('../../../out/res/fonts/PFRegalTextPro-RegularB'),
+        url('../../../out/res/fonts/PFRegalTextPro-RegularB.woff2') format('woff2'),
+        url('../../../out/res/fonts/PFRegalTextPro-RegularB.woff') format('woff'),
+        url('../../../out/res/fonts/PFRegalTextPro-RegularB.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
-}                
+}              */  
     </style>
 
 <div style="margin:auto; width:100%;">
@@ -697,6 +725,8 @@ BOOL IsProcessCorruptedStateException(DWORD dwExceptionCode, BOOL fCheckForSO <s
 </pre></div>
 </div>
 <p>Let’s look at the description of our exceptional situations:</p>
+<div class="row">
+<div class="offset-0 col-12">
 <table>
 <thead>
 <tr>
@@ -739,12 +769,16 @@ BOOL IsProcessCorruptedStateException(DWORD dwExceptionCode, BOOL fCheckForSO <s
 </tr>
 </tbody>
 </table>
+</div>
+</div>
 <p>Note that only two of these exceptions are worth catching: <code>STATUS_ACCESS_VIOLATION</code> and <code>STATUS_STACK_OVERFLOW</code>. Other errors are exceptional even for exceptional situations. They are rather fatal errors and we can’t consider them. So, let’s discuss only these two errors in detail.</p>
 <h4 id="accessviolationexception">AccessViolationException</h4>
 <p>This exception is bad news which you don’t want to get. But if you get it, it’s not clear what to do with it. <code>AccessViolationException</code> indicates that you &quot;missed&quot; a memory range allocated for an application and is thrown when you try to read from or write to a protected region of memory. The word &quot;protected” rather denotes an attempt to work with a range of memory which hasn’t been allocated yet or which has been already cleared. Here I am not talking about a garbage collector that allocates and clears memory. It just assigns the chunks of allocated memory for your and its own needs. Memory has a layered structure in a way. First, there is the layer of memory management by a garbage collector. Next is the layer used by CoreCLR libraries to manage the allocation of memory which is followed by the layer used by OS to manage memory allocation from the pool of available fragments of linear address space. Thus, this exception appears when an application misses its memory range and attempts to work with a region which isn’t yet allocated or intended for this application. In this situation you don’t have many variants for analysis.</p>
 <p>– If <code>StackTrace</code> goes deep into CLR, you are very unlucky, because it’s probably a core error. However, this almost never happens. You can bypass the error by updating the core version or act in another way.
 – If <code>StackTrace</code> goes into the unsafe code of some library, you either got marshaling wrong or there is a serious error in the unsafe library. Check method arguments carefully: it’s possible that native method arguments have another bit size, another order or just another size. Check that structures are passed by value or by reference where appropriate.</p>
 <p>To catch this exception at the moment you should show a JIT-compiler it’s really necessary. Otherwise, it won’t be caught and you will get a broken application. However, you should catch this exception only if you can handle it properly: it may indicate a leak of memory if it was allocated by an unsafe method between calling this method and throwing <code>AccessViolationException</code>. At this point, an application may still function but its work may be incorrect because if you catch an error of a method call you will definitely try to call this method again. In this case, nobody knows what may go wrong: you can’t know how the state of an application was violated previously. However, if you still want to catch this exception, pay attention to the table of possible options for doing this in different versions of .NET Framework:</p>
+<div class="row">
+<div class="offset-3 col-6">
 <table>
 <thead>
 <tr>
@@ -771,6 +805,8 @@ BOOL IsProcessCorruptedStateException(DWORD dwExceptionCode, BOOL fCheckForSO <s
 </tr>
 </tbody>
 </table>
+</div>
+</div>
 <p>In other words, if you have a very old application, working under .NET Framework 1.0, <del>show it to me</del> you will get NRE which will be a sort of deception: you passed a pointer with a value greater than zero and got <code>NullReferenceException</code>. However, I think this behavior is justified: if you are in the world of managed code, you don’t want to learn the error types of unmanaged code, and NRE—which is essentially &quot;a bad pointer to an object”  in the world of .NET—is suitable here. However, things are not that simple. Users needed this type of exception in real life and it was introduced in .NET Framework 2.0. For years this was an exception you can catch. Then, it lost this capability, but a special structure appeared that allowed activating the catch option. This sequence of the CLR team decisions at every stage looks justified. See it for yourself:</p>
 <ul>
 <li><code>1.0</code> Missing allocated memory ranges should be an exceptional situation because if an application works with an address it got it from some place. In the managed world this place is the <code>new</code> operator. In the unmanaged world, every piece of code can be the place for such an error. Though these two exceptions are opposed in terms of essence (NRE works with an uninitialized pointer and AVE works with an incorrectly initialized pointer), incorrectly initialized pointers don’t exist from the .NET ideology point of view. Both cases can be reduced to an incorrectly initialized pointer. So, let’s do it and throw <code>NullReferenceException</code> in both cases.</li>
