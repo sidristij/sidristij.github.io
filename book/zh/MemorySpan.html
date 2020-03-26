@@ -21,7 +21,7 @@ strong {
 }
 
 p, li {
-    margin: 0 0 14px;
+    margin: 0 0 20px;
     line-height: 32px;
     font-family: inherit;
 }
@@ -38,7 +38,7 @@ ol li {
 }
 
 ul li {
-    padding-left: 5px;	
+    padding-left: 12px;	
     font-family: inherit;
 }
 
@@ -79,15 +79,34 @@ code, *[class^='lang-'] span, *[class^='lang-'] pre {
     border-left-width: 3px;
     padding-left: 25px;
     display: block;
+    background-color: aliceblue !important;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
-p code {
-    font-size: 14px;
+*[class^='lang-'] > div pre, pre > code pre {
+    margin-bottom: 0;
+}
+
+p code:not(.highlight), li code:not(.highlight) {
+    font-size: 16px;
     border: gainsboro;
     border-width: 1px;
     border-style: solid;
-    padding: 2px;
+    padding: 4px;
     color: darkslateblue;
+}
+
+code.highlight {
+    font-family: inherit !important;
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+}
+
+p code.highlight, li code.highlight {
+    padding: 4px;
+    background-color: #ffffa1;
 }
 
 *[class^='lang-'] span, *[class^='lang-'] pre, pre > code {
@@ -111,11 +130,20 @@ p img {
     width: 95%;
 }
 
-p (:has img) {
+p:has( > img) {
     text-align: center;
 }
 
-blockquote {
+blockquote > p.big-quote {
+    margin: 40px 0 60px 0;
+    font-family: Charter;
+    font-size: 55px;
+    line-height: 60px;
+    width: 150%;
+    padding: 0;
+}
+
+blockquote:not( p.big-quote) {
     background-color: lavenderblush;
     padding-left: 20px;
     border-left: 1px solid rgba(0,0,0,.08);
@@ -170,7 +198,7 @@ h2 {
 }
 
 h3 {
-    margin: 30px 0 10px 0;
+    margin: 30px 0 15px 0;
     font-size: 17pt;
     font-weight: 400;
 }
@@ -183,16 +211,16 @@ h4 {
 
 /* Fonts */
 
-@font-face {
-    font-family: 'PF Regal';
-    src: url('../../out/res/fonts/PFRegalTextPro-RegularA.eot');
-    src: local('../../out/res/fonts/PFRegalTextPro-RegularA'),
-        url('../../out/res/fonts/PFRegalTextPro-RegularA.woff2') format('woff2'),
-        url('../../out/res/fonts/PFRegalTextPro-RegularA.woff') format('woff'),
-        url('../../out/res/fonts/PFRegalTextPro-RegularA.ttf') format('truetype');
-    font-weight: 300;
-    font-style: normal;
-}
+/*@font-face {*/
+/*    font-family: 'PF Regal';*/
+/*    src: url('../../out/res/fonts/PFRegalTextPro-RegularA.eot');*/
+/*    src: local('../../out/res/fonts/PFRegalTextPro-RegularA'),*/
+/*        url('../../out/res/fonts/PFRegalTextPro-RegularA.woff2') format('woff2'),*/
+/*        url('../../out/res/fonts/PFRegalTextPro-RegularA.woff') format('woff'),*/
+/*        url('../../out/res/fonts/PFRegalTextPro-RegularA.ttf') format('truetype');*/
+/*    font-weight: 300;*/
+/*    font-style: normal;*/
+/*}*/
 
 @font-face {
     font-family: 'PF Regal';
@@ -293,7 +321,14 @@ h4 {
     font-style: italic;
 }
 
-/*  Regular B *
+@font-face {
+    font-family: 'Charter';
+    src: url('../../out/res/fonts/charter-regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*  Regular B */
 @font-face {
     font-family: 'PF Regal';
     src: url('../../out/res/fonts/PFRegalTextPro-RegularBItalic.eot');
@@ -301,7 +336,7 @@ h4 {
         url('../../out/res/fonts/PFRegalTextPro-RegularBItalic.woff2') format('woff2'),
         url('../../out/res/fonts/PFRegalTextPro-RegularBItalic.woff') format('woff'),
         url('../../out/res/fonts/PFRegalTextPro-RegularBItalic.ttf') format('truetype');
-    font-weight: normal;
+    font-weight: 300;
     font-style: italic;
 }
 
@@ -312,13 +347,19 @@ h4 {
         url('../../out/res/fonts/PFRegalTextPro-RegularB.woff2') format('woff2'),
         url('../../out/res/fonts/PFRegalTextPro-RegularB.woff') format('woff'),
         url('../../out/res/fonts/PFRegalTextPro-RegularB.ttf') format('truetype');
-    font-weight: normal;
+    font-weight: 300;
     font-style: normal;
-}              */  
+}                
     </style>
 
-<div style="margin:auto; width:100%;">
-<div style="width:1000px;">
+<div class="row">
+<div class="offset-1 col-6">
+<p style="
+    font-size: 70pt;
+    margin: 85px 0 85px 0;
+    text-align: center;
+">a:
+   </p>
     <h1 id="memoryt-and-spant">Memory&lt;T&gt; and Span&lt;T&gt;</h1>
 <blockquote>
 <p><a href="https://github.com/sidristij/dotnetbook/issues/55">讨论链接</a></p>
@@ -331,7 +372,7 @@ h4 {
 <p>如果我们谈论使这些类型出现的问题，我应该说出其中的三个。第一个是非托管代码。</p>
 <p>语言和平台都存在多年以及使用非托管代码的方法。那么，如果前者基本上存在多年，为什么要发布另一个API来处理非托管代码呢？要回答这个问题，我们应该了解我们以前缺乏的东西。</p>
 <p>平台开发人员已经尝试为我们提供非托管资源的使用。他们为导入的方法实现了自动包装，并且在大多数情况下都自动运行。这里也属于<code>stackalloc</code>，在关于线程堆栈的章节中提到过。但是，正如我所看到的，第一批C＃开发人员来自C ++世界(我的情况)，但现在他们转向更高级的语言(我知道之前用JavaScript编写的开发人员)。这意味着人们对非托管代码和C / C +构造越来越怀疑，这对Assembler来说更是如此。</p>
-<p>因此，项目包含越来越少的不安全代码，并且对平台API的信心越来越强。如果我们在公共存储库中搜索<code>stackalloc</code>用例，这很容易检查 - 它们很少。但是，让我们使用任何使用它的代码:</p>
+<p>因此，项目包含越来越少的不安全代码，并且对平台API的信心越来越强。如果我们在公共存储库中搜索<code>stackalloc</code>用例，这很容易检查 &mdash; 它们很少。但是，让我们使用任何使用它的代码:</p>
 <p><strong>Interop.ReadDir class</strong>
 <a href="https://github.com/dotnet/coreclr/blob/b29f6328510207970763580d6f4db864e4b198af/src/mscorlib/shared/Interop/Unix/System.Native/Interop.ReadDir.cs#L71-L83">/src/mscorlib/shared/Interop/Unix/System.Native/Interop.ReadDir.cs</a></p>
 <div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
@@ -350,7 +391,7 @@ h4 {
 }
 </pre></div>
 </div>
-<p>我们可以看到为什么它不受欢迎。只需浏览此代码并质疑自己是否信任它。我猜答案是'不'。那么，问问自己为什么。很明显：我们不仅看到了“Dangerous”这个词，这表明某些东西可能出错，但是有<code>unsafe</code>关键字和<code>byte* buffer = stackalloc byte[s_readBufferSize];</code>line(具体 - <code>byte *</code>)改变了我们的态度。这是你思考的一个触发因素：“没有其他方法可以做到吗？” 那么，让我们深入了解精神分析：你为什么这么想？一方面，我们使用语言结构，这里提供的语法远不是，例如，C++/CLI，它允许任何东西(甚至插入纯的汇编程序代码)。另一方面，这种语法看起来很不寻常。</p>
+<p>我们可以看到为什么它不受欢迎。只需浏览此代码并质疑自己是否信任它。我猜答案是'不'。那么，问问自己为什么。很明显：我们不仅看到了“Dangerous”这个词，这表明某些东西可能出错，但是有<code>unsafe</code>关键字和<code>byte* buffer = stackalloc byte[s_readBufferSize];</code>line(具体 &mdash; <code>byte *</code>)改变了我们的态度。这是你思考的一个触发因素：“没有其他方法可以做到吗？” 那么，让我们深入了解精神分析：你为什么这么想？一方面，我们使用语言结构，这里提供的语法远不是，例如，C++/CLI，它允许任何东西(甚至插入纯的汇编程序代码)。另一方面，这种语法看起来很不寻常。</p>
 <p>开发人员隐含或明确地想到的第二个问题是string和char []类型的不兼容性。虽然逻辑上字符串是一个字符数组，但是您不能将字符串强制转换为char []：您只能创建一个新对象并将字符串的内容复制到数组中。引入这种不兼容性是为了在存储方面优化字符串(没有只读数组)。但是，当您开始处理文件时会出现问题。怎么看？作为字符串还是数组？如果选择数组，则无法使用某些设计用于处理字符串的方法。读字符串怎么样？可能太长了。如果您需要解析它，那么您应该为原始数据类型选择什么解析器：您并不总是想要手动解析它们(整数，浮点数，以不同格式给出)。我们有很多经过验证的算法可以更快，更有效地完成它，不是吗？但是，这样的算法通常使用只包含原始类型的字符串。所以，有一个两难的境地。</p>
 <p>第三个问题是算法所需的数据很少在从某个源读取的数组的一部分内形成连续的固体数据切片。例如，在从套接字读取文件或数据的情况下，我们有一部分已经由算法处理的部分，后面是必须由我们的方法处理的一部分数据，然后是尚未处理的数据。理想情况下，我们的方法只需要设计此方法的数据。例如，解析整数的方法将不满意包含一些具有预期数字的字符串的字符串。这种方法想要一个数字，而不是别的。或者，如果我们传递整个数组，则需要指示例如数组开头的数字的偏移量</p>
 <div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
@@ -415,7 +456,7 @@ h4 {
     {
         <span style="color:Blue;">if</span>(input[i] &lt; <span style="color:#A31515;">&#39;0&#39;</span> || input[i] &gt; <span style="color:#A31515;">&#39;9&#39;</span>)
             <span style="color:Blue;">return</span> <span style="color:Blue;">false</span>;
-    result = result * 10 + ((<span style="color:Blue;">int</span>)input[i] - <span style="color:#A31515;">&#39;0&#39;</span>);
+    result = result * 10 + ((<span style="color:Blue;">int</span>)input[i] &mdash; <span style="color:#A31515;">&#39;0&#39;</span>);
     }
     <span style="color:Blue;">return</span> <span style="color:Blue;">true</span>;
 }
@@ -459,7 +500,7 @@ buf[3] = <span style="color:#A31515;">&#39;4&#39;</span>; buf[4] = <span style="
 </pre></div>
 </div>
 <p>这意味着<code>Span &lt;T&gt;</code>是一种统一处理内存管理方式的工具，包括托管和非托管内存。它可确保在垃圾收集期间处理此类数据时的安全性。也就是说，如果具有非托管资源的内存范围开始移动，那么它将是安全的。</p>
-<p>但是，我们应该如此兴奋吗？我们能早点实现吗？例如，在托管数组的情况下毫无疑问：你只需要将一个数组包装在另一个类中(例如，长存在的<a href="https://referencesource.microsoft.com/#mscorlib/system/arraysegment.cs,31">ArraySegment</a>)因此提供了类似的接口，就是这样。此外，你可以用字符串做同样的事情 - 他们有必要的方法。同样，您只需要包含相同类型的字符串并提供使用它的方法。但是，要将字符串，缓冲区和数组存储在一种类型中，您将在单个实例中保留对每个可能变体的引用(显然只有一个活动变体)。</p>
+<p>但是，我们应该如此兴奋吗？我们能早点实现吗？例如，在托管数组的情况下毫无疑问：你只需要将一个数组包装在另一个类中(例如，长存在的<a href="https://referencesource.microsoft.com/#mscorlib/system/arraysegment.cs,31">ArraySegment</a>)因此提供了类似的接口，就是这样。此外，你可以用字符串做同样的事情 &mdash; 他们有必要的方法。同样，您只需要包含相同类型的字符串并提供使用它的方法。但是，要将字符串，缓冲区和数组存储在一种类型中，您将在单个实例中保留对每个可能变体的引用(显然只有一个活动变体)。</p>
 <div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
 <span style="color:Blue;">public</span> <span style="color:Blue;">readonly</span> <span style="color:Blue;">ref</span> <span style="color:Blue;">struct</span> OurSpan&lt;T&gt;
 {
@@ -500,7 +541,7 @@ Method3(Span&lt;<span style="color:Blue;">byte</span>&gt; buffer)
 <p>在他或她获得一些经验之前，人类本质上无法完全理解某种工具的目的。那么，让我们转向一些例子。</p>
 <h4 id="valuestringbuilder">ValueStringBuilder</h4>
 <p>关于算法最有趣的例子之一是<code>ValueStringBuilder</code>类型。但是，它深埋在mscorlib内部，并用<code>internal</code>修饰符标记为许多其他非常有趣的数据类型。这意味着如果我们没有研究mscorlib源代码，我们就不会找到这种非凡的优化工具。</p>
-<p><code>StringBuilder</code>系统类型的主要缺点是什么？它的主要缺点是类型及其基础 - 它是一个引用类型，基于<code>char []</code>，即一个字符数组。至少，这意味着两件事：无论如何我们使用堆(尽管不多)并增加错过CPU现金的机会。</p>
+<p><code>StringBuilder</code>系统类型的主要缺点是什么？它的主要缺点是类型及其基础 &mdash; 它是一个引用类型，基于<code>char []</code>，即一个字符数组。至少，这意味着两件事：无论如何我们使用堆(尽管不多)并增加错过CPU现金的机会。</p>
 <p>我遇到的<code>StringBuilder</code>的另一个问题是构造小字符串，即结果字符串必须短，例如少于100个字符。简短格式化会引发性能问题。</p>
 <div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
     $<span style="color:#A31515;">&quot;{x} is in range [{min};{max}]&quot;</span>
@@ -531,7 +572,7 @@ Method3(Span&lt;<span style="color:Blue;">byte</span>&gt; buffer)
             <span style="color:Blue;">get</span> =&gt; _pos;
             <span style="color:Blue;">set</span>
             {
-                <span style="color:Blue;">int</span> delta = value - _pos;
+                <span style="color:Blue;">int</span> delta = value &mdash; _pos;
                 <span style="color:Blue;">if</span> (delta &gt; 0)
                 {
                     Append(<span style="color:#A31515;">&#39;\0&#39;</span>, delta);
@@ -555,12 +596,12 @@ Method3(Span&lt;<span style="color:Blue;">byte</span>&gt; buffer)
         <span style="color:Green;">//you should add space into the characters of that string and then copy that character</span>
         <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> Insert(<span style="color:Blue;">int</span> index, <span style="color:Blue;">char</span> value, <span style="color:Blue;">int</span> count)
         {
-            <span style="color:Blue;">if</span> (_pos &gt; _chars.Length - count)
+            <span style="color:Blue;">if</span> (_pos &gt; _chars.Length &mdash; count)
             {
                 Grow(count);
             }
 
-            <span style="color:Blue;">int</span> remaining = _pos - index;
+            <span style="color:Blue;">int</span> remaining = _pos &mdash; index;
             _chars.Slice(index, remaining).CopyTo(_chars.Slice(index + count));
             _chars.Slice(index, count).Fill(value);
             _pos += count;
@@ -595,7 +636,7 @@ Method3(Span&lt;<span style="color:Blue;">byte</span>&gt; buffer)
         [MethodImpl(MethodImplOptions.NoInlining)]
         <span style="color:Blue;">private</span> <span style="color:Blue;">void</span> Grow(<span style="color:Blue;">int</span> requiredAdditionalCapacity)
         {
-            Debug.Assert(requiredAdditionalCapacity &gt; _chars.Length - _pos);
+            Debug.Assert(requiredAdditionalCapacity &gt; _chars.Length &mdash; _pos);
 
             <span style="color:Blue;">char</span>[] poolArray = ArrayPool&lt;<span style="color:Blue;">char</span>&gt;.Shared.Rent(Math.Max(_pos + requiredAdditionalCapacity, _chars.Length * 2));
 
@@ -920,7 +961,7 @@ Hello?
 </div>
 <p>在这段代码中调用<code>Pin()</code>并不重要：它可以是<code>Memory</code>，它代表<code>T []</code>，或者<code>string</code>或非托管内存的缓冲区。仅仅数组和字符串将获得一个真正的<code>GCHandle.Alloc(array，GCHandleType.Pinned)</code>并且在非托管内存的情况下什么都不会发生。</p>
 <h2 id="memorymanager-imemoryowner-memorypool">MemoryManager, IMemoryOwner, MemoryPool</h2>
-<p>除了指示结构字段之外，我还要注意，还有另外两个基于另一个实体的<code>internal</code>类型构造函数 - “MemoryManager”。这不是您可能想到的经典内存管理器，我们稍后会讨论它。您可能已经想过的经典内存管理器，我们稍后会讨论它。与<code>Span</code>类似，<code>Memory</code>引用了一个导航对象，一个偏移量和一个内部缓冲区的大小。请注意，您可以使用<code>new</code>运算符仅从数组创建<code>Memory</code>。或者，您可以使用扩展方法从字符串，数组或<code>ArraySegment</code>创建<code>Memory</code>。我的意思是它不是设计为手动从非托管内存创建的。但是，我们可以看到有一个内部方法使用<code>MemoryManager</code>创建这个结构。</p>
+<p>除了指示结构字段之外，我还要注意，还有另外两个基于另一个实体的<code>internal</code>类型构造函数 &mdash; “MemoryManager”。这不是您可能想到的经典内存管理器，我们稍后会讨论它。您可能已经想过的经典内存管理器，我们稍后会讨论它。与<code>Span</code>类似，<code>Memory</code>引用了一个导航对象，一个偏移量和一个内部缓冲区的大小。请注意，您可以使用<code>new</code>运算符仅从数组创建<code>Memory</code>。或者，您可以使用扩展方法从字符串，数组或<code>ArraySegment</code>创建<code>Memory</code>。我的意思是它不是设计为手动从非托管内存创建的。但是，我们可以看到有一个内部方法使用<code>MemoryManager</code>创建这个结构。</p>
 <p><strong>File <a href="https://github.com/dotnet/corefx/blob/master/src/Common/src/CoreLib/System/Buffers/MemoryManager.cs">MemoryManager.cs</a></strong></p>
 <div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
 <span style="color:Blue;">public</span> <span style="color:Blue;">abstract</span> <span style="color:Blue;">class</span> MemoryManager&lt;T&gt; : IMemoryOwner&lt;T&gt;, IPinnable

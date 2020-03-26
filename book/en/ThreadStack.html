@@ -21,7 +21,7 @@ strong {
 }
 
 p, li {
-    margin: 0 0 14px;
+    margin: 0 0 20px;
     line-height: 32px;
     font-family: inherit;
 }
@@ -38,7 +38,7 @@ ol li {
 }
 
 ul li {
-    padding-left: 5px;	
+    padding-left: 12px;	
     font-family: inherit;
 }
 
@@ -79,15 +79,34 @@ code, *[class^='lang-'] span, *[class^='lang-'] pre {
     border-left-width: 3px;
     padding-left: 25px;
     display: block;
+    background-color: aliceblue !important;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
-p code {
-    font-size: 14px;
+*[class^='lang-'] > div pre, pre > code pre {
+    margin-bottom: 0;
+}
+
+p code:not(.highlight), li code:not(.highlight) {
+    font-size: 16px;
     border: gainsboro;
     border-width: 1px;
     border-style: solid;
-    padding: 2px;
+    padding: 4px;
     color: darkslateblue;
+}
+
+code.highlight {
+    font-family: inherit !important;
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+}
+
+p code.highlight, li code.highlight {
+    padding: 4px;
+    background-color: #ffffa1;
 }
 
 *[class^='lang-'] span, *[class^='lang-'] pre, pre > code {
@@ -111,11 +130,20 @@ p img {
     width: 95%;
 }
 
-p (:has img) {
+p:has( > img) {
     text-align: center;
 }
 
-blockquote {
+blockquote > p.big-quote {
+    margin: 40px 0 60px 0;
+    font-family: Charter;
+    font-size: 55px;
+    line-height: 60px;
+    width: 150%;
+    padding: 0;
+}
+
+blockquote:not( p.big-quote) {
     background-color: lavenderblush;
     padding-left: 20px;
     border-left: 1px solid rgba(0,0,0,.08);
@@ -170,7 +198,7 @@ h2 {
 }
 
 h3 {
-    margin: 30px 0 10px 0;
+    margin: 30px 0 15px 0;
     font-size: 17pt;
     font-weight: 400;
 }
@@ -183,16 +211,16 @@ h4 {
 
 /* Fonts */
 
-@font-face {
-    font-family: 'PF Regal';
-    src: url('../../out/res/fonts/PFRegalTextPro-RegularA.eot');
-    src: local('../../out/res/fonts/PFRegalTextPro-RegularA'),
-        url('../../out/res/fonts/PFRegalTextPro-RegularA.woff2') format('woff2'),
-        url('../../out/res/fonts/PFRegalTextPro-RegularA.woff') format('woff'),
-        url('../../out/res/fonts/PFRegalTextPro-RegularA.ttf') format('truetype');
-    font-weight: 300;
-    font-style: normal;
-}
+/*@font-face {*/
+/*    font-family: 'PF Regal';*/
+/*    src: url('../../out/res/fonts/PFRegalTextPro-RegularA.eot');*/
+/*    src: local('../../out/res/fonts/PFRegalTextPro-RegularA'),*/
+/*        url('../../out/res/fonts/PFRegalTextPro-RegularA.woff2') format('woff2'),*/
+/*        url('../../out/res/fonts/PFRegalTextPro-RegularA.woff') format('woff'),*/
+/*        url('../../out/res/fonts/PFRegalTextPro-RegularA.ttf') format('truetype');*/
+/*    font-weight: 300;*/
+/*    font-style: normal;*/
+/*}*/
 
 @font-face {
     font-family: 'PF Regal';
@@ -293,7 +321,14 @@ h4 {
     font-style: italic;
 }
 
-/*  Regular B *
+@font-face {
+    font-family: 'Charter';
+    src: url('../../out/res/fonts/charter-regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*  Regular B */
 @font-face {
     font-family: 'PF Regal';
     src: url('../../out/res/fonts/PFRegalTextPro-RegularBItalic.eot');
@@ -301,7 +336,7 @@ h4 {
         url('../../out/res/fonts/PFRegalTextPro-RegularBItalic.woff2') format('woff2'),
         url('../../out/res/fonts/PFRegalTextPro-RegularBItalic.woff') format('woff'),
         url('../../out/res/fonts/PFRegalTextPro-RegularBItalic.ttf') format('truetype');
-    font-weight: normal;
+    font-weight: 300;
     font-style: italic;
 }
 
@@ -312,19 +347,25 @@ h4 {
         url('../../out/res/fonts/PFRegalTextPro-RegularB.woff2') format('woff2'),
         url('../../out/res/fonts/PFRegalTextPro-RegularB.woff') format('woff'),
         url('../../out/res/fonts/PFRegalTextPro-RegularB.ttf') format('truetype');
-    font-weight: normal;
+    font-weight: 300;
     font-style: normal;
-}              */  
+}                
     </style>
 
-<div style="margin:auto; width:100%;">
-<div style="width:1000px;">
+<div class="row">
+<div class="offset-1 col-6">
+<p style="
+    font-size: 70pt;
+    margin: 85px 0 85px 0;
+    text-align: center;
+">a:
+   </p>
     <h1 id="a-thread-stack">A thread stack</h1>
 <blockquote>
 <p><a href="https://github.com/sidristij/dotnetbook/issues/58">A link to the discussion</a></p>
 </blockquote>
 <h2 id="basic-structure-x86-platform">Basic structure, x86 platform</h2>
-<p>There is a memory region that is rarely mentioned. However, it probably takes a primary role in the work of an application. This is the most frequently used and a quite limited region with instantaneous memory allocation and cleanup. This region is called &quot;a thread stack&quot;. And since a pointer to a thread stack is encoded essentially by processor registers which are in the thread context, each thread has its own stack during execution. Why is it necessary?</p>
+<p>There is a memory region that is rarely mentioned. However, it probably takes a primary role in the work of an application. This is the most frequently used and a quite limited region with instantaneous memory allocation and cleanup. This region is called &laquo;a thread stack&quot;. And since a pointer to a thread stack is encoded essentially by processor registers which are in the thread context, each thread has its own stack during execution. Why is it necessary?</p>
 <p>Let’s review a simple example of code:</p>
 <div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
 <span style="color:Blue;">void</span> Method1()
@@ -399,7 +440,7 @@ h4 {
 <p>TODO</p>
 </blockquote>
 <h2 id="a-little-about-the-imperfection-of-a-thread-stack">A little about the imperfection of a thread stack</h2>
-<p>Let’s think about a security issue and possible problems that can appear theoretically. To do this, let’s look again at the structure of a thread stack which is essentially a usual array. The memory range in which frames are built grows from the end to the beginning. It means that more recent frames are assigned initial addresses. As it was said earlier frames are connected through a single linked list. This is because the size of a frame is not fixed and should be &quot;read&quot; by any debugger. A processor, in this case, doesn’t delineate frames from each other: any method can read the entire memory region. And assuming that we are in virtual memory that is divided into ranges of really allocated memory, we can use special WinAPI function and any address on the stack to get an allocated memory range where this address exists. Dealing with a single linked list is easy:</p>
+<p>Let’s think about a security issue and possible problems that can appear theoretically. To do this, let’s look again at the structure of a thread stack which is essentially a usual array. The memory range in which frames are built grows from the end to the beginning. It means that more recent frames are assigned initial addresses. As it was said earlier frames are connected through a single linked list. This is because the size of a frame is not fixed and should be &laquo;read&raquo; by any debugger. A processor, in this case, doesn’t delineate frames from each other: any method can read the entire memory region. And assuming that we are in virtual memory that is divided into ranges of really allocated memory, we can use special WinAPI function and any address on the stack to get an allocated memory range where this address exists. Dealing with a single linked list is easy:</p>
 <div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
     <span style="color:Green;">// the variable is on the stack</span>
     <span style="color:Blue;">int</span> x;
@@ -575,7 +616,7 @@ ThreadPool -&gt; MakeFork
     StackInfo* info;
 </pre></div>
 </div>
-<p>First of all, before any operation, we copy the registers locally to avoid corrupting them. Additionally, we need to save the address of code, where we will make <code>goto</code> when the stack will be imitated in a child thread and we will have to exit <code>CloneThread</code> in the child thread. As an &quot;exit point” we choose <code>JmpPointOnMethodsChainCallEmulation</code> on purpose, because after saving this address &quot;for the future” we additionally put number 0 on the stack.</p>
+<p>First of all, before any operation, we copy the registers locally to avoid corrupting them. Additionally, we need to save the address of code, where we will make <code>goto</code> when the stack will be imitated in a child thread and we will have to exit <code>CloneThread</code> in the child thread. As an &laquo;exit point” we choose <code>JmpPointOnMethodsChainCallEmulation</code> on purpose, because after saving this address &laquo;for the future” we additionally put number 0 on the stack.</p>
 <div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
     <span style="color:Green;">// Save ALL registers</span>
     _asm
@@ -615,7 +656,7 @@ JmpPointOnMethodsChainCallEmulation:
 NonCloned:
 </pre></div>
 </div>
-<p>OK, we made sure that we have a lot to do and we need to prepare data for the child thread. We will work with the structure of previously saved registers not to go to the assembler language level again. First, let’s get the EBP register value out of this structure. Essentially, the register is the &quot;Next” field in a single linked list of stack frames. Following the address that exists there, we access the frame of a method which called us. If we use the address which is contained in the first field there, we will access an even lower frame. This way we can get to the managed part of <code>CloneThread</code> as we saved the address of the variable in its stack frame and know exactly where to stop. The cycle shown below solves exactly this task.</p>
+<p>OK, we made sure that we have a lot to do and we need to prepare data for the child thread. We will work with the structure of previously saved registers not to go to the assembler language level again. First, let’s get the EBP register value out of this structure. Essentially, the register is the &laquo;Next” field in a single linked list of stack frames. Following the address that exists there, we access the frame of a method which called us. If we use the address which is contained in the first field there, we will access an even lower frame. This way we can get to the managed part of <code>CloneThread</code> as we saved the address of the variable in its stack frame and know exactly where to stop. The cycle shown below solves exactly this task.</p>
 <div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
     <span style="color:Blue;">int</span> *curptr = (<span style="color:Blue;">int</span> *)copy.EBP;
     <span style="color:Blue;">int</span> frames = 0;
@@ -638,8 +679,8 @@ NonCloned:
     <span style="color:Blue;">int</span> localsStart = copy.EBP;                             <span style="color:Green;">// our EBP points to the EBP value for the parent method + saved ESI, EDI</span>
     <span style="color:Blue;">int</span> localsEnd = *(<span style="color:Blue;">int</span> *)curptr;                         <span style="color:Green;">// points to the end of a user&#39;s method&#39;s locals (additional leave)</span>
 
-    <span style="color:Blue;">byte</span> *arr = <span style="color:Blue;">new</span> <span style="color:Blue;">byte</span>[localsEnd - localsStart];
-    memcpy(arr, (<span style="color:Blue;">void</span>*)localsStart, localsEnd - localsStart);
+    <span style="color:Blue;">byte</span> *arr = <span style="color:Blue;">new</span> <span style="color:Blue;">byte</span>[localsEnd &mdash; localsStart];
+    memcpy(arr, (<span style="color:Blue;">void</span>*)localsStart, localsEnd &mdash; localsStart);
 </pre></div>
 </div>
 <p>Another task to be solved is updating the addresses of variables, which are still on the stack and point to it. To solve this task, we get a range of addresses which were allocated by the operating system for the thread stack. We save the retrieved information and start the second part of a cloning process, preparing a delegate for the thread pool:</p>
@@ -653,7 +694,7 @@ NonCloned:
     info-&gt;origStackStart = (<span style="color:Blue;">int</span>)stackData-&gt;BaseAddress;
     info-&gt;origStackSize = (<span style="color:Blue;">int</span>)stackData-&gt;RegionSize;
     info-&gt;frame = arr;
-    info-&gt;size = (localsEnd - localsStart);
+    info-&gt;size = (localsEnd &mdash; localsStart);
 
     <span style="color:Green;">// call managed ThreadPool.QueueUserWorkitem to make fork</span>
     MakeManagedThread(<span style="color:Blue;">this</span>, info);
@@ -697,14 +738,14 @@ NonCloned:
 
     __asm mov ESPr, ESP
 
-    <span style="color:Green;">// target = EBP[ - locals - EBP - ret - whole stack frames copy]</span>
-    <span style="color:Blue;">int</span> targetToCopy = ESPr - 8 - size;
+    <span style="color:Green;">// target = EBP[ &mdash; locals &mdash; EBP &mdash; ret &mdash; whole stack frames copy]</span>
+    <span style="color:Blue;">int</span> targetToCopy = ESPr &mdash; 8 &mdash; size;
 
     <span style="color:Green;">// the offset between the parent stack and the current stack;</span>
-    <span style="color:Blue;">int</span> delta_to_target = (<span style="color:Blue;">int</span>)targetToCopy - (<span style="color:Blue;">int</span>)copy.EBP;
+    <span style="color:Blue;">int</span> delta_to_target = (<span style="color:Blue;">int</span>)targetToCopy &mdash; (<span style="color:Blue;">int</span>)copy.EBP;
 
     <span style="color:Green;">// the offset between the parent stack start and its copy;</span>
-    <span style="color:Blue;">int</span> delta_to_copy = (<span style="color:Blue;">int</span>)copy.frame - (<span style="color:Blue;">int</span>)copy.EBP;
+    <span style="color:Blue;">int</span> delta_to_copy = (<span style="color:Blue;">int</span>)copy.frame &mdash; (<span style="color:Blue;">int</span>)copy.EBP;
 </pre></div>
 </div>
 <p>Using this data we follow the copy of the stack within a cycle and correct the addresses to their future values.</p>
@@ -744,7 +785,7 @@ NonCloned:
     __asm push offset RestorePointAfterClonedExited
     __asm push EBP
 
-    <span style="color:Blue;">for</span>(<span style="color:Blue;">int</span> i = (size &gt;&gt; 2) - 1; i &gt;= 0; i--)
+    <span style="color:Blue;">for</span>(<span style="color:Blue;">int</span> i = (size &gt;&gt; 2) &mdash; 1; i &gt;= 0; i--)
     {
         <span style="color:Blue;">int</span> val = ((<span style="color:Blue;">int</span> *)beg)[i];
         __asm push val;
@@ -790,7 +831,7 @@ RestorePointAfterClonedExited:
 <p>If we look at an even lower level, we will recall that the memory is, in fact, virtual and it is divided into 8 and 4 Kb pages. Each of these pages can either exist or not exist physically. If it exists, it can be mapped to a file or real RAM. It is exactly this virtualization mechanism that allows applications to have separate memory and provides security levels between an application and an operating system. What does this have to do with a thread stack? As any other random access memory of an application a thread stack is its part and also consists of 4 and 8 Kb pages. On the sides of a range allocated for the stack, there are two pages. An attempt to access these pages will produce an exception, notifying an OS that an application tries to address an unallocated memory range. The actually allocated ranges inside this region are those pages which the application addressed: if the application allocates 2 Mb of memory for a thread, that doesn’t mean they will be allocated straight away. They will be allocated on demand: if a thread stack will grow up to 1 Mb, that will mean that the application got exactly 1 Mb of RAM for the stack.</p>
 <p>When an application allocates memory for local variables, two things happen: the value of ESP register grows and the memory for variables is set to null. That’s why when you write a recursive method which enters infinite recursion, you will get <code>StackOverflowException</code>: acquiring the entire memory allocated for the stack (the entire available region), you will run into a special Guard Page the access to which will make an operating system initiate <code>StackOverflow</code> at the OS level. It will pass to .NET and will be caught resulting in <code>StackOverflowException</code> for a .NET application.</p>
 <h1 id="the-memory-allocation-on-the-stack-stackalloc">The memory allocation on the stack: <code>stackalloc</code></h1>
-<p>In C# there is a quite interesting and rarely used keyword <code>stackalloc</code>. It is so rarely used in code (I’d rather say &quot;never&quot; instead of &quot;rarely&quot;) that it’s hard to find a suitable example of its use and it’s even harder to create an example because if it’s seldom used the experience of working with it is too little. Why? Because for those who try to figure out what this instruction does, <code>stackalloc</code> becomes more threatening than useful, as the dark side of <code>stackalloc</code> is unsafe code. The result it returns is not a managed pointer: the value is a usual pointer to the range of unprotected memory. And if you make an entry at this address after a method finishes its work, you will start writing to local variables of some method or will overwrite the return address from the method, and an application will finish work with an error. However, our task is to get to hidden corners and figure out what they hide. Also, we should understand that this instrument was created on purpose and not just to spill our water and slip on it. Quite opposite: we were giving this instrument to use it and create really quick software. Did I inspire you? Then, let’s start.</p>
+<p>In C# there is a quite interesting and rarely used keyword <code>stackalloc</code>. It is so rarely used in code (I’d rather say &laquo;never&raquo; instead of &laquo;rarely&quot;) that it’s hard to find a suitable example of its use and it’s even harder to create an example because if it’s seldom used the experience of working with it is too little. Why? Because for those who try to figure out what this instruction does, <code>stackalloc</code> becomes more threatening than useful, as the dark side of <code>stackalloc</code> is unsafe code. The result it returns is not a managed pointer: the value is a usual pointer to the range of unprotected memory. And if you make an entry at this address after a method finishes its work, you will start writing to local variables of some method or will overwrite the return address from the method, and an application will finish work with an error. However, our task is to get to hidden corners and figure out what they hide. Also, we should understand that this instrument was created on purpose and not just to spill our water and slip on it. Quite opposite: we were giving this instrument to use it and create really quick software. Did I inspire you? Then, let’s start.</p>
 <p>To find the appropriate use cases for this keyword, we should turn to its authors, i.e. Microsoft and see how they use it. We can do this with the help of a full-text search in the  <a href="https://github.com/dotnet/coreclr">coreclr repository</a>. Besides different tests of the keyword itself, we will find no more than 25 use cases of this keyword in the library code. I hope I motivated you enough in the previous paragraph and you won’t stop reading my work when you see such a small number. To say the truth, the CLR team is more far-sighted and professional than the .NET Framework team. And if they created something, it should help us a lot. But if it is not used in .NET Framework... Well, we can suppose that not all engineers there know there is such a powerful optimization instrument. Otherwise, its would be more widely used.</p>
 <p><strong>Interop.ReadDir class</strong>
 <a href="https://github.com/dotnet/coreclr/blob/b29f6328510207970763580d6f4db864e4b198af/src/mscorlib/shared/Interop/Unix/System.Native/Interop.ReadDir.cs#L71-L83">/src/mscorlib/shared/Interop/Unix/System.Native/Interop.ReadDir.cs</a></p>
@@ -860,7 +901,7 @@ RestorePointAfterClonedExited:
 }
 </pre></div>
 </div>
-<p>This code is more informative as it makes a user think and be careful when choosing numbers. In case of bad luck, the first variant can produce <code>StackOverflowException</code> with a method not being quite deep into a thread stack: it is enough to pass a big number as a parameter. The second variant when you can actually accept the size is when this method is called in specific cases and the calling code &quot;knows&quot; the working algorithm of this method. Without knowing the internal structure of a method there is no specific idea about the possible range for <code>noiseLength</code> and as a result errors can occur.</p>
+<p>This code is more informative as it makes a user think and be careful when choosing numbers. In case of bad luck, the first variant can produce <code>StackOverflowException</code> with a method not being quite deep into a thread stack: it is enough to pass a big number as a parameter. The second variant when you can actually accept the size is when this method is called in specific cases and the calling code &laquo;knows&raquo; the working algorithm of this method. Without knowing the internal structure of a method there is no specific idea about the possible range for <code>noiseLength</code> and as a result errors can occur.</p>
 <p>The second example which I see is that if we misdetermined the size of a buffer which we allocated on the stack and we don’t want to decrease the efficiency of work, we can take a number of ways: allocate more memory on the stack or allocate it in the heap. The second variant will probably be more appropriate in most cases (this is what was done in the case of <code>ValueStringBuffer</code>) as it is safer in respect of getting <code>StackOverflowException</code>.</p>
 <h2 id="conclusions-on-stackalloc">Conclusions on <code>stackalloc</code></h2>
 <p>So, what is <code>stackalloc</code> best used for?</p>

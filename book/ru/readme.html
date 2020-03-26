@@ -21,7 +21,7 @@ strong {
 }
 
 p, li {
-    margin: 0 0 14px;
+    margin: 0 0 20px;
     line-height: 32px;
     font-family: inherit;
 }
@@ -38,7 +38,7 @@ ol li {
 }
 
 ul li {
-    padding-left: 5px;	
+    padding-left: 12px;	
     font-family: inherit;
 }
 
@@ -79,15 +79,34 @@ code, *[class^='lang-'] span, *[class^='lang-'] pre {
     border-left-width: 3px;
     padding-left: 25px;
     display: block;
+    background-color: aliceblue !important;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
-p code {
-    font-size: 14px;
+*[class^='lang-'] > div pre, pre > code pre {
+    margin-bottom: 0;
+}
+
+p code:not(.highlight), li code:not(.highlight) {
+    font-size: 16px;
     border: gainsboro;
     border-width: 1px;
     border-style: solid;
-    padding: 2px;
+    padding: 4px;
     color: darkslateblue;
+}
+
+code.highlight {
+    font-family: inherit !important;
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+}
+
+p code.highlight, li code.highlight {
+    padding: 4px;
+    background-color: #ffffa1;
 }
 
 *[class^='lang-'] span, *[class^='lang-'] pre, pre > code {
@@ -111,11 +130,20 @@ p img {
     width: 95%;
 }
 
-p (:has img) {
+p:has( > img) {
     text-align: center;
 }
 
-blockquote {
+blockquote > p.big-quote {
+    margin: 40px 0 60px 0;
+    font-family: Charter;
+    font-size: 55px;
+    line-height: 60px;
+    width: 150%;
+    padding: 0;
+}
+
+blockquote:not( p.big-quote) {
     background-color: lavenderblush;
     padding-left: 20px;
     border-left: 1px solid rgba(0,0,0,.08);
@@ -170,7 +198,7 @@ h2 {
 }
 
 h3 {
-    margin: 30px 0 10px 0;
+    margin: 30px 0 15px 0;
     font-size: 17pt;
     font-weight: 400;
 }
@@ -183,16 +211,16 @@ h4 {
 
 /* Fonts */
 
-@font-face {
-    font-family: 'PF Regal';
-    src: url('../../out/res/fonts/PFRegalTextPro-RegularA.eot');
-    src: local('../../out/res/fonts/PFRegalTextPro-RegularA'),
-        url('../../out/res/fonts/PFRegalTextPro-RegularA.woff2') format('woff2'),
-        url('../../out/res/fonts/PFRegalTextPro-RegularA.woff') format('woff'),
-        url('../../out/res/fonts/PFRegalTextPro-RegularA.ttf') format('truetype');
-    font-weight: 300;
-    font-style: normal;
-}
+/*@font-face {*/
+/*    font-family: 'PF Regal';*/
+/*    src: url('../../out/res/fonts/PFRegalTextPro-RegularA.eot');*/
+/*    src: local('../../out/res/fonts/PFRegalTextPro-RegularA'),*/
+/*        url('../../out/res/fonts/PFRegalTextPro-RegularA.woff2') format('woff2'),*/
+/*        url('../../out/res/fonts/PFRegalTextPro-RegularA.woff') format('woff'),*/
+/*        url('../../out/res/fonts/PFRegalTextPro-RegularA.ttf') format('truetype');*/
+/*    font-weight: 300;*/
+/*    font-style: normal;*/
+/*}*/
 
 @font-face {
     font-family: 'PF Regal';
@@ -293,7 +321,14 @@ h4 {
     font-style: italic;
 }
 
-/*  Regular B *
+@font-face {
+    font-family: 'Charter';
+    src: url('../../out/res/fonts/charter-regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*  Regular B */
 @font-face {
     font-family: 'PF Regal';
     src: url('../../out/res/fonts/PFRegalTextPro-RegularBItalic.eot');
@@ -301,7 +336,7 @@ h4 {
         url('../../out/res/fonts/PFRegalTextPro-RegularBItalic.woff2') format('woff2'),
         url('../../out/res/fonts/PFRegalTextPro-RegularBItalic.woff') format('woff'),
         url('../../out/res/fonts/PFRegalTextPro-RegularBItalic.ttf') format('truetype');
-    font-weight: normal;
+    font-weight: 300;
     font-style: italic;
 }
 
@@ -312,15 +347,21 @@ h4 {
         url('../../out/res/fonts/PFRegalTextPro-RegularB.woff2') format('woff2'),
         url('../../out/res/fonts/PFRegalTextPro-RegularB.woff') format('woff'),
         url('../../out/res/fonts/PFRegalTextPro-RegularB.ttf') format('truetype');
-    font-weight: normal;
+    font-weight: 300;
     font-style: normal;
-}              */  
+}                
     </style>
 
-<div style="margin:auto; width:100%;">
-<div style="width:1000px;">
+<div class="row">
+<div class="offset-1 col-6">
+<p style="
+    font-size: 70pt;
+    margin: 85px 0 85px 0;
+    text-align: center;
+">a:
+   </p>
     <h2 id="section">Введение</h2>
-<p>Эта книга задумана мной как максимально полное описание работы .NET CLR, и частично - .NET Framework и призвана в первую очередь заставить посмотреть читателя на его внутреннюю структуру под несколько другим углом: не так, как это делается обычно. Связано это в первую очередь с утверждением, которое может показаться многим очень спорным: любой разработчик обязан пройти школу C/C++. Почему? Да потому что из высокоуровневых эти языки наиболее близки к процессору, и программируя на них начинаешь чувствовать работу программы сильнее. Однако, понимая, что мир устроен несколько иначе и у нас зачастую нет никакого времени изучать то, чем мы не будем напрямую пользоваться, я и решил написать эту книгу, в которой объяснение всех вопросов идет с более глубокой чем обычно - позиции и с более сложными или же попросту альтернативными примерами. Которые, помимо своей стандартной миссии - на самом простом коде показать как работает тот или иной функционал, сделать реверанс в альтернативную реальность, показав что все сильно сложнее чем может показаться изначально. Зачем? Чтобы и у вас возникло чувство понимания работы CLR до последнего винтика</p>
+<p>Эта книга задумана мной как максимально полное описание работы .NET CLR, и частично &mdash; .NET Framework и призвана в первую очередь заставить посмотреть читателя на его внутреннюю структуру под несколько другим углом: не так, как это делается обычно. Связано это в первую очередь с утверждением, которое может показаться многим очень спорным: любой разработчик обязан пройти школу C/C++. Почему? Да потому что из высокоуровневых эти языки наиболее близки к процессору, и программируя на них начинаешь чувствовать работу программы сильнее. Однако, понимая, что мир устроен несколько иначе и у нас зачастую нет никакого времени изучать то, чем мы не будем напрямую пользоваться, я и решил написать эту книгу, в которой объяснение всех вопросов идет с более глубокой чем обычно &mdash; позиции и с более сложными или же попросту альтернативными примерами. Которые, помимо своей стандартной миссии &mdash; на самом простом коде показать как работает тот или иной функционал, сделать реверанс в альтернативную реальность, показав что все сильно сложнее чем может показаться изначально. Зачем? Чтобы и у вас возникло чувство понимания работы CLR до последнего винтика</p>
 <h1 id="section-1">Содержание</h1>
 <ol>
 <li><strong>Часть 1. Память</strong>
@@ -365,12 +406,12 @@ h4 {
 <li><a href="/Memory/01-08-MemoryManagement-RefVsValueTypes.html#%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D1%8C-%D1%83%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C-%D0%BF%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5-%D1%8D%D0%BB%D0%B5%D0%BC%D0%B5%D0%BD%D1%82%D0%BE%D0%B2">Возможность указать положение элементов</a></li>
 <li><a href="/Memory/01-08-MemoryManagement-RefVsValueTypes.html#%D1%80%D0%B0%D0%B7%D0%BD%D0%B8%D1%86%D0%B0-%D0%B2-%D0%B0%D0%BB%D0%BB%D0%BE%D0%BA%D0%B0%D1%86%D0%B8%D0%B8">Разница в аллокации</a></li>
 <li><a href="/Memory/01-08-MemoryManagement-RefVsValueTypes.html#%D0%BE%D1%81%D0%BE%D0%B1%D0%B5%D0%BD%D0%BD%D0%BE%D1%81%D1%82%D0%B8-%D0%B2%D1%8B%D0%B1%D0%BE%D1%80%D0%B0-%D0%BC%D0%B5%D0%B6%D0%B4%D1%83-classstruct">Особенности выбора между class/struct</a></li>
-<li><a href="/Memory/01-08-MemoryManagement-RefVsValueTypes.html#%D0%B1%D0%B0%D0%B7%D0%BE%D0%B2%D1%8B%D0%B9-%D1%82%D0%B8%D0%BF---object-%D0%B8-%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D1%8C-%D1%80%D0%B5%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D0%B8-%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D1%84%D0%B5%D0%B9%D1%81%D0%BE%D0%B2-boxing">Базовый тип - Object и возможность реализации интерфейсов. Boxing</a></li>
+<li><a href="/Memory/01-08-MemoryManagement-RefVsValueTypes.html#%D0%B1%D0%B0%D0%B7%D0%BE%D0%B2%D1%8B%D0%B9-%D1%82%D0%B8%D0%BF---object-%D0%B8-%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D1%8C-%D1%80%D0%B5%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D0%B8-%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D1%84%D0%B5%D0%B9%D1%81%D0%BE%D0%B2-boxing">Базовый тип &mdash; Object и возможность реализации интерфейсов. Boxing</a></li>
 <li><a href="./Memory/01-08-MemoryManagement-RefVsValueTypes.html#nullablet">Nullable&lt;T&gt;</a></li>
 <li><a href="./Memory/01-08-MemoryManagement-RefVsValueTypes.html#%D0%BF%D0%BE%D0%B3%D1%80%D1%83%D0%B6%D0%B0%D0%B5%D0%BC%D1%81%D1%8F-%D0%B2-boxing-%D0%B5%D1%89%D1%91-%D0%B3%D0%BB%D1%83%D0%B1%D0%B6%D0%B5">Погружаемся в boxing ещё глубже</a></li>
 <li><a href="./Memory/01-08-MemoryManagement-RefVsValueTypes.html#%D1%87%D1%82%D0%BE-%D0%B5%D1%81%D0%BB%D0%B8-%D1%85%D0%BE%D1%87%D0%B5%D1%82%D1%81%D1%8F-%D0%BB%D0%B8%D1%87%D0%BD%D0%BE-%D0%BF%D0%BE%D1%81%D0%BC%D0%BE%D1%82%D1%80%D0%B5%D1%82%D1%8C-%D0%BA%D0%B0%D0%BA-%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D1%82-boxing">Что если хочется лично посмотреть как работает boxing?</a></li>
 <li><a href="./Memory/01-08-MemoryManagement-RefVsValueTypes.html#%D0%BF%D0%BE%D1%87%D0%B5%D0%BC%D1%83-net-clr-%D0%BD%D0%B5-%D0%B4%D0%B5%D0%BB%D0%B0%D0%B5%D1%82-%D0%BF%D1%83%D0%BB%D0%BB%D0%B8%D0%BD%D0%B3%D0%B0-%D0%B4%D0%BB%D1%8F-%D0%B1%D0%BE%D0%BA%D1%81%D0%B8%D0%BD%D0%B3%D0%B0-%D1%81%D0%B0%D0%BC%D0%BE%D1%81%D1%82%D0%BE%D1%8F%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE">Почему .NET CLR не делает пуллинга для боксинга самостоятельно?</a></li>
-<li><a href="./Memory/01-08-MemoryManagement-RefVsValueTypes.html#%D0%BF%D0%BE%D1%87%D0%B5%D0%BC%D1%83-%D0%BF%D1%80%D0%B8-%D0%B2%D1%8B%D0%B7%D0%BE%D0%B2%D0%B5-%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D0%B0-%D0%BF%D1%80%D0%B8%D0%BD%D0%B8%D0%BC%D0%B0%D1%8E%D1%89%D0%B5%D0%B3%D0%BE-%D1%82%D0%B8%D0%BF-object-%D0%B0-%D0%BF%D0%BE-%D1%84%D0%B0%D0%BA%D1%82%D1%83---%D0%B7%D0%BD%D0%B0%D1%87%D0%B8%D0%BC%D1%8B%D0%B9-%D1%82%D0%B8%D0%BF-%D0%BD%D0%B5%D1%82-%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D0%B8-%D1%81%D0%B4%D0%B5%D0%BB%D0%B0%D1%82%D1%8C-boxing-%D0%BD%D0%B0-%D1%81%D1%82%D0%B5%D0%BA%D0%B5-%D1%80%D0%B0%D0%B7%D0%B3%D1%80%D1%83%D0%B7%D0%B8%D0%B2-%D0%BA%D1%83%D1%87%D1%83">Почему при вызове метода, принимающего тип object, а по факту - значимый тип нет возможности сделать boxing на стеке, разгрузив кучу?</a></li>
+<li><a href="./Memory/01-08-MemoryManagement-RefVsValueTypes.html#%D0%BF%D0%BE%D1%87%D0%B5%D0%BC%D1%83-%D0%BF%D1%80%D0%B8-%D0%B2%D1%8B%D0%B7%D0%BE%D0%B2%D0%B5-%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D0%B0-%D0%BF%D1%80%D0%B8%D0%BD%D0%B8%D0%BC%D0%B0%D1%8E%D1%89%D0%B5%D0%B3%D0%BE-%D1%82%D0%B8%D0%BF-object-%D0%B0-%D0%BF%D0%BE-%D1%84%D0%B0%D0%BA%D1%82%D1%83---%D0%B7%D0%BD%D0%B0%D1%87%D0%B8%D0%BC%D1%8B%D0%B9-%D1%82%D0%B8%D0%BF-%D0%BD%D0%B5%D1%82-%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D0%B8-%D1%81%D0%B4%D0%B5%D0%BB%D0%B0%D1%82%D1%8C-boxing-%D0%BD%D0%B0-%D1%81%D1%82%D0%B5%D0%BA%D0%B5-%D1%80%D0%B0%D0%B7%D0%B3%D1%80%D1%83%D0%B7%D0%B8%D0%B2-%D0%BA%D1%83%D1%87%D1%83">Почему при вызове метода, принимающего тип object, а по факту &mdash; значимый тип нет возможности сделать boxing на стеке, разгрузив кучу?</a></li>
 <li><a href="./Memory/01-08-MemoryManagement-RefVsValueTypes.html#%D0%BF%D0%BE%D1%87%D0%B5%D0%BC%D1%83-%D0%BD%D0%B5%D0%BB%D1%8C%D0%B7%D1%8F-%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D1%8C-%D0%B2-%D0%BA%D0%B0%D1%87%D0%B5%D1%81%D1%82%D0%B2%D0%B5-%D0%BF%D0%BE%D0%BB%D1%8F-value-type-%D0%B5%D0%B3%D0%BE-%D1%81%D0%B0%D0%BC%D0%BE%D0%B3%D0%BE">Почему нельзя использовать в качестве поля Value Type его самого?</a></li>
 </ol>
 </li>

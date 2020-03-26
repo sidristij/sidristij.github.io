@@ -21,7 +21,7 @@ strong {
 }
 
 p, li {
-    margin: 0 0 14px;
+    margin: 0 0 20px;
     line-height: 32px;
     font-family: inherit;
 }
@@ -38,7 +38,7 @@ ol li {
 }
 
 ul li {
-    padding-left: 5px;	
+    padding-left: 12px;	
     font-family: inherit;
 }
 
@@ -79,15 +79,34 @@ code, *[class^='lang-'] span, *[class^='lang-'] pre {
     border-left-width: 3px;
     padding-left: 25px;
     display: block;
+    background-color: aliceblue !important;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
-p code {
-    font-size: 14px;
+*[class^='lang-'] > div pre, pre > code pre {
+    margin-bottom: 0;
+}
+
+p code:not(.highlight), li code:not(.highlight) {
+    font-size: 16px;
     border: gainsboro;
     border-width: 1px;
     border-style: solid;
-    padding: 2px;
+    padding: 4px;
     color: darkslateblue;
+}
+
+code.highlight {
+    font-family: inherit !important;
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+}
+
+p code.highlight, li code.highlight {
+    padding: 4px;
+    background-color: #ffffa1;
 }
 
 *[class^='lang-'] span, *[class^='lang-'] pre, pre > code {
@@ -111,11 +130,20 @@ p img {
     width: 95%;
 }
 
-p (:has img) {
+p:has( > img) {
     text-align: center;
 }
 
-blockquote {
+blockquote > p.big-quote {
+    margin: 40px 0 60px 0;
+    font-family: Charter;
+    font-size: 55px;
+    line-height: 60px;
+    width: 150%;
+    padding: 0;
+}
+
+blockquote:not( p.big-quote) {
     background-color: lavenderblush;
     padding-left: 20px;
     border-left: 1px solid rgba(0,0,0,.08);
@@ -170,7 +198,7 @@ h2 {
 }
 
 h3 {
-    margin: 30px 0 10px 0;
+    margin: 30px 0 15px 0;
     font-size: 17pt;
     font-weight: 400;
 }
@@ -183,16 +211,16 @@ h4 {
 
 /* Fonts */
 
-@font-face {
-    font-family: 'PF Regal';
-    src: url('../../out/res/fonts/PFRegalTextPro-RegularA.eot');
-    src: local('../../out/res/fonts/PFRegalTextPro-RegularA'),
-        url('../../out/res/fonts/PFRegalTextPro-RegularA.woff2') format('woff2'),
-        url('../../out/res/fonts/PFRegalTextPro-RegularA.woff') format('woff'),
-        url('../../out/res/fonts/PFRegalTextPro-RegularA.ttf') format('truetype');
-    font-weight: 300;
-    font-style: normal;
-}
+/*@font-face {*/
+/*    font-family: 'PF Regal';*/
+/*    src: url('../../out/res/fonts/PFRegalTextPro-RegularA.eot');*/
+/*    src: local('../../out/res/fonts/PFRegalTextPro-RegularA'),*/
+/*        url('../../out/res/fonts/PFRegalTextPro-RegularA.woff2') format('woff2'),*/
+/*        url('../../out/res/fonts/PFRegalTextPro-RegularA.woff') format('woff'),*/
+/*        url('../../out/res/fonts/PFRegalTextPro-RegularA.ttf') format('truetype');*/
+/*    font-weight: 300;*/
+/*    font-style: normal;*/
+/*}*/
 
 @font-face {
     font-family: 'PF Regal';
@@ -293,7 +321,14 @@ h4 {
     font-style: italic;
 }
 
-/*  Regular B *
+@font-face {
+    font-family: 'Charter';
+    src: url('../../out/res/fonts/charter-regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*  Regular B */
 @font-face {
     font-family: 'PF Regal';
     src: url('../../out/res/fonts/PFRegalTextPro-RegularBItalic.eot');
@@ -301,7 +336,7 @@ h4 {
         url('../../out/res/fonts/PFRegalTextPro-RegularBItalic.woff2') format('woff2'),
         url('../../out/res/fonts/PFRegalTextPro-RegularBItalic.woff') format('woff'),
         url('../../out/res/fonts/PFRegalTextPro-RegularBItalic.ttf') format('truetype');
-    font-weight: normal;
+    font-weight: 300;
     font-style: italic;
 }
 
@@ -312,13 +347,19 @@ h4 {
         url('../../out/res/fonts/PFRegalTextPro-RegularB.woff2') format('woff2'),
         url('../../out/res/fonts/PFRegalTextPro-RegularB.woff') format('woff'),
         url('../../out/res/fonts/PFRegalTextPro-RegularB.ttf') format('truetype');
-    font-weight: normal;
+    font-weight: 300;
     font-style: normal;
-}              */  
+}                
     </style>
 
-<div style="margin:auto; width:100%;">
-<div style="width:1000px;">
+<div class="row">
+<div class="offset-1 col-6">
+<p style="
+    font-size: 70pt;
+    margin: 85px 0 85px 0;
+    text-align: center;
+">a:
+   </p>
     <h1 id="reference-types-vs-value-types">Reference Types vs Value Types</h1>
 <blockquote>
 <p><a href="https://github.com/sidristij/dotnetbook/issues/57">A link to the discussion</a></p>
@@ -510,7 +551,7 @@ range! We can also take a memory range from unmanaged code and cast a type to ou
         <span style="color:Green;">// you can interpret it as any kind of structure.</span>
         wh = *(WidthHolder*)&amp;hh;
    }
-   Console.WriteLine(<span style="color:#A31515;">&quot;Width: &quot;</span> + wh.Width);
+   Console.WriteLine(<span style="color:#A31515;">&quot;Width: &laquo;</span> + wh.Width);
    Console.WriteLine(<span style="color:#A31515;">&quot;Secret:&quot;</span> + wh.Secret);
 }
 
@@ -526,7 +567,7 @@ range! We can also take a memory range from unmanaged code and cast a type to ou
 }
 </pre></div>
 </div>
-<p>Here, we perform the operation that is impossible in strong typing. We cast one type to another incompatible one that contains one extra field. We introduce an additional variable inside the Main method. In theory, its value is secret. However, the example code will output the value of a variable, not found in any of the structures inside the <code>Main()</code> method. You might consider it a breach in security, but things are not so simple. You cannot get rid of unmanaged code in a program. The main reason is the structure of the thread stack. One can use it to access unmanaged code and play with local variables. You can defend your code from these attacks by randomizing the size of a stack frame. Or, you can delete the information about <code>EBP</code> register to complicate the return of a stack frame. However, this doesn't matter for us now. What we are interested in this example is the following. The &quot;secret&quot; variable goes <strong>before</strong> the definition of hh variable and <strong>after</strong> it in WidthHolder structure (in different places, actually). So why did we easily get its value? The answer is that stack grows from right to left. The variables declared first will have much higher addresses, and those declared later will have lower addresses.</p>
+<p>Here, we perform the operation that is impossible in strong typing. We cast one type to another incompatible one that contains one extra field. We introduce an additional variable inside the Main method. In theory, its value is secret. However, the example code will output the value of a variable, not found in any of the structures inside the <code>Main()</code> method. You might consider it a breach in security, but things are not so simple. You cannot get rid of unmanaged code in a program. The main reason is the structure of the thread stack. One can use it to access unmanaged code and play with local variables. You can defend your code from these attacks by randomizing the size of a stack frame. Or, you can delete the information about <code>EBP</code> register to complicate the return of a stack frame. However, this doesn't matter for us now. What we are interested in this example is the following. The &laquo;secret&raquo; variable goes <strong>before</strong> the definition of hh variable and <strong>after</strong> it in WidthHolder structure (in different places, actually). So why did we easily get its value? The answer is that stack grows from right to left. The variables declared first will have much higher addresses, and those declared later will have lower addresses.</p>
 <h2 id="the-behavior-when-calling-instance-methods">The behavior when calling instance methods</h2>
 <p>Both data types have another feature which is not plain to see and can explain the structure of both types. It deals with calling instance methods.</p>
 <div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
@@ -998,11 +1039,11 @@ with null.</p>
 specific type of a processor:
 <ul>
 <li><em><a href="https://github.com/dotnet/coreclr/blob/master/src/vm/amd64/JitHelpers_InlineGetThread.asm#L86-L148">JIT_BoxFastMP_InlineGetThread</a></em>
-(AMD64 - multiprocessor or Server GC, implicit Thread Local Storage)</li>
+(AMD64 &mdash; multiprocessor or Server GC, implicit Thread Local Storage)</li>
 <li><em><a href="https://github.com/dotnet/coreclr/blob/8cc7e35dd0a625a3b883703387291739a148e8c8/src/vm/amd64/JitHelpers_Slow.asm#L201-L271">JIT_BoxFastMP</a></em>
-(AMD64 - multiprocessor or Server GC)</li>
+(AMD64 &mdash; multiprocessor or Server GC)</li>
 <li><em><a href="https://github.com/dotnet/coreclr/blob/8cc7e35dd0a625a3b883703387291739a148e8c8/src/vm/amd64/JitHelpers_Slow.asm#L485-L554">JIT_BoxFastUP</a></em>
-(AMD64 - single processor or Workstation GC)</li>
+(AMD64 &mdash; single processor or Workstation GC)</li>
 <li><em><a href="https://github.com/dotnet/coreclr/blob/38a2a69c786e4273eb1339d7a75f939c410afd69/src/vm/i386/jitinterfacex86.cpp#L756-L886">JIT_TrialAlloc::GenBox(..)</a></em>
 (x86) connected through JitHelpers</li>
 </ul>

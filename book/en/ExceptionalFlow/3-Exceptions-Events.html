@@ -21,7 +21,7 @@ strong {
 }
 
 p, li {
-    margin: 0 0 14px;
+    margin: 0 0 20px;
     line-height: 32px;
     font-family: inherit;
 }
@@ -38,7 +38,7 @@ ol li {
 }
 
 ul li {
-    padding-left: 5px;	
+    padding-left: 12px;	
     font-family: inherit;
 }
 
@@ -79,15 +79,34 @@ code, *[class^='lang-'] span, *[class^='lang-'] pre {
     border-left-width: 3px;
     padding-left: 25px;
     display: block;
+    background-color: aliceblue !important;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
-p code {
-    font-size: 14px;
+*[class^='lang-'] > div pre, pre > code pre {
+    margin-bottom: 0;
+}
+
+p code:not(.highlight), li code:not(.highlight) {
+    font-size: 16px;
     border: gainsboro;
     border-width: 1px;
     border-style: solid;
-    padding: 2px;
+    padding: 4px;
     color: darkslateblue;
+}
+
+code.highlight {
+    font-family: inherit !important;
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+}
+
+p code.highlight, li code.highlight {
+    padding: 4px;
+    background-color: #ffffa1;
 }
 
 *[class^='lang-'] span, *[class^='lang-'] pre, pre > code {
@@ -111,11 +130,20 @@ p img {
     width: 95%;
 }
 
-p (:has img) {
+p:has( > img) {
     text-align: center;
 }
 
-blockquote {
+blockquote > p.big-quote {
+    margin: 40px 0 60px 0;
+    font-family: Charter;
+    font-size: 55px;
+    line-height: 60px;
+    width: 150%;
+    padding: 0;
+}
+
+blockquote:not( p.big-quote) {
     background-color: lavenderblush;
     padding-left: 20px;
     border-left: 1px solid rgba(0,0,0,.08);
@@ -170,7 +198,7 @@ h2 {
 }
 
 h3 {
-    margin: 30px 0 10px 0;
+    margin: 30px 0 15px 0;
     font-size: 17pt;
     font-weight: 400;
 }
@@ -183,16 +211,16 @@ h4 {
 
 /* Fonts */
 
-@font-face {
-    font-family: 'PF Regal';
-    src: url('../../../out/res/fonts/PFRegalTextPro-RegularA.eot');
-    src: local('../../../out/res/fonts/PFRegalTextPro-RegularA'),
-        url('../../../out/res/fonts/PFRegalTextPro-RegularA.woff2') format('woff2'),
-        url('../../../out/res/fonts/PFRegalTextPro-RegularA.woff') format('woff'),
-        url('../../../out/res/fonts/PFRegalTextPro-RegularA.ttf') format('truetype');
-    font-weight: 300;
-    font-style: normal;
-}
+/*@font-face {*/
+/*    font-family: 'PF Regal';*/
+/*    src: url('../../../out/res/fonts/PFRegalTextPro-RegularA.eot');*/
+/*    src: local('../../../out/res/fonts/PFRegalTextPro-RegularA'),*/
+/*        url('../../../out/res/fonts/PFRegalTextPro-RegularA.woff2') format('woff2'),*/
+/*        url('../../../out/res/fonts/PFRegalTextPro-RegularA.woff') format('woff'),*/
+/*        url('../../../out/res/fonts/PFRegalTextPro-RegularA.ttf') format('truetype');*/
+/*    font-weight: 300;*/
+/*    font-style: normal;*/
+/*}*/
 
 @font-face {
     font-family: 'PF Regal';
@@ -293,7 +321,14 @@ h4 {
     font-style: italic;
 }
 
-/*  Regular B *
+@font-face {
+    font-family: 'Charter';
+    src: url('../../../out/res/fonts/charter-regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*  Regular B */
 @font-face {
     font-family: 'PF Regal';
     src: url('../../../out/res/fonts/PFRegalTextPro-RegularBItalic.eot');
@@ -301,7 +336,7 @@ h4 {
         url('../../../out/res/fonts/PFRegalTextPro-RegularBItalic.woff2') format('woff2'),
         url('../../../out/res/fonts/PFRegalTextPro-RegularBItalic.woff') format('woff'),
         url('../../../out/res/fonts/PFRegalTextPro-RegularBItalic.ttf') format('truetype');
-    font-weight: normal;
+    font-weight: 300;
     font-style: italic;
 }
 
@@ -312,13 +347,19 @@ h4 {
         url('../../../out/res/fonts/PFRegalTextPro-RegularB.woff2') format('woff2'),
         url('../../../out/res/fonts/PFRegalTextPro-RegularB.woff') format('woff'),
         url('../../../out/res/fonts/PFRegalTextPro-RegularB.ttf') format('truetype');
-    font-weight: normal;
+    font-weight: 300;
     font-style: normal;
-}              */  
+}                
     </style>
 
-<div style="margin:auto; width:100%;">
-<div style="width:1000px;">
+<div class="row">
+<div class="offset-1 col-6">
+<p style="
+    font-size: 70pt;
+    margin: 85px 0 85px 0;
+    text-align: center;
+">a:
+   </p>
     <h2 id="events-that-indicate-exceptional-situations">Events that indicate exceptional situations</h2>
 <blockquote>
 <p><a href="https://github.com/sidristij/dotnetbook/issues/51">A link to the discussion</a></p>
@@ -342,8 +383,8 @@ h4 {
 </ul>
 <p>You may wonder if you can cancel the exception in uncontrolled code which runs in an isolated domain without terminating the thread where this exception was thrown. The answer is NO.</p>
 <p>If an exception was not caught throughout the whole range of called methods it can’t be handled at all. Otherwise, there is a strange situation: if we use <code>AppDomain.FirstChanceException</code> to process (with some synthetic <code>catch</code>) an exception, which frame should the stack go back to? How should we set it up within the rules of <code>.NET</code> CLR? In no way. It’s impossible. The only thing we can do is to record this data for future research.</p>
-<p>Another thing we should mention at &quot;the very beginning” is why <code>thread</code> and not <code>AppDomain</code> has these events. It is because exceptions logically appear in an execution thread. That means <code>thread</code> in fact. So, why does a domain have problems? The answer is simple: what are the situations <code>AppDomain.FirstChanceException</code> and <code>AppDomain.UnhandledException</code> used for? Above all, they are used to create sandboxes for plug-ins, i.e. situations where there is some <code>AppDomain</code> which is set for PartialTrust. All kinds of things can happen in this <code>AppDomain</code>: new threads can be created at any moment or those already existing in <code>ThreadPool</code> can be used. Thus, we, being outside this process (as we didn’t write this code), can’t subscribe to events of these internal threads — we just don’t know what threads were created there. But we definitely have the <code>AppDomain</code> which we have a link to and which creates a sandbox for us.</p>
-<p>So, in fact, we have two boundary states: something unexpected happened (<code>FirstChanceException</code>) and &quot;things are bad&quot;, the exception was unexpected and nobody handled it. That’s why further thread execution makes no sense and the <code>thread</code> will be unloaded.</p>
+<p>Another thing we should mention at &laquo;the very beginning” is why <code>thread</code> and not <code>AppDomain</code> has these events. It is because exceptions logically appear in an execution thread. That means <code>thread</code> in fact. So, why does a domain have problems? The answer is simple: what are the situations <code>AppDomain.FirstChanceException</code> and <code>AppDomain.UnhandledException</code> used for? Above all, they are used to create sandboxes for plug-ins, i.e. situations where there is some <code>AppDomain</code> which is set for PartialTrust. All kinds of things can happen in this <code>AppDomain</code>: new threads can be created at any moment or those already existing in <code>ThreadPool</code> can be used. Thus, we, being outside this process (as we didn’t write this code), can’t subscribe to events of these internal threads — we just don’t know what threads were created there. But we definitely have the <code>AppDomain</code> which we have a link to and which creates a sandbox for us.</p>
+<p>So, in fact, we have two boundary states: something unexpected happened (<code>FirstChanceException</code>) and &laquo;things are bad&raquo;, the exception was unexpected and nobody handled it. That’s why further thread execution makes no sense and the <code>thread</code> will be unloaded.</p>
 <p>What can we get if we have these events and why is it bad if developers ignore them.</p>
 <h3 id="appdomain.firstchanceexception">AppDomain.FirstChanceException</h3>
 <p>This event is purely informational and can’t be handled. Its task is to notify us about an exception that happened within this domain and will be processed by the application code after processing the event. Its execution has several features we should be aware of when designing a handler.</p>
@@ -539,7 +580,7 @@ Success
 </pre></div>
 </div>
 <p>With this scheme we will meet our goal: on the one hand, we don’t bring a thread down, on the other hand, we clean up local resources correctly if they were created. Also, we log those errors that we get.</p>
-<p>&quot;<em>Hold on</em>&quot; - you might say - &quot;<em>You left the topic of</em> <code>AppDomain.UnhandledException</code> <em>event too quickly. Is it really unnecessary?</em>&quot;</p>
+<p>&quot;<em>Hold on</em>&raquo; &mdash; you might say &mdash; &laquo;<em>You left the topic of</em> <code>AppDomain.UnhandledException</code> <em>event too quickly. Is it really unnecessary?</em>&quot;</p>
 <p>Well, it is necessary. But we need it only to alert us if we forgot to wrap some threads in <code>try-catch</code> with all the necessary logic, including logging and resource cleanup. Otherwise, it would be completely wrong to address all exceptions as if they never occured.</p>
 
 </div>

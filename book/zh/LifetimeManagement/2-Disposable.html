@@ -21,7 +21,7 @@ strong {
 }
 
 p, li {
-    margin: 0 0 14px;
+    margin: 0 0 20px;
     line-height: 32px;
     font-family: inherit;
 }
@@ -38,7 +38,7 @@ ol li {
 }
 
 ul li {
-    padding-left: 5px;	
+    padding-left: 12px;	
     font-family: inherit;
 }
 
@@ -79,15 +79,34 @@ code, *[class^='lang-'] span, *[class^='lang-'] pre {
     border-left-width: 3px;
     padding-left: 25px;
     display: block;
+    background-color: aliceblue !important;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
-p code {
-    font-size: 14px;
+*[class^='lang-'] > div pre, pre > code pre {
+    margin-bottom: 0;
+}
+
+p code:not(.highlight), li code:not(.highlight) {
+    font-size: 16px;
     border: gainsboro;
     border-width: 1px;
     border-style: solid;
-    padding: 2px;
+    padding: 4px;
     color: darkslateblue;
+}
+
+code.highlight {
+    font-family: inherit !important;
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+}
+
+p code.highlight, li code.highlight {
+    padding: 4px;
+    background-color: #ffffa1;
 }
 
 *[class^='lang-'] span, *[class^='lang-'] pre, pre > code {
@@ -111,11 +130,20 @@ p img {
     width: 95%;
 }
 
-p (:has img) {
+p:has( > img) {
     text-align: center;
 }
 
-blockquote {
+blockquote > p.big-quote {
+    margin: 40px 0 60px 0;
+    font-family: Charter;
+    font-size: 55px;
+    line-height: 60px;
+    width: 150%;
+    padding: 0;
+}
+
+blockquote:not( p.big-quote) {
     background-color: lavenderblush;
     padding-left: 20px;
     border-left: 1px solid rgba(0,0,0,.08);
@@ -170,7 +198,7 @@ h2 {
 }
 
 h3 {
-    margin: 30px 0 10px 0;
+    margin: 30px 0 15px 0;
     font-size: 17pt;
     font-weight: 400;
 }
@@ -183,16 +211,16 @@ h4 {
 
 /* Fonts */
 
-@font-face {
-    font-family: 'PF Regal';
-    src: url('../../../out/res/fonts/PFRegalTextPro-RegularA.eot');
-    src: local('../../../out/res/fonts/PFRegalTextPro-RegularA'),
-        url('../../../out/res/fonts/PFRegalTextPro-RegularA.woff2') format('woff2'),
-        url('../../../out/res/fonts/PFRegalTextPro-RegularA.woff') format('woff'),
-        url('../../../out/res/fonts/PFRegalTextPro-RegularA.ttf') format('truetype');
-    font-weight: 300;
-    font-style: normal;
-}
+/*@font-face {*/
+/*    font-family: 'PF Regal';*/
+/*    src: url('../../../out/res/fonts/PFRegalTextPro-RegularA.eot');*/
+/*    src: local('../../../out/res/fonts/PFRegalTextPro-RegularA'),*/
+/*        url('../../../out/res/fonts/PFRegalTextPro-RegularA.woff2') format('woff2'),*/
+/*        url('../../../out/res/fonts/PFRegalTextPro-RegularA.woff') format('woff'),*/
+/*        url('../../../out/res/fonts/PFRegalTextPro-RegularA.ttf') format('truetype');*/
+/*    font-weight: 300;*/
+/*    font-style: normal;*/
+/*}*/
 
 @font-face {
     font-family: 'PF Regal';
@@ -293,7 +321,14 @@ h4 {
     font-style: italic;
 }
 
-/*  Regular B *
+@font-face {
+    font-family: 'Charter';
+    src: url('../../../out/res/fonts/charter-regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*  Regular B */
 @font-face {
     font-family: 'PF Regal';
     src: url('../../../out/res/fonts/PFRegalTextPro-RegularBItalic.eot');
@@ -301,7 +336,7 @@ h4 {
         url('../../../out/res/fonts/PFRegalTextPro-RegularBItalic.woff2') format('woff2'),
         url('../../../out/res/fonts/PFRegalTextPro-RegularBItalic.woff') format('woff'),
         url('../../../out/res/fonts/PFRegalTextPro-RegularBItalic.ttf') format('truetype');
-    font-weight: normal;
+    font-weight: 300;
     font-style: italic;
 }
 
@@ -312,19 +347,25 @@ h4 {
         url('../../../out/res/fonts/PFRegalTextPro-RegularB.woff2') format('woff2'),
         url('../../../out/res/fonts/PFRegalTextPro-RegularB.woff') format('woff'),
         url('../../../out/res/fonts/PFRegalTextPro-RegularB.ttf') format('truetype');
-    font-weight: normal;
+    font-weight: 300;
     font-style: normal;
-}              */  
+}                
     </style>
 
-<div style="margin:auto; width:100%;">
-<div style="width:1000px;">
+<div class="row">
+<div class="offset-1 col-6">
+<p style="
+    font-size: 70pt;
+    margin: 85px 0 85px 0;
+    text-align: center;
+">a:
+   </p>
     <p><img src="./imgs/Disposable-Cover.png" alt="IDisposable cover" /></p>
 <h1 id="section">一次性模式（一次性设计原则）</h1>
 <blockquote>
 <p><a href="https://github.com/sidristij/dotnetbook/issues/54">讨论链接</a></p>
 </blockquote>
-<p>我想几乎所有使用.NET的程序员现在都会说这种模式是小菜一碟。这是平台上使用的最着名的模式。然而，即使是最简单和众所周知的问题域也会有你从未看过的秘密区域。所以，让我们从一开始就为第一次和其他所有人描述整个事情（这样你们每个人都能记住基础知识）。不要跳过这些段落 - 我在看着你！</p>
+<p>我想几乎所有使用.NET的程序员现在都会说这种模式是小菜一碟。这是平台上使用的最着名的模式。然而，即使是最简单和众所周知的问题域也会有你从未看过的秘密区域。所以，让我们从一开始就为第一次和其他所有人描述整个事情（这样你们每个人都能记住基础知识）。不要跳过这些段落 &mdash; 我在看着你！</p>
 <h2 id="idisposable">IDisposable</h2>
 <p>如果我问什么是IDisposable，你肯定会说它是</p>
 <div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
@@ -335,7 +376,7 @@ h4 {
 </pre></div>
 </div>
 <p>界面的目的是什么？我的意思是，如果我们有一个智能垃圾收集器清除内存而不是我们，为什么我们需要清理内存，所以我们甚至不必考虑它。但是，有一些小细节。</p>
-<p>有一种误解，“`IDisposable<code>用于释放非托管资源。这只是部分正确，要理解它，您只需要记住非托管资源的示例。</code>File<code>类是非托管资源吗？不，也许````DbContext</code>是一个非托管资源？不，再说一次。非托管资源不属于.NET类型系统。平台没有创建的东西，存在于其范围之外的东西。一个简单的例子是操作系统中打开的文件句柄。句柄是一个数字，用于唯一标识操作系统打开的文件 - 不，不是您。也就是说，所有控制结构（例如文件系统中文件的位置，碎片和其他服务信息中的文件碎片，圆柱体的数量，硬盘的头部或扇区）在操作系统内，但不在.NET平台内。传递给.NET平台的唯一非托管资源是IntPtr编号。这个数字由FileSafeHandle包装，FileSafeHandle由File类包装。这意味着File类本身不是非托管资源，但使用IntPtr形式的附加层来包含非托管资源 - 打开文件的句柄。你怎么看那个文件？在WinAPI或Linux OS中使用一组方法。你怎么看那个文件？在WinAPI或Linux OS中使用一组方法。你怎么看那个文件？在WinAPI或Linux OS中使用一组方法。</p>
+<p>有一种误解，“`IDisposable<code>用于释放非托管资源。这只是部分正确，要理解它，您只需要记住非托管资源的示例。</code>File<code>类是非托管资源吗？不，也许````DbContext</code>是一个非托管资源？不，再说一次。非托管资源不属于.NET类型系统。平台没有创建的东西，存在于其范围之外的东西。一个简单的例子是操作系统中打开的文件句柄。句柄是一个数字，用于唯一标识操作系统打开的文件 &mdash; 不，不是您。也就是说，所有控制结构（例如文件系统中文件的位置，碎片和其他服务信息中的文件碎片，圆柱体的数量，硬盘的头部或扇区）在操作系统内，但不在.NET平台内。传递给.NET平台的唯一非托管资源是IntPtr编号。这个数字由FileSafeHandle包装，FileSafeHandle由File类包装。这意味着File类本身不是非托管资源，但使用IntPtr形式的附加层来包含非托管资源 &mdash; 打开文件的句柄。你怎么看那个文件？在WinAPI或Linux OS中使用一组方法。你怎么看那个文件？在WinAPI或Linux OS中使用一组方法。你怎么看那个文件？在WinAPI或Linux OS中使用一组方法。</p>
 <p>多线程或多处理器程序中的同步原语是非托管资源的第二个示例。这里属于通过P/Invoke传递的数据数组以及互斥锁或信号量。</p>
 <blockquote>
 <p>请注意，操作系统不会简单地将非托管资源的句柄传递给应用程序。它还将该句柄保存在由该进程打开的句柄表中。因此，OS可以在应用程序终止后正确关闭资源。这可确保在退出应用程序后无论如何都会关闭资源。但是，应用程序的运行时间可能不同，这可能导致长时间的资源锁定。</p>

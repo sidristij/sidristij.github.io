@@ -21,7 +21,7 @@ strong {
 }
 
 p, li {
-    margin: 0 0 14px;
+    margin: 0 0 20px;
     line-height: 32px;
     font-family: inherit;
 }
@@ -38,7 +38,7 @@ ol li {
 }
 
 ul li {
-    padding-left: 5px;	
+    padding-left: 12px;	
     font-family: inherit;
 }
 
@@ -79,15 +79,34 @@ code, *[class^='lang-'] span, *[class^='lang-'] pre {
     border-left-width: 3px;
     padding-left: 25px;
     display: block;
+    background-color: aliceblue !important;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
-p code {
-    font-size: 14px;
+*[class^='lang-'] > div pre, pre > code pre {
+    margin-bottom: 0;
+}
+
+p code:not(.highlight), li code:not(.highlight) {
+    font-size: 16px;
     border: gainsboro;
     border-width: 1px;
     border-style: solid;
-    padding: 2px;
+    padding: 4px;
     color: darkslateblue;
+}
+
+code.highlight {
+    font-family: inherit !important;
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+}
+
+p code.highlight, li code.highlight {
+    padding: 4px;
+    background-color: #ffffa1;
 }
 
 *[class^='lang-'] span, *[class^='lang-'] pre, pre > code {
@@ -111,11 +130,20 @@ p img {
     width: 95%;
 }
 
-p (:has img) {
+p:has( > img) {
     text-align: center;
 }
 
-blockquote {
+blockquote > p.big-quote {
+    margin: 40px 0 60px 0;
+    font-family: Charter;
+    font-size: 55px;
+    line-height: 60px;
+    width: 150%;
+    padding: 0;
+}
+
+blockquote:not( p.big-quote) {
     background-color: lavenderblush;
     padding-left: 20px;
     border-left: 1px solid rgba(0,0,0,.08);
@@ -170,7 +198,7 @@ h2 {
 }
 
 h3 {
-    margin: 30px 0 10px 0;
+    margin: 30px 0 15px 0;
     font-size: 17pt;
     font-weight: 400;
 }
@@ -183,16 +211,16 @@ h4 {
 
 /* Fonts */
 
-@font-face {
-    font-family: 'PF Regal';
-    src: url('../../out/res/fonts/PFRegalTextPro-RegularA.eot');
-    src: local('../../out/res/fonts/PFRegalTextPro-RegularA'),
-        url('../../out/res/fonts/PFRegalTextPro-RegularA.woff2') format('woff2'),
-        url('../../out/res/fonts/PFRegalTextPro-RegularA.woff') format('woff'),
-        url('../../out/res/fonts/PFRegalTextPro-RegularA.ttf') format('truetype');
-    font-weight: 300;
-    font-style: normal;
-}
+/*@font-face {*/
+/*    font-family: 'PF Regal';*/
+/*    src: url('../../out/res/fonts/PFRegalTextPro-RegularA.eot');*/
+/*    src: local('../../out/res/fonts/PFRegalTextPro-RegularA'),*/
+/*        url('../../out/res/fonts/PFRegalTextPro-RegularA.woff2') format('woff2'),*/
+/*        url('../../out/res/fonts/PFRegalTextPro-RegularA.woff') format('woff'),*/
+/*        url('../../out/res/fonts/PFRegalTextPro-RegularA.ttf') format('truetype');*/
+/*    font-weight: 300;*/
+/*    font-style: normal;*/
+/*}*/
 
 @font-face {
     font-family: 'PF Regal';
@@ -293,7 +321,14 @@ h4 {
     font-style: italic;
 }
 
-/*  Regular B *
+@font-face {
+    font-family: 'Charter';
+    src: url('../../out/res/fonts/charter-regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*  Regular B */
 @font-face {
     font-family: 'PF Regal';
     src: url('../../out/res/fonts/PFRegalTextPro-RegularBItalic.eot');
@@ -301,7 +336,7 @@ h4 {
         url('../../out/res/fonts/PFRegalTextPro-RegularBItalic.woff2') format('woff2'),
         url('../../out/res/fonts/PFRegalTextPro-RegularBItalic.woff') format('woff'),
         url('../../out/res/fonts/PFRegalTextPro-RegularBItalic.ttf') format('truetype');
-    font-weight: normal;
+    font-weight: 300;
     font-style: italic;
 }
 
@@ -312,13 +347,19 @@ h4 {
         url('../../out/res/fonts/PFRegalTextPro-RegularB.woff2') format('woff2'),
         url('../../out/res/fonts/PFRegalTextPro-RegularB.woff') format('woff'),
         url('../../out/res/fonts/PFRegalTextPro-RegularB.ttf') format('truetype');
-    font-weight: normal;
+    font-weight: 300;
     font-style: normal;
-}              */  
+}                
     </style>
 
-<div style="margin:auto; width:100%;">
-<div style="width:1000px;">
+<div class="row">
+<div class="offset-1 col-6">
+<p style="
+    font-size: 70pt;
+    margin: 85px 0 85px 0;
+    text-align: center;
+">a:
+   </p>
     <h1 id="reference-types-vs-value-types">Reference Types vs Value Types</h1>
 <blockquote>
 <p><a href="https://github.com/sidristij/dotnetbook/issues/57">讨论链接</a></p>
@@ -511,7 +552,7 @@ PersonInfo person;
         <span style="color:Green;">// you can interpret it as any kind of structure.</span>
         wh = *(WidthHolder*)&amp;hh;
    }
-   Console.WriteLine(<span style="color:#A31515;">&quot;Width: &quot;</span> + wh.Width);
+   Console.WriteLine(<span style="color:#A31515;">&quot;Width: &laquo;</span> + wh.Width);
    Console.WriteLine(<span style="color:#A31515;">&quot;Secret:&quot;</span> + wh.Secret);
 }
 
@@ -720,8 +761,8 @@ ChangeTo(<span style="color:Blue;">ref</span> strukt, 10);
 </ol>
 <p>基于我所说的，这里有一些关于使用结构的建议：</p>
 <ol>
-<li>选择集合时，应避免使用存储大型结构的大型数组。这包括基于数组的数据结构。这可能导致转换为大对象堆及其碎片。如果我们的结构有4个字节类型的字段，则需要4个字节，这是错误的。我们应该理解，在32位系统中，每个结构字段在4个字节边界上对齐(每个地址字段应该精确地除以4)，在64位系统中，在8个字节边界上对齐。数组的大小应取决于运行程序的结构和平台的大小。在我们的示例中，4个字节 -  85K /(每个字段4到8个字节*字段数= 4)减去数组头的大小等于每个阵列大约2 600个元素，具体取决于平台(这应该向下舍入) )。那不是很多。</li>
-<li>有时您使用大尺寸结构作为数据源并将其作为字段放在类中，同时复制一个副本以生成数千个实例。然后，根据结构的大小展开类的每个实例。它将导致第0代的膨胀并过渡到第一代甚至两代。如果一个类的实例具有较短的生命周期，并且您认为GC将在第0代收集它们 - 持续1毫秒，您将会感到失望。他们已经在第一代甚至第二代。这有所不同。如果GC收集零点1毫秒，则第一代和第二代收集非常缓慢，这将导致效率降低;</li>
+<li>选择集合时，应避免使用存储大型结构的大型数组。这包括基于数组的数据结构。这可能导致转换为大对象堆及其碎片。如果我们的结构有4个字节类型的字段，则需要4个字节，这是错误的。我们应该理解，在32位系统中，每个结构字段在4个字节边界上对齐(每个地址字段应该精确地除以4)，在64位系统中，在8个字节边界上对齐。数组的大小应取决于运行程序的结构和平台的大小。在我们的示例中，4个字节 &mdash;  85K /(每个字段4到8个字节*字段数= 4)减去数组头的大小等于每个阵列大约2 600个元素，具体取决于平台(这应该向下舍入) )。那不是很多。</li>
+<li>有时您使用大尺寸结构作为数据源并将其作为字段放在类中，同时复制一个副本以生成数千个实例。然后，根据结构的大小展开类的每个实例。它将导致第0代的膨胀并过渡到第一代甚至两代。如果一个类的实例具有较短的生命周期，并且您认为GC将在第0代收集它们 &mdash; 持续1毫秒，您将会感到失望。他们已经在第一代甚至第二代。这有所不同。如果GC收集零点1毫秒，则第一代和第二代收集非常缓慢，这将导致效率降低;</li>
 <li>出于同样的原因，你应该避免通过一系列方法调用传递大型结构。如果所有元素互相调用，这些调用将占用堆栈上的更多空间，并通过StackOverflowException使应用程序死机。下一个原因是表现。副本越多，一切都越慢。</li>
 </ol>
 <p>这就是为什么选择数据类型不是一个明显的过程。通常，这可以指过早优化，这是不推荐的。但是，如果您知道您的情况符合上述原则，则可以轻松选择值类型。</p>
@@ -986,7 +1027,7 @@ pool.Free(boxed);
 }
 </pre></div>
 </div>
-<p>为什么这样做？特别是，因为继承的想法 - 例如，要进行自定义枚举，您需要指定可能值的名称。但是，继承值类型是不可能的。因此，开发人员将其设计为一种引用类型，可以在编译时将其转换为值类型。</p>
+<p>为什么这样做？特别是，因为继承的想法 &mdash; 例如，要进行自定义枚举，您需要指定可能值的名称。但是，继承值类型是不可能的。因此，开发人员将其设计为一种引用类型，可以在编译时将其转换为值类型。</p>
 <h2 id="section-5">如果你想亲自看拳击怎么办？</h2>
 <p>幸运的是，您不必使用反汇编程序进入代码丛林。我们有整个.NET平台核心的文本，其中许多在.NET Framework CLR和CoreCLR方面是相同的。您可以点击下面的链接，立即查看拳击的实施：</p>
 <ul>
@@ -994,11 +1035,11 @@ pool.Free(boxed);
 特定类型的处理器：
 <ul>
 <li><em><a href="https://github.com/dotnet/coreclr/blob/master/src/vm/amd64/JitHelpers_InlineGetThread.asm#L86-L148">JIT_BoxFastMP_InlineGetThread</a></em>
-(AMD64 - multiprocessor or Server GC, implicit Thread Local Storage)</li>
+(AMD64 &mdash; multiprocessor or Server GC, implicit Thread Local Storage)</li>
 <li><em><a href="https://github.com/dotnet/coreclr/blob/8cc7e35dd0a625a3b883703387291739a148e8c8/src/vm/amd64/JitHelpers_Slow.asm#L201-L271">JIT_BoxFastMP</a></em>
-(AMD64 - multiprocessor or Server GC)</li>
+(AMD64 &mdash; multiprocessor or Server GC)</li>
 <li><em><a href="https://github.com/dotnet/coreclr/blob/8cc7e35dd0a625a3b883703387291739a148e8c8/src/vm/amd64/JitHelpers_Slow.asm#L485-L554">JIT_BoxFastUP</a></em>
-(AMD64 - single processor or Workstation GC)</li>
+(AMD64 &mdash; single processor or Workstation GC)</li>
 <li><em><a href="https://github.com/dotnet/coreclr/blob/38a2a69c786e4273eb1339d7a75f939c410afd69/src/vm/i386/jitinterfacex86.cpp#L756-L886">JIT_TrialAlloc::GenBox(..)</a></em>
 (x86) connected through JitHelpers</li>
 </ul>

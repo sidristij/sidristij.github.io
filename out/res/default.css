@@ -44,7 +44,7 @@ code, *[class^='lang-'] span, *[class^='lang-'] pre {
     border-left-color: #eee;
     border-left-style: dotted;
     border-left-width: 3px;
-    padding-left: 25px;
+    padding-left: 25px;          
 }
 
 code {

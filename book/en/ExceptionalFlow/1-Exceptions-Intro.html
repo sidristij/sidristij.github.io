@@ -21,7 +21,7 @@ strong {
 }
 
 p, li {
-    margin: 0 0 14px;
+    margin: 0 0 20px;
     line-height: 32px;
     font-family: inherit;
 }
@@ -38,7 +38,7 @@ ol li {
 }
 
 ul li {
-    padding-left: 5px;	
+    padding-left: 12px;	
     font-family: inherit;
 }
 
@@ -79,15 +79,34 @@ code, *[class^='lang-'] span, *[class^='lang-'] pre {
     border-left-width: 3px;
     padding-left: 25px;
     display: block;
+    background-color: aliceblue !important;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
-p code {
-    font-size: 14px;
+*[class^='lang-'] > div pre, pre > code pre {
+    margin-bottom: 0;
+}
+
+p code:not(.highlight), li code:not(.highlight) {
+    font-size: 16px;
     border: gainsboro;
     border-width: 1px;
     border-style: solid;
-    padding: 2px;
+    padding: 4px;
     color: darkslateblue;
+}
+
+code.highlight {
+    font-family: inherit !important;
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+}
+
+p code.highlight, li code.highlight {
+    padding: 4px;
+    background-color: #ffffa1;
 }
 
 *[class^='lang-'] span, *[class^='lang-'] pre, pre > code {
@@ -111,11 +130,20 @@ p img {
     width: 95%;
 }
 
-p (:has img) {
+p:has( > img) {
     text-align: center;
 }
 
-blockquote {
+blockquote > p.big-quote {
+    margin: 40px 0 60px 0;
+    font-family: Charter;
+    font-size: 55px;
+    line-height: 60px;
+    width: 150%;
+    padding: 0;
+}
+
+blockquote:not( p.big-quote) {
     background-color: lavenderblush;
     padding-left: 20px;
     border-left: 1px solid rgba(0,0,0,.08);
@@ -170,7 +198,7 @@ h2 {
 }
 
 h3 {
-    margin: 30px 0 10px 0;
+    margin: 30px 0 15px 0;
     font-size: 17pt;
     font-weight: 400;
 }
@@ -183,16 +211,16 @@ h4 {
 
 /* Fonts */
 
-@font-face {
-    font-family: 'PF Regal';
-    src: url('../../../out/res/fonts/PFRegalTextPro-RegularA.eot');
-    src: local('../../../out/res/fonts/PFRegalTextPro-RegularA'),
-        url('../../../out/res/fonts/PFRegalTextPro-RegularA.woff2') format('woff2'),
-        url('../../../out/res/fonts/PFRegalTextPro-RegularA.woff') format('woff'),
-        url('../../../out/res/fonts/PFRegalTextPro-RegularA.ttf') format('truetype');
-    font-weight: 300;
-    font-style: normal;
-}
+/*@font-face {*/
+/*    font-family: 'PF Regal';*/
+/*    src: url('../../../out/res/fonts/PFRegalTextPro-RegularA.eot');*/
+/*    src: local('../../../out/res/fonts/PFRegalTextPro-RegularA'),*/
+/*        url('../../../out/res/fonts/PFRegalTextPro-RegularA.woff2') format('woff2'),*/
+/*        url('../../../out/res/fonts/PFRegalTextPro-RegularA.woff') format('woff'),*/
+/*        url('../../../out/res/fonts/PFRegalTextPro-RegularA.ttf') format('truetype');*/
+/*    font-weight: 300;*/
+/*    font-style: normal;*/
+/*}*/
 
 @font-face {
     font-family: 'PF Regal';
@@ -293,7 +321,14 @@ h4 {
     font-style: italic;
 }
 
-/*  Regular B *
+@font-face {
+    font-family: 'Charter';
+    src: url('../../../out/res/fonts/charter-regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*  Regular B */
 @font-face {
     font-family: 'PF Regal';
     src: url('../../../out/res/fonts/PFRegalTextPro-RegularBItalic.eot');
@@ -301,7 +336,7 @@ h4 {
         url('../../../out/res/fonts/PFRegalTextPro-RegularBItalic.woff2') format('woff2'),
         url('../../../out/res/fonts/PFRegalTextPro-RegularBItalic.woff') format('woff'),
         url('../../../out/res/fonts/PFRegalTextPro-RegularBItalic.ttf') format('truetype');
-    font-weight: normal;
+    font-weight: 300;
     font-style: italic;
 }
 
@@ -312,13 +347,19 @@ h4 {
         url('../../../out/res/fonts/PFRegalTextPro-RegularB.woff2') format('woff2'),
         url('../../../out/res/fonts/PFRegalTextPro-RegularB.woff') format('woff'),
         url('../../../out/res/fonts/PFRegalTextPro-RegularB.ttf') format('truetype');
-    font-weight: normal;
+    font-weight: 300;
     font-style: normal;
-}              */  
+}                
     </style>
 
-<div style="margin:auto; width:100%;">
-<div style="width:1000px;">
+<div class="row">
+<div class="offset-1 col-6">
+<p style="
+    font-size: 70pt;
+    margin: 85px 0 85px 0;
+    text-align: center;
+">a:
+   </p>
     <h1 id="exceptions">Exceptions</h1>
 <blockquote>
 <p><a href="https://github.com/sidristij/dotnetbook/issues/51">A link to the discussion</a></p>
@@ -403,7 +444,7 @@ h4 {
 </pre></div>
 </div>
 <p>You may think this code is overloaded with error handling. However, I would like you to reconsider your position: everything here is an emulation of a mechanism that throws and handles exceptions.</p>
-<p>How can a method report a problem? It can do it by using an interface for reporting errors. For example, in <code>TryParseInteger</code> method such interface is represented by a return value: if everything is OK, the method will return <code>true</code>. If it’s not OK, it will return <code>false</code>. However, there is a disadvantage here: the real value is returned via <code>out int result</code> parameter. The disadvantage is that on the one hand the return value is logically and by perception has more &quot;return value” essence than that of <code>out</code> parameter. On the other hand, we don’t always care about errors. Indeed, if a string intended for parsing comes from a service that generated this string, we don’t need to check it for errors: the string will always be correct and good for parsing. However, suppose we take another implementation of the method:</p>
+<p>How can a method report a problem? It can do it by using an interface for reporting errors. For example, in <code>TryParseInteger</code> method such interface is represented by a return value: if everything is OK, the method will return <code>true</code>. If it’s not OK, it will return <code>false</code>. However, there is a disadvantage here: the real value is returned via <code>out int result</code> parameter. The disadvantage is that on the one hand the return value is logically and by perception has more &laquo;return value” essence than that of <code>out</code> parameter. On the other hand, we don’t always care about errors. Indeed, if a string intended for parsing comes from a service that generated this string, we don’t need to check it for errors: the string will always be correct and good for parsing. However, suppose we take another implementation of the method:</p>
 <div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
 <span style="color:Blue;">public</span> <span style="color:Blue;">int</span> ParseInt(<span style="color:Blue;">string</span> source);
 </pre></div>
@@ -416,7 +457,7 @@ h4 {
 <p>A <code>try</code> block covers a section where a programmer expects to get a critical situation which is treated as a norm by external code. In other words, if some code considers its internal state inconsistent based on some rules and throws an exception, an external system, which has a broader view of the same situation, can catch this exception using a <code>catch</code> block and normalize the execution of application code. Thus, <em>you legalize exceptions in this section of code by catching them</em>. I think it is an important idea that justifies the ban on catching all <code>try-catch(Exception ex){ ...}</code> exceptions <em>just in case</em>.</p>
 <p>It doesn’t mean that catching exceptions contradicts some ideology. I say that you should catch only the errors that you expect from a particular section of code. For example, you can’t expect all types of exceptions inherited from <code>ArgumentException</code> or you can’t get <code>NullReferenceException</code>, because often it means that a problem is rather in <em>your</em> code than in a called one. But it’s appropriate to expect that you won’t be able to open an intended file. Even if you 200% sure you will be able, don’t forget to check.</p>
 <p>The <code>finally</code> block is also well known. It is suitable for all cases covered by <code>try-catch</code> blocks. Except for several rare <em>special</em> situations, this block will <em>always</em> work. Why was such a guarantee of performance introduced? To clean up those resources and groups of objects which were allocated or captured in <code>try</code> block and which this block has responsibility for.</p>
-<p>This block is often used without <code>catch</code> block when we don’t care which error broke an algorithm, but we need to clean up all resources allocated for this algorithm. Let’s look at a simple example: a file copying algorithm needs two open files and a memory range for a cash buffer. Imagine that we allocated memory and opened one file, but couldn’t open another one. To wrap everything in one &quot;transaction” atomically we put all three operations in a single <code>try</code> block (as a variant of implementation) with resources cleaned in <code>finally</code>. It may seem like a simplified example but the most important is to show the essence.</p>
+<p>This block is often used without <code>catch</code> block when we don’t care which error broke an algorithm, but we need to clean up all resources allocated for this algorithm. Let’s look at a simple example: a file copying algorithm needs two open files and a memory range for a cash buffer. Imagine that we allocated memory and opened one file, but couldn’t open another one. To wrap everything in one &laquo;transaction” atomically we put all three operations in a single <code>try</code> block (as a variant of implementation) with resources cleaned in <code>finally</code>. It may seem like a simplified example but the most important is to show the essence.</p>
 <p>What C# actually lacks is a <code>fault</code> block which is activated whenever an error occurs. It’s like <code>finally</code> on steroids. If we had this, we could, for example, create a single entry point to log exceptional situations:</p>
 <div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
 <span style="color:Blue;">try</span> {

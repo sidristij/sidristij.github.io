@@ -21,7 +21,7 @@ strong {
 }
 
 p, li {
-    margin: 0 0 14px;
+    margin: 0 0 20px;
     line-height: 32px;
     font-family: inherit;
 }
@@ -38,7 +38,7 @@ ol li {
 }
 
 ul li {
-    padding-left: 5px;	
+    padding-left: 12px;	
     font-family: inherit;
 }
 
@@ -79,15 +79,34 @@ code, *[class^='lang-'] span, *[class^='lang-'] pre {
     border-left-width: 3px;
     padding-left: 25px;
     display: block;
+    background-color: aliceblue !important;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
-p code {
-    font-size: 14px;
+*[class^='lang-'] > div pre, pre > code pre {
+    margin-bottom: 0;
+}
+
+p code:not(.highlight), li code:not(.highlight) {
+    font-size: 16px;
     border: gainsboro;
     border-width: 1px;
     border-style: solid;
-    padding: 2px;
+    padding: 4px;
     color: darkslateblue;
+}
+
+code.highlight {
+    font-family: inherit !important;
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+}
+
+p code.highlight, li code.highlight {
+    padding: 4px;
+    background-color: #ffffa1;
 }
 
 *[class^='lang-'] span, *[class^='lang-'] pre, pre > code {
@@ -111,11 +130,20 @@ p img {
     width: 95%;
 }
 
-p (:has img) {
+p:has( > img) {
     text-align: center;
 }
 
-blockquote {
+blockquote > p.big-quote {
+    margin: 40px 0 60px 0;
+    font-family: Charter;
+    font-size: 55px;
+    line-height: 60px;
+    width: 150%;
+    padding: 0;
+}
+
+blockquote:not( p.big-quote) {
     background-color: lavenderblush;
     padding-left: 20px;
     border-left: 1px solid rgba(0,0,0,.08);
@@ -170,7 +198,7 @@ h2 {
 }
 
 h3 {
-    margin: 30px 0 10px 0;
+    margin: 30px 0 15px 0;
     font-size: 17pt;
     font-weight: 400;
 }
@@ -183,16 +211,16 @@ h4 {
 
 /* Fonts */
 
-@font-face {
-    font-family: 'PF Regal';
-    src: url('../../../out/res/fonts/PFRegalTextPro-RegularA.eot');
-    src: local('../../../out/res/fonts/PFRegalTextPro-RegularA'),
-        url('../../../out/res/fonts/PFRegalTextPro-RegularA.woff2') format('woff2'),
-        url('../../../out/res/fonts/PFRegalTextPro-RegularA.woff') format('woff'),
-        url('../../../out/res/fonts/PFRegalTextPro-RegularA.ttf') format('truetype');
-    font-weight: 300;
-    font-style: normal;
-}
+/*@font-face {*/
+/*    font-family: 'PF Regal';*/
+/*    src: url('../../../out/res/fonts/PFRegalTextPro-RegularA.eot');*/
+/*    src: local('../../../out/res/fonts/PFRegalTextPro-RegularA'),*/
+/*        url('../../../out/res/fonts/PFRegalTextPro-RegularA.woff2') format('woff2'),*/
+/*        url('../../../out/res/fonts/PFRegalTextPro-RegularA.woff') format('woff'),*/
+/*        url('../../../out/res/fonts/PFRegalTextPro-RegularA.ttf') format('truetype');*/
+/*    font-weight: 300;*/
+/*    font-style: normal;*/
+/*}*/
 
 @font-face {
     font-family: 'PF Regal';
@@ -293,7 +321,14 @@ h4 {
     font-style: italic;
 }
 
-/*  Regular B *
+@font-face {
+    font-family: 'Charter';
+    src: url('../../../out/res/fonts/charter-regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*  Regular B */
 @font-face {
     font-family: 'PF Regal';
     src: url('../../../out/res/fonts/PFRegalTextPro-RegularBItalic.eot');
@@ -301,7 +336,7 @@ h4 {
         url('../../../out/res/fonts/PFRegalTextPro-RegularBItalic.woff2') format('woff2'),
         url('../../../out/res/fonts/PFRegalTextPro-RegularBItalic.woff') format('woff'),
         url('../../../out/res/fonts/PFRegalTextPro-RegularBItalic.ttf') format('truetype');
-    font-weight: normal;
+    font-weight: 300;
     font-style: italic;
 }
 
@@ -312,29 +347,35 @@ h4 {
         url('../../../out/res/fonts/PFRegalTextPro-RegularB.woff2') format('woff2'),
         url('../../../out/res/fonts/PFRegalTextPro-RegularB.woff') format('woff'),
         url('../../../out/res/fonts/PFRegalTextPro-RegularB.ttf') format('truetype');
-    font-weight: normal;
+    font-weight: 300;
     font-style: normal;
-}              */  
+}                
     </style>
 
-<div style="margin:auto; width:100%;">
-<div style="width:1000px;">
+<div class="row">
+<div class="offset-1 col-6">
+<p style="
+    font-size: 70pt;
+    margin: 85px 0 85px 0;
+    text-align: center;
+">a:
+   </p>
     <h1 id="section">Основы управления памятью [В процессе]</h1>
 <blockquote>
 <p>Если статья находится в процессе, это значит, что прямо в эти минуты я ее правлю и возможно, часть информации не является достоверной</p>
 </blockquote>
 <h1 id="section-1">Обзор</h1>
-<p>Когда вы думаете о разработке любого .NET приложения до недавних пор можно было себе позволить считать, что приложение, которое вы делаете, будет всегда работать на одной и той же платформе: это операционная система Windows, запущенная поверх технологического стека Intel. Сейчас же с каждым прожитым днем мы входим в новую эпоху: платформа .NET стала поистине кроссплатформенной, пустив новые корни в сторону всех доступных настольных операционных систем. Это - прекрасное время и наш долг сейчас не потерять нить и остаться востребованными специалистами. Ведь когда toolset становится кроссплатформенным, это означает что мы обязаны начать смотреть внутрь. Изучать, как работает двигатель нашей платформы. Чтобы понимать, почему тот ведет себя, так или иначе, на различных системах.</p>
-<p>Подсистему управления памятью мы будем изучать по слоям. Начнем от слоя, близкого к пониманию ее работы &quot;на пальцах&quot; и закончим - слоем архитектуры на самом низком уровне - процессорном. Ведь чтобы до конца понимать всю проблематику работы с памятью - надо знать все, начиная от процессорных кэшей заканчивая оптимизациями работы c кучами .NET.</p>
+<p>Когда вы думаете о разработке любого .NET приложения до недавних пор можно было себе позволить считать, что приложение, которое вы делаете, будет всегда работать на одной и той же платформе: это операционная система Windows, запущенная поверх технологического стека Intel. Сейчас же с каждым прожитым днем мы входим в новую эпоху: платформа .NET стала поистине кроссплатформенной, пустив новые корни в сторону всех доступных настольных операционных систем. Это &mdash; прекрасное время и наш долг сейчас не потерять нить и остаться востребованными специалистами. Ведь когда toolset становится кроссплатформенным, это означает что мы обязаны начать смотреть внутрь. Изучать, как работает двигатель нашей платформы. Чтобы понимать, почему тот ведет себя, так или иначе, на различных системах.</p>
+<p>Подсистему управления памятью мы будем изучать по слоям. Начнем от слоя, близкого к пониманию ее работы &laquo;на пальцах&raquo; и закончим &mdash; слоем архитектуры на самом низком уровне &mdash; процессорном. Ведь чтобы до конца понимать всю проблематику работы с памятью &mdash; надо знать все, начиная от процессорных кэшей заканчивая оптимизациями работы c кучами .NET.</p>
 <h2 id="section-2">Основы основ</h2>
 <p>Если взять любое приложение и попробовать грубо разделить его на две части, то получится, что любое приложение состоит фактически из двух самых важных вещей: кода, который исполняется процессором, и данных, которыми этот код оперирует в своей работе. Причем если с кодом все более-менее ясно, то данные можно поделить на несколько больших секций:</p>
 <ul>
-<li><strong>Thread stack</strong> - область памяти, которая есть у любого потока и через которую работают все вызовы всех методов, плюс там же организовано хранилище для локальных переменных методов;</li>
-<li><strong>Code Heap</strong> - это область памяти, куда JITter складывает результаты компиляции MSIL;</li>
-<li><strong>Small Objects Heap</strong> - это куча маленьких объектов. Как бы это не звучало, именно так это и называется. По своей сути это - хранилище объектов, размер которых не превышает 85К байт;</li>
-<li><strong>Large Objects Heap</strong> - это куча больших объектов. Сюда попадают объекты, размеры которых превышают 85K байт;</li>
-<li><strong>TypeRefs Heap</strong> - куча Type References - описателей типов .NET - со стороны подсистемы CLR (со стороны .NET типов выступает подсистема Reflection)</li>
-<li><strong>MethodRefs Heap</strong> - куча Methods References - описателей методов .NET - со стороны подсистемы CLR (со стороны .NET типов выступает подсистема Reflection)</li>
+<li><strong>Thread stack</strong> &mdash; область памяти, которая есть у любого потока и через которую работают все вызовы всех методов, плюс там же организовано хранилище для локальных переменных методов;</li>
+<li><strong>Code Heap</strong> &mdash; это область памяти, куда JITter складывает результаты компиляции MSIL;</li>
+<li><strong>Small Objects Heap</strong> &mdash; это куча маленьких объектов. Как бы это не звучало, именно так это и называется. По своей сути это &mdash; хранилище объектов, размер которых не превышает 85К байт;</li>
+<li><strong>Large Objects Heap</strong> &mdash; это куча больших объектов. Сюда попадают объекты, размеры которых превышают 85K байт;</li>
+<li><strong>TypeRefs Heap</strong> &mdash; куча Type References &mdash; описателей типов .NET &mdash; со стороны подсистемы CLR (со стороны .NET типов выступает подсистема Reflection)</li>
+<li><strong>MethodRefs Heap</strong> &mdash; куча Methods References &mdash; описателей методов .NET &mdash; со стороны подсистемы CLR (со стороны .NET типов выступает подсистема Reflection)</li>
 <li>И многие другие</li>
 </ul>
 

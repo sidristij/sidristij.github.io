@@ -21,7 +21,7 @@ strong {
 }
 
 p, li {
-    margin: 0 0 14px;
+    margin: 0 0 20px;
     line-height: 32px;
     font-family: inherit;
 }
@@ -38,7 +38,7 @@ ol li {
 }
 
 ul li {
-    padding-left: 5px;	
+    padding-left: 12px;	
     font-family: inherit;
 }
 
@@ -79,15 +79,34 @@ code, *[class^='lang-'] span, *[class^='lang-'] pre {
     border-left-width: 3px;
     padding-left: 25px;
     display: block;
+    background-color: aliceblue !important;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
-p code {
-    font-size: 14px;
+*[class^='lang-'] > div pre, pre > code pre {
+    margin-bottom: 0;
+}
+
+p code:not(.highlight), li code:not(.highlight) {
+    font-size: 16px;
     border: gainsboro;
     border-width: 1px;
     border-style: solid;
-    padding: 2px;
+    padding: 4px;
     color: darkslateblue;
+}
+
+code.highlight {
+    font-family: inherit !important;
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+}
+
+p code.highlight, li code.highlight {
+    padding: 4px;
+    background-color: #ffffa1;
 }
 
 *[class^='lang-'] span, *[class^='lang-'] pre, pre > code {
@@ -111,11 +130,20 @@ p img {
     width: 95%;
 }
 
-p (:has img) {
+p:has( > img) {
     text-align: center;
 }
 
-blockquote {
+blockquote > p.big-quote {
+    margin: 40px 0 60px 0;
+    font-family: Charter;
+    font-size: 55px;
+    line-height: 60px;
+    width: 150%;
+    padding: 0;
+}
+
+blockquote:not( p.big-quote) {
     background-color: lavenderblush;
     padding-left: 20px;
     border-left: 1px solid rgba(0,0,0,.08);
@@ -170,7 +198,7 @@ h2 {
 }
 
 h3 {
-    margin: 30px 0 10px 0;
+    margin: 30px 0 15px 0;
     font-size: 17pt;
     font-weight: 400;
 }
@@ -183,16 +211,16 @@ h4 {
 
 /* Fonts */
 
-@font-face {
-    font-family: 'PF Regal';
-    src: url('../../out/res/fonts/PFRegalTextPro-RegularA.eot');
-    src: local('../../out/res/fonts/PFRegalTextPro-RegularA'),
-        url('../../out/res/fonts/PFRegalTextPro-RegularA.woff2') format('woff2'),
-        url('../../out/res/fonts/PFRegalTextPro-RegularA.woff') format('woff'),
-        url('../../out/res/fonts/PFRegalTextPro-RegularA.ttf') format('truetype');
-    font-weight: 300;
-    font-style: normal;
-}
+/*@font-face {*/
+/*    font-family: 'PF Regal';*/
+/*    src: url('../../out/res/fonts/PFRegalTextPro-RegularA.eot');*/
+/*    src: local('../../out/res/fonts/PFRegalTextPro-RegularA'),*/
+/*        url('../../out/res/fonts/PFRegalTextPro-RegularA.woff2') format('woff2'),*/
+/*        url('../../out/res/fonts/PFRegalTextPro-RegularA.woff') format('woff'),*/
+/*        url('../../out/res/fonts/PFRegalTextPro-RegularA.ttf') format('truetype');*/
+/*    font-weight: 300;*/
+/*    font-style: normal;*/
+/*}*/
 
 @font-face {
     font-family: 'PF Regal';
@@ -293,7 +321,14 @@ h4 {
     font-style: italic;
 }
 
-/*  Regular B *
+@font-face {
+    font-family: 'Charter';
+    src: url('../../out/res/fonts/charter-regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*  Regular B */
 @font-face {
     font-family: 'PF Regal';
     src: url('../../out/res/fonts/PFRegalTextPro-RegularBItalic.eot');
@@ -301,7 +336,7 @@ h4 {
         url('../../out/res/fonts/PFRegalTextPro-RegularBItalic.woff2') format('woff2'),
         url('../../out/res/fonts/PFRegalTextPro-RegularBItalic.woff') format('woff'),
         url('../../out/res/fonts/PFRegalTextPro-RegularBItalic.ttf') format('truetype');
-    font-weight: normal;
+    font-weight: 300;
     font-style: italic;
 }
 
@@ -312,13 +347,19 @@ h4 {
         url('../../out/res/fonts/PFRegalTextPro-RegularB.woff2') format('woff2'),
         url('../../out/res/fonts/PFRegalTextPro-RegularB.woff') format('woff'),
         url('../../out/res/fonts/PFRegalTextPro-RegularB.ttf') format('truetype');
-    font-weight: normal;
+    font-weight: 300;
     font-style: normal;
-}              */  
+}                
     </style>
 
-<div style="margin:auto; width:100%;">
-<div style="width:1000px;">
+<div class="row">
+<div class="offset-1 col-6">
+<p style="
+    font-size: 70pt;
+    margin: 85px 0 85px 0;
+    text-align: center;
+">a:
+   </p>
     <h1 id="the-structure-of-objects-in-memory">The structure of objects in memory</h1>
 <blockquote>
 <p><a href="https://github.com/sidristij/dotnetbook/issues/56">A link to the discussion</a></p>
@@ -376,9 +417,9 @@ h4 {
        x.Reference.Value = <span style="color:#A31515;">&quot;Hello!&quot;</span>;
 
        <span style="color:Green;">// The first field contains a pointer to the location of VMT pointer.</span>
-       <span style="color:Green;">// - (IntPtr*)x.Value.Value - here we casted the number into the pointer (we changed the type for the compiler)</span>
-       <span style="color:Green;">// - *(IntPtr*)x.Value.Value - here we get the address of the VMT using the address of the object</span>
-       <span style="color:Green;">// - (void *)*(IntPtr*)x.Value.Value - here we casted it into the pointer</span>
+       <span style="color:Green;">// &mdash; (IntPtr*)x.Value.Value &mdash; here we casted the number into the pointer (we changed the type for the compiler)</span>
+       <span style="color:Green;">// &mdash; *(IntPtr*)x.Value.Value &mdash; here we get the address of the VMT using the address of the object</span>
+       <span style="color:Green;">// &mdash; (void *)*(IntPtr*)x.Value.Value &mdash; here we casted it into the pointer</span>
        <span style="color:Blue;">void</span> *vmt = (<span style="color:Blue;">void</span> *)*(IntPtr*)x.Value.Value;
 
        <span style="color:Green;">// here we output the VMT address to the console;</span>
@@ -634,7 +675,7 @@ Length of `abcdef` <span style="color:Blue;">string</span>: 28
 <ol>
 <li>They can store both value and reference types.</li>
 <li>They can be both single-dimensional and multi-dimensional.</li>
-<li>Each dimension can start with <code>0</code> as well as with any other number (which is, in my opinion, a very questionable option designed to eliminate the need to write <code>arr[i - startIndex]</code> at FCL level). This is done for a sort of compatibility with other languages. For example in Pascal array indexing can start with any number and not only from <code>0</code>. However, I think it is unnecessary.</li>
+<li>Each dimension can start with <code>0</code> as well as with any other number (which is, in my opinion, a very questionable option designed to eliminate the need to write <code>arr[i &mdash; startIndex]</code> at FCL level). This is done for a sort of compatibility with other languages. For example in Pascal array indexing can start with any number and not only from <code>0</code>. However, I think it is unnecessary.</li>
 </ol>
 <p>It produces some confusion in the implementation of arrays and inability to predict the size of a resulting array exactly: it is not enough to multiply the number of elements by their sizes. However for the majority of cases that will be enough, of course. The size becomes important if we afraid of getting into LOH. But even here we have some variants: we can add some constant value (for example 100) to a size that we calculated in a quick way to understand whether we have passed the threshold of 85,000 or not. However, in terms of this chapter our task is different — to understand the structure of types. Let’s go to it:</p>
 <pre><code>  // Header
@@ -646,11 +687,11 @@ Length of `abcdef` <span style="color:Blue;">string</span>: 28
   | 0xFF.FF | 0xXX.XX  |    ?    |    ?    |    ?    |    |    ?    | 0x00.00 | 0xXX.XX  |
   ----------------------------------------------------------------------------------------
 
-  - opt: optional
-  - SBI: Sync Block Index
-  - VMT_Child: present only if an array stores the data of a reference type
-  - Total: present for optimization. The total number of array elements with all dimensions taken in account.
-  - Len_2..Len_N, Term: present only if the dimension of an array is more than 1 (regulated by bits in VMT-&gt;Flags)
+  &mdash; opt: optional
+  &mdash; SBI: Sync Block Index
+  &mdash; VMT_Child: present only if an array stores the data of a reference type
+  &mdash; Total: present for optimization. The total number of array elements with all dimensions taken in account.
+  &mdash; Len_2..Len_N, Term: present only if the dimension of an array is more than 1 (regulated by bits in VMT-&gt;Flags)
 </code></pre>
 <p>As we can see, the header of a type contains the information about array dimensions the number of which can be from 1 to many. In fact, their size is limited only by a null terminator, meaning that enumeration is over. The following example is fully available at <a href="./samples/GettingInstanceSize.linq">GettingInstanceSize</a>. Below, I will put only its most important part:</p>
 <div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
@@ -695,7 +736,7 @@ Length of `abcdef` <span style="color:Blue;">string</span>: 28
                     <span style="color:Blue;">break</span>;
                 <span style="color:Blue;">default</span>:
                     <span style="color:Blue;">var</span> info = (MethodTable*)elementType.TypeHandle.Value;
-                    elementsize = info-&gt;Size - 2 * <span style="color:Blue;">sizeof</span>(IntPtr); <span style="color:Green;">// sync blk + vmt ptr</span>
+                    elementsize = info-&gt;Size &mdash; 2 * <span style="color:Blue;">sizeof</span>(IntPtr); <span style="color:Green;">// sync blk + vmt ptr</span>
                     <span style="color:Blue;">break</span>;
             }
         }
@@ -716,7 +757,7 @@ Length of `abcdef` <span style="color:Blue;">string</span>: 28
     <span style="color:Green;">// align size to IntPtr</span>
     <span style="color:Blue;">if</span> ((total % <span style="color:Blue;">sizeof</span>(IntPtr)) != 0)
     {
-        total += <span style="color:Blue;">sizeof</span>(IntPtr) - total % (<span style="color:Blue;">sizeof</span>(IntPtr));
+        total += <span style="color:Blue;">sizeof</span>(IntPtr) &mdash; total % (<span style="color:Blue;">sizeof</span>(IntPtr));
     }
     <span style="color:Blue;">return</span> total;
 }
@@ -760,7 +801,7 @@ size of <span style="color:Blue;">int</span>[2,3,4,5]{...}: 512
    WORD  m_wNumInterfaces;
 </pre></div>
 </div>
-<p>In particular, let’s turn to <code>m_wNumVirtuals</code> and <code>m_wNumInterfaces</code> fields. They define the answer to the question &quot;How many virtual methods and interfaces does a type have?&quot;. This structure doesn’t contain any information about usual methods, fields and properties (which unite methods). I mean this structure <strong>has nothing to do with reflection</strong>. In its sense and purpose this structure is made to provide functioning of method calls in the CLR (in any OOP actually, whether it is Java, C++, Ruby or something else, however the arrangement of fields will be different). Let’s examine some code:</p>
+<p>In particular, let’s turn to <code>m_wNumVirtuals</code> and <code>m_wNumInterfaces</code> fields. They define the answer to the question &laquo;How many virtual methods and interfaces does a type have?&quot;. This structure doesn’t contain any information about usual methods, fields and properties (which unite methods). I mean this structure <strong>has nothing to do with reflection</strong>. In its sense and purpose this structure is made to provide functioning of method calls in the CLR (in any OOP actually, whether it is Java, C++, Ruby or something else, however the arrangement of fields will be different). Let’s examine some code:</p>
 <div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
 <span style="color:Blue;">public</span> <span style="color:Blue;">class</span> Sample
 {
@@ -911,7 +952,7 @@ size of <span style="color:Blue;">int</span>[2,3,4,5]{...}: 512
 </table>
 </div>
 </div>
-<p>The VMTs of all three types contain the necessary <code>GetValue</code> and <code>SetValue</code> methods. However, they are located at different indexes: their index cannot be the same globally as it would cause a collision between indexes of other interfaces of a class. Actually, every interface duplicated each time it’s implemented by a class. So, if we have 633 implementations of <code>IDisposable</code> in FCL/BCL classes,  we also have 633 duplicates of <code>IDisposable</code> interfaces to support the VMT to VMT translation across every class + a entry in each class with a reference to its interface implementation. We will call such interfaces <strong>private interfaces</strong>. That is each class has its own <strong>private interfaces</strong> that are &quot;system” and act as proxy types to non-virtual interfaces.</p>
+<p>The VMTs of all three types contain the necessary <code>GetValue</code> and <code>SetValue</code> methods. However, they are located at different indexes: their index cannot be the same globally as it would cause a collision between indexes of other interfaces of a class. Actually, every interface duplicated each time it’s implemented by a class. So, if we have 633 implementations of <code>IDisposable</code> in FCL/BCL classes,  we also have 633 duplicates of <code>IDisposable</code> interfaces to support the VMT to VMT translation across every class + a entry in each class with a reference to its interface implementation. We will call such interfaces <strong>private interfaces</strong>. That is each class has its own <strong>private interfaces</strong> that are &laquo;system” and act as proxy types to non-virtual interfaces.</p>
 <p>Thus, interfaces, just like classes, inherit virtual <em>interface</em> methods. However, this inheritance works not only when we inherit one interface from an other but also when a class implements an interface. When a class implements an interface, an additional interface is created that specifies which methods of a parent interface should be inherited from and referenced to in the target class. By calling a method through an interface identifier, you similarly call a method through the index from a VMT as it was in case of classes. However, for this interface implementation you use a slot ID to choose a slot from an <em>inherited</em> private interface, through which the original <code>IDisposable</code> interface is connected with our class that implements the interface.</p>
 <p>The dispatch of virtual methods by stubs or <strong>Virtual Stub Dispatch (VSD)</strong> was developed in 2006 as a replacement for VMTs, specifically in interfaces. This approach simplifies generation of code and method calls as the initial implementation of interfaces with VMT would be very cumbersome and need a huge amount of time and working set to build all structures of all interfaces. The code of dispatching is in four files containing 6,400 lines, and we don’t intend to understand the whole thing. We will try to understand the process in this code in general terms.</p>
 <p>The whole logic of VSD can be divided into two big sections: dispatch and the mechanism of stubs that caches the addresses of called methods based on a key pair — [typeID; slot No] — that identifies them.</p>
@@ -921,8 +962,8 @@ size of <span style="color:Blue;">int</span>[2,3,4,5]{...}: 512
 <li>eventual multitude of methods,</li>
 <li>most methods will never be compiled by JIT (because if types are designed in Framework it doesn’t mean their instances will be required). On the other hand, using traditional VMTs for <em>private interfaces</em> would cause VMT compilation by JIT for every <em>private interface</em> from startup. That means the creation of each type would double degradation. The main class that provides dispatching is <code>DispatchMap</code>. It encapsulates a table of interface types, each of which consists of a method table, included in these interfaces. Each method can have one of the four states based on the stage in its life cycle:</li>
 <li>a stub in the state of “the method has never been called, so it should be compiled, and the old stub must be back patched with a new one”,</li>
-<li>a stub in the state of &quot;the method should be found dynamically each time, as it cannot be uniformly defined&quot;,</li>
-<li>a stub in the state of &quot;the method is available at known address and can be called without lookup&quot;, or</li>
+<li>a stub in the state of &laquo;the method should be found dynamically each time, as it cannot be uniformly defined&raquo;,</li>
+<li>a stub in the state of &laquo;the method is available at known address and can be called without lookup&raquo;, or</li>
 <li>a fully-fledged body of the method.</li>
 </ul>
 <p>Let’s revise these structures in respect to their evolution and required the data structures.</p>
@@ -954,9 +995,9 @@ size of <span style="color:Blue;">int</span>[2,3,4,5]{...}: 512
 <span style="color:Green;">// in relation to a this type. Is it in this type or in some other?</span>
 <span style="color:Green;">//</span>
 <span style="color:Green;">// For dispatch map, Type ID is used to store one of the following data types:</span>
-<span style="color:Green;">//   - special value indicating this.class</span>
-<span style="color:Green;">//   - special value indicating that this interface type is not yet implemented by a class</span>
-<span style="color:Green;">//   - an index in InterfaceMap</span>
+<span style="color:Green;">//   &mdash; special value indicating this.class</span>
+<span style="color:Green;">//   &mdash; special value indicating that this interface type is not yet implemented by a class</span>
+<span style="color:Green;">//   &mdash; an index in InterfaceMap</span>
 <span style="color:Blue;">class</span> DispatchMapTypeID
 {
 <span style="color:Blue;">private</span>:
@@ -987,7 +1028,7 @@ size of <span style="color:Blue;">int</span>[2,3,4,5]{...}: 512
 </div>
 <h4 id="typeid-map">TypeID Map</h4>
 <p>Any method in the interface-based addressing is coded by the &lt;TypeId; Slot No&gt; pair. TypeId is obviously the type identifier. This field indicates where this identifier comes from and how it relates to a non-virtual type.
-The <code>TypeIDMap</code> class stores a map of types as a representation of specific TypeID’s in <code>MethodTable</code>, and works visa versa.  This is solely for the performance. These HashMaps are built dynamically: once invoked, FatId or plain Id is returned in response to query for TypeID from PTR_MethodTable. You should just remember: FatId and Id are just two kinds of TypeId. To some extent, it is a &quot;pointer” to MethodTable as it uniquely identifies.</p>
+The <code>TypeIDMap</code> class stores a map of types as a representation of specific TypeID’s in <code>MethodTable</code>, and works visa versa.  This is solely for the performance. These HashMaps are built dynamically: once invoked, FatId or plain Id is returned in response to query for TypeID from PTR_MethodTable. You should just remember: FatId and Id are just two kinds of TypeId. To some extent, it is a &laquo;pointer” to MethodTable as it uniquely identifies.</p>
 <blockquote>
 <p><strong>TypeId is an identifier of MethodTable</strong>. It can have two variants: Id and FatId. It is a usual number in its essence.</p>
 </blockquote>
@@ -1014,7 +1055,7 @@ The <code>TypeIDMap</code> class stores a map of types as a representation of sp
 <ul>
 <li>There is almost no difference between calling static and instance methods. This means we shouldn’t worry that the work with instance methods will somehow affect the performance. The performance of both methods is absolutely identical in equal conditions.</li>
 <li>Though virtual methods are called via a VMT, there is only one additional pointer dereference for each call, as indexes are known in advance. In most cases this doesn’t affect anything: the decrease in performance (if I can say like this) will be so insignificant that it can be neglected.</li>
-<li>Talking about interfaces we should remember about dispatch and understand that working via interfaces hugely complicates the implementation of type subsystem at a low level bringing <em><strong>possible</strong></em> decreases in performance when there is often no certainty which method of which class should be called with an interface identifier. However, in many cases the &quot;intelligence” of the JIT compiler allows to call an interface method directly rather than through a dispatch.</li>
+<li>Talking about interfaces we should remember about dispatch and understand that working via interfaces hugely complicates the implementation of type subsystem at a low level bringing <em><strong>possible</strong></em> decreases in performance when there is often no certainty which method of which class should be called with an interface identifier. However, in many cases the &laquo;intelligence” of the JIT compiler allows to call an interface method directly rather than through a dispatch.</li>
 <li>For generic types, there appears another layer of abstraction which makes the method lookup more complicated for generic interfaces.</li>
 </ul>
 <h2 id="questions-related-to-the-topic">Questions related to the topic.</h2>
@@ -1080,7 +1121,7 @@ Boo.IDisposable::Dispose
 </pre></div>
 </div>
 <h2 id="why-are-implicit-and-multiple-implementations-of-interfaces-bad">Why are implicit and multiple implementations of interfaces bad?</h2>
-<p>We can demonstrate the following code as the example of &quot;interface inheritance” which is similar to the inheritance of classes.</p>
+<p>We can demonstrate the following code as the example of &laquo;interface inheritance” which is similar to the inheritance of classes.</p>
 <div class="lang-vb editor-colors"><div style="color:Black;background-color:White;"><pre>
     <span style="color:Blue;">Class</span> Foo
         <span style="color:Blue;">Implements</span> IDisposable
@@ -1145,7 +1186,7 @@ Boo.IDisposable::Dispose
     <span style="color:Blue;">End</span> <span style="color:Blue;">Sub</span>
 </pre></div>
 </div>
-<p>We can see that <code>Doo</code>, inherited from <code>Foo</code>, implicitly implement <code>IDisposable</code>, while overriding explicit implementation of <code>IDisposable.Dispose</code>, that leads to a call of overriding when calling via an interface, indicating the &quot;inheritance of interfaces” of <code>Foo</code> and <code>Doo</code> classes.</p>
+<p>We can see that <code>Doo</code>, inherited from <code>Foo</code>, implicitly implement <code>IDisposable</code>, while overriding explicit implementation of <code>IDisposable.Dispose</code>, that leads to a call of overriding when calling via an interface, indicating the &laquo;inheritance of interfaces” of <code>Foo</code> and <code>Doo</code> classes.</p>
 <p>On the one hand it is not a problem: if C# + CLR allowed such tricks it would break the consistency in type structure. Just think, you’ve created a wonderful architecture and everything is cool. But somebody calls methods in the way you didn’t plan. This would be horrible. However a similar opportunity exists in C++ and nobody really complains. Why this can be added to C#? Because the functionality that is not less horrible <a href="https://github.com/dotnet/csharplang/issues/52">is already being discussed</a> and should look something like this:</p>
 <div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
 <span style="color:Blue;">interface</span> IA
