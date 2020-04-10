@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+    <link rel="stylesheet" href="../../../res/bootstrap.css">
     <style>
         body {
     padding: 60px 60px 60px 100px;
@@ -20,7 +21,7 @@ strong {
 }
 
 p, li {
-    margin: 0 0 14px;
+    margin: 0 0 25px;
     line-height: 32px;
     font-family: inherit;
 }
@@ -37,37 +38,82 @@ ol li {
 }
 
 ul li {
-    padding-left: 5px;	
+    padding-left: 12px;	
     font-family: inherit;
 }
 
-code, .lang-csharp span, .lang-csharp pre {
+table {
+    margin: 30px 0;
+    width: 100%;
+}
+
+thead {                         
+    background-color: aliceblue;
+}
+
+table th {
+    font-weight: 400;
+}
+
+table td, table th {
+    padding: 7px;
+    border-top: solid darkgrey 1px;
+    border-bottom: solid darkgrey 1px;
+    border-right: dotted darkgray 1px;
+    border-left: dotted darkgray 1px;
+    font-size: smaller;
+}
+
+code, *[class*='lang-'] span, *[class*='lang-'] pre {
     font-family: JB Mono, monospace !important;
 }
 
-.lang-csharp {
-    padding: 4px 0px 14px 0px;
+*[class*='lang-'] {
+    padding: 0px 0px 25px 0px;
 }
 
 
-.lang-csharp > div {
+*[class*='lang-'] > div, pre > code {
     border-left-color: #eee;
     border-left-style: dotted;
     border-left-width: 3px;
-    background-color: #f5faff !important;
-    padding: 10px 10px 10px 25px;
+    padding-left: 25px;
+    display: block;
+    background-color: aliceblue !important;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
-code {
-    font-size: 14px;
+*[class*='lang-'] > div pre, pre > code pre {
+    margin-bottom: 0;
+}
+
+p code:not(.highlight), li code:not(.highlight) {
+    font-size: 16px;
     border: gainsboro;
     border-width: 1px;
     border-style: solid;
-    padding: 2px;
+    padding: 4px;
     color: darkslateblue;
 }
 
-.lang-csharp span, .lang-csharp pre {
+code.highlight {
+    font-family: inherit !important;
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+}
+
+p code.highlight, li code.highlight {
+    padding: 4px;
+    background-color: #ffffa1;
+}
+
+.wide {
+    width:150%;
+}
+
+*[class*='lang-'] span, *[class*='lang-'] pre, pre > code {
     font-size: 13px;
     line-height: 20px;
 }
@@ -78,18 +124,33 @@ p a, li a {
     box-shadow: inset 0 -1px #b88b59;
 }
 
+blockquote h5 {
+    background-color: aquamarine;
+    margin: 16px 0 16px -20px;
+    padding: 15px 30px 15px;
+}
+
 p img {
     width: 95%;
 }
 
-p (:has img) {
+p:has( > img) {
     text-align: center;
 }
 
-blockquote {
-    background-color: lavenderblush;
-    padding-left: 20px;
-    border-left: 1px solid rgba(0,0,0,.08);
+blockquote > p.big-quote {
+    margin: 40px 0 60px 0;
+    font-family: Charter;
+    font-size: 55px;
+    line-height: 60px;
+    width: 150%;
+    padding: 0;
+}
+
+blockquote:not( p.big-quote) {
+    background-color: lavenderblush !important;
+    padding-left: 20px !important;
+    border-left: 1px solid rgba(0,0,0,.08) !important;
 }
 
 blockquote p {
@@ -141,7 +202,7 @@ h2 {
 }
 
 h3 {
-    margin: 30px 0 10px 0;
+    margin: 30px 0 15px 0;
     font-size: 17pt;
     font-weight: 500;
 }
@@ -155,16 +216,16 @@ h4 {
 
 /* Fonts 
 
-@font-face {
-    font-family: 'PF Regal';
-    src: url('../../../res/fonts/PFRegalTextPro-RegularA.eot');
-    src: local('../../../res/fonts/PFRegalTextPro-RegularA'),
-        url('../../../res/fonts/PFRegalTextPro-RegularA.woff2') format('woff2'),
-        url('../../../res/fonts/PFRegalTextPro-RegularA.woff') format('woff'),
-        url('../../../res/fonts/PFRegalTextPro-RegularA.ttf') format('truetype');
-    font-weight: 300;
-    font-style: normal;
-}
+/*@font-face {*/
+/*    font-family: 'PF Regal';*/
+/*    src: url('../../../res/fonts/PFRegalTextPro-RegularA.eot');*/
+/*    src: local('../../../res/fonts/PFRegalTextPro-RegularA'),*/
+/*        url('../../../res/fonts/PFRegalTextPro-RegularA.woff2') format('woff2'),*/
+/*        url('../../../res/fonts/PFRegalTextPro-RegularA.woff') format('woff'),*/
+/*        url('../../../res/fonts/PFRegalTextPro-RegularA.ttf') format('truetype');*/
+/*    font-weight: 300;*/
+/*    font-style: normal;*/
+/*}*/
 
 @font-face {
     font-family: 'PF Regal';
@@ -265,6 +326,13 @@ h4 {
     font-style: italic;
 }
 
+@font-face {
+    font-family: 'Charter';
+    src: url('../../../res/fonts/charter-regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
 /*  Regular B */
 @font-face {
     font-family: 'PF Regal';
@@ -273,7 +341,7 @@ h4 {
         url('../../../res/fonts/PFRegalTextPro-RegularBItalic.woff2') format('woff2'),
         url('../../../res/fonts/PFRegalTextPro-RegularBItalic.woff') format('woff'),
         url('../../../res/fonts/PFRegalTextPro-RegularBItalic.ttf') format('truetype');
-    font-weight: normal;
+    font-weight: 300;
     font-style: italic;
 }
 
@@ -284,13 +352,14 @@ h4 {
         url('../../../res/fonts/PFRegalTextPro-RegularB.woff2') format('woff2'),
         url('../../../res/fonts/PFRegalTextPro-RegularB.woff') format('woff'),
         url('../../../res/fonts/PFRegalTextPro-RegularB.ttf') format('truetype');
-    font-weight: normal;
+    font-weight: 300;
     font-style: normal;
-}                
+}              
+  
     </style>
 
-<div style="margin:auto; width:100%;">
-<div style="width:1000px;">
+<div class="row">
+<div class="offset-1 col-7">
     <h2 id="section">События об исключительных ситуациях</h2>
 <blockquote>
 <p><a href="https://github.com/sidristij/dotnetbook/issues/51">Ссылка на обсуждение</a></p>
@@ -305,7 +374,7 @@ h4 {
 </pre></div>
 </div>
 <p>В такой ситуации может оказаться, что выполнение кода уже не так безопасно как выглядит, но сообщений о том, что произошли какие-то проблемы мы не имеем. Второй вариант - когда приложение глушит некоторое, пусть даже легальное, исключение. А результат - следующее исключение в случайном месте вызовет падение приложения в некотором будущем от случайной, казалось бы, ошибки. Тут хотелось бы иметь представление, какая была предыстория этой ошибки. Каков ход событий привёл к такой ситуации. И один из способов сделать это возможным - использовать дополнительные события, которые относятся к исключительным ситуациям: <code>AppDomain.FirstChanceException</code> и <code>AppDomain.UnhandledException</code>.</p>
-<p>Фактически, когда вы &quot;бросаете исключение&quot;, то вызывается обычный метод некоторой внутренней подсистемы <code>Throw</code>, который внутри себя проделывает следующие операции:</p>
+<p>Фактически, когда вы &laquo;бросаете исключение&raquo;, то вызывается обычный метод некоторой внутренней подсистемы <code>Throw</code>, который внутри себя проделывает следующие операции:</p>
 <ul>
 <li>Вызывает <code>AppDomain.FirstChanceException</code></li>
 <li>Ищет в цепочке обработчиков подходящий по фильтрам</li>
@@ -313,11 +382,11 @@ h4 {
 <li>Если обработчик найден не был, вызывается <code>AppDomain.UnhandledException</code>, обрушивая поток, в котором произошло исключение.</li>
 </ul>
 <p>Сразу следует оговориться, ответив на мучающий многие умы вопрос: есть ли возможность как-то отменить исключение, возникшее в неконтролируемом коде, который исполняется в изолированном домене, не обрушивая тем самым поток, в котором это исключение было выброшено? Ответ лаконичен и прост: нет. Если исключение не перехватывается на всем диапазоне вызванных методов, оно не может быть обработано в принципе. Иначе возникает странная ситуация: если мы при помощи <code>AppDomain.FirstChanceException</code> обрабатываем (некий синтетический <code>catch</code>) исключение, то на какой кадр должен откатиться стек потока? Как это задать в рамках правил .NET CLR? Никак. Это просто не возможно. Единственное что мы можем сделать - запротоколировать полученную информацию для будущих исследований.</p>
-<p>Второе, о чем следует рассказать &quot;на берегу&quot; - это почему эти события введены не у <code>Thread</code>, а у <code>AppDomain</code>. Ведь если следовать логике, исключения возникают где? В потоке исполнения команд. Т.е. фактически у <code>Thread</code>. Так почему же проблемы возникают у домена? Ответ очень прост: для каких ситуаций создавались <code>AppDomain.FirstChanceException</code> и <code>AppDomain.UnhandledException</code>? Помимо всего прочего - для создания песочниц для плагинов. Т.е. для ситуаций, когда есть некий <code>AppDomain</code>, который настроен на PartialTrust. Внутри этого AppDomain может происходить что угодно: там в любой момент могут создаваться потоки, или использоваться уже существующие из ThreadPool. Тогда получается что мы, будучи находясь снаружи от этого процесса (не мы писали тот код) не можем никак подписаться на события внутренних потоков. Просто потому что мы понятия не имеем что там за потоки были созданы. Зато мы гарантированно имеем <code>AppDomain</code>, который организует песочницу и ссылка на который у нас есть.</p>
-<p>Итак, по факту нам предоставляется два краевых события: что-то произошло, чего не предполагалось (<code>FirstChanceExecption</code>) и &quot;все плохо&quot;, никто не обработал исключительную ситуацию: она оказалась не предусмотренной. А потому поток исполнения команд не имеет смысла и он (<code>Thread</code>) будет отгружен.</p>
+<p>Второе, о чем следует рассказать &laquo;на берегу&raquo; - это почему эти события введены не у <code>Thread</code>, а у <code>AppDomain</code>. Ведь если следовать логике, исключения возникают где? В потоке исполнения команд. Т.е. фактически у <code>Thread</code>. Так почему же проблемы возникают у домена? Ответ очень прост: для каких ситуаций создавались <code>AppDomain.FirstChanceException</code> и <code>AppDomain.UnhandledException</code>? Помимо всего прочего - для создания песочниц для плагинов. Т.е. для ситуаций, когда есть некий <code>AppDomain</code>, который настроен на PartialTrust. Внутри этого AppDomain может происходить что угодно: там в любой момент могут создаваться потоки, или использоваться уже существующие из ThreadPool. Тогда получается что мы, будучи находясь снаружи от этого процесса (не мы писали тот код) не можем никак подписаться на события внутренних потоков. Просто потому что мы понятия не имеем что там за потоки были созданы. Зато мы гарантированно имеем <code>AppDomain</code>, который организует песочницу и ссылка на который у нас есть.</p>
+<p>Итак, по факту нам предоставляется два краевых события: что-то произошло, чего не предполагалось (<code>FirstChanceExecption</code>) и &laquo;все плохо&raquo;, никто не обработал исключительную ситуацию: она оказалась не предусмотренной. А потому поток исполнения команд не имеет смысла и он (<code>Thread</code>) будет отгружен.</p>
 <p>Что можно получить, имея данные события и почему плохо что разработчики обходят эти события стороной?</p>
 <h3 id="appdomain.firstchanceexception">AppDomain.FirstChanceException</h3>
-<p>Это событие по своей сути носит чисто информационный характер и не может быть &quot;обработано&quot;. Его задача - уведомить вас, что в рамках данного домена произошло исключение, и оно после обработки события начнёт обрабатываться кодом приложения. Его исполнение несёт за собой пару особенностей, о которых необходимо помнить во время проектирования обработчика.</p>
+<p>Это событие по своей сути носит чисто информационный характер и не может быть &laquo;обработано&raquo;. Его задача - уведомить вас, что в рамках данного домена произошло исключение, и оно после обработки события начнёт обрабатываться кодом приложения. Его исполнение несёт за собой пару особенностей, о которых необходимо помнить во время проектирования обработчика.</p>
 <p>Но давайте для начала посмотрим на простой синтетический пример его обработки:</p>
 <div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
 <span style="color:Blue;">void</span> Main()
@@ -478,7 +547,7 @@ Success
 </div>
 <p>В данном случае обработка <code>FirstChanceException</code> происходит максимально безопасно: в соседнем потоке, принадлежащем соседнему домену. Ошибки обработки сообщения при этом не могут обрушить рабочие потоки приложения. Плюс отдельно можно послушать UnhandledException домена логирования сообщений: фатальные ошибки при логировании не обрушат все приложение.</p>
 <h3 id="appdomain.unhandledexception">AppDomain.UnhandledException</h3>
-<p>Второе сообщение, которое мы можем перехватить и которое касается обработки исключительных ситуаций - это <code>AppDomain.UnhandledException</code>. Это сообщение - очень плохая новость для нас поскольку обозначает что не нашлось никого кто смог бы найти способ обработки возникшей ошибки в некотором потоке. Также, если произошла такая ситуация, все что мы можем сделать - это &quot;разгрести&quot; последствия такой ошибки. Т.е. каким-либо образом зачистить ресурсы, принадлежащие только этому потоку, если таковые создавались. Однако, ещё более лучшая ситуация - обрабатывать исключения, находясь в &quot;корне&quot; потоков не заваливая поток. Т.е. по сути ставить <code>try-catch</code>. Давайте попробуем рассмотреть целесообразность такого поведения.</p>
+<p>Второе сообщение, которое мы можем перехватить и которое касается обработки исключительных ситуаций - это <code>AppDomain.UnhandledException</code>. Это сообщение - очень плохая новость для нас поскольку обозначает что не нашлось никого кто смог бы найти способ обработки возникшей ошибки в некотором потоке. Также, если произошла такая ситуация, все что мы можем сделать - это &laquo;разгрести&raquo; последствия такой ошибки. Т.е. каким-либо образом зачистить ресурсы, принадлежащие только этому потоку, если таковые создавались. Однако, ещё более лучшая ситуация - обрабатывать исключения, находясь в &laquo;корне&raquo; потоков не заваливая поток. Т.е. по сути ставить <code>try-catch</code>. Давайте попробуем рассмотреть целесообразность такого поведения.</p>
 <p>Пусть мы имеем библиотеку, которой необходимо создавать потоки и осуществлять какую-то логику в этих потоках. Мы, как пользователи этой библиотеки интересуемся только гарантией вызовов API а также получением сообщений об ошибках. Если библиотека будет рушить потоки не нотифицируя об этом, нам это мало чем может помочь. Мало того обрушение потока приведёт к сообщению <code>AppDomain.UnhandledException</code>, в котором нет информации о том, какой конкретно поток лёг на бок. Если же речь идёт о нашем коде, обрушивающийся поток нам тоже вряд-ли будет полезным. Во всяком случае необходимости в этом я не встречал. Наша задача - обработать ошибки правильно, отдать информацию об их возникновении в журнал ошибок и корректно завершить работу потока. Т.е. по сути, обернуть метод, с которого стартует поток в <code>try-catch</code>:</p>
 <div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
     ThreadPool.QueueUserWorkitem(_ =&gt; {

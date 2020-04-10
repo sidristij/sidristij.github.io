@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+    <link rel="stylesheet" href="../../../res/bootstrap.css">
     <style>
         body {
     padding: 60px 60px 60px 100px;
@@ -20,7 +21,7 @@ strong {
 }
 
 p, li {
-    margin: 0 0 14px;
+    margin: 0 0 25px;
     line-height: 32px;
     font-family: inherit;
 }
@@ -37,37 +38,82 @@ ol li {
 }
 
 ul li {
-    padding-left: 5px;	
+    padding-left: 12px;	
     font-family: inherit;
 }
 
-code, .lang-csharp span, .lang-csharp pre {
+table {
+    margin: 30px 0;
+    width: 100%;
+}
+
+thead {                         
+    background-color: aliceblue;
+}
+
+table th {
+    font-weight: 400;
+}
+
+table td, table th {
+    padding: 7px;
+    border-top: solid darkgrey 1px;
+    border-bottom: solid darkgrey 1px;
+    border-right: dotted darkgray 1px;
+    border-left: dotted darkgray 1px;
+    font-size: smaller;
+}
+
+code, *[class*='lang-'] span, *[class*='lang-'] pre {
     font-family: JB Mono, monospace !important;
 }
 
-.lang-csharp {
-    padding: 4px 0px 14px 0px;
+*[class*='lang-'] {
+    padding: 0px 0px 25px 0px;
 }
 
 
-.lang-csharp > div {
+*[class*='lang-'] > div, pre > code {
     border-left-color: #eee;
     border-left-style: dotted;
     border-left-width: 3px;
-    background-color: #f5faff !important;
-    padding: 10px 10px 10px 25px;
+    padding-left: 25px;
+    display: block;
+    background-color: aliceblue !important;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
-code {
-    font-size: 14px;
+*[class*='lang-'] > div pre, pre > code pre {
+    margin-bottom: 0;
+}
+
+p code:not(.highlight), li code:not(.highlight) {
+    font-size: 16px;
     border: gainsboro;
     border-width: 1px;
     border-style: solid;
-    padding: 2px;
+    padding: 4px;
     color: darkslateblue;
 }
 
-.lang-csharp span, .lang-csharp pre {
+code.highlight {
+    font-family: inherit !important;
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+}
+
+p code.highlight, li code.highlight {
+    padding: 4px;
+    background-color: #ffffa1;
+}
+
+.wide {
+    width:150%;
+}
+
+*[class*='lang-'] span, *[class*='lang-'] pre, pre > code {
     font-size: 13px;
     line-height: 20px;
 }
@@ -78,18 +124,33 @@ p a, li a {
     box-shadow: inset 0 -1px #b88b59;
 }
 
+blockquote h5 {
+    background-color: aquamarine;
+    margin: 16px 0 16px -20px;
+    padding: 15px 30px 15px;
+}
+
 p img {
     width: 95%;
 }
 
-p (:has img) {
+p:has( > img) {
     text-align: center;
 }
 
-blockquote {
-    background-color: lavenderblush;
-    padding-left: 20px;
-    border-left: 1px solid rgba(0,0,0,.08);
+blockquote > p.big-quote {
+    margin: 40px 0 60px 0;
+    font-family: Charter;
+    font-size: 55px;
+    line-height: 60px;
+    width: 150%;
+    padding: 0;
+}
+
+blockquote:not( p.big-quote) {
+    background-color: lavenderblush !important;
+    padding-left: 20px !important;
+    border-left: 1px solid rgba(0,0,0,.08) !important;
 }
 
 blockquote p {
@@ -141,7 +202,7 @@ h2 {
 }
 
 h3 {
-    margin: 30px 0 10px 0;
+    margin: 30px 0 15px 0;
     font-size: 17pt;
     font-weight: 500;
 }
@@ -155,16 +216,16 @@ h4 {
 
 /* Fonts 
 
-@font-face {
-    font-family: 'PF Regal';
-    src: url('../../../res/fonts/PFRegalTextPro-RegularA.eot');
-    src: local('../../../res/fonts/PFRegalTextPro-RegularA'),
-        url('../../../res/fonts/PFRegalTextPro-RegularA.woff2') format('woff2'),
-        url('../../../res/fonts/PFRegalTextPro-RegularA.woff') format('woff'),
-        url('../../../res/fonts/PFRegalTextPro-RegularA.ttf') format('truetype');
-    font-weight: 300;
-    font-style: normal;
-}
+/*@font-face {*/
+/*    font-family: 'PF Regal';*/
+/*    src: url('../../../res/fonts/PFRegalTextPro-RegularA.eot');*/
+/*    src: local('../../../res/fonts/PFRegalTextPro-RegularA'),*/
+/*        url('../../../res/fonts/PFRegalTextPro-RegularA.woff2') format('woff2'),*/
+/*        url('../../../res/fonts/PFRegalTextPro-RegularA.woff') format('woff'),*/
+/*        url('../../../res/fonts/PFRegalTextPro-RegularA.ttf') format('truetype');*/
+/*    font-weight: 300;*/
+/*    font-style: normal;*/
+/*}*/
 
 @font-face {
     font-family: 'PF Regal';
@@ -265,6 +326,13 @@ h4 {
     font-style: italic;
 }
 
+@font-face {
+    font-family: 'Charter';
+    src: url('../../../res/fonts/charter-regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
 /*  Regular B */
 @font-face {
     font-family: 'PF Regal';
@@ -273,7 +341,7 @@ h4 {
         url('../../../res/fonts/PFRegalTextPro-RegularBItalic.woff2') format('woff2'),
         url('../../../res/fonts/PFRegalTextPro-RegularBItalic.woff') format('woff'),
         url('../../../res/fonts/PFRegalTextPro-RegularBItalic.ttf') format('truetype');
-    font-weight: normal;
+    font-weight: 300;
     font-style: italic;
 }
 
@@ -284,13 +352,14 @@ h4 {
         url('../../../res/fonts/PFRegalTextPro-RegularB.woff2') format('woff2'),
         url('../../../res/fonts/PFRegalTextPro-RegularB.woff') format('woff'),
         url('../../../res/fonts/PFRegalTextPro-RegularB.ttf') format('truetype');
-    font-weight: normal;
+    font-weight: 300;
     font-style: normal;
-}                
+}              
+  
     </style>
 
-<div style="margin:auto; width:100%;">
-<div style="width:1000px;">
+<div class="row">
+<div class="offset-1 col-7">
     <h1 id="section">Исключения</h1>
 <blockquote>
 <p><a href="https://github.com/sidristij/dotnetbook/issues/51">Ссылка на обсуждение</a></p>
@@ -375,7 +444,7 @@ h4 {
 </pre></div>
 </div>
 <p>Возможно, вам покажется, что этот код перегружен обработкой ошибок. Однако я попрошу вас не согласиться с такой позицией: все, что здесь происходит - это эмуляция работы механизма выброса и обработки исключений.</p>
-<p>Как любой метод может сообщить о возникшей проблеме? Посредством некоторого интерфейса сообщения об ошибки. Например, в методе <code>TryParseInteger</code> интерфейсом является возвращаемое значение: если все хорошо, метод вернёт <code>true</code>. Если все плохо, вернёт <code>false</code>. Однако данный способ обладает и минусом: реальное значение возвращается через <code>out int result</code> параметр. Минус подхода с одной стороны состоит в том, что возвращаемое значение чисто логически и по восприятию является более &quot;возвращаемым значением&quot; чем <code>out</code> параметр. А с другой - сам факт ошибки нам не всегда интересен. Ведь если строка для парсинга пришла из сервиса, который сгенерировал эту строку, значит проверять на ошибки парсинг нет необходимости: там всегда будет лежать правильная, пригодная для разбора строка. С другой стороны, если взять другую реализацию метода:</p>
+<p>Как любой метод может сообщить о возникшей проблеме? Посредством некоторого интерфейса сообщения об ошибки. Например, в методе <code>TryParseInteger</code> интерфейсом является возвращаемое значение: если все хорошо, метод вернёт <code>true</code>. Если все плохо, вернёт <code>false</code>. Однако данный способ обладает и минусом: реальное значение возвращается через <code>out int result</code> параметр. Минус подхода с одной стороны состоит в том, что возвращаемое значение чисто логически и по восприятию является более &laquo;возвращаемым значением&raquo; чем <code>out</code> параметр. А с другой - сам факт ошибки нам не всегда интересен. Ведь если строка для парсинга пришла из сервиса, который сгенерировал эту строку, значит проверять на ошибки парсинг нет необходимости: там всегда будет лежать правильная, пригодная для разбора строка. С другой стороны, если взять другую реализацию метода:</p>
 <div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
 <span style="color:Blue;">public</span> <span style="color:Blue;">int</span> ParseInt(<span style="color:Blue;">string</span> source);
 </pre></div>
@@ -388,7 +457,7 @@ h4 {
 <p>Блок <code>try</code> создаёт секцию, от которой программист ожидает возникновения критических ситуаций, которые с точки зрения внешнего кода являются нормой поведения. Т.е. другими словами, если мы работаем с некоторым кодом, который в рамках своих правил считает внутреннее состояние более не консистентным и в связи с этим выбрасывает исключение, то внешняя система, которая обладает более широким видением той же ситуации возникшее исключение может перехватить блоком <code>catch</code> тем самым нормализовав исполнение кода приложения. А потому, <em>перехватом исключений вы легализуете их наличие на данном участке кода</em>. Это, на мой взгляд, очень важная мысль, которая обосновывает запрет на перехват всех типов исключений <code>try-catch(Exception ex){ ... }</code> <em>на всякий случай</em>.</p>
 <p>Это вовсе не означает, что перехватывать исключения идеологически плохо: я всего лишь хочу сказать о необходимости перехватывать то и только то, что вы ожидаете от конкретного участка кода и ничего больше. Например, вы не можете ожидать все типы исключений, которые наследуется от <code>ArgumentException</code> или же получение <code>NullReferenceException</code> поскольку это означает что проблема чаще всего не в вызываемом коде, а <em>в вашем</em>. Зато вполне корректно ожидать, что желаемый файл открыть вы не сможете. Даже если на 200% уверены, что сможете, не забудьте сделать проверку.</p>
 <p>Третий блок - <code>finally</code> - также не должен нуждаться в представлении. Этот блок срабатывает для всех случаев работы блоков <code>try-catch</code>. Кроме некоторых достаточно редких <em>особых</em> ситуаций, этот блок отрабатывает <em>всегда</em>. Для чего введена такая гарантия исполнения? Для зачистки тех ресурсов и тех групп объектов, которые были выделены или же захвачены в блоке <code>try</code> и при этом являются зоной его ответственности.</p>
-<p>Этот блок очень часто используется без блока <code>catch</code>, когда нам не важно, какая ошибка уронила алгоритм, но важно очистить все выделенные для этого конкретно алгоритма ресурсы. Простой пример: для алгоритма копирования файла необходимо: два открытых файла и участок памяти под кэш-буфер копирования. Память мы выделить смогли, один файл открыть смогли, а вот со вторым возникли какие-то проблемы. Чтобы запечатать все в одну &quot;транзакцию&quot;, мы помещаем все три операции в единый <code>try</code> блок (как вариант реализации), с очисткой ресурсов - в <code>finally</code>. Пример может показаться упрощённым, но тут главное - показать суть.</p>
+<p>Этот блок очень часто используется без блока <code>catch</code>, когда нам не важно, какая ошибка уронила алгоритм, но важно очистить все выделенные для этого конкретно алгоритма ресурсы. Простой пример: для алгоритма копирования файла необходимо: два открытых файла и участок памяти под кэш-буфер копирования. Память мы выделить смогли, один файл открыть смогли, а вот со вторым возникли какие-то проблемы. Чтобы запечатать все в одну &laquo;транзакцию&raquo;, мы помещаем все три операции в единый <code>try</code> блок (как вариант реализации), с очисткой ресурсов - в <code>finally</code>. Пример может показаться упрощённым, но тут главное - показать суть.</p>
 <p>Чего не хватает в языке программирования C#, так это блока <code>fault</code>, суть которого - срабатывать всегда, когда произошла любая ошибка. Т.е. тот же <code>finally</code>, только на стероидах. Если бы такое было, мы бы смогли, как классический пример делать единую точку входа в логирование исключительных ситуаций:</p>
 <div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
 <span style="color:Blue;">try</span> {

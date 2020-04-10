@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+    <link rel="stylesheet" href="../../res/bootstrap.css">
     <style>
         body {
     padding: 60px 60px 60px 100px;
@@ -20,7 +21,7 @@ strong {
 }
 
 p, li {
-    margin: 0 0 14px;
+    margin: 0 0 25px;
     line-height: 32px;
     font-family: inherit;
 }
@@ -37,37 +38,82 @@ ol li {
 }
 
 ul li {
-    padding-left: 5px;	
+    padding-left: 12px;	
     font-family: inherit;
 }
 
-code, .lang-csharp span, .lang-csharp pre {
+table {
+    margin: 30px 0;
+    width: 100%;
+}
+
+thead {                         
+    background-color: aliceblue;
+}
+
+table th {
+    font-weight: 400;
+}
+
+table td, table th {
+    padding: 7px;
+    border-top: solid darkgrey 1px;
+    border-bottom: solid darkgrey 1px;
+    border-right: dotted darkgray 1px;
+    border-left: dotted darkgray 1px;
+    font-size: smaller;
+}
+
+code, *[class*='lang-'] span, *[class*='lang-'] pre {
     font-family: JB Mono, monospace !important;
 }
 
-.lang-csharp {
-    padding: 4px 0px 14px 0px;
+*[class*='lang-'] {
+    padding: 0px 0px 25px 0px;
 }
 
 
-.lang-csharp > div {
+*[class*='lang-'] > div, pre > code {
     border-left-color: #eee;
     border-left-style: dotted;
     border-left-width: 3px;
-    background-color: #f5faff !important;
-    padding: 10px 10px 10px 25px;
+    padding-left: 25px;
+    display: block;
+    background-color: aliceblue !important;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
-code {
-    font-size: 14px;
+*[class*='lang-'] > div pre, pre > code pre {
+    margin-bottom: 0;
+}
+
+p code:not(.highlight), li code:not(.highlight) {
+    font-size: 16px;
     border: gainsboro;
     border-width: 1px;
     border-style: solid;
-    padding: 2px;
+    padding: 4px;
     color: darkslateblue;
 }
 
-.lang-csharp span, .lang-csharp pre {
+code.highlight {
+    font-family: inherit !important;
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+}
+
+p code.highlight, li code.highlight {
+    padding: 4px;
+    background-color: #ffffa1;
+}
+
+.wide {
+    width:150%;
+}
+
+*[class*='lang-'] span, *[class*='lang-'] pre, pre > code {
     font-size: 13px;
     line-height: 20px;
 }
@@ -78,18 +124,33 @@ p a, li a {
     box-shadow: inset 0 -1px #b88b59;
 }
 
+blockquote h5 {
+    background-color: aquamarine;
+    margin: 16px 0 16px -20px;
+    padding: 15px 30px 15px;
+}
+
 p img {
     width: 95%;
 }
 
-p (:has img) {
+p:has( > img) {
     text-align: center;
 }
 
-blockquote {
-    background-color: lavenderblush;
-    padding-left: 20px;
-    border-left: 1px solid rgba(0,0,0,.08);
+blockquote > p.big-quote {
+    margin: 40px 0 60px 0;
+    font-family: Charter;
+    font-size: 55px;
+    line-height: 60px;
+    width: 150%;
+    padding: 0;
+}
+
+blockquote:not( p.big-quote) {
+    background-color: lavenderblush !important;
+    padding-left: 20px !important;
+    border-left: 1px solid rgba(0,0,0,.08) !important;
 }
 
 blockquote p {
@@ -141,7 +202,7 @@ h2 {
 }
 
 h3 {
-    margin: 30px 0 10px 0;
+    margin: 30px 0 15px 0;
     font-size: 17pt;
     font-weight: 500;
 }
@@ -155,16 +216,16 @@ h4 {
 
 /* Fonts 
 
-@font-face {
-    font-family: 'PF Regal';
-    src: url('../../res/fonts/PFRegalTextPro-RegularA.eot');
-    src: local('../../res/fonts/PFRegalTextPro-RegularA'),
-        url('../../res/fonts/PFRegalTextPro-RegularA.woff2') format('woff2'),
-        url('../../res/fonts/PFRegalTextPro-RegularA.woff') format('woff'),
-        url('../../res/fonts/PFRegalTextPro-RegularA.ttf') format('truetype');
-    font-weight: 300;
-    font-style: normal;
-}
+/*@font-face {*/
+/*    font-family: 'PF Regal';*/
+/*    src: url('../../res/fonts/PFRegalTextPro-RegularA.eot');*/
+/*    src: local('../../res/fonts/PFRegalTextPro-RegularA'),*/
+/*        url('../../res/fonts/PFRegalTextPro-RegularA.woff2') format('woff2'),*/
+/*        url('../../res/fonts/PFRegalTextPro-RegularA.woff') format('woff'),*/
+/*        url('../../res/fonts/PFRegalTextPro-RegularA.ttf') format('truetype');*/
+/*    font-weight: 300;*/
+/*    font-style: normal;*/
+/*}*/
 
 @font-face {
     font-family: 'PF Regal';
@@ -265,6 +326,13 @@ h4 {
     font-style: italic;
 }
 
+@font-face {
+    font-family: 'Charter';
+    src: url('../../res/fonts/charter-regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
 /*  Regular B */
 @font-face {
     font-family: 'PF Regal';
@@ -273,7 +341,7 @@ h4 {
         url('../../res/fonts/PFRegalTextPro-RegularBItalic.woff2') format('woff2'),
         url('../../res/fonts/PFRegalTextPro-RegularBItalic.woff') format('woff'),
         url('../../res/fonts/PFRegalTextPro-RegularBItalic.ttf') format('truetype');
-    font-weight: normal;
+    font-weight: 300;
     font-style: italic;
 }
 
@@ -284,13 +352,14 @@ h4 {
         url('../../res/fonts/PFRegalTextPro-RegularB.woff2') format('woff2'),
         url('../../res/fonts/PFRegalTextPro-RegularB.woff') format('woff'),
         url('../../res/fonts/PFRegalTextPro-RegularB.ttf') format('truetype');
-    font-weight: normal;
+    font-weight: 300;
     font-style: normal;
-}                
+}              
+  
     </style>
 
-<div style="margin:auto; width:100%;">
-<div style="width:1000px;">
+<div class="row">
+<div class="offset-1 col-7">
     <h2 id="events-that-indicate-exceptional-situations">Events that indicate exceptional situations</h2>
 <blockquote>
 <p><a href="https://github.com/sidristij/dotnetbook/issues/51">A link to the discussion</a></p>
@@ -305,7 +374,7 @@ h4 {
 </pre></div>
 </div>
 <p>In this case, the execution of code may seem safer as it actually is, but we won’t get any messages about problems. The second case is when an application suppresses an exception, even a legal one. As a result, the next exception in a random place will cause the application to break down because of a seemingly accidental error. In this case, we would prefer to know what happened prior to this error. What chain of events caused such an outcome? To make this knowledge possible you may choose to employ additional events that belong to exceptional situations: <code>AppDomain.FirstChanceException</code> and <code>AppDomain.UnhandledException</code>.</p>
-<p>In fact, when you <em>&quot;throw an exception&quot;</em>, you call an ordinary method of the <code>throw</code> subsystem. This method performs several internal operations:</p>
+<p>In fact, when you <em>&laquo;throw an exception&raquo;</em>, you call an ordinary method of the <code>throw</code> subsystem. This method performs several internal operations:</p>
 <ul>
 <li>calls <code>AppDomain.FirstChanceException</code>;</li>
 <li>looks through the chain of handlers to find one with relevant filters;</li>
@@ -315,7 +384,7 @@ h4 {
 <p>You may wonder if you can cancel the exception in uncontrolled code which runs in an isolated domain without terminating the thread where this exception was thrown. The answer is NO.</p>
 <p>If an exception was not caught throughout the whole range of called methods it can’t be handled at all. Otherwise, there is a strange situation: if we use <code>AppDomain.FirstChanceException</code> to process (with some synthetic <code>catch</code>) an exception, which frame should the stack go back to? How should we set it up within the rules of <code>.NET</code> CLR? In no way. It’s impossible. The only thing we can do is to record this data for future research.</p>
 <p>Another thing we should mention at &quot;the very beginning” is why <code>thread</code> and not <code>AppDomain</code> has these events. It is because exceptions logically appear in an execution thread. That means <code>thread</code> in fact. So, why does a domain have problems? The answer is simple: what are the situations <code>AppDomain.FirstChanceException</code> and <code>AppDomain.UnhandledException</code> used for? Above all, they are used to create sandboxes for plug-ins, i.e. situations where there is some <code>AppDomain</code> which is set for PartialTrust. All kinds of things can happen in this <code>AppDomain</code>: new threads can be created at any moment or those already existing in <code>ThreadPool</code> can be used. Thus, we, being outside this process (as we didn’t write this code), can’t subscribe to events of these internal threads — we just don’t know what threads were created there. But we definitely have the <code>AppDomain</code> which we have a link to and which creates a sandbox for us.</p>
-<p>So, in fact, we have two boundary states: something unexpected happened (<code>FirstChanceException</code>) and &quot;things are bad&quot;, the exception was unexpected and nobody handled it. That’s why further thread execution makes no sense and the <code>thread</code> will be unloaded.</p>
+<p>So, in fact, we have two boundary states: something unexpected happened (<code>FirstChanceException</code>) and &laquo;things are bad&raquo;, the exception was unexpected and nobody handled it. That’s why further thread execution makes no sense and the <code>thread</code> will be unloaded.</p>
 <p>What can we get if we have these events and why is it bad if developers ignore them.</p>
 <h3 id="appdomain.firstchanceexception">AppDomain.FirstChanceException</h3>
 <p>This event is purely informational and can’t be handled. Its task is to notify us about an exception that happened within this domain and will be processed by the application code after processing the event. Its execution has several features we should be aware of when designing a handler.</p>
@@ -511,7 +580,7 @@ Success
 </pre></div>
 </div>
 <p>With this scheme we will meet our goal: on the one hand, we don’t bring a thread down, on the other hand, we clean up local resources correctly if they were created. Also, we log those errors that we get.</p>
-<p>&quot;<em>Hold on</em>&quot; - you might say - &quot;<em>You left the topic of</em> <code>AppDomain.UnhandledException</code> <em>event too quickly. Is it really unnecessary?</em>&quot;</p>
+<p>&laquo;<em>Hold on</em>&raquo; - you might say - &laquo;<em>You left the topic of</em> <code>AppDomain.UnhandledException</code> <em>event too quickly. Is it really unnecessary?</em>&raquo;</p>
 <p>Well, it is necessary. But we need it only to alert us if we forgot to wrap some threads in <code>try-catch</code> with all the necessary logic, including logging and resource cleanup. Otherwise, it would be completely wrong to address all exceptions as if they never occured.</p>
 
 </div>

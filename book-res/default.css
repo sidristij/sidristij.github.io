@@ -1,12 +1,18 @@
 body {
     padding: 60px 60px 60px 100px;
+    font-family: PF Regal,Georgia,serif;
+    font-size: 16pt;
+    font-weight: 300;
+}
+
+strong {
+    font-weight: 500;
 }
 
 p, li {
-    margin: 0 0 14px;
-    font-family: PF Regal,PF Regal Text Pro,Georgia,serif;
-    font-size: 20px;
+    margin: 0 0 25px;
     line-height: 32px;
+    font-family: inherit;
 }
 
 ol, ul {
@@ -17,62 +23,129 @@ ol, ul {
 
 ol li {
     padding-left: 10px;	
+    font-family: inherit;
 }
 
 ul li {
-    padding-left: 5px;	
+    padding-left: 12px;	
+    font-family: inherit;
 }
 
-code, .lang-csharp span, .lang-csharp pre {
+table {
+    margin: 30px 0;
+    width: 100%;
+}
+
+thead {                         
+    background-color: aliceblue;
+}
+
+table th {
+    font-weight: 400;
+}
+
+table td, table th {
+    padding: 7px;
+    border-top: solid darkgrey 1px;
+    border-bottom: solid darkgrey 1px;
+    border-right: dotted darkgray 1px;
+    border-left: dotted darkgray 1px;
+    font-size: smaller;
+}
+
+code, *[class*='lang-'] span, *[class*='lang-'] pre {
     font-family: JB Mono, monospace !important;
-    font-size: 13pt;
 }
 
-.lang-csharp {
-    padding: 4px 0px 14px 0px;
+*[class*='lang-'] {
+    padding: 0px 0px 25px 0px;
 }
 
 
-.lang-csharp > div {
+*[class*='lang-'] > div, pre > code {
     border-left-color: #eee;
     border-left-style: dotted;
     border-left-width: 3px;
     padding-left: 25px;
+    display: block;
+    background-color: aliceblue !important;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
-code {
-    font-size: 13px !important;
+*[class*='lang-'] > div pre, pre > code pre {
+    margin-bottom: 0;
 }
 
-.lang-csharp span, .lang-csharp pre {
+p code:not(.highlight), li code:not(.highlight) {
+    font-size: 16px;
+    border: gainsboro;
+    border-width: 1px;
+    border-style: solid;
+    padding: 4px;
+    color: darkslateblue;
+}
+
+code.highlight {
+    font-family: inherit !important;
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+}
+
+p code.highlight, li code.highlight {
+    padding: 4px;
+    background-color: #ffffa1;
+}
+
+.wide {
+    width:150%;
+}
+
+*[class*='lang-'] span, *[class*='lang-'] pre, pre > code {
     font-size: 13px;
-    line-height: 19px;
+    line-height: 20px;
 }
 
-p a {
+p a, li a {
     text-decoration: none;
     color: inherit;
     box-shadow: inset 0 -1px #b88b59;
+}
+
+blockquote h5 {
+    background-color: aquamarine;
+    margin: 16px 0 16px -20px;
+    padding: 15px 30px 15px;
 }
 
 p img {
     width: 95%;
 }
 
-img < p {
+p:has( > img) {
     text-align: center;
+}
+
+blockquote > p.big-quote {
+    margin: 40px 0 60px 0;
+    font-family: Charter;
+    font-size: 55px;
+    line-height: 60px;
+    width: 150%;
+    padding: 0;
+}
+
+blockquote:not( p.big-quote) {
+    background-color: lavenderblush !important;
+    padding-left: 20px !important;
+    border-left: 1px solid rgba(0,0,0,.08) !important;
 }
 
 blockquote p {
     margin: 16px 0;
     padding: 12px 12px 13px;
-    border: 1px solid rgba(0,0,0,.08);
-    border-radius: 8px;
-    background: #fff8c4;
-    font-family: Proxima Nova,Arial,Helvetica Neue,sans-serif;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 24px;
+    font-family: inherit;
 }
 
 blockquote p code {
@@ -86,13 +159,16 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0;
     padding: 0;
     font-weight: 400;
+    font-family: inherit;
 }
 
 h1 {
-    font-size: 38px;
-    font-family: PF Regal,PF Regal Text Pro,Georgia,serif;
-    font-weight: 400;
-    margin: 40px 0 10px 0;
+    font-size: 40px;
+    font-family: PF Regal,Georgia,serif;
+    font-weight: 300;
+    margin: 40px 0 20px 0;
+    border-bottom-style: ridge;
+    padding-bottom: 10px;
 }
 
 h1 b {
@@ -109,82 +185,162 @@ h2 {
     font-size: 20px;
     font-weight: 700;
     line-height: 24px;
-    border-bottom-color: aliceblue;
+    border-bottom-color: grey;
     border-bottom-style: solid;
     padding-bottom: 5px;
 }
 
 h3 {
-    margin: 30px 0 10px 0;
-    border-bottom-color: azure;
-    border-bottom-style: solid;
-    border-bottom-width: 2px;
+    margin: 30px 0 15px 0;
     font-size: 17pt;
+    font-weight: 500;
+}
+
+h4 {
+    margin: 20px 0 10px 0;
+    font-size: 16pt;
+    font-weight: 500;
+    font-style: italic;
+}
+
+/* Fonts 
+
+/*@font-face {*/
+/*    font-family: 'PF Regal';*/
+/*    src: url('{RES_PATH}/fonts/PFRegalTextPro-RegularA.eot');*/
+/*    src: local('{RES_PATH}/fonts/PFRegalTextPro-RegularA'),*/
+/*        url('{RES_PATH}/fonts/PFRegalTextPro-RegularA.woff2') format('woff2'),*/
+/*        url('{RES_PATH}/fonts/PFRegalTextPro-RegularA.woff') format('woff'),*/
+/*        url('{RES_PATH}/fonts/PFRegalTextPro-RegularA.ttf') format('truetype');*/
+/*    font-weight: 300;*/
+/*    font-style: normal;*/
+/*}*/
+
+@font-face {
+    font-family: 'PF Regal';
+    src: url('{RES_PATH}/fonts/PFRegalTextPro-Bold.eot');
+    src: local('{RES_PATH}/fonts/PFRegalTextPro-Bold'),
+        url('{RES_PATH}/fonts/PFRegalTextPro-Bold.woff2') format('woff2'),
+        url('{RES_PATH}/fonts/PFRegalTextPro-Bold.woff') format('woff'),
+        url('{RES_PATH}/fonts/PFRegalTextPro-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+*/
+@font-face {
+    font-family: 'PF Regal';
+    src: url('{RES_PATH}/fonts/PFRegalTextPro-Medium.eot');
+    src: local('{RES_PATH}/fonts/PFRegalTextPro-Medium'),
+        url('{RES_PATH}/fonts/PFRegalTextPro-Medium.woff2') format('woff2'),
+        url('{RES_PATH}/fonts/PFRegalTextPro-Medium.woff') format('woff'),
+        url('{RES_PATH}/fonts/PFRegalTextPro-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PF Regal';
+    src: url('{RES_PATH}/fonts/PFRegalTextPro-BlackItalic.eot');
+    src: local('{RES_PATH}/fonts/PFRegalTextPro-BlackItalic'),
+        url('{RES_PATH}/fonts/PFRegalTextPro-BlackItalic.woff2') format('woff2'),
+        url('{RES_PATH}/fonts/PFRegalTextPro-BlackItalic.woff') format('woff'),
+        url('{RES_PATH}/fonts/PFRegalTextPro-BlackItalic.ttf') format('truetype');
+    font-weight: 900;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'PF Regal';
+    src: url('{RES_PATH}/fonts/PFRegalTextPro-Black.eot');
+    src: local('{RES_PATH}/fonts/PFRegalTextPro-Black'),
+        url('{RES_PATH}/fonts/PFRegalTextPro-Black.woff2') format('woff2'),
+        url('{RES_PATH}/fonts/PFRegalTextPro-Black.woff') format('woff'),
+        url('{RES_PATH}/fonts/PFRegalTextPro-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PF Regal UBlack';
+    src: url('{RES_PATH}/fonts/PFRegalTextPro-UBlack.eot');
+    src: local('{RES_PATH}/fonts/PFRegalTextPro-UBlack'),
+        url('{RES_PATH}/fonts/PFRegalTextPro-UBlack.woff2') format('woff2'),
+        url('{RES_PATH}/fonts/PFRegalTextPro-UBlack.woff') format('woff'),
+        url('{RES_PATH}/fonts/PFRegalTextPro-UBlack.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PF Regal';
+    src: url('{RES_PATH}/fonts/PFRegalTextPro-MediumItalic.eot');
+    src: local('{RES_PATH}/fonts/PFRegalTextPro-MediumItalic'),
+        url('{RES_PATH}/fonts/PFRegalTextPro-MediumItalic.woff2') format('woff2'),
+        url('{RES_PATH}/fonts/PFRegalTextPro-MediumItalic.woff') format('woff'),
+        url('{RES_PATH}/fonts/PFRegalTextPro-MediumItalic.ttf') format('truetype');
+    font-weight: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'PF Regal';
+    src: url('{RES_PATH}/fonts/PFRegalTextPro-UBlackItalic.eot');
+    src: local('{RES_PATH}/fonts/PFRegalTextPro-UBlackItalic'),
+        url('{RES_PATH}/fonts/PFRegalTextPro-UBlackItalic.woff2') format('woff2'),
+        url('{RES_PATH}/fonts/PFRegalTextPro-UBlackItalic.woff') format('woff'),
+        url('{RES_PATH}/fonts/PFRegalTextPro-UBlackItalic.ttf') format('truetype');
+    font-weight: 900;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'PF Regal';
+    src: url('{RES_PATH}/fonts/PFRegalTextPro-RegularAItalic.eot');
+    src: local('{RES_PATH}/fonts/PFRegalTextPro-RegularAItalic'),
+        url('{RES_PATH}/fonts/PFRegalTextPro-RegularAItalic.woff2') format('woff2'),
+        url('{RES_PATH}/fonts/PFRegalTextPro-RegularAItalic.woff') format('woff'),
+        url('{RES_PATH}/fonts/PFRegalTextPro-RegularAItalic.ttf') format('truetype');
     font-weight: 300;
+    font-style: italic;
 }
 
+@font-face {
+    font-family: 'PF Regal';
+    src: url('{RES_PATH}/fonts/PFRegalTextPro-BoldItalic.eot');
+    src: local('{RES_PATH}/fonts/PFRegalTextPro-BoldItalic'),
+        url('{RES_PATH}/fonts/PFRegalTextPro-BoldItalic.woff2') format('woff2'),
+        url('{RES_PATH}/fonts/PFRegalTextPro-BoldItalic.woff') format('woff'),
+        url('{RES_PATH}/fonts/PFRegalTextPro-BoldItalic.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
 
-// Fonts
 @font-face {
-    font-family: 'JB Mono';
-    src: local('JetBrains Mono'),
-    url('{RES_PATH}/fonts/woff2/JetBrainsMono-Italic.woff2') format('woff2'),
-    url('{RES_PATH}/fonts/woff/JetBrainsMono-Italic.woff') format('woff'),
-    url('{RES_PATH}/fonts/ttf/JetBrainsMono-Italic.ttf') format('truetype');
-    font-weight: 400;
+    font-family: 'Charter';
+    src: url('{RES_PATH}/fonts/charter-regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*  Regular B */
+@font-face {
+    font-family: 'PF Regal';
+    src: url('{RES_PATH}/fonts/PFRegalTextPro-RegularBItalic.eot');
+    src: local('{RES_PATH}/fonts/PFRegalTextPro-RegularBItalic'),
+        url('{RES_PATH}/fonts/PFRegalTextPro-RegularBItalic.woff2') format('woff2'),
+        url('{RES_PATH}/fonts/PFRegalTextPro-RegularBItalic.woff') format('woff'),
+        url('{RES_PATH}/fonts/PFRegalTextPro-RegularBItalic.ttf') format('truetype');
+    font-weight: 300;
     font-style: italic;
 }
+
 @font-face {
-    font-family: 'JB Mono';
-    src: local('JetBrains Mono'),
-    url('{RES_PATH}/fonts/woff2/JetBrainsMono-Regular.woff2') format('woff2'),
-    url('{RES_PATH}/fonts/woff/JetBrainsMono-Regular.woff') format('woff'),
-    url('{RES_PATH}/fonts/ttf/JetBrainsMono-Regular.ttf') format('truetype');
-    font-weight: 400;
+    font-family: 'PF Regal';
+    src: url('{RES_PATH}/fonts/PFRegalTextPro-RegularB.eot');
+    src: local('{RES_PATH}/fonts/PFRegalTextPro-RegularB'),
+        url('{RES_PATH}/fonts/PFRegalTextPro-RegularB.woff2') format('woff2'),
+        url('{RES_PATH}/fonts/PFRegalTextPro-RegularB.woff') format('woff'),
+        url('{RES_PATH}/fonts/PFRegalTextPro-RegularB.ttf') format('truetype');
+    font-weight: 300;
     font-style: normal;
-}
-@font-face {
-    font-family: 'JB Mono';
-    src: local('JetBrains Mono'),
-    url('{RES_PATH}/fonts/woff2/JetBrainsMono-Medium-Italic.woff2') format('woff2'),
-    url('{RES_PATH}/fonts/woff/JetBrainsMono-Medium-Italic.woff') format('woff'),
-    url('{RES_PATH}/fonts/ttf/JetBrainsMono-Medium-Italic.ttf') format('truetype');
-    font-weight: 600;
-    font-style: italic;
-}
-@font-face {
-    font-family: 'JB Mono';
-    src: local('JetBrains Mono'),
-    url('{RES_PATH}/fonts/woff2/JetBrainsMono-Medium.woff2') format('woff2'),
-    url('{RES_PATH}/fonts/woff/JetBrainsMono-Medium.woff') format('woff'),
-    url('{RES_PATH}/fonts/ttf/JetBrainsMono-Medium.ttf') format('truetype');
-    font-weight: 600;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'PF Regal Text Pro';
-    src: local('PF Regal Text Pro RegularA'), local('PF-Regal-Text-Pro-RegularA'),
-    url('{RES_PATH}/fonts/woff2/PFRegalTextPro-RegularA.woff2') format('woff2'),
-    url('{RES_PATH}/fonts/woff/PFRegalTextPro-RegularA.woff') format('woff'),
-    url('{RES_PATH}/fonts/ttf/PFRegalTextPro-RegularA.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'PF Regal Text Pro';
-    src: local('PF Regal Text Pro RegularB'), local('PF-Regal-Text-Pro-RegularB'),
-    url('{RES_PATH}/fonts/woff2/PFRegalTextPro-RegularB.woff2') format('woff2'),
-    url('{RES_PATH}/fonts/woff/PFRegalTextPro-RegularB.woff') format('woff'),
-    url('{RES_PATH}/fonts/ttf/PFRegalTextPro-RegularB.ttf') format('truetype');
-    font-weight: 600;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'PF Regal Text Pro';
-    src: local('PF Regal Text Pro RegularB Italic'), local('PF-Regal-Text-Pro-RegularB-Italic'),
-    url('{RES_PATH}/fonts/woff2/PFRegalTextPro-RegularBItalic.woff2') format('woff2'),
-    url('{RES_PATH}/fonts/woff/PFRegalTextPro-RegularBItalic.woff') format('woff'),
-    url('{RES_PATH}/fonts/ttf/PFRegalTextPro-RegularBItalic.ttf') format('truetype');
-    font-weight: 600;
-    font-style: italic;
-}
+}              

@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+    <link rel="stylesheet" href="../../res/bootstrap.css">
     <style>
         body {
     padding: 60px 60px 60px 100px;
@@ -20,7 +21,7 @@ strong {
 }
 
 p, li {
-    margin: 0 0 14px;
+    margin: 0 0 25px;
     line-height: 32px;
     font-family: inherit;
 }
@@ -37,37 +38,82 @@ ol li {
 }
 
 ul li {
-    padding-left: 5px;	
+    padding-left: 12px;	
     font-family: inherit;
 }
 
-code, .lang-csharp span, .lang-csharp pre {
+table {
+    margin: 30px 0;
+    width: 100%;
+}
+
+thead {                         
+    background-color: aliceblue;
+}
+
+table th {
+    font-weight: 400;
+}
+
+table td, table th {
+    padding: 7px;
+    border-top: solid darkgrey 1px;
+    border-bottom: solid darkgrey 1px;
+    border-right: dotted darkgray 1px;
+    border-left: dotted darkgray 1px;
+    font-size: smaller;
+}
+
+code, *[class*='lang-'] span, *[class*='lang-'] pre {
     font-family: JB Mono, monospace !important;
 }
 
-.lang-csharp {
-    padding: 4px 0px 14px 0px;
+*[class*='lang-'] {
+    padding: 0px 0px 25px 0px;
 }
 
 
-.lang-csharp > div {
+*[class*='lang-'] > div, pre > code {
     border-left-color: #eee;
     border-left-style: dotted;
     border-left-width: 3px;
-    background-color: #f5faff !important;
-    padding: 10px 10px 10px 25px;
+    padding-left: 25px;
+    display: block;
+    background-color: aliceblue !important;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
-code {
-    font-size: 14px;
+*[class*='lang-'] > div pre, pre > code pre {
+    margin-bottom: 0;
+}
+
+p code:not(.highlight), li code:not(.highlight) {
+    font-size: 16px;
     border: gainsboro;
     border-width: 1px;
     border-style: solid;
-    padding: 2px;
+    padding: 4px;
     color: darkslateblue;
 }
 
-.lang-csharp span, .lang-csharp pre {
+code.highlight {
+    font-family: inherit !important;
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+}
+
+p code.highlight, li code.highlight {
+    padding: 4px;
+    background-color: #ffffa1;
+}
+
+.wide {
+    width:150%;
+}
+
+*[class*='lang-'] span, *[class*='lang-'] pre, pre > code {
     font-size: 13px;
     line-height: 20px;
 }
@@ -78,18 +124,33 @@ p a, li a {
     box-shadow: inset 0 -1px #b88b59;
 }
 
+blockquote h5 {
+    background-color: aquamarine;
+    margin: 16px 0 16px -20px;
+    padding: 15px 30px 15px;
+}
+
 p img {
     width: 95%;
 }
 
-p (:has img) {
+p:has( > img) {
     text-align: center;
 }
 
-blockquote {
-    background-color: lavenderblush;
-    padding-left: 20px;
-    border-left: 1px solid rgba(0,0,0,.08);
+blockquote > p.big-quote {
+    margin: 40px 0 60px 0;
+    font-family: Charter;
+    font-size: 55px;
+    line-height: 60px;
+    width: 150%;
+    padding: 0;
+}
+
+blockquote:not( p.big-quote) {
+    background-color: lavenderblush !important;
+    padding-left: 20px !important;
+    border-left: 1px solid rgba(0,0,0,.08) !important;
 }
 
 blockquote p {
@@ -141,7 +202,7 @@ h2 {
 }
 
 h3 {
-    margin: 30px 0 10px 0;
+    margin: 30px 0 15px 0;
     font-size: 17pt;
     font-weight: 500;
 }
@@ -155,16 +216,16 @@ h4 {
 
 /* Fonts 
 
-@font-face {
-    font-family: 'PF Regal';
-    src: url('../../res/fonts/PFRegalTextPro-RegularA.eot');
-    src: local('../../res/fonts/PFRegalTextPro-RegularA'),
-        url('../../res/fonts/PFRegalTextPro-RegularA.woff2') format('woff2'),
-        url('../../res/fonts/PFRegalTextPro-RegularA.woff') format('woff'),
-        url('../../res/fonts/PFRegalTextPro-RegularA.ttf') format('truetype');
-    font-weight: 300;
-    font-style: normal;
-}
+/*@font-face {*/
+/*    font-family: 'PF Regal';*/
+/*    src: url('../../res/fonts/PFRegalTextPro-RegularA.eot');*/
+/*    src: local('../../res/fonts/PFRegalTextPro-RegularA'),*/
+/*        url('../../res/fonts/PFRegalTextPro-RegularA.woff2') format('woff2'),*/
+/*        url('../../res/fonts/PFRegalTextPro-RegularA.woff') format('woff'),*/
+/*        url('../../res/fonts/PFRegalTextPro-RegularA.ttf') format('truetype');*/
+/*    font-weight: 300;*/
+/*    font-style: normal;*/
+/*}*/
 
 @font-face {
     font-family: 'PF Regal';
@@ -265,6 +326,13 @@ h4 {
     font-style: italic;
 }
 
+@font-face {
+    font-family: 'Charter';
+    src: url('../../res/fonts/charter-regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
 /*  Regular B */
 @font-face {
     font-family: 'PF Regal';
@@ -273,7 +341,7 @@ h4 {
         url('../../res/fonts/PFRegalTextPro-RegularBItalic.woff2') format('woff2'),
         url('../../res/fonts/PFRegalTextPro-RegularBItalic.woff') format('woff'),
         url('../../res/fonts/PFRegalTextPro-RegularBItalic.ttf') format('truetype');
-    font-weight: normal;
+    font-weight: 300;
     font-style: italic;
 }
 
@@ -284,31 +352,43 @@ h4 {
         url('../../res/fonts/PFRegalTextPro-RegularB.woff2') format('woff2'),
         url('../../res/fonts/PFRegalTextPro-RegularB.woff') format('woff'),
         url('../../res/fonts/PFRegalTextPro-RegularB.ttf') format('truetype');
-    font-weight: normal;
+    font-weight: 300;
     font-style: normal;
-}                
+}              
+  
     </style>
 
-<div style="margin:auto; width:100%;">
-<div style="width:1000px;">
-    <h1 id="section">Основы управления памятью [В процессе]</h1>
+<div class="row">
+<div class="offset-1 col-7">
+    <h1 id="section">Основы управления памятью</h1>
+<h2 id="section-1">Введение</h2>
+<p>Когда вы думаете о разработке любого .NET приложения до недавних пор можно было себе позволить считать, что приложение, которое вы делаете, будет всегда работать на одной и той же платформе: это операционная система Windows, запущенная поверх технологического стека Intel. Сейчас же с каждым прожитым днем мы входим в новую эпоху: платформа .NET стала поистине кроссплатформенной, пустив новые корни в сторону всех доступных настольных операционных систем. Это &ndash; прекрасное время и наш долг сейчас не потерять нить и остаться востребованными специалистами. Ведь когда toolset становится кроссплатформенным, это означает что мы обязаны начать смотреть внутрь. Изучать, как работает двигатель нашей платформы. Чтобы понимать, почему тот ведет себя, так или иначе, на различных системах.</p>
+<p>Вторая мысль, которую мне хотелось бы передать через страницы данной книги: даже если ваши сервера будут сверхпроизводительными. Даже если они будут настолько быстрыми, что будет казаться, что оптимизации &ndash; последнее дело, о котором стоит думать&hellip; Вы всё равно начнёте оптимизировать код. Вспомните: когда-то всем известный системный программист Билл Гейтс сказал, что 640 Кб памяти должно хватить любому. И на тот момент это было правдой. И на тот момент если скажи любому, что через каких-то 20 лет один компьютер сможет заменить несколько тысяч серверов того времени, вам бы сказали: в ваше время производительность настолько высокая, что над оптимизацией наверняка не стоит даже задумываться. Но что мы видим? Всё большее количество людей уходит в онлайн. Всё большее количество людей начинает пользоваться смартфонами и как следствие &ndash; онлайн торговлей. А этим системам чтобы выдерживать всё нарастающие нагрузки хочется сэкономить: арендовывать меньшее количество серверов при всё нарастающей нагрузке. И поверьте: эпоха сети Интернет только взяла старт: в прошлое уйдёт население, не принимающее современных технологий, а на смену ему придёт поколение, не знающее другого пути. И даже если серверные системы будущего будут выдерживать нагрузки в 1000 раз большие.. Конечно же сайты &laquo;попроще&raquo; могут быть написаны как угодно плохо&hellip; Но если ваша цель &ndash; работать в компаниях топового уровня, оптимизацией вы будете заниматься всегда.</p>
+<p>Программисты, на мой взгляд, разделятся если можно так выразиться на классы: это деление уже в некотором смысле началось. Однако сегментация будет более выраженной: на мой взгляд сливки будут снимать люди с хорошим математическим аппаратом. Эти люди будут решать вопросы разработки систем ИИ, нейросетей, потокового шифрования и передачи больших объёмов траффика. Вопросы кратко- и долгосрочного хранения данных, высокоскоростного извлечения данных по нечётким критериям, ассоциативным критериям. Распознания и синтеза образов и речи. Системы слежения за всеми аспектами жизни людей и продажи этой информации через API. Эта работа возможна только со знанием математического аппарата и с глубоким знанием платформы, на которой идёт работа. Обилие вывода разработчиков ВУЗами создаст избыточное предложение, излишки которого будут заниматься настройкой шаблонов &laquo;под магазин&raquo;. Они будут мастера этого дела: ведь работа эта &ndash; потоковая. И каждый из классов будет, как это принято, иметь зарплатную вилку. Уйти в верхнюю зарплатную вилку помимо всего прочего вам помогут страницы этой книги. Ровно как и создать её этими знаниями.</p>
 <blockquote>
-<p>Если статья находится в процессе, это значит, что прямо в эти минуты я ее правлю и возможно, часть информации не является достоверной</p>
+<p class="big-quote"> Рынок высокопроизводительного программного обеспечения создаётся наличием профессионалов, которые своей работой сами создают спрос на себя.</p>
 </blockquote>
-<h1 id="section-1">Обзор</h1>
-<p>Когда вы думаете о разработке любого .NET приложения до недавних пор можно было себе позволить считать, что приложение, которое вы делаете, будет всегда работать на одной и той же платформе: это операционная система Windows, запущенная поверх технологического стека Intel. Сейчас же с каждым прожитым днем мы входим в новую эпоху: платформа .NET стала поистине кроссплатформенной, пустив новые корни в сторону всех доступных настольных операционных систем. Это - прекрасное время и наш долг сейчас не потерять нить и остаться востребованными специалистами. Ведь когда toolset становится кроссплатформенным, это означает что мы обязаны начать смотреть внутрь. Изучать, как работает двигатель нашей платформы. Чтобы понимать, почему тот ведет себя, так или иначе, на различных системах.</p>
-<p>Подсистему управления памятью мы будем изучать по слоям. Начнем от слоя, близкого к пониманию ее работы &quot;на пальцах&quot; и закончим - слоем архитектуры на самом низком уровне - процессорном. Ведь чтобы до конца понимать всю проблематику работы с памятью - надо знать все, начиная от процессорных кэшей заканчивая оптимизациями работы c кучами .NET.</p>
+<p>Подсистему управления памятью мы будем изучать по слоям. Начнем от слоя, близкого к пониманию ее работы &laquo;на пальцах&raquo; и закончим &ndash; слоем архитектуры на самом низком уровне &ndash; процессорном. Ведь чтобы до конца понимать всю проблематику работы с памятью &ndash; надо знать все, начиная от процессорных кэшей заканчивая оптимизациями работы c кучами .NET.
+<a id="fnref:1" href="#fn:1" class="footnote-ref"><sup>1</sup></a></p>
 <h2 id="section-2">Основы основ</h2>
 <p>Если взять любое приложение и попробовать грубо разделить его на две части, то получится, что любое приложение состоит фактически из двух самых важных вещей: кода, который исполняется процессором, и данных, которыми этот код оперирует в своей работе. Причем если с кодом все более-менее ясно, то данные можно поделить на несколько больших секций:</p>
 <ul>
-<li><strong>Thread stack</strong> - область памяти, которая есть у любого потока и через которую работают все вызовы всех методов, плюс там же организовано хранилище для локальных переменных методов;</li>
-<li><strong>Code Heap</strong> - это область памяти, куда JITter складывает результаты компиляции MSIL;</li>
-<li><strong>Small Objects Heap</strong> - это куча маленьких объектов. Как бы это не звучало, именно так это и называется. По своей сути это - хранилище объектов, размер которых не превышает 85К байт;</li>
-<li><strong>Large Objects Heap</strong> - это куча больших объектов. Сюда попадают объекты, размеры которых превышают 85K байт;</li>
-<li><strong>TypeRefs Heap</strong> - куча Type References - описателей типов .NET - со стороны подсистемы CLR (со стороны .NET типов выступает подсистема Reflection)</li>
-<li><strong>MethodRefs Heap</strong> - куча Methods References - описателей методов .NET - со стороны подсистемы CLR (со стороны .NET типов выступает подсистема Reflection)</li>
+<li><strong>Thread stack</strong> &ndash; область памяти, которая есть у любого потока и через которую работают все вызовы всех методов, плюс там же организовано хранилище для локальных переменных методов;</li>
+<li><strong>Code Heap</strong> &ndash; это область памяти, куда JITter складывает результаты компиляции MSIL;</li>
+<li><strong>Small Objects Heap</strong> &ndash; это куча маленьких объектов. Как бы это не звучало, именно так это и называется. По своей сути это &ndash; хранилище объектов, размер которых не превышает 85К байт;</li>
+<li><strong>Large Objects Heap</strong> &ndash; это куча больших объектов. Сюда попадают объекты, размеры которых превышают 85K байт;</li>
+<li><strong>TypeRefs Heap</strong> &ndash; куча Type References &ndash; описателей типов .NET &ndash; со стороны подсистемы CLR (со стороны .NET типов выступает подсистема Reflection)</li>
+<li><strong>MethodRefs Heap</strong> &ndash; куча Methods References &ndash; описателей методов .NET &ndash; со стороны подсистемы CLR (со стороны .NET типов выступает подсистема Reflection)</li>
 <li>И многие другие</li>
 </ul>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Here's one with multiple blocks.<a href="#fnref:1" class="footnote-back-ref">&#8617;</a></p>
+</li>
+</ol>
+</div>
 
 </div>
 </div>

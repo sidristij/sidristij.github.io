@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+    <link rel="stylesheet" href="../res/bootstrap.css">
     <style>
         body {
     padding: 60px 60px 60px 100px;
@@ -20,7 +21,7 @@ strong {
 }
 
 p, li {
-    margin: 0 0 14px;
+    margin: 0 0 25px;
     line-height: 32px;
     font-family: inherit;
 }
@@ -37,37 +38,82 @@ ol li {
 }
 
 ul li {
-    padding-left: 5px;	
+    padding-left: 12px;	
     font-family: inherit;
 }
 
-code, .lang-csharp span, .lang-csharp pre {
+table {
+    margin: 30px 0;
+    width: 100%;
+}
+
+thead {                         
+    background-color: aliceblue;
+}
+
+table th {
+    font-weight: 400;
+}
+
+table td, table th {
+    padding: 7px;
+    border-top: solid darkgrey 1px;
+    border-bottom: solid darkgrey 1px;
+    border-right: dotted darkgray 1px;
+    border-left: dotted darkgray 1px;
+    font-size: smaller;
+}
+
+code, *[class*='lang-'] span, *[class*='lang-'] pre {
     font-family: JB Mono, monospace !important;
 }
 
-.lang-csharp {
-    padding: 4px 0px 14px 0px;
+*[class*='lang-'] {
+    padding: 0px 0px 25px 0px;
 }
 
 
-.lang-csharp > div {
+*[class*='lang-'] > div, pre > code {
     border-left-color: #eee;
     border-left-style: dotted;
     border-left-width: 3px;
-    background-color: #f5faff !important;
-    padding: 10px 10px 10px 25px;
+    padding-left: 25px;
+    display: block;
+    background-color: aliceblue !important;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
-code {
-    font-size: 14px;
+*[class*='lang-'] > div pre, pre > code pre {
+    margin-bottom: 0;
+}
+
+p code:not(.highlight), li code:not(.highlight) {
+    font-size: 16px;
     border: gainsboro;
     border-width: 1px;
     border-style: solid;
-    padding: 2px;
+    padding: 4px;
     color: darkslateblue;
 }
 
-.lang-csharp span, .lang-csharp pre {
+code.highlight {
+    font-family: inherit !important;
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+}
+
+p code.highlight, li code.highlight {
+    padding: 4px;
+    background-color: #ffffa1;
+}
+
+.wide {
+    width:150%;
+}
+
+*[class*='lang-'] span, *[class*='lang-'] pre, pre > code {
     font-size: 13px;
     line-height: 20px;
 }
@@ -78,18 +124,33 @@ p a, li a {
     box-shadow: inset 0 -1px #b88b59;
 }
 
+blockquote h5 {
+    background-color: aquamarine;
+    margin: 16px 0 16px -20px;
+    padding: 15px 30px 15px;
+}
+
 p img {
     width: 95%;
 }
 
-p (:has img) {
+p:has( > img) {
     text-align: center;
 }
 
-blockquote {
-    background-color: lavenderblush;
-    padding-left: 20px;
-    border-left: 1px solid rgba(0,0,0,.08);
+blockquote > p.big-quote {
+    margin: 40px 0 60px 0;
+    font-family: Charter;
+    font-size: 55px;
+    line-height: 60px;
+    width: 150%;
+    padding: 0;
+}
+
+blockquote:not( p.big-quote) {
+    background-color: lavenderblush !important;
+    padding-left: 20px !important;
+    border-left: 1px solid rgba(0,0,0,.08) !important;
 }
 
 blockquote p {
@@ -141,7 +202,7 @@ h2 {
 }
 
 h3 {
-    margin: 30px 0 10px 0;
+    margin: 30px 0 15px 0;
     font-size: 17pt;
     font-weight: 500;
 }
@@ -155,16 +216,16 @@ h4 {
 
 /* Fonts 
 
-@font-face {
-    font-family: 'PF Regal';
-    src: url('../res/fonts/PFRegalTextPro-RegularA.eot');
-    src: local('../res/fonts/PFRegalTextPro-RegularA'),
-        url('../res/fonts/PFRegalTextPro-RegularA.woff2') format('woff2'),
-        url('../res/fonts/PFRegalTextPro-RegularA.woff') format('woff'),
-        url('../res/fonts/PFRegalTextPro-RegularA.ttf') format('truetype');
-    font-weight: 300;
-    font-style: normal;
-}
+/*@font-face {*/
+/*    font-family: 'PF Regal';*/
+/*    src: url('../res/fonts/PFRegalTextPro-RegularA.eot');*/
+/*    src: local('../res/fonts/PFRegalTextPro-RegularA'),*/
+/*        url('../res/fonts/PFRegalTextPro-RegularA.woff2') format('woff2'),*/
+/*        url('../res/fonts/PFRegalTextPro-RegularA.woff') format('woff'),*/
+/*        url('../res/fonts/PFRegalTextPro-RegularA.ttf') format('truetype');*/
+/*    font-weight: 300;*/
+/*    font-style: normal;*/
+/*}*/
 
 @font-face {
     font-family: 'PF Regal';
@@ -265,6 +326,13 @@ h4 {
     font-style: italic;
 }
 
+@font-face {
+    font-family: 'Charter';
+    src: url('../res/fonts/charter-regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
 /*  Regular B */
 @font-face {
     font-family: 'PF Regal';
@@ -273,7 +341,7 @@ h4 {
         url('../res/fonts/PFRegalTextPro-RegularBItalic.woff2') format('woff2'),
         url('../res/fonts/PFRegalTextPro-RegularBItalic.woff') format('woff'),
         url('../res/fonts/PFRegalTextPro-RegularBItalic.ttf') format('truetype');
-    font-weight: normal;
+    font-weight: 300;
     font-style: italic;
 }
 
@@ -284,13 +352,14 @@ h4 {
         url('../res/fonts/PFRegalTextPro-RegularB.woff2') format('woff2'),
         url('../res/fonts/PFRegalTextPro-RegularB.woff') format('woff'),
         url('../res/fonts/PFRegalTextPro-RegularB.ttf') format('truetype');
-    font-weight: normal;
+    font-weight: 300;
     font-style: normal;
-}                
+}              
+  
     </style>
 
-<div style="margin:auto; width:100%;">
-<div style="width:1000px;">
+<div class="row">
+<div class="offset-1 col-7">
     <h1 id="reference-types-vs-value-types">Reference Types vs Value Types</h1>
 <blockquote>
 <p><a href="https://github.com/sidristij/dotnetbook/issues/57">A link to the discussion</a></p>
@@ -298,7 +367,7 @@ h4 {
 <p>First, let’s talk about Reference Types and Value Types. I think people don’t really understand the differences and benefits of both. They usually say reference types store content on the heap and value types store content on the stack, which is wrong.</p>
 <p>Let’s discuss the real differences:</p>
 <ul>
-<li><em>A value type</em>: its value is <strong>an entire structure</strong>. The value of a reference type is <strong>a reference</strong> to an object. – A structure in memory: value types contain only the data you indicated. Reference types also contain two system fields. The first one stores 'SyncBlockIndex', the  second one stores the information about a type, including the information about a Virtual Methods Table (VMT).</li>
+<li><em>A value type</em>: its value is <strong>an entire structure</strong>. The value of a reference type is <strong>a reference</strong> to an object. – A structure in memory: value types contain only the data you indicated. Reference types also contain two system fields. The first one stores &lsquo;SyncBlockIndex&rsquo;, the  second one stores the information about a type, including the information about a Virtual Methods Table (VMT).</li>
 <li>Reference types can have methods that are overridden when inherited. Value types cannot be inherited.</li>
 <li>You should allocate space on the heap for an instance of a reference type. A value type <em>can</em> be allocated on the stack, or it becomes the part of a reference type. This sufficiently increases the performance of some algorithms.</li>
 </ul>
@@ -498,7 +567,7 @@ range! We can also take a memory range from unmanaged code and cast a type to ou
 }
 </pre></div>
 </div>
-<p>Here, we perform the operation that is impossible in strong typing. We cast one type to another incompatible one that contains one extra field. We introduce an additional variable inside the Main method. In theory, its value is secret. However, the example code will output the value of a variable, not found in any of the structures inside the <code>Main()</code> method. You might consider it a breach in security, but things are not so simple. You cannot get rid of unmanaged code in a program. The main reason is the structure of the thread stack. One can use it to access unmanaged code and play with local variables. You can defend your code from these attacks by randomizing the size of a stack frame. Or, you can delete the information about <code>EBP</code> register to complicate the return of a stack frame. However, this doesn't matter for us now. What we are interested in this example is the following. The &quot;secret&quot; variable goes <strong>before</strong> the definition of hh variable and <strong>after</strong> it in WidthHolder structure (in different places, actually). So why did we easily get its value? The answer is that stack grows from right to left. The variables declared first will have much higher addresses, and those declared later will have lower addresses.</p>
+<p>Here, we perform the operation that is impossible in strong typing. We cast one type to another incompatible one that contains one extra field. We introduce an additional variable inside the Main method. In theory, its value is secret. However, the example code will output the value of a variable, not found in any of the structures inside the <code>Main()</code> method. You might consider it a breach in security, but things are not so simple. You cannot get rid of unmanaged code in a program. The main reason is the structure of the thread stack. One can use it to access unmanaged code and play with local variables. You can defend your code from these attacks by randomizing the size of a stack frame. Or, you can delete the information about <code>EBP</code> register to complicate the return of a stack frame. However, this doesn't matter for us now. What we are interested in this example is the following. The &laquo;secret&raquo; variable goes <strong>before</strong> the definition of hh variable and <strong>after</strong> it in WidthHolder structure (in different places, actually). So why did we easily get its value? The answer is that stack grows from right to left. The variables declared first will have much higher addresses, and those declared later will have lower addresses.</p>
 <h2 id="the-behavior-when-calling-instance-methods">The behavior when calling instance methods</h2>
 <p>Both data types have another feature which is not plain to see and can explain the structure of both types. It deals with calling instance methods.</p>
 <div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>

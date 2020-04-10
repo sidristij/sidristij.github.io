@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+    <link rel="stylesheet" href="../../res/bootstrap.css">
     <style>
         body {
     padding: 60px 60px 60px 100px;
@@ -20,7 +21,7 @@ strong {
 }
 
 p, li {
-    margin: 0 0 14px;
+    margin: 0 0 25px;
     line-height: 32px;
     font-family: inherit;
 }
@@ -37,37 +38,82 @@ ol li {
 }
 
 ul li {
-    padding-left: 5px;	
+    padding-left: 12px;	
     font-family: inherit;
 }
 
-code, .lang-csharp span, .lang-csharp pre {
+table {
+    margin: 30px 0;
+    width: 100%;
+}
+
+thead {                         
+    background-color: aliceblue;
+}
+
+table th {
+    font-weight: 400;
+}
+
+table td, table th {
+    padding: 7px;
+    border-top: solid darkgrey 1px;
+    border-bottom: solid darkgrey 1px;
+    border-right: dotted darkgray 1px;
+    border-left: dotted darkgray 1px;
+    font-size: smaller;
+}
+
+code, *[class*='lang-'] span, *[class*='lang-'] pre {
     font-family: JB Mono, monospace !important;
 }
 
-.lang-csharp {
-    padding: 4px 0px 14px 0px;
+*[class*='lang-'] {
+    padding: 0px 0px 25px 0px;
 }
 
 
-.lang-csharp > div {
+*[class*='lang-'] > div, pre > code {
     border-left-color: #eee;
     border-left-style: dotted;
     border-left-width: 3px;
-    background-color: #f5faff !important;
-    padding: 10px 10px 10px 25px;
+    padding-left: 25px;
+    display: block;
+    background-color: aliceblue !important;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
-code {
-    font-size: 14px;
+*[class*='lang-'] > div pre, pre > code pre {
+    margin-bottom: 0;
+}
+
+p code:not(.highlight), li code:not(.highlight) {
+    font-size: 16px;
     border: gainsboro;
     border-width: 1px;
     border-style: solid;
-    padding: 2px;
+    padding: 4px;
     color: darkslateblue;
 }
 
-.lang-csharp span, .lang-csharp pre {
+code.highlight {
+    font-family: inherit !important;
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+}
+
+p code.highlight, li code.highlight {
+    padding: 4px;
+    background-color: #ffffa1;
+}
+
+.wide {
+    width:150%;
+}
+
+*[class*='lang-'] span, *[class*='lang-'] pre, pre > code {
     font-size: 13px;
     line-height: 20px;
 }
@@ -78,18 +124,33 @@ p a, li a {
     box-shadow: inset 0 -1px #b88b59;
 }
 
+blockquote h5 {
+    background-color: aquamarine;
+    margin: 16px 0 16px -20px;
+    padding: 15px 30px 15px;
+}
+
 p img {
     width: 95%;
 }
 
-p (:has img) {
+p:has( > img) {
     text-align: center;
 }
 
-blockquote {
-    background-color: lavenderblush;
-    padding-left: 20px;
-    border-left: 1px solid rgba(0,0,0,.08);
+blockquote > p.big-quote {
+    margin: 40px 0 60px 0;
+    font-family: Charter;
+    font-size: 55px;
+    line-height: 60px;
+    width: 150%;
+    padding: 0;
+}
+
+blockquote:not( p.big-quote) {
+    background-color: lavenderblush !important;
+    padding-left: 20px !important;
+    border-left: 1px solid rgba(0,0,0,.08) !important;
 }
 
 blockquote p {
@@ -141,7 +202,7 @@ h2 {
 }
 
 h3 {
-    margin: 30px 0 10px 0;
+    margin: 30px 0 15px 0;
     font-size: 17pt;
     font-weight: 500;
 }
@@ -155,16 +216,16 @@ h4 {
 
 /* Fonts 
 
-@font-face {
-    font-family: 'PF Regal';
-    src: url('../../res/fonts/PFRegalTextPro-RegularA.eot');
-    src: local('../../res/fonts/PFRegalTextPro-RegularA'),
-        url('../../res/fonts/PFRegalTextPro-RegularA.woff2') format('woff2'),
-        url('../../res/fonts/PFRegalTextPro-RegularA.woff') format('woff'),
-        url('../../res/fonts/PFRegalTextPro-RegularA.ttf') format('truetype');
-    font-weight: 300;
-    font-style: normal;
-}
+/*@font-face {*/
+/*    font-family: 'PF Regal';*/
+/*    src: url('../../res/fonts/PFRegalTextPro-RegularA.eot');*/
+/*    src: local('../../res/fonts/PFRegalTextPro-RegularA'),*/
+/*        url('../../res/fonts/PFRegalTextPro-RegularA.woff2') format('woff2'),*/
+/*        url('../../res/fonts/PFRegalTextPro-RegularA.woff') format('woff'),*/
+/*        url('../../res/fonts/PFRegalTextPro-RegularA.ttf') format('truetype');*/
+/*    font-weight: 300;*/
+/*    font-style: normal;*/
+/*}*/
 
 @font-face {
     font-family: 'PF Regal';
@@ -265,6 +326,13 @@ h4 {
     font-style: italic;
 }
 
+@font-face {
+    font-family: 'Charter';
+    src: url('../../res/fonts/charter-regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
 /*  Regular B */
 @font-face {
     font-family: 'PF Regal';
@@ -273,7 +341,7 @@ h4 {
         url('../../res/fonts/PFRegalTextPro-RegularBItalic.woff2') format('woff2'),
         url('../../res/fonts/PFRegalTextPro-RegularBItalic.woff') format('woff'),
         url('../../res/fonts/PFRegalTextPro-RegularBItalic.ttf') format('truetype');
-    font-weight: normal;
+    font-weight: 300;
     font-style: italic;
 }
 
@@ -284,13 +352,14 @@ h4 {
         url('../../res/fonts/PFRegalTextPro-RegularB.woff2') format('woff2'),
         url('../../res/fonts/PFRegalTextPro-RegularB.woff') format('woff'),
         url('../../res/fonts/PFRegalTextPro-RegularB.ttf') format('truetype');
-    font-weight: normal;
+    font-weight: 300;
     font-style: normal;
-}                
+}              
+  
     </style>
 
-<div style="margin:auto; width:100%;">
-<div style="width:1000px;">
+<div class="row">
+<div class="offset-1 col-7">
     <h3 id="clr-exceptions">CLR Exceptions</h3>
 <blockquote>
 <p><a href="https://github.com/sidristij/dotnetbook/issues/51">A link to the discussion</a></p>
@@ -306,7 +375,7 @@ h4 {
 <li><code>ThreadAbort</code> invoked on the threads which are initiated when the <code>AppDomain</code> is being unloaded and which contains running methods compiled for this domain.</li>
 </ul>
 <blockquote>
-<p>It should be noted that <code>ThreadAbortException</code> is often used in <em>big</em> .NET Framework, yet doesn’t exist for CoreCLR, .NET Core or for Windows 8 &quot;Modern app profile&quot;. Let’s figure out why.</p>
+<p>It should be noted that <code>ThreadAbortException</code> is often used in <em>big</em> .NET Framework, yet doesn’t exist for CoreCLR, .NET Core or for Windows 8 &laquo;Modern app profile&raquo;. Let’s figure out why.</p>
 </blockquote>
 <p>For the second, third or fourth variant of a thread abort, when we are still able to do something, a virtual machine starts going through all exception handlers and look up those that correspond to the type of a thrown exception or for a higher exception level. In our case these are: <code>ThreadAbortException</code>, <code>Exception</code> and <code>object</code> (don’t forget that Exception is essentially a data set and our search may end up with any type of exception, even with <code>int</code>). By handling <em>all</em> suitable <code>catch</code> blocks, the virtual machine successively forwards <code>ThreadAbortException</code> along the entire chain of exception handling and enters all <code>finally</code> blocks. In general, the situations described below are identical:</p>
 <div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
@@ -375,7 +444,7 @@ Resetting abort
 Catched successfully
 </pre></div>
 </div>
-<p>But should we really use it? And should we be mad at CoreCLR developers because they got rid of this code? Assume you are a user of code and you think it is &quot;stuck&quot;. You have a sharp desire to call <code>ThreadAbortException</code>. When you want to terminate a thread, all you really want is that this thread really stops running. Moreover, it rarely happens when an algorithm aborts the thread and leaves it. Normally, it waits for correct termination of operations. Alternatively, it decides that the thread is dead, decrements some internal counters and forgets that there is some multithread processing of some code. You’ll never know which one is worse. Moreover, after many years of being a programmer I still can’t offer a great way to call and handle it. Imagine—you throw <code>ThreadAbort</code> not <em>right away</em> but in any case some time after having understood that the situation is hopeless. So sometimes you hit <code>ThreadAbortException</code> handler and sometimes you miss it: &quot;stuck code&quot; may be in fact not stuck but a too long executed one. And in that very moment you wanted to kill it, this code could have started working correctly again,  i.e. exited <code>try-catch(ThreadAbortException) { Thread.ResetAbort(); }</code> block. What will we get in this case? An aborted thread that happened to stuck through no fault of its own. For example, a janitor could have passed by, unplugged the cable and brought the network down. A method was waiting for a timeout and when the janitor has plugged the cable back, everything started working again, but your controlling code had already killed the thread. Is it OK? No. Can we safeguard from this? No. But let’s get back to our idea of legalizing <code>Thread.Abort()</code>: we have thrown a hammer at the thread and now expect the latter to be inevitably aborted, but it may never happen. Firstly, it is not clear how to abort it in this case. Things may be more complicated here: a stuck thread can have logic inside which catches <code>ThreadAbortException</code>, terminates it using <code>ResetAbort</code>, but remains stuck because of broken logic. What’s then? Should we use <code>thread.Interrupt()</code>? It seems like an attempt to bypass a program logic error using brute force methods. Also, I guarantee you will get resource leaks: <code>thread.Interrupt()</code> won’t call <code>catch</code> and <code>finally</code> which means you can’t clean up resources. Your thread will simply disappear and if you are in an adjacent thread you won’t know the references to all resources, allocated to the aborted thread. Also, note that if <code>ThreadAbortException</code> misses <code>catch(ThreadAbortException) { Thread.ResetAbort(); }</code> you will get resource leaks too.</p>
+<p>But should we really use it? And should we be mad at CoreCLR developers because they got rid of this code? Assume you are a user of code and you think it is &laquo;stuck&raquo;. You have a sharp desire to call <code>ThreadAbortException</code>. When you want to terminate a thread, all you really want is that this thread really stops running. Moreover, it rarely happens when an algorithm aborts the thread and leaves it. Normally, it waits for correct termination of operations. Alternatively, it decides that the thread is dead, decrements some internal counters and forgets that there is some multithread processing of some code. You’ll never know which one is worse. Moreover, after many years of being a programmer I still can’t offer a great way to call and handle it. Imagine—you throw <code>ThreadAbort</code> not <em>right away</em> but in any case some time after having understood that the situation is hopeless. So sometimes you hit <code>ThreadAbortException</code> handler and sometimes you miss it: &laquo;stuck code&raquo; may be in fact not stuck but a too long executed one. And in that very moment you wanted to kill it, this code could have started working correctly again,  i.e. exited <code>try-catch(ThreadAbortException) { Thread.ResetAbort(); }</code> block. What will we get in this case? An aborted thread that happened to stuck through no fault of its own. For example, a janitor could have passed by, unplugged the cable and brought the network down. A method was waiting for a timeout and when the janitor has plugged the cable back, everything started working again, but your controlling code had already killed the thread. Is it OK? No. Can we safeguard from this? No. But let’s get back to our idea of legalizing <code>Thread.Abort()</code>: we have thrown a hammer at the thread and now expect the latter to be inevitably aborted, but it may never happen. Firstly, it is not clear how to abort it in this case. Things may be more complicated here: a stuck thread can have logic inside which catches <code>ThreadAbortException</code>, terminates it using <code>ResetAbort</code>, but remains stuck because of broken logic. What’s then? Should we use <code>thread.Interrupt()</code>? It seems like an attempt to bypass a program logic error using brute force methods. Also, I guarantee you will get resource leaks: <code>thread.Interrupt()</code> won’t call <code>catch</code> and <code>finally</code> which means you can’t clean up resources. Your thread will simply disappear and if you are in an adjacent thread you won’t know the references to all resources, allocated to the aborted thread. Also, note that if <code>ThreadAbortException</code> misses <code>catch(ThreadAbortException) { Thread.ResetAbort(); }</code> you will get resource leaks too.</p>
 <p>I hope that after having read the information above you will feel some confusion and intention to reread the paragraph. And this would be a good idea that proves you mustn’t use <code>Thread.Abort()</code>  as well as <code>thread.Interrupt();</code>. Both methods make the behavior of your application uncontrolled. They violate the integrity principle, which is the main principle of the .NET Framework.</p>
 <p>However, to understand why developers introduced this method you should have a look at the .NET Framework source code and find where <code>Thread.ResetAbort()</code> is invoked. Because this method makes <code>thread.Abort()</code> legitimate.</p>
 <p><strong>ISAPIRuntime class</strong> <a href="https://referencesource.microsoft.com/#System.Web/Hosting/ISAPIRuntime.cs,192">ISAPIRuntime.cs</a></p>
@@ -697,6 +766,8 @@ BOOL IsProcessCorruptedStateException(DWORD dwExceptionCode, BOOL fCheckForSO <s
 </pre></div>
 </div>
 <p>Let’s look at the description of our exceptional situations:</p>
+<div class="row">
+<div class="offset-0 col-12">
 <table>
 <thead>
 <tr>
@@ -739,12 +810,16 @@ BOOL IsProcessCorruptedStateException(DWORD dwExceptionCode, BOOL fCheckForSO <s
 </tr>
 </tbody>
 </table>
+</div>
+</div>
 <p>Note that only two of these exceptions are worth catching: <code>STATUS_ACCESS_VIOLATION</code> and <code>STATUS_STACK_OVERFLOW</code>. Other errors are exceptional even for exceptional situations. They are rather fatal errors and we can’t consider them. So, let’s discuss only these two errors in detail.</p>
 <h4 id="accessviolationexception">AccessViolationException</h4>
-<p>This exception is bad news which you don’t want to get. But if you get it, it’s not clear what to do with it. <code>AccessViolationException</code> indicates that you &quot;missed&quot; a memory range allocated for an application and is thrown when you try to read from or write to a protected region of memory. The word &quot;protected” rather denotes an attempt to work with a range of memory which hasn’t been allocated yet or which has been already cleared. Here I am not talking about a garbage collector that allocates and clears memory. It just assigns the chunks of allocated memory for your and its own needs. Memory has a layered structure in a way. First, there is the layer of memory management by a garbage collector. Next is the layer used by CoreCLR libraries to manage the allocation of memory which is followed by the layer used by OS to manage memory allocation from the pool of available fragments of linear address space. Thus, this exception appears when an application misses its memory range and attempts to work with a region which isn’t yet allocated or intended for this application. In this situation you don’t have many variants for analysis.</p>
+<p>This exception is bad news which you don’t want to get. But if you get it, it’s not clear what to do with it. <code>AccessViolationException</code> indicates that you &laquo;missed&raquo; a memory range allocated for an application and is thrown when you try to read from or write to a protected region of memory. The word &quot;protected” rather denotes an attempt to work with a range of memory which hasn’t been allocated yet or which has been already cleared. Here I am not talking about a garbage collector that allocates and clears memory. It just assigns the chunks of allocated memory for your and its own needs. Memory has a layered structure in a way. First, there is the layer of memory management by a garbage collector. Next is the layer used by CoreCLR libraries to manage the allocation of memory which is followed by the layer used by OS to manage memory allocation from the pool of available fragments of linear address space. Thus, this exception appears when an application misses its memory range and attempts to work with a region which isn’t yet allocated or intended for this application. In this situation you don’t have many variants for analysis.</p>
 <p>– If <code>StackTrace</code> goes deep into CLR, you are very unlucky, because it’s probably a core error. However, this almost never happens. You can bypass the error by updating the core version or act in another way.
 – If <code>StackTrace</code> goes into the unsafe code of some library, you either got marshaling wrong or there is a serious error in the unsafe library. Check method arguments carefully: it’s possible that native method arguments have another bit size, another order or just another size. Check that structures are passed by value or by reference where appropriate.</p>
 <p>To catch this exception at the moment you should show a JIT-compiler it’s really necessary. Otherwise, it won’t be caught and you will get a broken application. However, you should catch this exception only if you can handle it properly: it may indicate a leak of memory if it was allocated by an unsafe method between calling this method and throwing <code>AccessViolationException</code>. At this point, an application may still function but its work may be incorrect because if you catch an error of a method call you will definitely try to call this method again. In this case, nobody knows what may go wrong: you can’t know how the state of an application was violated previously. However, if you still want to catch this exception, pay attention to the table of possible options for doing this in different versions of .NET Framework:</p>
+<div class="row">
+<div class="offset-3 col-6">
 <table>
 <thead>
 <tr>
@@ -771,6 +846,8 @@ BOOL IsProcessCorruptedStateException(DWORD dwExceptionCode, BOOL fCheckForSO <s
 </tr>
 </tbody>
 </table>
+</div>
+</div>
 <p>In other words, if you have a very old application, working under .NET Framework 1.0, <del>show it to me</del> you will get NRE which will be a sort of deception: you passed a pointer with a value greater than zero and got <code>NullReferenceException</code>. However, I think this behavior is justified: if you are in the world of managed code, you don’t want to learn the error types of unmanaged code, and NRE—which is essentially &quot;a bad pointer to an object”  in the world of .NET—is suitable here. However, things are not that simple. Users needed this type of exception in real life and it was introduced in .NET Framework 2.0. For years this was an exception you can catch. Then, it lost this capability, but a special structure appeared that allowed activating the catch option. This sequence of the CLR team decisions at every stage looks justified. See it for yourself:</p>
 <ul>
 <li><code>1.0</code> Missing allocated memory ranges should be an exceptional situation because if an application works with an address it got it from some place. In the managed world this place is the <code>new</code> operator. In the unmanaged world, every piece of code can be the place for such an error. Though these two exceptions are opposed in terms of essence (NRE works with an uninitialized pointer and AVE works with an incorrectly initialized pointer), incorrectly initialized pointers don’t exist from the .NET ideology point of view. Both cases can be reduced to an incorrectly initialized pointer. So, let’s do it and throw <code>NullReferenceException</code> in both cases.</li>
@@ -835,7 +912,7 @@ BOOL IsProcessCorruptedStateException(DWORD dwExceptionCode, BOOL fCheckForSO <s
 &lt;/configuration&gt;
 </pre></div>
 </div>
-<p>You can’t catch this exception because stack overflow can be caused by two reasons. The first is an intentional call of a recursive method which doesn’t control its own depth carefully. Here you may want to fix the situation by catching the exception. However, we therefore legalize this situation and allow it to happen again which means we are short-sighted, rather than careful. The second reason is accidental when <code>StackOverflowException</code> appears during a usual call. Just the depth of the stack at that moment was too critical. In this case, catching exceptions looks like something inappropriate at all: an application worked normally, everything was good and suddenly the legal call of a method with algorithms working correctly caused an exception, followed by unwinding stack up to the section of code that expects such behavior. Well... Once again: we expect that nothing will run in the next section as the stack will be out of memory. I think this is absurd.</p>
+<p>You can’t catch this exception because stack overflow can be caused by two reasons. The first is an intentional call of a recursive method which doesn’t control its own depth carefully. Here you may want to fix the situation by catching the exception. However, we therefore legalize this situation and allow it to happen again which means we are short-sighted, rather than careful. The second reason is accidental when <code>StackOverflowException</code> appears during a usual call. Just the depth of the stack at that moment was too critical. In this case, catching exceptions looks like something inappropriate at all: an application worked normally, everything was good and suddenly the legal call of a method with algorithms working correctly caused an exception, followed by unwinding stack up to the section of code that expects such behavior. Well&hellip; Once again: we expect that nothing will run in the next section as the stack will be out of memory. I think this is absurd.</p>
 
 </div>
 </div>

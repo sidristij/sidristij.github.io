@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+    <link rel="stylesheet" href="../../res/bootstrap.css">
     <style>
         body {
     padding: 60px 60px 60px 100px;
@@ -20,7 +21,7 @@ strong {
 }
 
 p, li {
-    margin: 0 0 14px;
+    margin: 0 0 25px;
     line-height: 32px;
     font-family: inherit;
 }
@@ -37,37 +38,82 @@ ol li {
 }
 
 ul li {
-    padding-left: 5px;	
+    padding-left: 12px;	
     font-family: inherit;
 }
 
-code, .lang-csharp span, .lang-csharp pre {
+table {
+    margin: 30px 0;
+    width: 100%;
+}
+
+thead {                         
+    background-color: aliceblue;
+}
+
+table th {
+    font-weight: 400;
+}
+
+table td, table th {
+    padding: 7px;
+    border-top: solid darkgrey 1px;
+    border-bottom: solid darkgrey 1px;
+    border-right: dotted darkgray 1px;
+    border-left: dotted darkgray 1px;
+    font-size: smaller;
+}
+
+code, *[class*='lang-'] span, *[class*='lang-'] pre {
     font-family: JB Mono, monospace !important;
 }
 
-.lang-csharp {
-    padding: 4px 0px 14px 0px;
+*[class*='lang-'] {
+    padding: 0px 0px 25px 0px;
 }
 
 
-.lang-csharp > div {
+*[class*='lang-'] > div, pre > code {
     border-left-color: #eee;
     border-left-style: dotted;
     border-left-width: 3px;
-    background-color: #f5faff !important;
-    padding: 10px 10px 10px 25px;
+    padding-left: 25px;
+    display: block;
+    background-color: aliceblue !important;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
-code {
-    font-size: 14px;
+*[class*='lang-'] > div pre, pre > code pre {
+    margin-bottom: 0;
+}
+
+p code:not(.highlight), li code:not(.highlight) {
+    font-size: 16px;
     border: gainsboro;
     border-width: 1px;
     border-style: solid;
-    padding: 2px;
+    padding: 4px;
     color: darkslateblue;
 }
 
-.lang-csharp span, .lang-csharp pre {
+code.highlight {
+    font-family: inherit !important;
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+}
+
+p code.highlight, li code.highlight {
+    padding: 4px;
+    background-color: #ffffa1;
+}
+
+.wide {
+    width:150%;
+}
+
+*[class*='lang-'] span, *[class*='lang-'] pre, pre > code {
     font-size: 13px;
     line-height: 20px;
 }
@@ -78,18 +124,33 @@ p a, li a {
     box-shadow: inset 0 -1px #b88b59;
 }
 
+blockquote h5 {
+    background-color: aquamarine;
+    margin: 16px 0 16px -20px;
+    padding: 15px 30px 15px;
+}
+
 p img {
     width: 95%;
 }
 
-p (:has img) {
+p:has( > img) {
     text-align: center;
 }
 
-blockquote {
-    background-color: lavenderblush;
-    padding-left: 20px;
-    border-left: 1px solid rgba(0,0,0,.08);
+blockquote > p.big-quote {
+    margin: 40px 0 60px 0;
+    font-family: Charter;
+    font-size: 55px;
+    line-height: 60px;
+    width: 150%;
+    padding: 0;
+}
+
+blockquote:not( p.big-quote) {
+    background-color: lavenderblush !important;
+    padding-left: 20px !important;
+    border-left: 1px solid rgba(0,0,0,.08) !important;
 }
 
 blockquote p {
@@ -141,7 +202,7 @@ h2 {
 }
 
 h3 {
-    margin: 30px 0 10px 0;
+    margin: 30px 0 15px 0;
     font-size: 17pt;
     font-weight: 500;
 }
@@ -155,16 +216,16 @@ h4 {
 
 /* Fonts 
 
-@font-face {
-    font-family: 'PF Regal';
-    src: url('../../res/fonts/PFRegalTextPro-RegularA.eot');
-    src: local('../../res/fonts/PFRegalTextPro-RegularA'),
-        url('../../res/fonts/PFRegalTextPro-RegularA.woff2') format('woff2'),
-        url('../../res/fonts/PFRegalTextPro-RegularA.woff') format('woff'),
-        url('../../res/fonts/PFRegalTextPro-RegularA.ttf') format('truetype');
-    font-weight: 300;
-    font-style: normal;
-}
+/*@font-face {*/
+/*    font-family: 'PF Regal';*/
+/*    src: url('../../res/fonts/PFRegalTextPro-RegularA.eot');*/
+/*    src: local('../../res/fonts/PFRegalTextPro-RegularA'),*/
+/*        url('../../res/fonts/PFRegalTextPro-RegularA.woff2') format('woff2'),*/
+/*        url('../../res/fonts/PFRegalTextPro-RegularA.woff') format('woff'),*/
+/*        url('../../res/fonts/PFRegalTextPro-RegularA.ttf') format('truetype');*/
+/*    font-weight: 300;*/
+/*    font-style: normal;*/
+/*}*/
 
 @font-face {
     font-family: 'PF Regal';
@@ -265,6 +326,13 @@ h4 {
     font-style: italic;
 }
 
+@font-face {
+    font-family: 'Charter';
+    src: url('../../res/fonts/charter-regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
 /*  Regular B */
 @font-face {
     font-family: 'PF Regal';
@@ -273,7 +341,7 @@ h4 {
         url('../../res/fonts/PFRegalTextPro-RegularBItalic.woff2') format('woff2'),
         url('../../res/fonts/PFRegalTextPro-RegularBItalic.woff') format('woff'),
         url('../../res/fonts/PFRegalTextPro-RegularBItalic.ttf') format('truetype');
-    font-weight: normal;
+    font-weight: 300;
     font-style: italic;
 }
 
@@ -284,13 +352,14 @@ h4 {
         url('../../res/fonts/PFRegalTextPro-RegularB.woff2') format('woff2'),
         url('../../res/fonts/PFRegalTextPro-RegularB.woff') format('woff'),
         url('../../res/fonts/PFRegalTextPro-RegularB.ttf') format('truetype');
-    font-weight: normal;
+    font-weight: 300;
     font-style: normal;
-}                
+}              
+  
     </style>
 
-<div style="margin:auto; width:100%;">
-<div style="width:1000px;">
+<div class="row">
+<div class="offset-1 col-7">
     <h2 id="section">Выделение памяти под объект</h2>
 <blockquote>
 <p>[In Progress] адаптация курса</p>
@@ -336,7 +405,7 @@ h4 {
 <p>Если получилось - замечательно. Если не влез, мы пытаемся подкоммитить больше зарезервированной памяти: сдвинуть вертикальную черту вправо. Место зарезервировано, но памяти там еще не существует. Нам нужно расширить кучу и мы коммитим память. Сразу же мы не делаем этого, потому что commitment - операция достаточно долгая, как и резервирование. Она может занимать сотню миллисекунд. Это происходит потому, что для ее осуществления, необходимо обратиться к Windows. А операционная система максимально не доверяет тому, что в ней находится. Он отгораживает для нас песочницу, и когда мы вызываем winapi метод, то мы не просто его вызываем, а с повышением уровня привилегий. Чтобы это безопасно это сделать, необходимо, чтобы Windows скопировал фрейм метода, который вызывается из уровня приложения в уровень ядра, чтобы случайно не подхватить чужие инфицированные данные. Потом winapi функция отрабатывает и происходит возврат. В этот момент идет обратное копирование кусочка стека и идет переход из kernel части в user space. Вся эта операция занимает много времени, поэтому GC максимально старается использовать текущее пространство. И на каждом этапе он делает GC нулевого поколения: если что-то подсжимать, возможно, allocation context обратно вырастет. Когда контекст кончился, GC пытается его раздвинуть вправо, а там уже что-то есть, значит надо поискать свободные участки. Если не получилось, делается сборка мусора, может быть свободные участки все же появятся и получится разместить среди них новые данные. Когда ничего не получилось и все забито, то приходится коммитить дальше память. А если память кончилась, то вылетает OutOfMemoryException.</p>
 <h2 id="loh">Выделение памяти в LOH</h2>
 <p>В хипе больших объектов мы пытаемся найти неиспользуемую память, повторяя для каждого эфемерного сегмента LOH, потому что тут их может быть несколько, в зависимости от того, в каком режиме работает платоформа .NET. Поскольку в LOH по умолчанию у нас нет сжатия кучи, то управление памятью тут упрощено. Сжатие кучи - это очень жирная операция, которая требует больших вычислительных процессов. Но в LOH эта операция проводится только по запросу, а значит программист исходя из знаний о работе алгоритмов собственной программы, решил, что в данное время он готов потратить неизвестно сколько времени на сжатие огромного пространства. А значит, можно сильно упростить алгоритмы по работе с LOH.</p>
-<p>Для каждого эфемерного сегмента мы ищем участок памяти в списке свободных, пытаемся увеличить, если не получилось найти. Если не получилось увеличить - пытаемся подкоммитить зарезервированную часть. Следующим шагом запускаем GC, возможно несколько раз. И если совсем ничего не выходит - дергаем OutOfMemoryException. В данном подходе нет слова &quot;сжатие&quot;, мы идем по простому пути.</p>
+<p>Для каждого эфемерного сегмента мы ищем участок памяти в списке свободных, пытаемся увеличить, если не получилось найти. Если не получилось увеличить - пытаемся подкоммитить зарезервированную часть. Следующим шагом запускаем GC, возможно несколько раз. И если совсем ничего не выходит - дергаем OutOfMemoryException. В данном подходе нет слова &laquo;сжатие&raquo;, мы идем по простому пути.</p>
 <p>Многопоточность. Есть такое понятие как баланс хипов. Например, GC запущен в серверном режиме. Это значит, что у него по несколько SOH и LOH и эти пары назначены к конкретному процессорному ядру. У каждого ядра есть своя пара хипов и свои треды.</p>
 <p>Представим, что на каком-то ядре баланс нарушился. Оно начало аллоцировать слишком много памяти и перестало помещаться в текущие сегменты. Рассмотрим, что может сделать система управления памятью в данном случае.</p>
 <p>Ей может показаться, что если данное ядро занимается очень плотной аллокацией, то можно взять и перекинуть контекст на соседнее ядро и аллоцировать там. Одно ядро стоит, а другое выжато по максимуму. Это поможет избежать таких дорогих операций, как коммитмент памяти. Но при изменении контекста, вместе с этим участком, в другое ядро переносится и поток.</p>
@@ -350,7 +419,7 @@ h4 {
 <p>Вторая книга - Under the Hood of .NET Memory Management  - для меня уже классика. Она не переведена на русский и распространяется только через сайт Red Gate, который делает разные инструменты для рефакторинга и работы с базами данных. В том числе у них есть тулза для анализа памяти, они были вынуждены исследовать как эта память работает. Там в очень коротком стиле, достаточном для того, чтобы приятно удивить людей на собеседовании в компанию, это все описано. В районе 200 страниц занимает. И моя книга.</p>
 <p>Какие у вас вопросы возникли?</p>
 <ul>
-<li><p>.... (вопрос не слышен на записи)</p>
+<li><p>.&hellip; (вопрос не слышен на записи)</p>
 </li>
 <li><p>Получается надо. По картинкам частично Наталья ответит на этот вопрос, как правильно выкачивать это, чтобы лишнее не расходовать и чтобы все было удобно. Использовать надо в любом случае одни и те же массивы, использовать пулы, которые появились. Можно написать свои или новые, которые появились. Чтобы с этим грамотно работать можно использовать то, о чем расскажет Наталья.</p>
 </li>
@@ -393,7 +462,7 @@ h4 {
 <li><p>Да, этой литературы вполне достаточно.</p>
 </li>
 </ul>
-<p>-... (вопрос не слышен на записи)</p>
+<p>-&hellip; (вопрос не слышен на записи)</p>
 <ul>
 <li>Тут есть баланс. На счет того, что есть кеш.</li>
 </ul>

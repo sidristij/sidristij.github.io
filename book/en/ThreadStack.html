@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+    <link rel="stylesheet" href="../res/bootstrap.css">
     <style>
         body {
     padding: 60px 60px 60px 100px;
@@ -20,7 +21,7 @@ strong {
 }
 
 p, li {
-    margin: 0 0 14px;
+    margin: 0 0 25px;
     line-height: 32px;
     font-family: inherit;
 }
@@ -37,37 +38,82 @@ ol li {
 }
 
 ul li {
-    padding-left: 5px;	
+    padding-left: 12px;	
     font-family: inherit;
 }
 
-code, .lang-csharp span, .lang-csharp pre {
+table {
+    margin: 30px 0;
+    width: 100%;
+}
+
+thead {                         
+    background-color: aliceblue;
+}
+
+table th {
+    font-weight: 400;
+}
+
+table td, table th {
+    padding: 7px;
+    border-top: solid darkgrey 1px;
+    border-bottom: solid darkgrey 1px;
+    border-right: dotted darkgray 1px;
+    border-left: dotted darkgray 1px;
+    font-size: smaller;
+}
+
+code, *[class*='lang-'] span, *[class*='lang-'] pre {
     font-family: JB Mono, monospace !important;
 }
 
-.lang-csharp {
-    padding: 4px 0px 14px 0px;
+*[class*='lang-'] {
+    padding: 0px 0px 25px 0px;
 }
 
 
-.lang-csharp > div {
+*[class*='lang-'] > div, pre > code {
     border-left-color: #eee;
     border-left-style: dotted;
     border-left-width: 3px;
-    background-color: #f5faff !important;
-    padding: 10px 10px 10px 25px;
+    padding-left: 25px;
+    display: block;
+    background-color: aliceblue !important;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
-code {
-    font-size: 14px;
+*[class*='lang-'] > div pre, pre > code pre {
+    margin-bottom: 0;
+}
+
+p code:not(.highlight), li code:not(.highlight) {
+    font-size: 16px;
     border: gainsboro;
     border-width: 1px;
     border-style: solid;
-    padding: 2px;
+    padding: 4px;
     color: darkslateblue;
 }
 
-.lang-csharp span, .lang-csharp pre {
+code.highlight {
+    font-family: inherit !important;
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+}
+
+p code.highlight, li code.highlight {
+    padding: 4px;
+    background-color: #ffffa1;
+}
+
+.wide {
+    width:150%;
+}
+
+*[class*='lang-'] span, *[class*='lang-'] pre, pre > code {
     font-size: 13px;
     line-height: 20px;
 }
@@ -78,18 +124,33 @@ p a, li a {
     box-shadow: inset 0 -1px #b88b59;
 }
 
+blockquote h5 {
+    background-color: aquamarine;
+    margin: 16px 0 16px -20px;
+    padding: 15px 30px 15px;
+}
+
 p img {
     width: 95%;
 }
 
-p (:has img) {
+p:has( > img) {
     text-align: center;
 }
 
-blockquote {
-    background-color: lavenderblush;
-    padding-left: 20px;
-    border-left: 1px solid rgba(0,0,0,.08);
+blockquote > p.big-quote {
+    margin: 40px 0 60px 0;
+    font-family: Charter;
+    font-size: 55px;
+    line-height: 60px;
+    width: 150%;
+    padding: 0;
+}
+
+blockquote:not( p.big-quote) {
+    background-color: lavenderblush !important;
+    padding-left: 20px !important;
+    border-left: 1px solid rgba(0,0,0,.08) !important;
 }
 
 blockquote p {
@@ -141,7 +202,7 @@ h2 {
 }
 
 h3 {
-    margin: 30px 0 10px 0;
+    margin: 30px 0 15px 0;
     font-size: 17pt;
     font-weight: 500;
 }
@@ -155,16 +216,16 @@ h4 {
 
 /* Fonts 
 
-@font-face {
-    font-family: 'PF Regal';
-    src: url('../res/fonts/PFRegalTextPro-RegularA.eot');
-    src: local('../res/fonts/PFRegalTextPro-RegularA'),
-        url('../res/fonts/PFRegalTextPro-RegularA.woff2') format('woff2'),
-        url('../res/fonts/PFRegalTextPro-RegularA.woff') format('woff'),
-        url('../res/fonts/PFRegalTextPro-RegularA.ttf') format('truetype');
-    font-weight: 300;
-    font-style: normal;
-}
+/*@font-face {*/
+/*    font-family: 'PF Regal';*/
+/*    src: url('../res/fonts/PFRegalTextPro-RegularA.eot');*/
+/*    src: local('../res/fonts/PFRegalTextPro-RegularA'),*/
+/*        url('../res/fonts/PFRegalTextPro-RegularA.woff2') format('woff2'),*/
+/*        url('../res/fonts/PFRegalTextPro-RegularA.woff') format('woff'),*/
+/*        url('../res/fonts/PFRegalTextPro-RegularA.ttf') format('truetype');*/
+/*    font-weight: 300;*/
+/*    font-style: normal;*/
+/*}*/
 
 @font-face {
     font-family: 'PF Regal';
@@ -265,6 +326,13 @@ h4 {
     font-style: italic;
 }
 
+@font-face {
+    font-family: 'Charter';
+    src: url('../res/fonts/charter-regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
 /*  Regular B */
 @font-face {
     font-family: 'PF Regal';
@@ -273,7 +341,7 @@ h4 {
         url('../res/fonts/PFRegalTextPro-RegularBItalic.woff2') format('woff2'),
         url('../res/fonts/PFRegalTextPro-RegularBItalic.woff') format('woff'),
         url('../res/fonts/PFRegalTextPro-RegularBItalic.ttf') format('truetype');
-    font-weight: normal;
+    font-weight: 300;
     font-style: italic;
 }
 
@@ -284,19 +352,20 @@ h4 {
         url('../res/fonts/PFRegalTextPro-RegularB.woff2') format('woff2'),
         url('../res/fonts/PFRegalTextPro-RegularB.woff') format('woff'),
         url('../res/fonts/PFRegalTextPro-RegularB.ttf') format('truetype');
-    font-weight: normal;
+    font-weight: 300;
     font-style: normal;
-}                
+}              
+  
     </style>
 
-<div style="margin:auto; width:100%;">
-<div style="width:1000px;">
+<div class="row">
+<div class="offset-1 col-7">
     <h1 id="a-thread-stack">A thread stack</h1>
 <blockquote>
 <p><a href="https://github.com/sidristij/dotnetbook/issues/58">A link to the discussion</a></p>
 </blockquote>
 <h2 id="basic-structure-x86-platform">Basic structure, x86 platform</h2>
-<p>There is a memory region that is rarely mentioned. However, it probably takes a primary role in the work of an application. This is the most frequently used and a quite limited region with instantaneous memory allocation and cleanup. This region is called &quot;a thread stack&quot;. And since a pointer to a thread stack is encoded essentially by processor registers which are in the thread context, each thread has its own stack during execution. Why is it necessary?</p>
+<p>There is a memory region that is rarely mentioned. However, it probably takes a primary role in the work of an application. This is the most frequently used and a quite limited region with instantaneous memory allocation and cleanup. This region is called &laquo;a thread stack&raquo;. And since a pointer to a thread stack is encoded essentially by processor registers which are in the thread context, each thread has its own stack during execution. Why is it necessary?</p>
 <p>Let’s review a simple example of code:</p>
 <div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
 <span style="color:Blue;">void</span> Method1()
@@ -323,7 +392,7 @@ h4 {
 <p>The figure shows these processes:</p>
 <p><img src="../imgs/ThreadStack/AnyMethodCall.png" alt="" /></p>
 <p>Note that the stack grows starting from higher and finishing with lower addresses, i.e. in reverse.</p>
-<p>Looking at this you may think that if not the majority but at least the half of all operations a processor deals with are to service the structure of a program and not its payload. I mean servicing method calls, checking if one type can be cast to another one, compiling Generic variations, searching methods in interface tables... Especially if we remember that the major part of the modern code is written from the perspective of working through interfaces and implementing a multitude of small methods, each performing its own functions... The work often involves base types and casting types to an interface or to an inheritor. With all these input conditions you might make a conclusion about the lavishness of infrastructure code. The only thing I can tell you is that compilers, including JIT, have a lot of techniques that allow them to create more productive code. Where possible they insert an entire method body instead of calling it and rather than searching a method in an interface VSD, compilers call it directly. The saddest thing is that it’s hard to measure the load on infrastructure: it’s necessary that a JITter or any other compiler inserts some metrics before and after infrastructure code running. That is before a method call and after initializing a stack frame inside this method. Before and after exiting a method. Before compilation and after it. And so on. But let’s not talk about sad things, but discuss what we can do with the obtained information.</p>
+<p>Looking at this you may think that if not the majority but at least the half of all operations a processor deals with are to service the structure of a program and not its payload. I mean servicing method calls, checking if one type can be cast to another one, compiling Generic variations, searching methods in interface tables&hellip; Especially if we remember that the major part of the modern code is written from the perspective of working through interfaces and implementing a multitude of small methods, each performing its own functions&hellip; The work often involves base types and casting types to an interface or to an inheritor. With all these input conditions you might make a conclusion about the lavishness of infrastructure code. The only thing I can tell you is that compilers, including JIT, have a lot of techniques that allow them to create more productive code. Where possible they insert an entire method body instead of calling it and rather than searching a method in an interface VSD, compilers call it directly. The saddest thing is that it’s hard to measure the load on infrastructure: it’s necessary that a JITter or any other compiler inserts some metrics before and after infrastructure code running. That is before a method call and after initializing a stack frame inside this method. Before and after exiting a method. Before compilation and after it. And so on. But let’s not talk about sad things, but discuss what we can do with the obtained information.</p>
 <h2 id="some-words-about-exceptions-in-terms-of-the-x86-platform">Some words about exceptions in terms of the x86 platform</h2>
 <p>If we look inside the code of methods, we will see another structure, working with a thread stack. See for yourself:</p>
 <div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
@@ -371,7 +440,7 @@ h4 {
 <p>TODO</p>
 </blockquote>
 <h2 id="a-little-about-the-imperfection-of-a-thread-stack">A little about the imperfection of a thread stack</h2>
-<p>Let’s think about a security issue and possible problems that can appear theoretically. To do this, let’s look again at the structure of a thread stack which is essentially a usual array. The memory range in which frames are built grows from the end to the beginning. It means that more recent frames are assigned initial addresses. As it was said earlier frames are connected through a single linked list. This is because the size of a frame is not fixed and should be &quot;read&quot; by any debugger. A processor, in this case, doesn’t delineate frames from each other: any method can read the entire memory region. And assuming that we are in virtual memory that is divided into ranges of really allocated memory, we can use special WinAPI function and any address on the stack to get an allocated memory range where this address exists. Dealing with a single linked list is easy:</p>
+<p>Let’s think about a security issue and possible problems that can appear theoretically. To do this, let’s look again at the structure of a thread stack which is essentially a usual array. The memory range in which frames are built grows from the end to the beginning. It means that more recent frames are assigned initial addresses. As it was said earlier frames are connected through a single linked list. This is because the size of a frame is not fixed and should be &laquo;read&raquo; by any debugger. A processor, in this case, doesn’t delineate frames from each other: any method can read the entire memory region. And assuming that we are in virtual memory that is divided into ranges of really allocated memory, we can use special WinAPI function and any address on the stack to get an allocated memory range where this address exists. Dealing with a single linked list is easy:</p>
 <div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
     <span style="color:Green;">// the variable is on the stack</span>
     <span style="color:Blue;">int</span> x;
@@ -383,7 +452,7 @@ h4 {
 </div>
 <p>Thus we can get and modify all data which exists as local variables in methods that called us. If an application doesn’t adjust the settings of a sandbox used for calling third-party libraries, which enhance the functionality of the application, the third-party library can get data, even if the API you are using doesn’t provide for it. This technique may seem purely artificial, but in the world of C/C++ where there is no AppDomain with configured rights, the attack on the stack is a typical way to hack applications. Moreover, we can use reflection to look at the type we need, replicate its structure on our side and replace the VMT address with our address, using the reference from the stack to an object, and redirect the whole work with a particular instance to our side. By the way, SEH is also actively used to hack applications. Using an exception handler, you can change its address and make OS execute malware code. However, the solution is simple: always adjust the settings of a sandbox when you want to work with libraries, extending the functionality of your application. I mean different plug-ins, add-ons and other extensions.</p>
 <h2 id="a-big-example-thread-cloning-on-86-platform">A big example: thread cloning on х86 platform</h2>
-<p>To memorize the details of what we have read, we should look at the same topic from different perspectives. Which example can you really design for a thread stack? Call a method from another? Magic... Of course not: we do it many times every day. Instead, we will copy the execution thread. It means we will ensure that after calling a particular method we would get two threads instead of one: our thread and a new one that continues to execute code from the point of the clone method call as if it got here itself. It will look like this:</p>
+<p>To memorize the details of what we have read, we should look at the same topic from different perspectives. Which example can you really design for a thread stack? Call a method from another? Magic&hellip; Of course not: we do it many times every day. Instead, we will copy the execution thread. It means we will ensure that after calling a particular method we would get two threads instead of one: our thread and a new one that continues to execute code from the point of the clone method call as if it got here itself. It will look like this:</p>
 <div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
 <span style="color:Blue;">void</span> MakeFork()
 {
@@ -762,8 +831,8 @@ RestorePointAfterClonedExited:
 <p>If we look at an even lower level, we will recall that the memory is, in fact, virtual and it is divided into 8 and 4 Kb pages. Each of these pages can either exist or not exist physically. If it exists, it can be mapped to a file or real RAM. It is exactly this virtualization mechanism that allows applications to have separate memory and provides security levels between an application and an operating system. What does this have to do with a thread stack? As any other random access memory of an application a thread stack is its part and also consists of 4 and 8 Kb pages. On the sides of a range allocated for the stack, there are two pages. An attempt to access these pages will produce an exception, notifying an OS that an application tries to address an unallocated memory range. The actually allocated ranges inside this region are those pages which the application addressed: if the application allocates 2 Mb of memory for a thread, that doesn’t mean they will be allocated straight away. They will be allocated on demand: if a thread stack will grow up to 1 Mb, that will mean that the application got exactly 1 Mb of RAM for the stack.</p>
 <p>When an application allocates memory for local variables, two things happen: the value of ESP register grows and the memory for variables is set to null. That’s why when you write a recursive method which enters infinite recursion, you will get <code>StackOverflowException</code>: acquiring the entire memory allocated for the stack (the entire available region), you will run into a special Guard Page the access to which will make an operating system initiate <code>StackOverflow</code> at the OS level. It will pass to .NET and will be caught resulting in <code>StackOverflowException</code> for a .NET application.</p>
 <h1 id="the-memory-allocation-on-the-stack-stackalloc">The memory allocation on the stack: <code>stackalloc</code></h1>
-<p>In C# there is a quite interesting and rarely used keyword <code>stackalloc</code>. It is so rarely used in code (I’d rather say &quot;never&quot; instead of &quot;rarely&quot;) that it’s hard to find a suitable example of its use and it’s even harder to create an example because if it’s seldom used the experience of working with it is too little. Why? Because for those who try to figure out what this instruction does, <code>stackalloc</code> becomes more threatening than useful, as the dark side of <code>stackalloc</code> is unsafe code. The result it returns is not a managed pointer: the value is a usual pointer to the range of unprotected memory. And if you make an entry at this address after a method finishes its work, you will start writing to local variables of some method or will overwrite the return address from the method, and an application will finish work with an error. However, our task is to get to hidden corners and figure out what they hide. Also, we should understand that this instrument was created on purpose and not just to spill our water and slip on it. Quite opposite: we were giving this instrument to use it and create really quick software. Did I inspire you? Then, let’s start.</p>
-<p>To find the appropriate use cases for this keyword, we should turn to its authors, i.e. Microsoft and see how they use it. We can do this with the help of a full-text search in the  <a href="https://github.com/dotnet/coreclr">coreclr repository</a>. Besides different tests of the keyword itself, we will find no more than 25 use cases of this keyword in the library code. I hope I motivated you enough in the previous paragraph and you won’t stop reading my work when you see such a small number. To say the truth, the CLR team is more far-sighted and professional than the .NET Framework team. And if they created something, it should help us a lot. But if it is not used in .NET Framework... Well, we can suppose that not all engineers there know there is such a powerful optimization instrument. Otherwise, its would be more widely used.</p>
+<p>In C# there is a quite interesting and rarely used keyword <code>stackalloc</code>. It is so rarely used in code (I’d rather say &laquo;never&raquo; instead of &laquo;rarely&raquo;) that it’s hard to find a suitable example of its use and it’s even harder to create an example because if it’s seldom used the experience of working with it is too little. Why? Because for those who try to figure out what this instruction does, <code>stackalloc</code> becomes more threatening than useful, as the dark side of <code>stackalloc</code> is unsafe code. The result it returns is not a managed pointer: the value is a usual pointer to the range of unprotected memory. And if you make an entry at this address after a method finishes its work, you will start writing to local variables of some method or will overwrite the return address from the method, and an application will finish work with an error. However, our task is to get to hidden corners and figure out what they hide. Also, we should understand that this instrument was created on purpose and not just to spill our water and slip on it. Quite opposite: we were giving this instrument to use it and create really quick software. Did I inspire you? Then, let’s start.</p>
+<p>To find the appropriate use cases for this keyword, we should turn to its authors, i.e. Microsoft and see how they use it. We can do this with the help of a full-text search in the  <a href="https://github.com/dotnet/coreclr">coreclr repository</a>. Besides different tests of the keyword itself, we will find no more than 25 use cases of this keyword in the library code. I hope I motivated you enough in the previous paragraph and you won’t stop reading my work when you see such a small number. To say the truth, the CLR team is more far-sighted and professional than the .NET Framework team. And if they created something, it should help us a lot. But if it is not used in .NET Framework&hellip; Well, we can suppose that not all engineers there know there is such a powerful optimization instrument. Otherwise, its would be more widely used.</p>
 <p><strong>Interop.ReadDir class</strong>
 <a href="https://github.com/dotnet/coreclr/blob/b29f6328510207970763580d6f4db864e4b198af/src/mscorlib/shared/Interop/Unix/System.Native/Interop.ReadDir.cs#L71-L83">/src/mscorlib/shared/Interop/Unix/System.Native/Interop.ReadDir.cs</a></p>
 <div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
@@ -832,7 +901,7 @@ RestorePointAfterClonedExited:
 }
 </pre></div>
 </div>
-<p>This code is more informative as it makes a user think and be careful when choosing numbers. In case of bad luck, the first variant can produce <code>StackOverflowException</code> with a method not being quite deep into a thread stack: it is enough to pass a big number as a parameter. The second variant when you can actually accept the size is when this method is called in specific cases and the calling code &quot;knows&quot; the working algorithm of this method. Without knowing the internal structure of a method there is no specific idea about the possible range for <code>noiseLength</code> and as a result errors can occur.</p>
+<p>This code is more informative as it makes a user think and be careful when choosing numbers. In case of bad luck, the first variant can produce <code>StackOverflowException</code> with a method not being quite deep into a thread stack: it is enough to pass a big number as a parameter. The second variant when you can actually accept the size is when this method is called in specific cases and the calling code &laquo;knows&raquo; the working algorithm of this method. Without knowing the internal structure of a method there is no specific idea about the possible range for <code>noiseLength</code> and as a result errors can occur.</p>
 <p>The second example which I see is that if we misdetermined the size of a buffer which we allocated on the stack and we don’t want to decrease the efficiency of work, we can take a number of ways: allocate more memory on the stack or allocate it in the heap. The second variant will probably be more appropriate in most cases (this is what was done in the case of <code>ValueStringBuffer</code>) as it is safer in respect of getting <code>StackOverflowException</code>.</p>
 <h2 id="conclusions-on-stackalloc">Conclusions on <code>stackalloc</code></h2>
 <p>So, what is <code>stackalloc</code> best used for?</p>

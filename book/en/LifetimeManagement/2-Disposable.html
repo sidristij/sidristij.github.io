@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+    <link rel="stylesheet" href="../../res/bootstrap.css">
     <style>
         body {
     padding: 60px 60px 60px 100px;
@@ -20,7 +21,7 @@ strong {
 }
 
 p, li {
-    margin: 0 0 14px;
+    margin: 0 0 25px;
     line-height: 32px;
     font-family: inherit;
 }
@@ -37,37 +38,82 @@ ol li {
 }
 
 ul li {
-    padding-left: 5px;	
+    padding-left: 12px;	
     font-family: inherit;
 }
 
-code, .lang-csharp span, .lang-csharp pre {
+table {
+    margin: 30px 0;
+    width: 100%;
+}
+
+thead {                         
+    background-color: aliceblue;
+}
+
+table th {
+    font-weight: 400;
+}
+
+table td, table th {
+    padding: 7px;
+    border-top: solid darkgrey 1px;
+    border-bottom: solid darkgrey 1px;
+    border-right: dotted darkgray 1px;
+    border-left: dotted darkgray 1px;
+    font-size: smaller;
+}
+
+code, *[class*='lang-'] span, *[class*='lang-'] pre {
     font-family: JB Mono, monospace !important;
 }
 
-.lang-csharp {
-    padding: 4px 0px 14px 0px;
+*[class*='lang-'] {
+    padding: 0px 0px 25px 0px;
 }
 
 
-.lang-csharp > div {
+*[class*='lang-'] > div, pre > code {
     border-left-color: #eee;
     border-left-style: dotted;
     border-left-width: 3px;
-    background-color: #f5faff !important;
-    padding: 10px 10px 10px 25px;
+    padding-left: 25px;
+    display: block;
+    background-color: aliceblue !important;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
-code {
-    font-size: 14px;
+*[class*='lang-'] > div pre, pre > code pre {
+    margin-bottom: 0;
+}
+
+p code:not(.highlight), li code:not(.highlight) {
+    font-size: 16px;
     border: gainsboro;
     border-width: 1px;
     border-style: solid;
-    padding: 2px;
+    padding: 4px;
     color: darkslateblue;
 }
 
-.lang-csharp span, .lang-csharp pre {
+code.highlight {
+    font-family: inherit !important;
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+}
+
+p code.highlight, li code.highlight {
+    padding: 4px;
+    background-color: #ffffa1;
+}
+
+.wide {
+    width:150%;
+}
+
+*[class*='lang-'] span, *[class*='lang-'] pre, pre > code {
     font-size: 13px;
     line-height: 20px;
 }
@@ -78,18 +124,33 @@ p a, li a {
     box-shadow: inset 0 -1px #b88b59;
 }
 
+blockquote h5 {
+    background-color: aquamarine;
+    margin: 16px 0 16px -20px;
+    padding: 15px 30px 15px;
+}
+
 p img {
     width: 95%;
 }
 
-p (:has img) {
+p:has( > img) {
     text-align: center;
 }
 
-blockquote {
-    background-color: lavenderblush;
-    padding-left: 20px;
-    border-left: 1px solid rgba(0,0,0,.08);
+blockquote > p.big-quote {
+    margin: 40px 0 60px 0;
+    font-family: Charter;
+    font-size: 55px;
+    line-height: 60px;
+    width: 150%;
+    padding: 0;
+}
+
+blockquote:not( p.big-quote) {
+    background-color: lavenderblush !important;
+    padding-left: 20px !important;
+    border-left: 1px solid rgba(0,0,0,.08) !important;
 }
 
 blockquote p {
@@ -141,7 +202,7 @@ h2 {
 }
 
 h3 {
-    margin: 30px 0 10px 0;
+    margin: 30px 0 15px 0;
     font-size: 17pt;
     font-weight: 500;
 }
@@ -155,16 +216,16 @@ h4 {
 
 /* Fonts 
 
-@font-face {
-    font-family: 'PF Regal';
-    src: url('../../res/fonts/PFRegalTextPro-RegularA.eot');
-    src: local('../../res/fonts/PFRegalTextPro-RegularA'),
-        url('../../res/fonts/PFRegalTextPro-RegularA.woff2') format('woff2'),
-        url('../../res/fonts/PFRegalTextPro-RegularA.woff') format('woff'),
-        url('../../res/fonts/PFRegalTextPro-RegularA.ttf') format('truetype');
-    font-weight: 300;
-    font-style: normal;
-}
+/*@font-face {*/
+/*    font-family: 'PF Regal';*/
+/*    src: url('../../res/fonts/PFRegalTextPro-RegularA.eot');*/
+/*    src: local('../../res/fonts/PFRegalTextPro-RegularA'),*/
+/*        url('../../res/fonts/PFRegalTextPro-RegularA.woff2') format('woff2'),*/
+/*        url('../../res/fonts/PFRegalTextPro-RegularA.woff') format('woff'),*/
+/*        url('../../res/fonts/PFRegalTextPro-RegularA.ttf') format('truetype');*/
+/*    font-weight: 300;*/
+/*    font-style: normal;*/
+/*}*/
 
 @font-face {
     font-family: 'PF Regal';
@@ -265,6 +326,13 @@ h4 {
     font-style: italic;
 }
 
+@font-face {
+    font-family: 'Charter';
+    src: url('../../res/fonts/charter-regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
 /*  Regular B */
 @font-face {
     font-family: 'PF Regal';
@@ -273,7 +341,7 @@ h4 {
         url('../../res/fonts/PFRegalTextPro-RegularBItalic.woff2') format('woff2'),
         url('../../res/fonts/PFRegalTextPro-RegularBItalic.woff') format('woff'),
         url('../../res/fonts/PFRegalTextPro-RegularBItalic.ttf') format('truetype');
-    font-weight: normal;
+    font-weight: 300;
     font-style: italic;
 }
 
@@ -284,13 +352,14 @@ h4 {
         url('../../res/fonts/PFRegalTextPro-RegularB.woff2') format('woff2'),
         url('../../res/fonts/PFRegalTextPro-RegularB.woff') format('woff'),
         url('../../res/fonts/PFRegalTextPro-RegularB.ttf') format('truetype');
-    font-weight: normal;
+    font-weight: 300;
     font-style: normal;
-}                
+}              
+  
     </style>
 
-<div style="margin:auto; width:100%;">
-<div style="width:1000px;">
+<div class="row">
+<div class="offset-1 col-7">
     <p><img src="./imgs/Disposable-Cover.png" alt="IDisposable cover" /></p>
 <h1 id="disposable-pattern-disposable-design-principle">Disposable pattern (Disposable Design Principle)</h1>
 <blockquote>
@@ -391,7 +460,7 @@ This problem on a remote server can become a complex task to solve.</p>
 <li>If we call Dispose() from another Dispose(). Again, we may happen to fail to get to it. This is not the case of an absent-minded app developer, who forgot to call Dispose(). It is the question of exceptions. However, these are not only the exceptions that crash a thread of an application. Here we talk about all exceptions that will prevent an algorithm from calling an external Dispose() that will call our Dispose().</li>
 </ul>
 <p>All these cases will create suspended unmanaged resources. That is because Garbage Collector doesn’t know it should collect them. All it can do upon next check is to discover that the last reference to an object graph with our <code>FileWrapper</code> type is lost. In this case, the memory will be reallocated for objects with references. How can we prevent it?</p>
-<p>We must implement the finalizer of an object. The 'finalizer' is named this way on purpose. It is not a destructor as it may seem because of similar ways to call finalizers in C# and destructors in C++. The difference is that a finalizer will be called <em>anyway</em>, contrary to a destructor (as well as <code>Dispose()</code>). A finalizer is called when Garbage Collection is initiated (now it is enough to know this, but things are a bit more complicated). It is used for a guaranteed release of resources if <em>something goes wrong</em>. We <em>must</em> implement a finalizer to release unmanaged resources. Again, because a finalizer is called when GC is initiated, we don’t know when this happens in general.</p>
+<p>We must implement the finalizer of an object. The &lsquo;finalizer&rsquo; is named this way on purpose. It is not a destructor as it may seem because of similar ways to call finalizers in C# and destructors in C++. The difference is that a finalizer will be called <em>anyway</em>, contrary to a destructor (as well as <code>Dispose()</code>). A finalizer is called when Garbage Collection is initiated (now it is enough to know this, but things are a bit more complicated). It is used for a guaranteed release of resources if <em>something goes wrong</em>. We <em>must</em> implement a finalizer to release unmanaged resources. Again, because a finalizer is called when GC is initiated, we don’t know when this happens in general.</p>
 <p>Let’s expand our code:</p>
 <div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
 <span style="color:Blue;">public</span> <span style="color:Blue;">class</span> FileWrapper : IDisposable
@@ -1016,12 +1085,12 @@ subscription.Dispose();
 <li>Despite being determined, Dispose() doesn’t mean direct destruction of an object. The object will still exist after its <em>destruction</em> but in another state. To make it true CheckDisposed() must be the first command of each public method. This looks like a temporary solution that somebody gave us saying: “Go forth and multiply”;</li>
 <li>There is also a small chance to get a type that implements <code>IDisposable</code> through <em>explicit</em> implementation. Or you can get a type that implements IDisposable without a chance to determine who must destroy it: you or the party that gave it to you. This resulted in an antipattern of multiple calls of Dispose() that allows to destroy a destroyed object;</li>
 <li>The complete implementation is difficult, and it is different for managed and unmanaged resources. Here the attempt to facilitate the work of developers through GC looks awkward. You can override <code>virtual void Dispose()</code> method and introduce some DisposableObject type that implements the whole pattern, but that doesn’t solve other problems connected with the pattern;</li>
-<li>As a rule Dispose() method is implemented at the end of a file while '.ctor' is declared at the beginning. If you modify a class or introduce new resources, it is easy to forget to add disposal for them.</li>
+<li>As a rule Dispose() method is implemented at the end of a file while &lsquo;.ctor&rsquo; is declared at the beginning. If you modify a class or introduce new resources, it is easy to forget to add disposal for them.</li>
 <li>Finally, it is difficult to determine the order of <em>destruction</em> in a multithreaded environment when you use a pattern for object graphs where objects fully or partially implement that pattern. I mean situations when Dispose() can start at different ends of a graph. Here it is better to use other patterns, e.g. the Lifetime pattern.</li>
 <li>The wish of platform developers to automate memory control combined with realities: applications interact with unmanaged code very often + you need to control the release of references to objects so Garbage Collector could collect them. This adds great confusion in understanding such questions as: “How should we implement a pattern correctly”? “Is there a reliable pattern at all”? Maybe calling <code>delete obj; delete[] arr;</code> is simpler?</li>
 </ol>
 <h2 id="domain-unloading-and-exit-from-an-application">Domain unloading and exit from an application</h2>
-<p>If you got to this part, you became more confident in the success of future job interviews. However, we didn’t discuss all the questions connected with this simple, as it may seem, pattern. The last question is whether the behavior of an application differs in case of simple garbage collection and when garbage is collected during domain unloading and while exiting the application. This question merely touches upon <code>Dispose()</code>... However <code>Dispose()</code> and finalization go hand in hand and we rarely meet an implementation of a class which has finalization but doesn't have <code>Dispose()</code> method. So, let’s describe finalization in a separate section. Here we just add a few important details.</p>
+<p>If you got to this part, you became more confident in the success of future job interviews. However, we didn’t discuss all the questions connected with this simple, as it may seem, pattern. The last question is whether the behavior of an application differs in case of simple garbage collection and when garbage is collected during domain unloading and while exiting the application. This question merely touches upon <code>Dispose()</code>&hellip; However <code>Dispose()</code> and finalization go hand in hand and we rarely meet an implementation of a class which has finalization but doesn't have <code>Dispose()</code> method. So, let’s describe finalization in a separate section. Here we just add a few important details.</p>
 <p>During application domain unloading you unload both assemblies loaded into the application domain and all objects that were created as part of the domain to be unloaded. In fact, this means the cleanup (collection by GC) of these objects and calling finalizers for them. If the logic of a finalizer waits for finalization of other objects to be destroyed in the right order, you may pay attention to <code>Environment.HasShutdownStarted</code> property indicating that an application is unloaded from memory and to <code>AppDomain.CurrentDomain.IsFinalizingForUnload()</code> method indicating that this domain is unloaded which is the reason for finalization. If these events occur the order of resources finalization generally becomes unimportant. We cannot delay either the unloading of domain or an application as we should do everything as quickly as possible.</p>
 <p>This is the way this task is solved as part of a class <a href="http://referencesource.microsoft.com/#mscorlib/system/reflection/loaderallocator.cs,25551b0f6db5f579">LoaderAllocatorScout</a></p>
 <div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>

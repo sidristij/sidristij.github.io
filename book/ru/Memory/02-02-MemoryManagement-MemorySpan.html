@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+    <link rel="stylesheet" href="../../res/bootstrap.css">
     <style>
         body {
     padding: 60px 60px 60px 100px;
@@ -20,7 +21,7 @@ strong {
 }
 
 p, li {
-    margin: 0 0 14px;
+    margin: 0 0 25px;
     line-height: 32px;
     font-family: inherit;
 }
@@ -37,37 +38,82 @@ ol li {
 }
 
 ul li {
-    padding-left: 5px;	
+    padding-left: 12px;	
     font-family: inherit;
 }
 
-code, .lang-csharp span, .lang-csharp pre {
+table {
+    margin: 30px 0;
+    width: 100%;
+}
+
+thead {                         
+    background-color: aliceblue;
+}
+
+table th {
+    font-weight: 400;
+}
+
+table td, table th {
+    padding: 7px;
+    border-top: solid darkgrey 1px;
+    border-bottom: solid darkgrey 1px;
+    border-right: dotted darkgray 1px;
+    border-left: dotted darkgray 1px;
+    font-size: smaller;
+}
+
+code, *[class*='lang-'] span, *[class*='lang-'] pre {
     font-family: JB Mono, monospace !important;
 }
 
-.lang-csharp {
-    padding: 4px 0px 14px 0px;
+*[class*='lang-'] {
+    padding: 0px 0px 25px 0px;
 }
 
 
-.lang-csharp > div {
+*[class*='lang-'] > div, pre > code {
     border-left-color: #eee;
     border-left-style: dotted;
     border-left-width: 3px;
-    background-color: #f5faff !important;
-    padding: 10px 10px 10px 25px;
+    padding-left: 25px;
+    display: block;
+    background-color: aliceblue !important;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
-code {
-    font-size: 14px;
+*[class*='lang-'] > div pre, pre > code pre {
+    margin-bottom: 0;
+}
+
+p code:not(.highlight), li code:not(.highlight) {
+    font-size: 16px;
     border: gainsboro;
     border-width: 1px;
     border-style: solid;
-    padding: 2px;
+    padding: 4px;
     color: darkslateblue;
 }
 
-.lang-csharp span, .lang-csharp pre {
+code.highlight {
+    font-family: inherit !important;
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+}
+
+p code.highlight, li code.highlight {
+    padding: 4px;
+    background-color: #ffffa1;
+}
+
+.wide {
+    width:150%;
+}
+
+*[class*='lang-'] span, *[class*='lang-'] pre, pre > code {
     font-size: 13px;
     line-height: 20px;
 }
@@ -78,18 +124,33 @@ p a, li a {
     box-shadow: inset 0 -1px #b88b59;
 }
 
+blockquote h5 {
+    background-color: aquamarine;
+    margin: 16px 0 16px -20px;
+    padding: 15px 30px 15px;
+}
+
 p img {
     width: 95%;
 }
 
-p (:has img) {
+p:has( > img) {
     text-align: center;
 }
 
-blockquote {
-    background-color: lavenderblush;
-    padding-left: 20px;
-    border-left: 1px solid rgba(0,0,0,.08);
+blockquote > p.big-quote {
+    margin: 40px 0 60px 0;
+    font-family: Charter;
+    font-size: 55px;
+    line-height: 60px;
+    width: 150%;
+    padding: 0;
+}
+
+blockquote:not( p.big-quote) {
+    background-color: lavenderblush !important;
+    padding-left: 20px !important;
+    border-left: 1px solid rgba(0,0,0,.08) !important;
 }
 
 blockquote p {
@@ -141,7 +202,7 @@ h2 {
 }
 
 h3 {
-    margin: 30px 0 10px 0;
+    margin: 30px 0 15px 0;
     font-size: 17pt;
     font-weight: 500;
 }
@@ -155,16 +216,16 @@ h4 {
 
 /* Fonts 
 
-@font-face {
-    font-family: 'PF Regal';
-    src: url('../../res/fonts/PFRegalTextPro-RegularA.eot');
-    src: local('../../res/fonts/PFRegalTextPro-RegularA'),
-        url('../../res/fonts/PFRegalTextPro-RegularA.woff2') format('woff2'),
-        url('../../res/fonts/PFRegalTextPro-RegularA.woff') format('woff'),
-        url('../../res/fonts/PFRegalTextPro-RegularA.ttf') format('truetype');
-    font-weight: 300;
-    font-style: normal;
-}
+/*@font-face {*/
+/*    font-family: 'PF Regal';*/
+/*    src: url('../../res/fonts/PFRegalTextPro-RegularA.eot');*/
+/*    src: local('../../res/fonts/PFRegalTextPro-RegularA'),*/
+/*        url('../../res/fonts/PFRegalTextPro-RegularA.woff2') format('woff2'),*/
+/*        url('../../res/fonts/PFRegalTextPro-RegularA.woff') format('woff'),*/
+/*        url('../../res/fonts/PFRegalTextPro-RegularA.ttf') format('truetype');*/
+/*    font-weight: 300;*/
+/*    font-style: normal;*/
+/*}*/
 
 @font-face {
     font-family: 'PF Regal';
@@ -265,6 +326,13 @@ h4 {
     font-style: italic;
 }
 
+@font-face {
+    font-family: 'Charter';
+    src: url('../../res/fonts/charter-regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
 /*  Regular B */
 @font-face {
     font-family: 'PF Regal';
@@ -273,7 +341,7 @@ h4 {
         url('../../res/fonts/PFRegalTextPro-RegularBItalic.woff2') format('woff2'),
         url('../../res/fonts/PFRegalTextPro-RegularBItalic.woff') format('woff'),
         url('../../res/fonts/PFRegalTextPro-RegularBItalic.ttf') format('truetype');
-    font-weight: normal;
+    font-weight: 300;
     font-style: italic;
 }
 
@@ -284,13 +352,14 @@ h4 {
         url('../../res/fonts/PFRegalTextPro-RegularB.woff2') format('woff2'),
         url('../../res/fonts/PFRegalTextPro-RegularB.woff') format('woff'),
         url('../../res/fonts/PFRegalTextPro-RegularB.ttf') format('truetype');
-    font-weight: normal;
+    font-weight: 300;
     font-style: normal;
-}                
+}              
+  
     </style>
 
-<div style="margin:auto; width:100%;">
-<div style="width:1000px;">
+<div class="row">
+<div class="offset-1 col-7">
     <h1 id="memoryt-spant">Memory&lt;T&gt; и Span&lt;T&gt;</h1>
 <blockquote>
 <p><a href="https://github.com/sidristij/dotnetbook/issues/55">Ссылка на обсуждение</a></p>
@@ -322,7 +391,7 @@ h4 {
 }
 </pre></div>
 </div>
-<p>Становится понятна причина непопулярности. Посмотрите, не вчитываясь в код, и ответьте для себя на один вопрос: доверяете ли вы ему? Могу предположить, что ответом будет &quot;нет&quot;. Тогда ответьте на другой: почему? Ответ будет очевиден: помимо того что мы видим слово <code>Dangerous</code>, которое как бы намекает, что что-то может пойти не так, второй фактор, влияющий на наше отношение, - это запись <code>unsafe</code> и строчка <code>byte* buffer = stackalloc byte[s_readBufferSize];</code>, а если еще конкретнее - <code>byte*</code>. Эта запись - триггер для любого, чтобы в голове появилась мысль: &quot;а что, по-другому сделать нельзя было что ли?&quot;. Тогда давайте еще чуть-чуть разберемся с психоанализом: отчего может возникнуть подобная мысль? С одной стороны мы пользуемся конструкциями языка и предложенный здесь синтаксис далек от, например, C++/CLI, который позволяет делать вообще все что угодно (в том числе делать вставки на чистом Assembler), а с другой он выглядит непривычно.</p>
+<p>Становится понятна причина непопулярности. Посмотрите, не вчитываясь в код, и ответьте для себя на один вопрос: доверяете ли вы ему? Могу предположить, что ответом будет &laquo;нет&raquo;. Тогда ответьте на другой: почему? Ответ будет очевиден: помимо того что мы видим слово <code>Dangerous</code>, которое как бы намекает, что что-то может пойти не так, второй фактор, влияющий на наше отношение, - это запись <code>unsafe</code> и строчка <code>byte* buffer = stackalloc byte[s_readBufferSize];</code>, а если еще конкретнее - <code>byte*</code>. Эта запись - триггер для любого, чтобы в голове появилась мысль: &quot;а что, по-другому сделать нельзя было что ли?&quot;. Тогда давайте еще чуть-чуть разберемся с психоанализом: отчего может возникнуть подобная мысль? С одной стороны мы пользуемся конструкциями языка и предложенный здесь синтаксис далек от, например, C++/CLI, который позволяет делать вообще все что угодно (в том числе делать вставки на чистом Assembler), а с другой он выглядит непривычно.</p>
 <p>Второй вопрос, который явно или неявно возникал в головах у многих разработчиков - это несовместимость типов: строки <code>string</code> и массива символов <code>char[]</code>, хотя чисто логически строка - это и есть массив символов, привести string к char[] возможности нет никакой: только создание нового объекта и копирование содержимого строки в массив. Причем несовместимость такая введена для оптимизации строк с точки зрения хранения (readonly массивов не существует), но проблемы возникают, когда вы начинаете работать с файлами. Как прочитать? Строкой или массивом? Ведь если массивом, станет невозможным пользоваться некоторыми методами, рассчитанными на работу со строками. А если строкой? Может оказаться слишком длинной. Если речь идет о последующем парсинге, возникает вопрос выбора парсеров примитивов: далеко не всегда хочется парсить их все вручную (целые числа, числа с плавающей точкой, в разных форматах записанных). Есть же множество алгоритмов, проверенных годами, которые делают это быстро и эффективно. Но такие алгоритмы часто работают на строках, в которых кроме самого примитива ничего другого нет. Другими словами, дилемма.</p>
 <p>Третья проблематика заключается в том, что необходимые для некоторого алгоритма данные редко лежат от начала и до самого конца считанного с некоторого источника массива. Например, если речь опять же идет о файлах или о данных, считанных с сокета, то есть некоторая уже обработанная неким алгоритмом часть, дальше идет то, что должен обработать некий наш метод, после чего идут данные, которые нам обработать, еще предстоит. И этот самый метод в идеале хочет, чтобы ему отдали только то, что он ожидает. Например, метод парсинга целых чисел вряд ли будет сильно благодарен, если вы отдадите ему строку с разговором о чём-либо, где в некоторой позиции будет находиться нужное число. Такой метод ожидает, что вы отдадите ему число и ничего больше. Если же мы отдадим массив целиком, то возникает требование указать, например, смещение числа относительно начала массива:</p>
 <div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
@@ -336,7 +405,7 @@ h4 {
 }
 </pre></div>
 </div>
-<p>Однако данный способ плох тем, что метод получает данные, которые ему не нужны. Другими словами, <em>метод не введен в контекст своей задачи</em>. Ведь помимо своей задачи метод решает еще и некоторую внешнюю. А это - признак плохого проектирования. Как избежать данной проблемы? Как вариант, можно воспользоваться типом <code>ArraySegment&lt;T&gt;</code>, суть которого - предоставить &quot;окно&quot; в некий массив:</p>
+<p>Однако данный способ плох тем, что метод получает данные, которые ему не нужны. Другими словами, <em>метод не введен в контекст своей задачи</em>. Ведь помимо своей задачи метод решает еще и некоторую внешнюю. А это - признак плохого проектирования. Как избежать данной проблемы? Как вариант, можно воспользоваться типом <code>ArraySegment&lt;T&gt;</code>, суть которого - предоставить &laquo;окно&raquo; в некий массив:</p>
 <div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
 <span style="color:Blue;">int</span> ParseInt(IList&lt;<span style="color:Blue;">char</span>&gt;[] input)
 {
@@ -444,7 +513,7 @@ buf[3] = <span style="color:#A31515;">&#39;4&#39;</span>; buf[4] = <span style="
 </pre></div>
 </div>
 <p>Или же если отталкиваться от архитектуры, то делать три типа, которые наследуют единый интерфейс. Получается, что невозможно сделать средство единого интерфейса, отличное от <code>Span&lt;T&gt;</code>, между этими типами данных, сохранив при этом максимальную производительность.</p>
-<p>Далее, если продолжить рассуждения, то, что такое <code>ref struct</code> в понятиях <code>Span</code>? Это именно те самые &quot;структуры, они только на стеке&quot;, о которых мы так часто слышим на собеседованиях. А это значит, что этот тип данных может идти только через стек и не имеет права уходить в кучу. А потому <code>Span</code>, будучи ref структурой, является контекстным типом данных, обеспечивающим работу методов, но не объектов в памяти. От этого для его понимания и надо отталкиваться.</p>
+<p>Далее, если продолжить рассуждения, то, что такое <code>ref struct</code> в понятиях <code>Span</code>? Это именно те самые &laquo;структуры, они только на стеке&raquo;, о которых мы так часто слышим на собеседованиях. А это значит, что этот тип данных может идти только через стек и не имеет права уходить в кучу. А потому <code>Span</code>, будучи ref структурой, является контекстным типом данных, обеспечивающим работу методов, но не объектов в памяти. От этого для его понимания и надо отталкиваться.</p>
 <p>Отсюда мы можем сформулировать определение типа Span и связанного с ним readonly типа ReadOnlySpan:</p>
 <blockquote>
 <p>Span - это тип данных, обеспечивающий единый интерфейс работы с разнородными типами массивов данных, а также возможность передать в другой метод подмножество этого массива таким образом, чтобы вне зависимости от глубины взятия контекста скорость доступа к исходному массиву была константной и максимально высокой.</p>
@@ -473,7 +542,7 @@ Method3(Span&lt;<span style="color:Blue;">byte</span>&gt; buffer)
 <h4 id="valuestringbuilder">ValueStringBuilder</h4>
 <p>Одним из самых алгоритмически интересных примеров является тип <code>ValueStringBuilder</code>, который прикопан где-то в недрах <code>mscorlib</code> и почему-то, как и многие другие интереснейшие типы данных помечен модификатором <code>internal</code>, что означает, что, если бы не исследование исходного кода mscorlib, о таком замечательном способе оптимизации мы бы никогда не узнали.</p>
 <p>Каков основной минус системного типа <code>StringBuilder</code>? Это, конечно же, его суть: как он сам, так и то, на чем он основан (а это - массив символов <code>char[]</code>) - являются типами ссылочными. А это значит как минимум две вещи: мы все равно (хоть и немного) нагружаем кучу и второе - увеличиваем шансы промаха по кэшам процессора.</p>
-<p>Еще один вопрос, который у меня возникал к <code>StringBuilder</code> - это формирование маленьких строк. Т.е. когда результирующая строка &quot;зуб даю&quot; будет короткой: например, менее 100 символов. Когда мы имеем достаточно короткие форматирования, к производительности возникают вопросы:</p>
+<p>Еще один вопрос, который у меня возникал к <code>StringBuilder</code> - это формирование маленьких строк. Т.е. когда результирующая строка &laquo;зуб даю&raquo; будет короткой: например, менее 100 символов. Когда мы имеем достаточно короткие форматирования, к производительности возникают вопросы:</p>
 <div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
     $<span style="color:#A31515;">&quot;{x} is in range [{min};{max}]&quot;</span>
 </pre></div>
@@ -621,7 +690,7 @@ Method3(Span&lt;<span style="color:Blue;">byte</span>&gt; buffer)
     <span style="color:Blue;">internal</span> <span style="color:Blue;">const</span> <span style="color:Blue;">int</span> DefaultCapacity = 16;
 </pre></div>
 </div>
-<p><code>StringBuilder</code> - это класс, внутри которого находится ссылка на массив символов. Т.е. когда вы создаете его, то по сути создается как минимум два объекта: сам <code>StringBuilder</code> и массив символов в как минимум 16 символов (кстати именно поэтому так важно задавать предполагаемую длину строки: ее построение будет идти через генерацию односвязного списка 16-символьных массивов. Согласитесь, расточительство). Что это значит в контексте нашего разговора о типе <code>ValueStringBuilder</code>: capacity по умолчанию отсутствует, т.к. он заимствует память извне, плюс он сам является значимым типом и заставляет пользователя расположить буфер для символов на стеке. Как итог весь экземпляр типа помещается на стек вместе с его содержимым и вопрос оптимизации здесь становится решенным. Нет выделения памяти в куче? Нет проблем с проседанием производительности по куче. Но вы мне скажите: почему тогда не пользоваться ValueStringBuilder (или его самописной версией: сам он internal и нам не доступен) всегда? Ответ такой: надо смотреть на задачу, которая вами решается. Будет ли результирующая строка известного размера? Будет ли она иметь некий известный максимум по длине? Если ответ &quot;да&quot; и если при этом размер строки не выходит за некоторые разумные границы, то можно использовать значимую версию <code>StringBuilder</code>. Иначе, если мы ожидаем длинные строки, переходим на использование обычной версии.</p>
+<p><code>StringBuilder</code> - это класс, внутри которого находится ссылка на массив символов. Т.е. когда вы создаете его, то по сути создается как минимум два объекта: сам <code>StringBuilder</code> и массив символов в как минимум 16 символов (кстати именно поэтому так важно задавать предполагаемую длину строки: ее построение будет идти через генерацию односвязного списка 16-символьных массивов. Согласитесь, расточительство). Что это значит в контексте нашего разговора о типе <code>ValueStringBuilder</code>: capacity по умолчанию отсутствует, т.к. он заимствует память извне, плюс он сам является значимым типом и заставляет пользователя расположить буфер для символов на стеке. Как итог весь экземпляр типа помещается на стек вместе с его содержимым и вопрос оптимизации здесь становится решенным. Нет выделения памяти в куче? Нет проблем с проседанием производительности по куче. Но вы мне скажите: почему тогда не пользоваться ValueStringBuilder (или его самописной версией: сам он internal и нам не доступен) всегда? Ответ такой: надо смотреть на задачу, которая вами решается. Будет ли результирующая строка известного размера? Будет ли она иметь некий известный максимум по длине? Если ответ &laquo;да&raquo; и если при этом размер строки не выходит за некоторые разумные границы, то можно использовать значимую версию <code>StringBuilder</code>. Иначе, если мы ожидаем длинные строки, переходим на использование обычной версии.</p>
 <h4 id="valuelistbuilder">ValueListBuilder</h4>
 <div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
 <span style="color:Blue;">internal</span> <span style="color:Blue;">ref</span> <span style="color:Blue;">partial</span> <span style="color:Blue;">struct</span> ValueListBuilder&lt;T&gt;
@@ -658,7 +727,7 @@ Method3(Span&lt;<span style="color:Blue;">byte</span>&gt; buffer)
 <p><strong>Файл <a href="https://github.com/dotnet/coreclr/blob/dbaf2957387c5290a680c8918779683194137b1d/src/System.Private.CoreLib/shared/System/Collections/Generic/ValueListBuilder.cs">ValueListBuilder.cs</a></strong></p>
 <p>Если говорить прямо, то такие ситуации достаточно частые. Однако раньше мы решали этот вопрос другим способом: создавали <code>List</code>, заполняли его данными и теряли ссылку. Если при этом метод вызывается достаточно часто, возникает печальная ситуация: множество экземпляров класса <code>List</code> повисает в куче, а вместе с ними повисают в куче и массивы, с ними ассоциированные. Теперь эта проблема решена: дополнительных объектов создано не будет. Однако, как и в случае с <code>ValueStringBuilder</code>, решена она только для программистов Microsoft: класс имеет модификатор <code>internal</code>.</p>
 <h3 id="section">Правила и практика использования</h3>
-<p>Для того чтобы окончательно понять суть нового типа данных, необходимо &quot;поиграться&quot; с ним, написав пару-тройку, а лучше - больше методов, его использующих. Однако, основные правила можно почерпнуть уже сейчас:</p>
+<p>Для того чтобы окончательно понять суть нового типа данных, необходимо &laquo;поиграться&raquo; с ним, написав пару-тройку, а лучше - больше методов, его использующих. Однако, основные правила можно почерпнуть уже сейчас:</p>
 <ul>
 <li>Если ваш метод будет обрабатывать некоторый входящий набор данных, не меняя его размер, можно попробовать остановиться на типе <code>Span</code>. Если при этом не будет модификации этого буфера, то на типе <code>ReadOnlySpan</code>;</li>
 <li>Если ваш метод будет работать со строками, вычисляя какую-то статистику либо производя синтаксический разбор строки, то ваш метод <em>обязан</em> принимать <code>ReadOnlySpan&lt;char&gt;</code>. Именно обязан: это новое правило. Ведь если вы принимаете строку, тем самым вы заставляете кого-то сделать для вас подстроку</li>
@@ -910,7 +979,7 @@ Hello?
 }
 </pre></div>
 </div>
-<p>Которая инкапсулирует в себе понятие владельца участка памяти. Другими словами, если <code>Span</code> - средство работы с памятью, а <code>Memory</code> - средство хранения информации о конкретном участке, то <code>MemoryManager</code> - средство контроля его жизни, его владелец. Для примера можно взять тип <code>NativeMemoryManager&lt;T&gt;</code>, который хоть и написан для тестов, однако неплохо отражает суть понятия &quot;владение&quot;:</p>
+<p>Которая инкапсулирует в себе понятие владельца участка памяти. Другими словами, если <code>Span</code> - средство работы с памятью, а <code>Memory</code> - средство хранения информации о конкретном участке, то <code>MemoryManager</code> - средство контроля его жизни, его владелец. Для примера можно взять тип <code>NativeMemoryManager&lt;T&gt;</code>, который хоть и написан для тестов, однако неплохо отражает суть понятия &laquo;владение&raquo;:</p>
 <p><strong>Файл <a href="https://github.com/dotnet/corefx/blob/888088448ac5dd1053d88434dfd819dcbc0fd9a1/src/Common/tests/System/Buffers/NativeMemoryManager.cs">NativeMemoryManager.cs</a></strong></p>
 <div class="lang-csharp editor-colors"><div style="color:Black;background-color:White;"><pre>
 <span style="color:Blue;">internal</span> <span style="color:Blue;">sealed</span> <span style="color:Blue;">class</span> NativeMemoryManager : MemoryManager&lt;<span style="color:Blue;">byte</span>&gt;
